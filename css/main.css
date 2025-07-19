@@ -1,0 +1,127 @@
+:root {
+  --base-size: 21vw;
+}
+
+@keyframes stretch-bar {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 84vw;
+  }
+}
+
+.animated-bar {
+  width: 0;
+  animation: stretch-bar 2s forwards;
+}
+
+.letter {
+    opacity: 0;
+    display: inline-block;
+}
+
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-in-right {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fade-in-up.in-view {
+    animation: fade-in-up 1s ease-out forwards; 
+}
+.fade-up-target {opacity: 0;}
+
+.fade-in-left.in-view {
+    animation: fade-in-left 1s ease-out forwards; 
+}
+.fade-left-target {opacity: 0;}
+
+.fade-in-right.in-view {
+    animation: fade-in-right 1s ease-out forwards; 
+}
+.fade-right-target {opacity: 0;}
+
+.custom-slick-prev,
+.custom-slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #26428b;
+  z-index: 20;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.custom-slick-prev:hover,
+.custom-slick-next:hover {
+  color: #f39c12;
+  transform: translateY(-50%) scale(1.2);
+}
+
+.custom-slick-prev {
+  left: -50px;
+}
+
+.custom-slick-next {
+  right: -50px;
+}
+
+.flash-1 { animation: flash-1 0.4s ease-in-out; }
+@keyframes flash-1 {
+  0% { background-color: #dcfce7; } /* green-100 */
+  50% { background-color: #bbf7d0; } /* green-200 */
+  100% { background-color: white; }
+}
+
+.flash-2 { animation: flash-2 0.4s ease-in-out; }
+@keyframes flash-2 {
+  0% { background-color: #dbeafe; } /* blue-100 */
+  50% { background-color: #bfdbfe; } /* blue-200 */
+  100% { background-color: white; }
+}
+
+.flash-3 { animation: flash-3 0.4s ease-in-out; }
+@keyframes flash-3 {
+  0% { background-color: #f0abfc; } /* purple-100 */
+  50% { background-color: #e9d5ff; } /* purple-200 */
+  100% { background-color: white; }
+}
+
+.flash-4 { animation: flash-4 0.4s ease-in-out; }
+@keyframes flash-4 {
+  0% { background-color: #fef9c3; } /* yellow-100 */
+  50% { background-color: #fef08a; } /* yellow-200 */
+  100% { background-color: white; }
+}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Modules</title>
+    <link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+    <script src="js/main.js"></script>
+
+</head>
+
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-4xl font-bold text-blue-900 text-center mb-4">Warwick University Modules</h1>
+    <hr class="border-2 border-yellow-500 mb-8"/>
+
+    <!-- Year Section Template -->
+    <div class="space-y-8">
+
+      <!-- First Year -->
+      <div>
+        <button onclick="toggleSection('year1')" class="w-full bg-blue-900 text-white p-4 text-left text-2xl font-bold flex justify-between items-center hover:bg-yellow-500 transition">
+          <span>First Year</span>
+          <span>Total Grade: 74.8%</span>
+        </button>
+        <div id="year1" class="hidden mt-2 space-y-2">
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS118 Programming for Computer Scientists</span>
+            <span>Grade: 68%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS126 Design of Information Structures</span>
+            <span>Grade: 75%</span>
+          </div>
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS130 Mathematics for Computer Scientists 1</span>
+            <span>Grade: 68%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS131 Mathematics for Computer Scientists 2</span>
+            <span>Grade: 94%</span>
+          </div>
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS132 Computer Organisation & Architecture</span>
+            <span>Grade: 74%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS133 Professional Skills</span>
+            <span>Grade: 77%</span>
+          </div>
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS141 Functional Programming</span>
+            <span>Grade: 75%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>PH144 Mind and Reality</span>
+            <span>Grade: 67%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Year -->
+      <div>
+        <button onclick="toggleSection('year2')" class="w-full bg-blue-900 text-white p-4 text-left text-2xl font-bold flex justify-between items-center hover:bg-yellow-500 transition">
+          <span>Second Year</span>
+          <span>Total Grade: 69.9%</span>
+        </button>
+        <div id="year2" class="hidden mt-2 space-y-2">
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS241 Operating Systems and Computer Networks</span>
+            <span>Grade: 81%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS254 Algorithmic Graph Theory</span>
+            <span>Grade: 63%</span>
+          </div>
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS255 Artificial Intelligence</span>
+            <span>Grade: 76%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS258 Database Systems</span>
+            <span>Grade: 73%</span>
+          </div>
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS259 Formal Languages</span>
+            <span>Grade: 63%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS260 Algorithms</span>
+            <span>Grade: 75%</span>
+          </div>
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS261 Software Engineering</span>
+            <span>Grade: 68%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS262 Logic and Verification</span>
+            <span>Grade: 60%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Third Year -->
+      <div>
+        <button onclick="toggleSection('year3')" class="w-full bg-blue-900 text-white p-4 text-left text-2xl font-bold flex justify-between items-center hover:bg-yellow-500 transition">
+          <span>Third Year</span>
+          <span>Total Grade: 74.0%</span>
+        </button>
+        <div id="year3" class="hidden mt-2 space-y-2">
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS310 Computer Science Project</span>
+            <span>Grade: 76%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS313 Mobile Robotics</span>
+            <span>Grade: 68%</span>
+          </div>
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS324 Computer Graphics</span>
+            <span>Grade: 82%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS331 Neural Computing</span>
+            <span>Grade: 81%</span>
+          </div>
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS342 Machine Learning</span>
+            <span>Grade: 71%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS352 Project Management</span>
+            <span>Grade: 68%</span>
+          </div>
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS355 Digital Forensics</span>
+            <span>Grade: 70%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fourth Year -->
+      <div>
+        <button onclick="toggleSection('year4')" class="w-full bg-blue-900 text-white p-4 text-left text-2xl font-bold flex justify-between items-center hover:bg-[#f39c12] transition">
+          <span>Fourth Year</span>
+          <span>Total Grade: 75.8%</span>
+        </button>
+        <div id="year4" class="hidden mt-2 space-y-2">
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS407 Group Project</span>
+            <span>Grade: 76.6%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS413 Image and Video Analysis</span>
+            <span>Grade: 79.5%</span>
+          </div>
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS416 Optimisation Methods</span>
+            <span>Grade: 68.9%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS419 Quantum Computing*</span>
+            <span>Grade: 70.9%</span>
+          </div>
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS429 Data Mining</span>
+            <span>Grade: 82.5%</span>
+          </div>
+          <div class="bg-gray-200 p-4 flex justify-between text-lg">
+            <span>CS430 Foundations of Data Analytics</span>
+            <span>Grade: 73.3%</span>
+          </div>
+          <div class="bg-gray-100 p-4 flex justify-between text-lg">
+            <span>CS435 Advanced Computer Security*</span>
+            <span>Grade: 77.9%</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.classList.toggle('hidden');
+    }
+  </script>
+
+</body>
+
+</html>

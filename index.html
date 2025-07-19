@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Archie Harrodine</title>
+    <link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+    <script src="js/main.js"></script>
+
+	<audio id="sound-1" src="assets/audio/1.mp3" preload="auto"></audio>
+	<audio id="sound-2" src="assets/audio/2.mp3" preload="auto"></audio>
+	<audio id="sound-3" src="assets/audio/3.mp3" preload="auto"></audio>
+	<audio id="sound-4" src="assets/audio/4.mp3" preload="auto"></audio>
+	<audio id="paper" src="assets/audio/paper.mp3" preload="auto"></audio>
+</head>
+
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+<header class="bg-white shadow p-4">
+  <nav class="container mx-auto flex justify-between items-center relative">
+    <h1 id="side-title" class="text-xl font-bold">Loading...</h1>
+    <ul class="flex space-x-4">
+      <li><button id="home-button" class="hover:text-blue-600 focus:outline-none">Home</button></li>
+
+      <li class="relative">
+        <button id="projects-button" class="hover:text-blue-600 focus:outline-none">Projects</button>
+        <ul id="projects-menu" class="hidden absolute right-0 mt-2 bg-white border border-gray-200 rounded shadow-lg w-48 z-10">
+          <li><a href="/mario-map-project" class="block px-4 py-2 hover:bg-gray-100">Mario Map</a></li>
+          <li><a href="/geographic-centre" class="block px-4 py-2 hover:bg-gray-100">Geographic Centre</a></li>
+          <li><a href="https://illuminarchie.itch.io/box-quest" class="block px-4 py-2 hover:bg-gray-100">Box Quest</a></li>
+		  <li><a href="https://github.com/Illuminarchie66/CS141-Functional-ONAF" class="block px-4 py-2 hover:bg-gray-100">One Night at Freddy's</a></li>
+		  <li><a href="https://github.com/Illuminarchie66/SimpLeg" class="block px-4 py-2 hover:bg-gray-100">SimpLeg</a></li>
+		  <li><a href="https://example.com" class="block px-4 py-2 hover:bg-gray-100">Project Tracker</a></li>
+		  <li><a href="https://github.com/4th-year-group-project/Terra-Infinity" class="block px-4 py-2 hover:bg-gray-100">TerraInfinity</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#" class="hover:text-blue-600">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="p-6 flex items-center gap-4">
+    <div class="relative w-[20%] aspect-square flex items-center justify-center shrink-0">
+        <div class="absolute inset-0 bg-blue-900 rounded-full z-0 "></div>
+
+        <div class="relative z-10 w-[90%] h-[90%] rounded-full border-4 border-blue-900 overflow-hidden">
+            <img src="assets/images/profile.jpg" alt="Profile Picture" class="w-full h-full object-cover" />
+        </div>
+    </div>
+
+    <div class="animated-bar relative z-[-10] flex items-center rounded-[20px] ml-[-9vw] h-[14vw] bg-blue-900 overflow-hidden shadow-[0_6px_15px_rgba(0,0,0,0.3)]">
+        <div id="name" class="absolute flex items-center h-full text-white font-bold font-sans whitespace-pre ml-[10vw] text-[8.4vw] z-10"></div>
+    </div>
+</section>
+
+<!-- Personal Info -->
+<section class="flex flex-col lg:flex-row justify-between items-start gap-30 px-2 lg:px-2 pb-8 pt-0 max-w-7xl mx-auto">
+  
+    <!-- Contact Info (Left) -->
+    <div class="relative fade-up-target bg-white rounded-2xl shadow-md border border-blue-200 p-6 lg:p-8 w-full lg:w-[30%]">
+		<img src="assets/images/bisexual-flag.png"
+         alt="Bisexual Flag"
+         class="absolute top-[-0.5rem] right-[-0.5rem] w-16 h-auto drop-shadow-lg">
+
+        <h2 class="text-3xl font-bold mb-6 text-blue-900">Contact Info</h2>
+        <ul class="space-y-4 text-lg text-gray-800">
+        <li class="flex items-center gap-3">
+            <img src="assets/icons/email.svg" alt="Email" class="w-5 h-5 text-blue-600">
+            <span><a href="mailto:archie.harrodine@outlook.com" class="text-blue-600 hover:underline">archie.harrodine@outlook.com</a></span>
+        </li>
+        <li class="flex items-center gap-3">
+            <img src="assets/icons/phone.svg" alt="Phone" class="w-5 h-5 text-blue-600">
+            <span><a href="tel:+447563020772" class="text-blue-600 hover:underline">+44 75630 20772</a></span>
+        </li>
+        <li class="flex items-center gap-3">
+            <img src="assets/icons/linkedin.svg" alt="LinkedIn" class="w-5 h-5 text-blue-600">
+            <span><a href="https://www.linkedin.com/in/archie-harrodine-1437b7239/" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">linkedin.com/in/archie-harrodine</a></span>
+        </li>
+        <li class="flex items-center gap-3">
+            <img src="assets/icons/github.svg" alt="GitHub" class="w-5 h-5 text-blue-600">
+            <span><a href="https://github.com/Illuminarchie66" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">github.com/Illuminarchie66</a></span>
+        </li>
+        </ul>
+    </div>
+
+    <!-- Personal Statement (Right) -->
+    <div class="fade-up-target lg:w-[65%] text-xl leading-relaxed text-gray-800 px-2">
+      <p class="text-2xl font-semibold mb-4 text-blue-900">Motivated. Hardworking. Determined.</p>
+      <p>
+        I am a fourth year Master's student studying computer science at Warwick University, with a passion for creating solutions, and inspiring others. Interested in topics of software engineering, machine learning and game development, my education has prepared me to excel in finding innovative approaches to complex problems. With a relentless determination to succeed, I thrive within a team environment. I am eager to contribute toward meaningful and exciting projects.
+      </p>
+  	</div>
+
+</section>
+
+<!-- Education Section -->
+<section class="flex flex-col lg:flex-row w-full h-full gap-0 pt-2 pb-4">
+
+	<!-- Education history (Left) -->
+	<div class="w-full lg:w-[45%] px-4 lg:px-8 space-y-6 py-2 overflow-auto lg:max-h-[600px] fade-left-target">
+		<h2 class="text-4xl lg:text-5xl font-bold text-blue-900 mb-8">EDUCATION</h2>
+			
+			<div class="space-y-6 text-lg text-gray-800">
+				<!-- University Degree -->
+				<div x-data="{ open: false }" class="border-l-4 border-blue-800 pl-6">
+					<div 
+						class="cursor-pointer mb-2"
+						@click="open = !open"
+					>
+						<div class="flex justify-between items-start">
+							<div>
+								<h3 class="text-xl font-semibold text-blue-900">Masters of Engineering (MEng) Computer Science</h3>
+								<p class="text-lg font-medium text-blue-700">
+								University of Warwick
+								</p>
+							</div>
+							<div class="flex items-center space-x-2">
+								<p class="text-gray-600 text-sm">2021 - 2025</p>
+								<span 
+								class="text-blue-600 text-lg transition-transform duration-300"
+								:class="{ 'rotate-180': open }"
+								>
+								&#x25BC;
+								</span>
+							</div>
+						</div>
+					</div>
+
+					<div x-show="open" x-transition>
+						<div class="flex items-center gap-2 mb-2 ml-10">
+							<p class="text-lg font-bold text-black-700">Achieved Grade: </p>
+							<span class="text-lg font-medium text-gray-700">First Class Honours (1st), 73.9%</span>
+						</div>
+						<div class="ml-10 mt-1">
+							<button 
+							onclick="window.location.href='//C:/Users/archi/OneDrive/Desktop/Personal%20Work/archie-webpage/modules.html'" 
+							class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+							Modules
+							</button>
+						</div>
+
+						<p class="leading-relaxed">
+						
+						</p>
+					</div>
+				</div>
+
+				<!-- A Levels -->
+				<div x-data="{ open: false }" class="border-l-4 border-blue-600 pl-6">
+					<div 
+						class="cursor-pointer mb-2"
+						@click="open = !open"
+					>
+						<div class="flex justify-between items-start">
+							<div>
+								<h3 class="text-xl font-semibold text-blue-900">A-Levels</h3>
+								<p class="text-lg font-medium text-blue-700">
+								Tudor Grange Academy Sixth Form
+								</p>
+							</div>
+							<div class="flex items-center space-x-2">
+								<p class="text-gray-600 text-sm">2019 - 2021</p>
+								<span 
+								class="text-blue-600 text-lg transition-transform duration-300"
+								:class="{ 'rotate-180': open }"
+								>
+								&#x25BC;
+								</span>
+							</div>
+						</div>
+					</div>
+
+					<div x-show="open" x-transition>
+						<div class="space-y-0.1 ml-10">
+							<div class="flex items-center gap-2">
+								<p class="text-lg font-bold text-black">Maths:</p>
+								<span class="text-lg font-medium text-gray-700">A*</span>
+							</div>
+							<div class="flex items-center gap-2">
+								<p class="text-lg font-bold text-black">Physics:</p>
+								<span class="text-lg font-medium text-gray-700">A*</span>
+							</div>
+							<div class="flex items-center gap-2">
+								<p class="text-lg font-bold text-black">Computer Science:</p>
+								<span class="text-lg font-medium text-gray-700">A*</span>
+							</div>
+							<div class="flex items-center gap-2">
+								<p class="text-lg font-bold text-black">Further Maths:</p>
+								<span class="text-lg font-medium text-gray-700">A*</span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			
+				<!-- GCSEs -->
+				<div x-data="{ open: false }" class="border-l-4 border-blue-400 pl-6">
+					<div 
+						class="cursor-pointer mb-2"
+						@click="open = !open"
+					>
+						<div class="flex justify-between items-start">
+							<div>
+								<h3 class="text-xl font-semibold text-blue-900">GCSEs</h3>
+								<p class="text-lg font-medium text-blue-700">
+								Tudor Grange Academy Solihull
+								</p>
+							</div>
+							<div class="flex items-center space-x-2">
+								<p class="text-gray-600 text-sm">2015 - 2019</p>
+								<span 
+								class="text-blue-600 text-lg transition-transform duration-300"
+								:class="{ 'rotate-180': open }"
+								>
+								&#x25BC;
+								</span>
+							</div>
+						</div>
+					</div>
+
+					<div x-show="open" x-transition>
+						<p class="leading-relaxed ml-10">
+							Achieved seven 9s and five 8s in GCSEs.
+						</p>
+					</div>
+				</div>
+			
+			</div>
+	</div>
+
+	<!-- Uni images (Right) -->
+	<div 
+	x-data="{
+		images: [
+		'assets/images/uni/uni1.jpg',
+		'assets/images/uni/uni2.jpg',
+		'assets/images/uni/uni3.jpg'
+		],
+		currentIndex: 0,
+		next() {
+		this.currentIndex = (this.currentIndex + 1) % this.images.length;
+		}
+	}"
+	x-init="setInterval(() => next(), 7000)"
+	class="relative w-full lg:w-[55%] h-[300px] lg:h-[400px] flex-shrink-0 overflow-hidden"
+	>
+		<template x-for="(image, index) in images" :key="index">
+			<img 
+			:src="image" 
+			alt="Slideshow Image"
+			class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+			:class="{ 'opacity-100': index === currentIndex, 'opacity-0': index !== currentIndex }"
+			>
+		</template>
+
+		<div class="absolute inset-0 bg-gradient-to-r from-gray-100 via-gray-100/10 to-transparent pointer-events-none"></div>
+	</div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects-container" class="flex flex-col items-center justify-center mt-5 mb-2 pb-4 w-full fade-up-target">
+  <h2 id="project-head" class="text-4xl lg:text-5xl font-bold text-blue-900 text-center pb-5">PROJECTS</h2>
+
+  <div id="projects-carousel" class="p-slick-carousel w-[90%] mx-auto mb-5 relative overflow-visible">
+    <!-- Mario Map Project -->
+    <div class="slick-box px-2">
+      <a href="/mario-map-project" class="project-link block text-decoration-none">
+        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
+          <div class="image-container relative w-full h-full">
+            <img src="assets/images/projects/mario-project.png" alt="Project Image" class="w-full h-full object-cover">
+            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
+          </div>
+          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
+            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">Mario Map Project</h3>
+            <p class="project-description text-gray-600 text-base md:text-lg">An online interactive map of the Mushroom Kingdom, in our efforts to map out the Mario universe.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+	<!-- Geographic Centre Project -->
+	<div class="slick-box px-2 pb-5">
+      <a href="/geographic-centre-project" class="project-link block text-decoration-none">
+        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
+          <div class="image-container relative w-full h-full">
+            <img src="assets/images/projects/centre-project.png" alt="Project Image" class="w-full h-full object-cover">
+            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
+          </div>
+          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
+            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">Geographic Centre</h3>
+            <p class="project-description text-gray-600 text-base md:text-lg">An app to calculate the exact centre of any number of locations around the globe, using 3D and polar geometry with SGD.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+	<!-- Box Quest Project -->
+	<div class="slick-box px-2">
+      <a href="https://illuminarchie.itch.io/box-quest" class="project-link block text-decoration-none">
+        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
+          <div class="image-container relative w-full h-full">
+            <img src="assets/images/projects/box-project.png" alt="Project Image" class="w-full h-full object-cover">
+            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
+          </div>
+          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
+            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">Box Quest</h3>
+            <p class="project-description text-gray-600 text-base md:text-lg">My take on the World's Hardest Game! Try to beat level 30 with as few deaths as possible.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+	<!-- One Night at Freddy's Project -->
+	<div class="slick-box px-2">
+      <a href="https://github.com/Illuminarchie66/CS141-Functional-ONAF" class="project-link block text-decoration-none">
+        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
+          <div class="image-container relative w-full h-full">
+            <img src="assets/images/projects/ONAF-project.jpg" alt="Project Image" class="w-full h-full object-cover">
+            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
+          </div>
+          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
+            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">One Night at Freddy's</h3>
+            <p class="project-description text-gray-600 text-base md:text-lg">A recreation of the original FNAF using Haskell. This achieved a 100% mark for my functional programming course!</p>
+          </div>
+        </div>
+      </a>
+    </div>
+	
+	<!-- SimpLeg Project -->
+	<div class="slick-box px-2">
+      <a href="https://github.com/Illuminarchie66/SimpLeg" class="project-link block text-decoration-none">
+        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
+          <div class="image-container relative w-full h-full">
+            <img src="assets/images/projects/SimpLeg-project.png" alt="Project Image" class="w-full h-full object-contain">
+            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
+          </div>
+          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
+            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">SimpLeg</h3>
+            <p class="project-description text-gray-600 text-base md:text-lg">An app using LLMs simplifying and summarising UK legislation to be easier to understand and more accessible to the public.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+	<!-- Project Tracker Project -->
+	<div class="slick-box px-2">
+      <a href="https://example.com" class="project-link block text-decoration-none">
+        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
+          <div class="image-container relative w-full h-full">
+            <img src="assets/images/projects/tracker-project.PNG" alt="Project Image" class="w-full h-full object-cover">
+            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
+          </div>
+          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
+            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">Project Tracker</h3>
+            <p class="project-description text-gray-600 text-base md:text-lg">A web app for tracking and managing projects, with ML predictions using Jira requirements.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+	<!-- Terra Infinity Project -->
+	<div class="slick-box px-2">
+      <a href="https://github.com/4th-year-group-project/Terra-Infinity" class="project-link block text-decoration-none">
+        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
+          <div class="image-container relative w-full h-full">
+            <img src="assets/images/projects/terrainfinity-project.png" alt="Project Image" class="w-full h-full object-cover">
+            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
+          </div>
+          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
+            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">Terra Infinity</h3>
+            <p class="project-description text-gray-600 text-base md:text-lg">An exploration of procedural world generation techniques with Uber Noise, DLA approximations, and erosion.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Employment Section -->
+<section class="flex flex-col lg:flex-row w-full h-full gap-0 pt-2 pb-4">
+
+	<!-- Work images (Left) -->
+	<div 
+	x-data="{
+		images: [
+		'assets/images/work/nelsons.jpg',
+		'assets/images/work/accenture.jpg',
+		'assets/images/work/tutor.jpg'
+		],
+		currentIndex: 0,
+		next() {
+		this.currentIndex = (this.currentIndex + 1) % this.images.length;
+		}
+	}"
+	x-init="setInterval(() => next(), 7000)"
+	class="relative w-full lg:w-[55%] h-[300px] lg:h-[400px] flex-shrink-0 overflow-hidden"
+	>
+		<template x-for="(image, index) in images" :key="index">
+			<img 
+			:src="image" 
+			alt="Slideshow Image"
+			class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+			:class="{ 'opacity-100': index === currentIndex, 'opacity-0': index !== currentIndex }"
+			>
+		</template>
+
+		<div class="absolute inset-0 bg-gradient-to-l from-gray-100 via-gray-100/10 to-transparent pointer-events-none"></div>
+	</div>
+
+	<!-- Employment History (Right) -->
+	<div class="w-full lg:w-[45%] px-4 lg:px-8 space-y-6 py-2 overflow-auto lg:max-h-[600px] fade-right-target">
+		<h2 class="text-4xl lg:text-5xl font-bold text-blue-900 mb-8">EMPLOYMENT</h2>
+			
+			<div class="space-y-6 text-lg text-gray-800">
+				<!-- Accenture -->
+				<div x-data="{ open: false }" class="border-l-4 border-blue-800 pl-6">
+					<div 
+						class="cursor-pointer mb-2"
+						@click="open = !open"
+					>
+						<div class="flex justify-between items-start">
+							<div>
+								<h3 class="text-xl font-semibold text-blue-900">Modern Engineering</h3>
+								<p class="text-lg font-medium text-blue-700">
+								Accenture
+								</p>
+							</div>
+							<div class="flex items-center space-x-2">
+								<p class="text-gray-600 text-sm">2025 - Present</p>
+								<span 
+								class="text-blue-600 text-lg transition-transform duration-300"
+								:class="{ 'rotate-180': open }"
+								>
+								&#x25BC;
+								</span>
+							</div>
+						</div>
+					</div>
+
+					<div x-show="open" x-transition>
+						<div class="flex items-center gap-2 mb-2 ml-10">
+							<p class="text-lg font-bold text-black-700">Achieved Grade: </p>
+							<span class="text-lg font-medium text-gray-700">First Class Honours (1st), 73.9%</span>
+						</div>
+						<p class="leading-relaxed">
+						
+						</p>
+					</div>
+				</div>
+
+				<!-- DataAnnotation.tech -->
+				<div x-data="{ open: false }" class="border-l-4 border-blue-600 pl-6">
+					<div 
+						class="cursor-pointer mb-2"
+						@click="open = !open"
+					>
+						<div class="flex justify-between items-start">
+							<div>
+								<h3 class="text-xl font-semibold text-blue-900">AI Trainer</h3>
+								<p class="text-lg font-medium text-blue-700">
+								DataAnnotation.tech
+								</p>
+							</div>
+							<div class="flex items-center space-x-2">
+								<p class="text-gray-600 text-sm">2024 - 2025</p>
+								<span 
+								class="text-blue-600 text-lg transition-transform duration-300"
+								:class="{ 'rotate-180': open }"
+								>
+								&#x25BC;
+								</span>
+							</div>
+						</div>
+					</div>
+
+					<div x-show="open" x-transition>
+						<div class="flex items-center gap-2 mb-2 ml-10">
+							<p class="text-lg font-bold text-black-700">Achieved Grade: </p>
+							<span class="text-lg font-medium text-gray-700">First Class Honours (1st), 73.9%</span>
+						</div>
+						<p class="leading-relaxed">
+						
+						</p>
+					</div>
+				</div>
+
+				<!-- Tutor -->
+				<div x-data="{ open: false }" class="border-l-4 border-blue-400 pl-6">
+					<div 
+						class="cursor-pointer mb-2"
+						@click="open = !open"
+					>
+						<div class="flex justify-between items-start">
+							<div>
+								<h3 class="text-xl font-semibold text-blue-900">GCSE & A-Level STEM Tutor</h3>
+								<p class="text-lg font-medium text-blue-700">
+								Freelance
+								</p>
+							</div>
+							<div class="flex items-center space-x-2">
+								<p class="text-gray-600 text-sm">2021 - 2023</p>
+								<span 
+								class="text-blue-600 text-lg transition-transform duration-300"
+								:class="{ 'rotate-180': open }"
+								>
+								&#x25BC;
+								</span>
+							</div>
+						</div>
+					</div>
+
+					<div x-show="open" x-transition>
+						<div class="flex items-center gap-2 mb-2 ml-10">
+							<p class="text-lg font-bold text-black-700">Achieved Grade: </p>
+							<span class="text-lg font-medium text-gray-700">First Class Honours (1st), 73.9%</span>
+						</div>
+						<p class="leading-relaxed">
+						
+						</p>
+					</div>
+				</div>
+
+				<!-- Nelsons -->
+				<div x-data="{ open: false }" class="border-l-4 border-blue-200 pl-6">
+					<div 
+						class="cursor-pointer mb-2"
+						@click="open = !open"
+					>
+						<div class="flex justify-between items-start">
+							<div>
+								<h3 class="text-xl font-semibold text-blue-900">Service Worker</h3>
+								<p class="text-lg font-medium text-blue-700">
+								Nelsons Fish & Chips
+								</p>
+							</div>
+							<div class="flex items-center space-x-2">
+								<p class="text-gray-600 text-sm">2018 - 2021</p>
+								<span 
+								class="text-blue-600 text-lg transition-transform duration-300"
+								:class="{ 'rotate-180': open }"
+								>
+								&#x25BC;
+								</span>
+							</div>
+						</div>
+					</div>
+
+					<div x-show="open" x-transition>
+						<div class="flex items-center gap-2 mb-2 ml-10">
+							<p class="text-lg font-bold text-black-700">Achieved Grade: </p>
+							<span class="text-lg font-medium text-gray-700">First Class Honours (1st), 73.9%</span>
+						</div>
+						<p class="leading-relaxed">
+						
+						</p>
+					</div>
+				</div>
+			
+			</div>
+	</div>
+</section>
+
+<!-- Interests Section -->
+<section class="relative w-full bg-gray-100 pt-4 pb-4 fade-up-target">
+	<h2 id="project-head" class="text-4xl lg:text-5xl font-bold text-blue-900 text-center pb-5">INTERESTS</h2>
+
+	<div id="carousel" class="relative w-full overflow-hidden max-w-7xl mx-auto rounded-2xl shadow-lg">
+		<div id="slides" class="flex transition-transform duration-700 ease-in-out" style="transform: translateX(0%)">
+		
+		<!-- Kayaking -->
+		<div class="min-w-full flex flex-col lg:flex-row bg-white">
+		<!-- Collage -->
+		<div class="w-full lg:w-2/3 p-4 grid grid-cols-2 grid-rows-2 gap-2">
+			<div class="row-span-2">
+			<img src="assets/images/interests/waterfall.jpg" alt="Kayak Tall"
+				class="w-full aspect-[2/3] object-cover rounded-lg hover:scale-101 transition-transform" />
+			</div>
+
+			<div>
+			<img src="assets/images/interests/kayak1.jpg" alt="Kayak 1"
+				class="w-full aspect-[4/3] object-cover rounded-lg hover:scale-101 transition-transform" />
+			</div>
+			<div>
+			<img src="assets/images/interests/kayak2.jpg" alt="Kayak 2"
+				class="w-full aspect-[4/3] object-cover rounded-lg hover:scale-101 transition-transform" />
+			</div>
+		</div>
+
+		<!-- Text -->
+		<div class="w-full lg:w-1/3 p-6 flex flex-col justify-center bg-blue-100">
+			<h3 class="text-3xl font-bold mb-4 text-blue-900">Kayaking</h3>
+			<p class="text-gray-800 text-lg">
+				I joined Warwick Canoe Club in second year Warwick University, and since I have been kayaking across the UK on various rivers. My first trip was to the River Dee when it was a freezing -1°C, but the thrill of paddling through the rapids was unforgettable. Since then I have gone on many trips, with the incredible 10 day trip in Scotland. There I experienced the incredible rapids of the River Gary, and waterfalls of the River Etive. 
+				I also got an incredible opportunity to be the Canoe Society's Media Officer, creating Instagram and Facebook content for the society; spreading awareness of the events. 
+				It has been a great learning experience for communication, teamwork and leadership; as well as pushing me way beyond my comfort zone. I hope to get up to more in the future!
+			</p>
+		</div>
+		</div>
+
+		<!-- Slide 2: Travelling -->
+		<div class="min-w-full flex flex-col lg:flex-row bg-white">
+			<div class="w-full lg:w-2/3 grid grid-cols-2 grid-rows-2 gap-2 p-4">
+				<img src="assets/images/interests/bath.jpg" class="object-cover w-full h-72 rounded-lg" />
+				<img src="assets/images/interests/eiffel.jpg" class="object-cover w-full h-72 rounded-lg" />
+				<img src="assets/images/interests/interrail.png" class="object-cover w-full h-72 rounded-lg" />
+				<img src="assets/images/interests/town.jpg" class="object-cover w-full h-72 rounded-lg" />
+			</div>
+			<div class="w-full lg:w-1/3 p-6 flex flex-col justify-center bg-yellow-100">
+			<h3 class="text-3xl font-bold mb-4 text-yellow-900">Travelling</h3>
+			<p class="text-gray-800 text-lg">
+				In 2021, I went on an Interrail trip with my closest friends from primary school. We visited 11 countries along the way, first doing France, Spain and Portugal, before meeting back up in the Netherlands and doing Eastern Europe. I adored Barcelona and Porto, for their food and culture. Amsterdam and Berlin had an incredible night life, with remarkable history. Prague had some of the best beer; and Budapest had some incredible bathhouses with amazing food in the Jewish Quarter. Our trip ended in Munich, catching an Ed Sheeran concert in the Olympic Stadium. It was an unforgettable experience, and it sparked a love for travelling.
+			</p>
+			</div>
+		</div>
+
+		<!-- Slide 3: Game Design -->
+		<div class="min-w-full flex flex-col lg:flex-row bg-white">
+			<div class="w-full lg:w-2/3 grid grid-cols-2 grid-rows-2 gap-2 p-4">
+			<img src="assets/images/interests/galaxy.webp" class="object-cover w-full h-72 rounded-lg" />
+			<img src="assets/images/interests/unity.png" class="object-cover w-full h-72 rounded-lg" />
+			<img src="assets/images/interests/game.jpg" class="object-cover w-full h-72 rounded-lg col-span-2" />
+			</div>
+			<div class="w-full lg:w-1/3 p-6 flex flex-col justify-center bg-purple-100 ">
+			<h3 class="text-3xl font-bold mb-4 text-purple-900">Game Design</h3>
+			<p class="text-gray-800 text-lg mb-12">
+				Game design was a core inspiration which is what brought me to Computer Science. I love the blend of creativity and mathematics that goes into making a game. I have participated in several game jams, and in my free time you will often find me messing around in different game engines. 
+			</p>
+
+			<h3 class="text-3xl font-bold mb-4 text-purple-900">Writing</h3>
+			<p class="text-gray-800 text-lg">
+				Reading and writing has always been crucial to me. Delving into fantasy worlds and writing my own, has always been a passion of mine, letting me explore my creativity. This has gone for my own personal stories and ideas, to writing Dungeons and Dragons stories, worlds and narratives. 
+			</p>
+			</div>
+		</div>
+		</div>
+
+	</div>
+
+	<!-- Navigation Arrows -->
+	<button onclick="nextSlide(-1)"
+		class="absolute top-1/2 left-10 transform -translate-y-1/2 text-[2.5rem] font-bold text-[#26428b] z-20 cursor-pointer transition-transform hover:text-[#f39c12] hover:scale-125">
+		&#x276E;
+	</button>
+
+	<button onclick="nextSlide(1)"
+		class="absolute top-1/2 right-10 transform -translate-y-1/2 text-[2.5rem] font-bold text-[#26428b] z-20 cursor-pointer transition-transform hover:text-[#f39c12] hover:scale-125">
+		&#x276F;
+	</button>
+</section>
+
+<!-- Skills Section -->
+<section class="bg-gradient-to-b from-gray-100 to-gray-300 pt-4 pb-8 px-4 relative overflow-hidden fade-up-target">
+  <div class="max-w-7xl mx-auto text-center mb-8">
+    <h2 class="text-4xl lg:text-5xl font-bold text-blue-900">SKILLS</h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-2 max-w-full mx-auto justify-items-center">
+    
+    <!-- Card 1: Languages -->
+    <div id="card-1" class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col min-w-[250px] w-full h-full aspect-square">
+		<h3 class="text-2xl font-bold text-left text-blue-800 mb-3">Languages</h3>
+		<hr class="border-t-4 border-blue-700 w-[95%] rounded-full mb-4">
+		<div class="flex flex-grow space-x-6 overflow-hidden">
+			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
+			<li class="flex items-center gap-2"><img src="assets/icons/Python.svg" class="w-7"> Python</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/Java.svg" class="w-7"> Java</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/C.svg" class="w-7"> C</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/CSharp.svg" class="w-7"> C#</li>
+			</ul>
+			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
+			<li class="flex items-center gap-2"><img src="assets/icons/HTML.svg" class="w-7"> HTML</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/CSS.svg" class="w-7"> CSS</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/JS.svg" class="w-7"> JavaScript</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/Haskell.svg" class="w-7"> Haskell</li>
+			</ul>
+		</div>
+    </div>
+
+    <!-- Card 2: Technologies -->
+    <div id="card-2" class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col min-w-[250px] w-full h-full">
+      	<h3 class="text-2xl font-bold text-left text-blue-800 mb-3">Technologies</h3>
+		<hr class="border-t-4 border-blue-700 w-[95%] rounded-full mb-4">
+		<div class="flex flex-grow space-x-6 overflow-hidden">
+			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
+			<li class="flex items-center gap-2"><img src="assets/icons/Git.svg" class="w-7"> Git</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/AWS.svg" class="w-7"> AWS</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/SQL.svg" class="w-7"> SQL</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/NoSQL.svg" class="w-7"> NoSQL</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/Windows.svg" class="w-7"> Windows</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/Linux.svg" class="w-7"> Linux</li>
+			</ul>
+			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
+			<li class="flex items-center gap-2"><img src="assets/icons/Word.svg" class="w-7"> Word</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/PowerPoint.svg" class="w-7"> PowerPoint</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/Excel.svg" class="w-7"> Excel</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/Unity.svg" class="w-7"> Unity</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/Krita.svg" class="w-7"> Krita</li>
+			<li class="flex items-center gap-2"><img src="assets/icons/Canva.svg" class="w-7"> Canva</li>
+			</ul>
+		</div>
+    </div>
+
+    <!-- Card 3: Technical Skills -->
+    <div id="card-3" class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col min-w-[250px] w-full h-full">
+      	<h3 class="text-2xl font-bold text-left text-blue-800 mb-3">Technical Skills</h3>
+		<hr class="border-t-4 border-blue-700 w-[95%] rounded-full mb-4">
+		<div class="flex flex-grow space-x-6">
+			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
+			<li>Algorithms</li>
+			<li>Data Structures</li>
+			<li>AI</li>
+			<li>Machine Learning</li>
+			<li>Calculus</li>
+			<li>Statistics</li>
+			</ul>
+			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
+			<li>OOP, FP</li>
+			<li>Graphics</li>
+			<li>Data Analysis</li>
+			<li>Agile</li>
+			<li>Documentation</li>
+			<li>Testing</li>
+			</ul>
+		</div>
+    </div>
+
+    <!-- Card 4: Soft Skills -->
+    <div id="card-4" class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col min-w-[250px] w-full h-full">
+		<h3 class="text-2xl font-bold text-left text-blue-800 mb-3">Soft Skills</h3>
+		<hr class="border-t-4 border-blue-700 w-[95%] rounded-full mb-4">
+		<div class="flex flex-grow space-x-6">
+			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
+			<li>Problem Solving</li>
+			<li>Organisation</li>
+			<li>Innovation</li>
+			<li>Creativity</li>
+			</ul>
+			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
+			<li>Collaboration</li>
+			<li>Communication</li>
+			<li>Supportive</li>
+			<li>Encouraging</li>
+			</ul>
+		</div>
+    </div>
+
+  </div>
+
+  	<button class="absolute bottom-[-100px] right-[-90px] w-32 h-32 z-50 cursor-pointer" onclick="secret_paper()">
+		<img
+			src="assets/images/secret.png"
+			alt="Clickable corner"
+			class="w-full h-full"
+		/>
+	</button>
+</section>
+
+<div
+    id="fullscreen-image"
+    class="fixed inset-0 z-50 hidden bg-black bg-opacity-90 flex items-center justify-center"
+  >
+    <img
+      src="assets/images/secret.png"
+      alt="Full screen"
+      class="max-w-full max-h-full object-contain"
+    />
+	<button
+	  class="absolute top-4 right-8 text-white text-3xl"
+	  onclick="document.getElementById('fullscreen-image').classList.add('hidden')"
+	>
+	  &times;
+	</button>
+</div>
+
+</body>
+
+</html>
