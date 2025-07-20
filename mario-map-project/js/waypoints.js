@@ -156,6 +156,35 @@ function addMarker({x, y, name, game, course, description, iconpic, imagesrc, ta
     //map.removeLayer(marker); // as in your original
 }
 
+function addArrow({x, y, name, imagesrc, angle}) {
+    console.log(angle);
+    var marker = L.marker([y, x], {icon: rotatedIcon, rotationAngle: angle}).addTo(map);
+    var popupContent = `
+        <div class="w-[29.3vw] max-w-[90vw] rounded-[20px] overflow-hidden bg-white font-[papermario] relative">
+            <div class="relative w-full overflow-hidden image-container">
+                <img src="assets/popups/images/${imagesrc}" alt="Image"
+                    class="w-full h-auto block" />
+                <div class="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
+            </div>
+            <div class="px-3 py-2 w-[27.3vw]">
+                <div class="text-[0.975vw] leading-tight">
+                    This is the way to:
+                </div>
+                <div class="text-[1.2vw] mb-1">${name}</div>
+            </div>
+        </div>
+    `;
+
+    var customOptions = {
+        'className': 'popupCustom'
+    };
+
+    marker.bindPopup(popupContent, customOptions);
+
+    waypoints["arrow"].push(marker);
+    map.removeLayer(marker);
+}
+
 function toggleWaypoints(tag) {
     waypoints[tag].forEach(function(marker) {
         if (map.hasLayer(marker)) {
@@ -173,17 +202,27 @@ Papa.parse('assets/popups/Waypoints.csv', {
   complete: function(results) {
     console.log("Waypoints loaded successfully:", results.data.length, "entries found.");
     results.data.forEach(waypoint => {
-        addMarker({
-            x: waypoint.x,
-            y: waypoint.y,
-            name: waypoint.name,
-            game: waypoint.game,
-            course: waypoint.course,
-            description: waypoint.description,
-            iconpic: iconMapping[waypoint.icon] || redIcon,
-            imagesrc: waypoint.src,
-            tag: waypoint.tag
-        });
+        if (waypoint.tag == "arrow") {
+            addArrow({
+                x: waypoint.x,
+                y: waypoint.y,
+                name: waypoint.name,
+                imagesrc: waypoint.src,
+                angle: waypoint.angle
+            });
+        } else {
+            addMarker({
+                x: waypoint.x,
+                y: waypoint.y,
+                name: waypoint.name,
+                game: waypoint.game,
+                course: waypoint.course,
+                description: waypoint.description,
+                iconpic: iconMapping[waypoint.icon] || redIcon,
+                imagesrc: waypoint.src,
+                tag: waypoint.tag
+            });
+        }
     });
   }
 });

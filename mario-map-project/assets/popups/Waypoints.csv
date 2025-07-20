@@ -1,4 +1,4 @@
-x,y,icon,name,game,course,description,src,tag
+x,y,icon,name,game,course,description,src,tag,angle
 80.35,-68.95,peach,Peach's Castle,Super Mario RPG,Mushroom Kingdom,"Princess Peach's home and castle seen in most Mario games, where she rules the Mushroom Kingdom.",peachcastle1.jpg,landmark
 80.35,-72.535,red,Golf Gardens,Mario Golf: Advance Tour,,The gardens found directly outside of Peach's castle. ,MGATGardens.jpg,area
 80.355,-66.68,red,Courtyard,Super Mario 64,,"A small courtyard containing the 'L is real 2401' star statue, and the stages Big Boo's Haunt and Battle Fort.",M64Courtyard.jpg,area
@@ -148,3 +148,14 @@ x,y,icon,name,game,course,description,src,tag
 87.6,-100.34,red,Mario Circuit,Mario Kart Wii,Greater Castle Town,A nice course to drive through the houses of Toad Town in front of Peach's Castle.,MKWii.webp,area
 66.7,-164.3,vehicle,Sky Pop,Super Mario Land,,A yellow airplane used by Mario to save Princess Daisy from Tatanga.,Skypop.webp,vehicle
 87,-85.25,red,Castle Pier,Super Mario Galaxy,Castle Town,A small peaceful platform to look out and see the Castle during the Star Festival.,Galaxy.png,area
+15.25,-107.625,arrow,Toad Road,,,,MP9Road.png,arrow,180
+13.75,-17.75,arrow,Bob-omb Battlefield,,,,M64Bobomb.png,arrow,225
+86.75,-13.125,arrow,Mt. Mariomore,,,,MP3Mt.jpg,arrow,270
+165.75,-22.85,arrow,Peach Airport,,,,MTAirport.png,arrow,345
+165.5,-54.7,arrow,Doop Doop Dunes,,,,PJDoop.webp,arrow,0
+165.5,-99.2,arrow,World 1,,,,WIIWorld.png,arrow,0
+165.25,-146.85,arrow,Gusty Gulch,,,,PMGusty.webp,arrow,355
+165.5,-163,arrow,Bumpsy Plains,,,,BISBumpsy.webp,arrow,10
+107,-178.75,arrow,Dimble Woods,,,,BISDimble.jpg,arrow,90
+75.5,-177.9,arrow,Truffle Towers,,,,DDRTruffle.jpg,arrow,95
+25.6,-178.75,arrow,Soda Jungle,,,,NSMBUSoda.jpg,arrow,135

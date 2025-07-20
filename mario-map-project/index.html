@@ -15,6 +15,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
+    <script src="https://rawcdn.githack.com/bbecquet/Leaflet.RotatedMarker/0.2.0/leaflet.rotatedMarker.js"></script>
     <script src="https://unpkg.com/leaflet-virtual-grid@1.0.7/dist/virtual-grid.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -23,18 +24,18 @@
     <link rel="stylesheet" href="css/main.css">
 
 </head>
-<body>
+<body class="snap-wrapper">
     <div class="fixed inset-0 backdrop-blur-[2px] z-[-1]"></div>
     <div id="main"></div>
 
-    <section class="snap-section min-h-screen flex flex-col justify-center">
+    <section class="snap-section">
         <div class="relative flex justify-center">
-            <img src="assets/images/mmp-title.png" alt="Header Image" class="max-h-[400px]">
+            <img src="assets/images/mmp-title.png" alt="Header Image" class="max-h-[500px]">
         </div>
 
         <div class="flex justify-center">
-            <div class="w-[65%] relative flex items-center justify-center bg-black/70 rounded-[20px] border border-white/60 p-4 mb-5 shadow-[0_6px_15px_rgba(255,255,255,0.3)]">
-                <p class="text-center text-[18px] text-white">The Super Mario Bros franchise has spanned a huge number of locations, from all across the Mushroom Kingdom, to the Donkey Kong Isles, to Sarasaland, to space and beyond. The world is huge, filled with varying landmarks, geography, history and lore - so what does this world look like? There have been many attempts, which pull from different areas of the Mario universe, but not one complete picture that covers everything. This is the start of our Mario Mapping Project, which begins with our interpretation of <strong>Peach's Castle</strong>.</p>
+            <div class="w-[95%] sm:w-[85%] lg:w-[65%] relative flex items-center justify-center bg-black/70 rounded-[20px] border border-white/60 p-4 mb-5 shadow-[0_6px_15px_rgba(255,255,255,0.3)]">
+                <p class="text-center text-xs lg:text-lg text-white">The Super Mario Bros franchise has spanned a huge number of locations, from all across the Mushroom Kingdom, to the Donkey Kong Isles, to Sarasaland, to space and beyond. The world is huge, filled with varying landmarks, geography, history and lore - so what does this world look like? There have been many attempts, which pull from different areas of the Mario universe, but not one complete picture that covers everything. This is the start of our Mario Mapping Project, which begins with our interpretation of <strong>Peach's Castle</strong>.</p>
             </div>
         </div>
 
@@ -42,8 +43,8 @@
 
     <section class="snap-section min-h-screen flex items-center justify-center">
         <div class="relative w-[90vw] h-[90vh] rounded-2xl shadow-xl">
-            <div id="map" class="w-full h-full rounded-2xl z-0"></div>
-            
+            <div id="map" class="w-full h-full rounded-2xl z-0 bg-[#009aef]"></div>
+
             <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-4 z-10 w-full">
                 <button onclick="toggleWaypoints('area')" class="bg-red-600 hover:bg-red-700 text-white font-papermario text-lg px-4 py-2 rounded-2xl shadow-[0_6px_15px_rgba(0,0,0,1)] flex items-center relative">
                     <img src="assets/images/emblems/mushroom.svg" alt="Mushroom Icon" class="w-[36px] h-[36px] mr-3" />
@@ -72,31 +73,32 @@
             </div>
         </div>
     </section>
+    </div>
 
     <script src="js/map.js"></script>
     <script src="js/waypoints.js"></script>
 
-    <section class="snap-section min-h-screen">
+    <section>
         <div class="flex justify-center">
-            <div class="w-[65%] relative bg-black/70 rounded-[20px] border border-white/60 p-4 mb-5 shadow-[0_6px_15px_rgba(255,255,255,0.3)]">
+            <div class="w-[95%] sm:w-[85%] lg:w-[65%] text-xs lg:text-lg relative bg-black/70 rounded-[20px] border border-white/60 p-4 mb-5 shadow-[0_6px_15px_rgba(255,255,255,0.3)]">
                 <ul>
-                    <li class="flex items-center [18px] text-white"> 
+                    <li class="flex items-center text-white"> 
                         <img src="assets/images/emblems/mushroom.svg" alt="Mushroom Icon" class="w-[50px] h-[50px] mr-3" /> 
                         <p>Areas: Waypoints for larger regions, like villages, towns etc.</p>
                     </li>
-                    <li class="flex items-center text-[18px] text-white"> 
+                    <li class="flex items-center text-white"> 
                         <img src="assets/images/emblems/flower.svg" alt="Flower Icon" class="w-[50px] h-[50px] mr-3" /> 
                         <p>Locations: Waypoints for specific points of interest, like shops, homes etc.</p>
                     </li>
-                    <li class="flex items-center text-[18px] text-white"> 
+                    <li class="flex items-center text-white"> 
                         <img src="assets/images/emblems/star.svg" alt="Star Icon" class="w-[50px] h-[50px] mr-3" /> 
                         <p>Landmarks: Waypoints for notable landmarks, like Peach's Castle.</p>
                     </li>
-                    <li class="flex items-center text-[18px] text-white"> 
+                    <li class="flex items-center text-white"> 
                         <img src="assets/images/emblems/arrow.svg" alt="Arrow Icon" class="w-[50px] h-[50px] mr-3" /> 
                         <p>Arrows: Waypoints pointing to what is off in the distance.</p>
                     </li>
-                    <li class="flex items-center text-[18px] text-white"> 
+                    <li class="flex items-center text-white"> 
                         <img src="assets/images/emblems/vehicle.png" alt="Vehicle Icon" class="w-[50px] h-[50px] mr-3" /> 
                         <p>Vehicles: Waypoints for different vehicles that have appeared throughout the series.</p>
                     </li>
