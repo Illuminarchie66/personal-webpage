@@ -20,12 +20,25 @@
 	<audio id="paper" src="assets/audio/paper.mp3" preload="auto"></audio>
 </head>
 
-<body class="bg-gray-100 text-gray-800 font-sans">
+<body class="bg-gray-100 text-gray-800 font-sans overflow-x-hidden">
 
-<header class="bg-white shadow p-4">
-  <nav class="container mx-auto flex justify-between items-center relative">
-    <h1 id="side-title" class="text-xl font-bold">Loading...</h1>
-    <ul class="flex space-x-4">
+<header class="bg-white shadow">
+  <nav class="mx-auto flex items-center justify-between
+            max-w-none
+            px-2 sm:px-4 lg:px-6
+            h-10 sm:h-12 lg:h-16">
+    <h1 id="side-title"
+			class="font-bold tracking-tight
+						text-lg sm:text-xl lg:text-2xl">
+			Loading...
+		</h1>
+		<button id="menu-toggle"
+						class="md:hidden aspect-square flex items-center justify-center rounded hover:bg-gray-100 focus:outline-none w-10"
+						aria-label="Open menu">
+			☰
+		</button>
+
+    <ul class="hidden md:flex items-center space-x-6">
       <li><button id="home-button" class="hover:text-blue-600 focus:outline-none">Home</button></li>
 
       <li class="relative">
@@ -44,6 +57,17 @@
       <li><a href="#" class="hover:text-blue-600">Contact</a></li>
     </ul>
   </nav>
+	<div id="mobile-menu"
+			class="md:hidden bg-white border-t border-gray-200
+							overflow-hidden
+							max-h-0 opacity-0 -translate-y-2
+							transition-all duration-300 ease-in-out">
+		<ul class="flex items-center justify-between px-6 py-1 sm:py-2 md:py-2">
+			<li><a href="#" class="py-2">Home</a></li>
+			<li><a href="/projects" class="py-2">Projects</a></li>
+			<li><a href="#" class="py-2">Contact</a></li>
+		</ul>
+	</div>
 </header>
 
 <section class="p-6 flex items-center gap-4">

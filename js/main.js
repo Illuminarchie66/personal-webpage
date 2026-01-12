@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     var text = "Archie Harrodine";
     var container = $('#name');
 
@@ -133,4 +134,35 @@ $(document).ready(function() {
 
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
 
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    const isOpen = menu.classList.contains("open");
+    menu.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+  });
+
+  document.addEventListener("click", (e) => {
+    if (
+      !menu.contains(e.target) &&
+      !toggle.contains(e.target) &&
+      menu.classList.contains("open")
+    ) {
+      menu.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+      menu.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+});

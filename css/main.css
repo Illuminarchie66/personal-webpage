@@ -2,6 +2,28 @@
   --base-size: 21vw;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* * {
+  outline: 1px solid red;
+} */
+
+#mobile-menu.open {
+  max-height: 300px; /* must be > content height */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#menu-toggle {
+  transition: transform 0.2s ease;
+}
+
+#menu-toggle[aria-expanded="true"] {
+  transform: rotate(90deg);
+}
+
 @keyframes stretch-bar {
   0% {
     width: 0;
@@ -73,7 +95,6 @@
 .custom-slick-next {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   background: transparent;
   border: none;
   font-size: 2.5rem;
@@ -91,11 +112,11 @@
 }
 
 .custom-slick-prev {
-  left: -50px;
+  left: 8px;
 }
 
 .custom-slick-next {
-  right: -50px;
+  right: 8px;
 }
 
 .flash-1 { animation: flash-1 0.4s ease-in-out; }
