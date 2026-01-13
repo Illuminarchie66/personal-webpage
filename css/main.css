@@ -32,11 +32,17 @@
     width: 84vw;
   }
 }
+/* @media (max-width: 768px) {
+  @keyframes stretch-bar {
+    100% { width: 78vw; }
+  }
+} */
 
 .animated-bar {
   width: 0;
   animation: stretch-bar 2s forwards;
 }
+
 
 .letter {
     opacity: 0;

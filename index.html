@@ -29,7 +29,7 @@
             h-10 sm:h-12 lg:h-16">
     <h1 id="side-title"
 			class="font-bold tracking-tight
-						text-lg sm:text-xl lg:text-2xl">
+						text-lg sm:text-l lg:text-xl 2xl:text-2xl">
 			Loading...
 		</h1>
 		<button id="menu-toggle"
@@ -38,8 +38,8 @@
 			☰
 		</button>
 
-    <ul class="hidden md:flex items-center space-x-6">
-      <li><button id="home-button" class="hover:text-blue-600 focus:outline-none">Home</button></li>
+    <ul class="hidden md:flex items-center space-x-6 xl:text-xl">
+      <li><button id="home-button" class="hover:text-blue-600 focus:outline-none ">Home</button></li>
 
       <li class="relative">
         <button id="projects-button" class="hover:text-blue-600 focus:outline-none">Projects</button>
@@ -70,8 +70,12 @@
 	</div>
 </header>
 
-<section class="p-6 flex items-center gap-4">
-    <div class="relative w-[20%] aspect-square flex items-center justify-center shrink-0">
+<section class="flex items-center p-2 md:p-4 lg:p-6 gap-4 lg:gap-4">
+    <div class="relative 
+				w-[40%] sm:w-[27%] md:w-[25%] lg:w-[25%] xl:w-[20%] 
+				aspect-square 
+				flex items-center justify-center 
+				shrink-0">
         <div class="absolute inset-0 bg-blue-900 rounded-full z-0 "></div>
 
         <div class="relative z-10 w-[90%] h-[90%] rounded-full border-4 border-blue-900 overflow-hidden">
@@ -79,8 +83,15 @@
         </div>
     </div>
 
-    <div class="animated-bar relative z-[-10] flex items-center rounded-[20px] ml-[-9vw] h-[14vw] bg-blue-900 overflow-hidden shadow-[0_6px_15px_rgba(0,0,0,0.3)]">
-        <div id="name" class="absolute flex items-center h-full text-white font-bold font-sans whitespace-pre ml-[10vw] text-[8.4vw] z-10"></div>
+    <div class="animated-bar 
+				relative z-[-10] 
+				flex items-center rounded-[20px] 
+				ml-[-12vw] sm:ml-[-12vw] md:ml-[-11vw] lg:ml-[-10vw] xl:ml-[-9vw] 2xl
+				h-[20vw] sm:h-[14vw] md:h-[15vw] lg:h-[14vw]
+				bg-blue-900 
+				overflow-hidden shadow-[0_6px_15px_rgba(0,0,0,0.3)]">
+        <div id="name" class="absolute flex items-center h-full text-white font-bold font-sans whitespace-pre ml-[10vw] 
+								text-[12vw] sm:text-[8.4vw] z-10"></div>
     </div>
 </section>
 

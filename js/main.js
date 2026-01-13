@@ -1,32 +1,49 @@
 $(document).ready(function() {
+    const container = $('#name');
 
-    var text = "Archie Harrodine";
-    var container = $('#name');
-
-    for (let i = 0; i < text.length; i++) {
-      let span = $('<span class="letter">' + text[i] + '</span>');
-      container.append(span);
+    function setTextInstant(text) {
+        container.empty(); 
+        container.text(text); 
     }
-  
-    setTimeout(function () {
-        $('.letter').each(function (index) {
-            $(this).delay(index * 100).animate({ opacity: 1 }, 100, function () {
-                if (index === $('.letter').length - 1) {
-                    // Once the name finishes animating, start watching the other targets
-                    observeOnScroll('.fade-up-target', 'fade-in-up');
-                    observeOnScroll('.fade-left-target', 'fade-in-left');
-                    observeOnScroll('.fade-right-target', 'fade-in-right');
-                }
+
+    function animateText(text) {
+        container.empty(); 
+        for (let i = 0; i < text.length; i++) {
+            let span = $('<span class="letter">' + text[i] + '</span>');
+            container.append(span);
+        }
+
+        setTimeout(function () {
+            $('.letter').each(function (index) {
+                $(this).delay(index * 100).animate({ opacity: 1 }, 100, function () {
+                    if (index === $('.letter').length - 1) {
+
+                        observeOnScroll('.fade-up-target', 'fade-in-up');
+                        observeOnScroll('.fade-left-target', 'fade-in-left');
+                        observeOnScroll('.fade-right-target', 'fade-in-right');
+                    }
+                });
             });
-        });
-    }, 350);
+        }, 350);
+    }
+
+    const isMobile = window.matchMedia("(max-width: 639px)").matches;
+    const initialText = isMobile ? "Archie H." : "Archie Harrodine";
+
+    animateText(initialText);
+
+    $(window).on('resize', function() {
+        const isMobileNow = window.matchMedia("(max-width: 639px)").matches;
+        const newText = isMobileNow ? "Archie H." : "Archie Harrodine";
+        setTextInstant(newText);
+    });
 
     function observeOnScroll(selector, animationClass) {
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     $(entry.target).addClass(`${animationClass} in-view`);
-                    obs.unobserve(entry.target); // Remove observer after animation
+                    obs.unobserve(entry.target); 
                 }
             });
         }, {
