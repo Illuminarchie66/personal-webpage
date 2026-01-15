@@ -86,7 +86,7 @@
     <div class="animated-bar 
 				relative z-[-10] 
 				flex items-center rounded-[20px] 
-				ml-[-12vw] sm:ml-[-12vw] md:ml-[-11vw] lg:ml-[-10vw] xl:ml-[-9vw] 2xl
+				ml-[-13vw] sm:ml-[-12vw] md:ml-[-11vw] lg:ml-[-10vw] xl:ml-[-9vw] 2xl
 				h-[20vw] sm:h-[14vw] md:h-[15vw] lg:h-[14vw]
 				bg-blue-900 
 				overflow-hidden shadow-[0_6px_15px_rgba(0,0,0,0.3)]">
@@ -96,16 +96,30 @@
 </section>
 
 <!-- Personal Info -->
-<section class="flex flex-col lg:flex-row justify-between items-start gap-30 px-2 lg:px-2 pb-8 pt-0 max-w-7xl mx-auto">
+<section
+  class="flex flex-col lg:flex-row
+         items-start
+         gap-3 sm:gap-6 md:gap-6 lg:gap-8 xl:gap-16 2xl:gap-28
+         px-2 sm:px-4 md:px-6 lg:px-6 xl:px-12
+         pt-2 pb-0 sm:pb-2 lg:pb-4 xl:pb-8
+         max-w-7xl
+		 xl:max-w-[100rem]
+		 2xl:max-w-[150rem]
+         mx-auto">
   
     <!-- Contact Info (Left) -->
-    <div class="relative fade-up-target bg-white rounded-2xl shadow-md border border-blue-200 p-6 lg:p-8 w-full lg:w-[30%]">
+    <div
+		class="relative fade-up-target
+				bg-white rounded-2xl shadow-md border border-blue-200
+				p-5 sm:p-6 lg:p-7 xl:p-8
+				w-full
+				lg:w-[38%] xl:w-[32%] 2xl:w-[30%]">
 		<img src="assets/images/bisexual-flag.png"
          alt="Bisexual Flag"
          class="absolute top-[-0.5rem] right-[-0.5rem] w-16 h-auto drop-shadow-lg">
 
-        <h2 class="text-3xl font-bold mb-6 text-blue-900">Contact Info</h2>
-        <ul class="space-y-4 text-lg text-gray-800">
+        <h2 class="text-2xl xl:text-3xl font-bold mb-5 text-blue-900">Contact Info</h2>
+        <ul class="space-y-3 sm:space-y-4 text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-800">
         <li class="flex items-center gap-3">
             <img src="assets/icons/email.svg" alt="Email" class="w-5 h-5 text-blue-600">
             <span><a href="mailto:archie.harrodine@outlook.com" class="text-blue-600 hover:underline">archie.harrodine@outlook.com</a></span>
@@ -126,8 +140,18 @@
     </div>
 
     <!-- Personal Statement (Right) -->
-    <div class="fade-up-target lg:w-[65%] text-xl leading-relaxed text-gray-800 px-2">
-      <p class="text-2xl font-semibold mb-4 text-blue-900">Motivated. Hardworking. Determined.</p>
+    <div
+		class="fade-up-target
+				w-full
+				lg:w-[58%] xl:w-[70%] 2xl:w-[75%]
+				text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl
+				leading-relaxed
+				text-gray-800
+				px-1 sm:px-2 md:px-4">
+      <p class="text-xl sm:text-2xl lg:text-3xl xl:text-4xl
+          mb-1 md:mb-2 xl:mb-4 
+          text-blue-900">
+		  Motivated. Hardworking. Determined.</p>
       <p>
         I am a fourth year Master's student studying computer science at Warwick University, with a passion for creating solutions, and inspiring others. Interested in topics of software engineering, machine learning and game development, my education has prepared me to excel in finding innovative approaches to complex problems. With a relentless determination to succeed, I thrive within a team environment. I am eager to contribute toward meaningful and exciting projects.
       </p>
