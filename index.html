@@ -99,8 +99,8 @@
 <section
   class="flex flex-col lg:flex-row
          items-start
-         gap-3 sm:gap-6 md:gap-6 lg:gap-8 xl:gap-16 2xl:gap-28
-         px-2 sm:px-4 md:px-6 lg:px-6 xl:px-12
+         gap-3 sm:gap-6 md:gap-6 lg:gap-8 xl:gap-14 2xl:gap-28
+         px-3 sm:px-4 md:px-6 lg:px-6 xl:px-12
          pt-2 pb-0 sm:pb-2 lg:pb-4 xl:pb-8
          max-w-7xl
 		 xl:max-w-[100rem]
@@ -113,13 +113,13 @@
 				bg-white rounded-2xl shadow-md border border-blue-200
 				p-5 sm:p-6 lg:p-7 xl:p-8
 				w-full
-				lg:w-[38%] xl:w-[32%] 2xl:w-[30%]">
+				lg:w-[38%] xl:w-[32%] 2xl:w-[32%]">
 		<img src="assets/images/bisexual-flag.png"
          alt="Bisexual Flag"
-         class="absolute top-[-0.5rem] right-[-0.5rem] w-16 h-auto drop-shadow-lg">
+         class="absolute top-[-0.5rem] right-[-0.5rem] w-12 h-auto drop-shadow-lg">
 
-        <h2 class="text-2xl xl:text-3xl font-bold mb-5 text-blue-900">Contact Info</h2>
-        <ul class="space-y-3 sm:space-y-4 text-base sm:text-lg lg:text-xl xl:text-2xl text-gray-800">
+        <h2 class="text-2xl xl:text-3xl font-bold mb-2 md:mb-3 lg:mb-5 text-blue-900">Contact Info</h2>
+        <ul class="space-y-2 sm:space-y-4 text-md sm:text-lg lg:text-xl xl:text-xl 2xl:text-2xl text-gray-800">
         <li class="flex items-center gap-3">
             <img src="assets/icons/email.svg" alt="Email" class="w-5 h-5 text-blue-600">
             <span><a href="mailto:archie.harrodine@outlook.com" class="text-blue-600 hover:underline">archie.harrodine@outlook.com</a></span>
@@ -144,17 +144,24 @@
 		class="fade-up-target
 				w-full
 				lg:w-[58%] xl:w-[70%] 2xl:w-[75%]
-				text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl
+				text-sm sm:text-base md:text-lg lg:text-lg xl:text-lg 2xl:text-2xl
 				leading-relaxed
 				text-gray-800
 				px-1 sm:px-2 md:px-4">
       <p class="text-xl sm:text-2xl lg:text-3xl xl:text-4xl
           mb-1 md:mb-2 xl:mb-4 
           text-blue-900">
-		  Motivated. Hardworking. Determined.</p>
-      <p>
-        I am a fourth year Master's student studying computer science at Warwick University, with a passion for creating solutions, and inspiring others. Interested in topics of software engineering, machine learning and game development, my education has prepared me to excel in finding innovative approaches to complex problems. With a relentless determination to succeed, I thrive within a team environment. I am eager to contribute toward meaningful and exciting projects.
+		  Chasing Innovation.</p>
+      <p class="hidden lg:block">
+        I'm a software engineer with a First Class Master's degree in Computer Science from the University of Warwick, driven by curiosity and a love of designing, building and creating. <br><br> 
+		My interests span AI, machine learning, deep learning, graphics, game design and writing - and how they can come together to achieve incredible solutions! Professionally, I work at Accenture, where I work on large-scale projects and develop my engineering skills. <br><br>
+		But outside of work, I am always creating something - experimenting, learning, pushing my knowledge further than before. 
+	  </p>
+
+	  <p class="lg:hidden">
+    	I'm a software engineer with a First Class Master's degree in Computer Science, working at Accenture and constantly building things in my own time. I love solving problems, designing systems, and learning through making.
       </p>
+
   	</div>
 
 </section>
@@ -163,25 +170,26 @@
 <section class="flex flex-col lg:flex-row w-full h-full gap-0 pt-2 pb-4">
 
 	<!-- Education history (Left) -->
-	<div class="w-full lg:w-[45%] px-4 lg:px-8 space-y-6 py-2 overflow-auto lg:max-h-[600px] fade-left-target">
-		<h2 class="text-4xl lg:text-5xl font-bold text-blue-900 mb-8">EDUCATION</h2>
+	<div class="w-full lg:w-[45%] px-2 sm:px-4 lg:px-8 space-y-2 py-2 overflow-auto lg:max-h-[600px] fade-left-target">
+		<h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-900 mb-2 sm:mb-8">EDUCATION</h2>
 			
-			<div class="space-y-6 text-lg text-gray-800">
+			<div class="space-y-6 text-base sm:text-lg md:text-lg text-gray-800">
 				<!-- University Degree -->
-				<div x-data="{ open: false }" class="border-l-4 border-blue-800 pl-6">
+				<div x-data="{ open: false }" class="border-l-4 border-blue-800 pl-3 sm:pl-6">
 					<div 
-						class="cursor-pointer mb-2"
+						class="cursor-pointer mb-1 sm:mb-2 hover:bg-blue-50 rounded transition"
 						@click="open = !open"
 					>
 						<div class="flex justify-between items-start">
 							<div>
-								<h3 class="text-xl font-semibold text-blue-900">Masters of Engineering (MEng) Computer Science</h3>
-								<p class="text-lg font-medium text-blue-700">
+								<h3 class="hidden md:block text-lg sm:text-xl font-semibold text-blue-900">Masters of Engineering (MEng) Computer Science</h3>
+								<h3 class="md:hidden text-lg sm:text-xl font-semibold text-blue-900">Masters (MEng)</h3>
+								<p class="text-base sm:text-lg font-medium text-blue-700">
 								University of Warwick
 								</p>
 							</div>
 							<div class="flex items-center space-x-2">
-								<p class="text-gray-600 text-sm">2021 - 2025</p>
+								<p class="text-gray-600 text-xs sm:text-sm">2021 - 2025</p>
 								<span 
 								class="text-blue-600 text-lg transition-transform duration-300"
 								:class="{ 'rotate-180': open }"
@@ -193,16 +201,17 @@
 					</div>
 
 					<div x-show="open" x-transition>
-						<div class="flex items-center gap-2 mb-2 ml-10">
-							<p class="text-lg font-bold text-black-700">Achieved Grade: </p>
-							<span class="text-lg font-medium text-gray-700">First Class Honours (1st), 73.9%</span>
+						<div class="flex items-center gap-2 mb-2 ml-5 sm:ml-10">
+							<p class="text-base sm:text-lg font-bold text-black-700">Achieved Grade: </p>
+							<span class="text-base sm:text-lg font-medium text-gray-700">First Class Honours (1st), 73.9%</span>
 						</div>
-						<div class="ml-10 mt-1">
-							<button 
-							onclick="window.location.href='//C:/Users/archi/OneDrive/Desktop/Personal%20Work/archie-webpage/modules.html'" 
-							class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+						<div class="ml-5 sm:ml-10 mt-1">
+							<a
+							href="/modules.html"
+							class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+							>
 							Modules
-							</button>
+							</a>
 						</div>
 
 						<p class="leading-relaxed">
@@ -212,20 +221,20 @@
 				</div>
 
 				<!-- A Levels -->
-				<div x-data="{ open: false }" class="border-l-4 border-blue-600 pl-6">
+				<div x-data="{ open: false }" class="border-l-4 border-blue-600 pl-3 sm:pl-6">
 					<div 
-						class="cursor-pointer mb-2"
+						class="cursor-pointer mb-1 sm:mb-2 hover:bg-blue-50 rounded transition"
 						@click="open = !open"
 					>
 						<div class="flex justify-between items-start">
 							<div>
-								<h3 class="text-xl font-semibold text-blue-900">A-Levels</h3>
-								<p class="text-lg font-medium text-blue-700">
+								<h3 class="text-lg sm:text-xl font-semibold text-blue-900">A-Levels</h3>
+								<p class="text-base sm:text-lg font-medium text-blue-700">
 								Tudor Grange Academy Sixth Form
 								</p>
 							</div>
 							<div class="flex items-center space-x-2">
-								<p class="text-gray-600 text-sm">2019 - 2021</p>
+								<p class="text-gray-600 text-xs sm:text-sm">2019 - 2021</p>
 								<span 
 								class="text-blue-600 text-lg transition-transform duration-300"
 								:class="{ 'rotate-180': open }"
@@ -237,22 +246,22 @@
 					</div>
 
 					<div x-show="open" x-transition>
-						<div class="space-y-0.1 ml-10">
+						<div class="space-y-0.1 ml-5 sm:ml-10">
 							<div class="flex items-center gap-2">
-								<p class="text-lg font-bold text-black">Maths:</p>
-								<span class="text-lg font-medium text-gray-700">A*</span>
+								<p class="text-base sm:text-lg font-bold text-black">Maths:</p>
+								<span class="text-base sm:text-lg font-medium text-gray-700">A*</span>
 							</div>
 							<div class="flex items-center gap-2">
-								<p class="text-lg font-bold text-black">Physics:</p>
-								<span class="text-lg font-medium text-gray-700">A*</span>
+								<p class="text-base sm:text-lg font-bold text-black">Physics:</p>
+								<span class="text-base sm:text-lg font-medium text-gray-700">A*</span>
 							</div>
 							<div class="flex items-center gap-2">
-								<p class="text-lg font-bold text-black">Computer Science:</p>
-								<span class="text-lg font-medium text-gray-700">A*</span>
+								<p class="text-base sm:text-lg font-bold text-black">Computer Science:</p>
+								<span class="text-base sm:text-lg font-medium text-gray-700">A*</span>
 							</div>
 							<div class="flex items-center gap-2">
-								<p class="text-lg font-bold text-black">Further Maths:</p>
-								<span class="text-lg font-medium text-gray-700">A*</span>
+								<p class="text-base sm:text-lg font-bold text-black">Further Maths:</p>
+								<span class="text-base sm:text-lg font-medium text-gray-700">A*</span>
 							</div>
 						</div>
 
@@ -260,20 +269,20 @@
 				</div>
 			
 				<!-- GCSEs -->
-				<div x-data="{ open: false }" class="border-l-4 border-blue-400 pl-6">
+				<div x-data="{ open: false }" class="border-l-4 border-blue-400 pl-3 sm:pl-6">
 					<div 
-						class="cursor-pointer mb-2"
+						class="cursor-pointer mb-1 sm:mb-2 hover:bg-blue-50 rounded transition"
 						@click="open = !open"
 					>
 						<div class="flex justify-between items-start">
 							<div>
-								<h3 class="text-xl font-semibold text-blue-900">GCSEs</h3>
-								<p class="text-lg font-medium text-blue-700">
+								<h3 class="text-lg sm:text-xl font-semibold text-blue-900">GCSEs</h3>
+								<p class="text-base sm:text-lg font-medium text-blue-700">
 								Tudor Grange Academy Solihull
 								</p>
 							</div>
 							<div class="flex items-center space-x-2">
-								<p class="text-gray-600 text-sm">2015 - 2019</p>
+								<p class="text-gray-600 text-xs sm:text-sm">2015 - 2019</p>
 								<span 
 								class="text-blue-600 text-lg transition-transform duration-300"
 								:class="{ 'rotate-180': open }"
@@ -285,7 +294,7 @@
 					</div>
 
 					<div x-show="open" x-transition>
-						<p class="leading-relaxed ml-10">
+						<p class="text-base sm:text-lg leading-relaxed ml-5 sm:ml-10">
 							Achieved seven 9s and five 8s in GCSEs.
 						</p>
 					</div>
@@ -308,7 +317,7 @@
 		}
 	}"
 	x-init="setInterval(() => next(), 7000)"
-	class="relative w-full lg:w-[55%] h-[300px] lg:h-[400px] flex-shrink-0 overflow-hidden"
+	class="relative w-full lg:w-[55%] h-[200px] sm:h-[300px] lg:h-[400px] flex-shrink-0 overflow-hidden"
 	>
 		<template x-for="(image, index) in images" :key="index">
 			<img 
@@ -327,119 +336,317 @@
 <section id="projects-container" class="flex flex-col items-center justify-center mt-5 mb-2 pb-4 w-full fade-up-target">
   <h2 id="project-head" class="text-4xl lg:text-5xl font-bold text-blue-900 text-center pb-5">PROJECTS</h2>
 
-  <div id="projects-carousel" class="p-slick-carousel w-[90%] mx-auto mb-5 relative overflow-visible">
+  <div class="relative w-[90%] mx-auto mb-8">
+  <div id="projects-carousel" class="p-slick-carousel overflow-visible">
     <!-- Mario Map Project -->
-    <div class="slick-box px-2">
-      <a href="/mario-map-project/" class="project-link block text-decoration-none">
-        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
-          <div class="image-container relative w-full h-full">
-            <img src="assets/images/projects/mario-project.png" alt="Project Image" class="w-full h-full object-cover">
-            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
-          </div>
-          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
-            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">Mario Map Project</h3>
-            <p class="project-description text-gray-600 text-base md:text-lg">An online interactive map of the Mushroom Kingdom, in our efforts to map out the Mario universe.</p>
-          </div>
-        </div>
-      </a>
-    </div>
+	<div class="slick-box px-4">
+	<a href="/mario-map-project/" class="block h-full">
+		<div
+		class="project-box
+				bg-white rounded-2xl shadow-lg
+				overflow-hidden
+				flex flex-col
+				mx-auto
+				aspect-square
+				max-w-[260px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[420px]
+				transition-shadow duration-300
+				hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)]"
+		>
+
+		<!-- IMAGE -->
+		<div class="relative flex-grow">
+			<img
+			src="assets/images/projects/mario-project.png"
+			alt="Mario Map Project"
+			class="absolute inset-0 w-full h-full object-cover"
+			/>
+
+			<div
+			class="absolute inset-x-0 bottom-0 h-20
+					bg-gradient-to-t from-white via-white/80 to-transparent">
+			</div>
+		</div>
+
+		<!-- TEXT -->
+		<div class="px-5 pt-3 pb-4 text-center">
+			<h3 class="font-bold text-blue-800 text-lg sm:text-xl mb-1">
+			Mario Map Project
+			</h3>
+
+			<p class="text-gray-600 text-sm sm:text-base leading-snug">
+			An interactive map of the Mushroom Kingdom.
+			</p>
+		</div>
+
+		</div>
+	</a>
+	</div>
 
 	<!-- Geographic Centre Project -->
-	<div class="slick-box px-2 pb-5">
-      <a href="/geographic-centre-project" class="project-link block text-decoration-none">
-        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
-          <div class="image-container relative w-full h-full">
-            <img src="assets/images/projects/centre-project.png" alt="Project Image" class="w-full h-full object-cover">
-            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
-          </div>
-          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
-            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">Geographic Centre</h3>
-            <p class="project-description text-gray-600 text-base md:text-lg">An app to calculate the exact centre of any number of locations around the globe, using 3D and polar geometry with SGD.</p>
-          </div>
-        </div>
-      </a>
-    </div>
+	<div class="slick-box px-4">
+	<a href="/geographic-centre-project" class="block h-full">
+		<div
+		class="project-box
+				bg-white rounded-2xl shadow-lg
+				overflow-hidden
+				flex flex-col
+				mx-auto
+				aspect-square
+				max-w-[260px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[420px]
+				transition-shadow duration-300
+				hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)]"
+		>
+
+		<!-- IMAGE -->
+		<div class="relative flex-grow">
+			<img
+			src="assets/images/projects/centre-project.png"
+			alt="Centre Project Image"
+			class="absolute inset-0 w-full h-full object-cover"
+			/>
+
+			<div
+			class="absolute inset-x-0 bottom-0 h-20
+					bg-gradient-to-t from-white via-white/80 to-transparent">
+			</div>
+		</div>
+
+		<!-- TEXT -->
+		<div class="px-3 pt-3 pb-4 text-center">
+			<h3 class="font-bold text-blue-800 text-lg sm:text-xl mb-1">
+			Geographic Centre
+			</h3>
+
+			<p class="text-gray-600 text-sm sm:text-base leading-snug">
+			An app to calculate the exact centre of any number of locations around the globe, using 3D and polar geometry with SGD.
+			</p>
+		</div>
+
+		</div>
+	</a>
+	</div>
 
 	<!-- Box Quest Project -->
-	<div class="slick-box px-2">
-      <a href="https://illuminarchie.itch.io/box-quest" class="project-link block text-decoration-none">
-        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
-          <div class="image-container relative w-full h-full">
-            <img src="assets/images/projects/box-project.png" alt="Project Image" class="w-full h-full object-cover">
-            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
-          </div>
-          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
-            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">Box Quest</h3>
-            <p class="project-description text-gray-600 text-base md:text-lg">My take on the World's Hardest Game! Try to beat level 30 with as few deaths as possible.</p>
-          </div>
-        </div>
-      </a>
-    </div>
+	<div class="slick-box px-4">
+	<a href="https://illuminarchie.itch.io/box-quest" class="block h-full">
+		<div
+		class="project-box
+				bg-white rounded-2xl shadow-lg
+				overflow-hidden
+				flex flex-col
+				mx-auto
+				aspect-square
+				max-w-[260px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[420px]
+				transition-shadow duration-300
+				hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)]"
+		>
+
+		<!-- IMAGE -->
+		<div class="relative flex-grow">
+			<img
+			src="assets/images/projects/box-project.png"
+			alt="Box Quest Image"
+			class="absolute inset-0 w-full h-full object-cover"
+			/>
+
+			<div
+			class="absolute inset-x-0 bottom-0 h-20
+					bg-gradient-to-t from-white via-white/80 to-transparent">
+			</div>
+		</div>
+
+		<!-- TEXT -->
+		<div class="px-3 pt-3 pb-4 text-center">
+			<h3 class="font-bold text-blue-800 text-lg sm:text-xl mb-1">
+			Box Quest
+			</h3>
+
+			<p class="text-gray-600 text-sm sm:text-base leading-snug">
+			My take on the World's Hardest Game! Try to beat level 30 with as few deaths as possible.
+			</p>
+		</div>
+
+		</div>
+	</a>
+	</div>
 
 	<!-- One Night at Freddy's Project -->
-	<div class="slick-box px-2">
-      <a href="https://github.com/Illuminarchie66/CS141-Functional-ONAF" class="project-link block text-decoration-none">
-        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
-          <div class="image-container relative w-full h-full">
-            <img src="assets/images/projects/ONAF-project.jpg" alt="Project Image" class="w-full h-full object-cover">
-            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
-          </div>
-          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
-            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">One Night at Freddy's</h3>
-            <p class="project-description text-gray-600 text-base md:text-lg">A recreation of the original FNAF using Haskell. This achieved a 100% mark for my functional programming course!</p>
-          </div>
-        </div>
-      </a>
-    </div>
+	<div class="slick-box px-4">
+	<a href="https://github.com/Illuminarchie66/CS141-Functional-ONAF" class="block h-full">
+		<div
+		class="project-box
+				bg-white rounded-2xl shadow-lg
+				overflow-hidden
+				flex flex-col
+				mx-auto
+				aspect-square
+				max-w-[260px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[420px]
+				transition-shadow duration-300
+				hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)]"
+		>
+
+		<!-- IMAGE -->
+		<div class="relative flex-grow">
+			<img
+			src="assets/images/projects/ONAF-project.jpg"
+			alt="ONAF Image"
+			class="absolute inset-0 w-full h-full object-cover"
+			/>
+
+			<div
+			class="absolute inset-x-0 bottom-0 h-20
+					bg-gradient-to-t from-white via-white/80 to-transparent">
+			</div>
+		</div>
+
+		<!-- TEXT -->
+		<div class="px-3 pt-3 pb-4 text-center">
+			<h3 class="font-bold text-blue-800 text-lg sm:text-xl mb-1">
+			One Night at Freddy's
+			</h3>
+
+			<p class="text-gray-600 text-sm sm:text-base leading-snug">
+			A recreation of the original FNAF using Haskell. This achieved a 100% mark for my functional programming course!
+			</p>
+		</div>
+
+		</div>
+	</a>
+	</div>
 	
 	<!-- SimpLeg Project -->
-	<div class="slick-box px-2">
-      <a href="https://github.com/Illuminarchie66/SimpLeg" class="project-link block text-decoration-none">
-        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
-          <div class="image-container relative w-full h-full">
-            <img src="assets/images/projects/SimpLeg-project.png" alt="Project Image" class="w-full h-full object-contain">
-            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
-          </div>
-          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
-            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">SimpLeg</h3>
-            <p class="project-description text-gray-600 text-base md:text-lg">An app using LLMs simplifying and summarising UK legislation to be easier to understand and more accessible to the public.</p>
-          </div>
-        </div>
-      </a>
-    </div>
+	<div class="slick-box px-4">
+	<a href="https://github.com/Illuminarchie66/SimpLeg" class="block h-full">
+		<div
+		class="project-box
+				bg-white rounded-2xl shadow-lg
+				overflow-hidden
+				flex flex-col
+				mx-auto
+				aspect-square
+				max-w-[260px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[420px]
+				transition-shadow duration-300
+				hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)]"
+		>
+
+		<!-- IMAGE -->
+		<div class="relative flex-grow">
+			<img
+			src="assets/images/projects/SimpLeg-project.png"
+			alt="SimpLeg Logo"
+			class="absolute inset-0 w-full h-full object-cover"
+			/>
+
+			<div
+			class="absolute inset-x-0 bottom-0 h-20
+					bg-gradient-to-t from-white via-white/80 to-transparent">
+			</div>
+		</div>
+
+		<!-- TEXT -->
+		<div class="px-3 pt-3 pb-4 text-center">
+			<h3 class="font-bold text-blue-800 text-lg sm:text-xl mb-1">
+			SimpLeg
+			</h3>
+
+			<p class="text-gray-600 text-sm sm:text-base leading-snug">
+			An app using LLMs simplifying and summarising UK legislation to be easier to understand and more accessible to the public.
+			</p>
+		</div>
+
+		</div>
+	</a>
+	</div>
 
 	<!-- Project Tracker Project -->
-	<div class="slick-box px-2">
-      <a href="https://example.com" class="project-link block text-decoration-none">
-        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
-          <div class="image-container relative w-full h-full">
-            <img src="assets/images/projects/tracker-project.PNG" alt="Project Image" class="w-full h-full object-cover">
-            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
-          </div>
-          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
-            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">Project Tracker</h3>
-            <p class="project-description text-gray-600 text-base md:text-lg">A web app for tracking and managing projects, with ML predictions using Jira requirements.</p>
-          </div>
-        </div>
-      </a>
-    </div>
+	<div class="slick-box px-4">
+	<a href="https://github.com/Illuminarchie66/SimpLeg" class="block h-full">
+		<div
+		class="project-box
+				bg-white rounded-2xl shadow-lg
+				overflow-hidden
+				flex flex-col
+				mx-auto
+				aspect-square
+				max-w-[260px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[420px]
+				transition-shadow duration-300
+				hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)]"
+		>
+
+		<!-- IMAGE -->
+		<div class="relative flex-grow">
+			<img
+			src="assets/images/projects/tracker-project.PNG"
+			alt="Project Image"
+			class="absolute inset-0 w-full h-full object-cover"
+			/>
+
+			<div
+			class="absolute inset-x-0 bottom-0 h-20
+					bg-gradient-to-t from-white via-white/80 to-transparent">
+			</div>
+		</div>
+
+		<!-- TEXT -->
+		<div class="px-3 pt-3 pb-4 text-center">
+			<h3 class="font-bold text-blue-800 text-lg sm:text-xl mb-1">
+			Project Tracker
+			</h3>
+
+			<p class="text-gray-600 text-sm sm:text-base leading-snug">
+			A web app for tracking and managing projects, with ML predictions using Jira requirements.
+			</p>
+		</div>
+
+		</div>
+	</a>
+	</div>
 
 	<!-- Terra Infinity Project -->
-	<div class="slick-box px-2">
-      <a href="https://github.com/4th-year-group-project/Terra-Infinity" class="project-link block text-decoration-none">
-        <div class="project-box bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col text-center transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)] cursor-pointer w-[25vw] h-[25vw] max-w-[400px] max-h-[400px] mx-auto">
-          <div class="image-container relative w-full h-full">
-            <img src="assets/images/projects/terrainfinity-project.png" alt="Project Image" class="w-full h-full object-cover">
-            <div class="image-overlay absolute inset-0 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
-          </div>
-          <div class="text-container flex flex-col justify-start px-6 pt-4 h-[60%]">
-            <h3 class="project-title text-xl md:text-2xl font-bold text-blue-800 mb-2">Terra Infinity</h3>
-            <p class="project-description text-gray-600 text-base md:text-lg">An exploration of procedural world generation techniques with Uber Noise, DLA approximations, and erosion.</p>
-          </div>
-        </div>
-      </a>
-    </div>
+	<div class="slick-box px-4">
+	<a href="https://github.com/4th-year-group-project/Terra-Infinity" class="block h-full">
+		<div
+		class="project-box
+				bg-white rounded-2xl shadow-lg
+				overflow-hidden
+				flex flex-col
+				mx-auto
+				aspect-square
+				max-w-[260px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[420px]
+				transition-shadow duration-300
+				hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)]"
+		>
 
+		<!-- IMAGE -->
+		<div class="relative flex-grow">
+			<img
+			src="assets/images/projects/terrainfinity-project.png"
+			alt="TerraInfinity Image"
+			class="absolute inset-0 w-full h-full object-cover"
+			/>
+
+			<div
+			class="absolute inset-x-0 bottom-0 h-20
+					bg-gradient-to-t from-white via-white/80 to-transparent">
+			</div>
+		</div>
+
+		<!-- TEXT -->
+		<div class="px-3 pt-3 pb-4 text-center">
+			<h3 class="font-bold text-blue-800 text-lg sm:text-xl mb-1">
+			Terra Infinity
+			</h3>
+
+			<p class="text-gray-600 text-sm sm:text-base leading-snug">
+			An exploration of procedural world generation techniques with Uber Noise, DLA approximations, and erosion.
+			</p>
+		</div>
+
+		</div>
+	</a>
+	</div>
+
+  </div>
   </div>
 </section>
 

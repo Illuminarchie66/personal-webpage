@@ -96,18 +96,16 @@ $(document).ready(function() {
         slidesToShow: 3, 
         slidesToScroll: 1, 
         infinite: true, 
-        arrows: true,
+
         autoplay: true,             
         autoplaySpeed: 10000,       
         arrows: true,               
         draggable: false,          
         swipe: false,               
-        prevArrow: '<button type="button" class="custom-slick-prev">&#x276E;</button>', // ‹
-  		nextArrow: '<button type="button" class="custom-slick-next">&#x276F;</button>', // ›
 
         responsive: [
             {
-                breakpoint: 1250,  
+                breakpoint: 1024,  
                 settings: {
                     slidesToShow: 1, 
                     slidesToScroll: 1, 

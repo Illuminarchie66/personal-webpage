@@ -97,6 +97,10 @@
 }
 .fade-right-target {opacity: 0;}
 
+.slick-track {
+  display: flex !important;
+}
+
 .custom-slick-prev,
 .custom-slick-next {
   position: absolute;
