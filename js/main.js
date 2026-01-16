@@ -96,10 +96,9 @@ $(document).ready(function() {
         slidesToShow: 3, 
         slidesToScroll: 1, 
         infinite: true, 
-
         autoplay: true,             
         autoplaySpeed: 10000,       
-        arrows: true,               
+        arrows: false,               
         draggable: false,          
         swipe: false,               
 
@@ -114,6 +113,18 @@ $(document).ready(function() {
                 }
             }
         ]
+    });
+
+    const $projectsCarousel = $('.p-slick-carousel');
+
+    document.getElementById('projects-prev')
+    .addEventListener('click', () => {
+        $projectsCarousel.slick('slickPrev');
+    });
+
+    document.getElementById('projects-next')
+    .addEventListener('click', () => {
+        $projectsCarousel.slick('slickNext');
     });
 
     let currentSlide = 0;
