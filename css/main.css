@@ -24,6 +24,17 @@
   transform: rotate(90deg);
 }
 
+.prose pre {
+  background-color: #2d2d2d; /* dark gray */
+  padding: 1rem;
+  border-radius: 1rem;
+  overflow-x: auto;
+}
+.prose code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+}
+
 @keyframes stretch-bar {
   0% {
     width: 0;
