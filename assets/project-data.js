@@ -34,13 +34,53 @@ $$\\min_{\\mathbf{c} \\in V} \\sigma(\\{\\ell_{sp}(\\mathbf{v}_i, \\mathbf{c}) |
 Where $\\ell_{sp}$ is the shortest path distance between two vertices. This can be computed in $O(n (|E| + |V| \\log |V|))$ time using Djikstra's algorithm from each vertex to the candidate centre. For each vertex we run Djikstra's, and so each node gets a list of distances to each candidate centre. We can then compute the variance (or any other metric) in $O(n)$ time for each candidate centre. We considered this approach for implementation, however due to the costs of using Google APIs for geographic graph mapping data, we only implemented it on simple graphs. 
 
 ## Euclidean Space
-- definition of distance
-- geometric interpretation 
-- midpoint of a line 
-- centre of 3 points with triangle / circle equation
-- calculus approach for n points with partial derivatives 
-- cicle fitting approach
-- euclidean doesnt map to real world well
+Now looking at Euclidean space, we have  $\\mathbf{v}_i \\in \\mathbb{R}^n$, where the distance between any two vertices is defined as $\\ell(\\mathbf{v}_a, \\mathbf{v}_b) = ||\\mathbf{v}_a - \\mathbf{v}_b||_2$, aka Euclidean distance; or geometrically the shortest path in the space between the two vertices. This leads to a much clearer geometric interpretation, where we can see that $\\mathbf{c}$ has near equal distance lines to each vertex. This can be further visualised in 2D as fitting a circle around the vertices; or a sphere in 3D. For our purposes we will be working with 2D. For $n=2$ we can easily see that the point of equidistance is $\\mathbf{c} = \\frac{1}{2}(\\mathbf{v}_1 + \\mathbf{v}_2)$, or the midpoint of a straight line between the two points. For $n=3$ we know that it is defined in 2 dimensions as any triangle can have a circle fitted to it, with its centre called the circumcentre. One method of finding the circumcentre is to take two sides of the triangle and to find their perpendicular bisectors - where the perpendicular bisectors meet is the circumcentre !    
+<p align="center">
+  <img src="assets/images/project_pages/circumcentre.png" width="400">
+</p>
+We can generalise this a bit further when considering a circle equation. For 2D, we have $(x-p)^2 + (y-q)^2 = r^2$, giving us 3 variables: $p,q,$ and $r$ to solve for. With 3 points, we can do this with ease. Where it becomes interesting is when we consider $n > 3$, as there is no guarantee that a circle fits the points perfectly. Continuining with the geometric interpretation, we can reframe this as an optimisation problem. 
+
+$$
+\\begin{aligned} 
+& (x-p)^2 + (y-q)^2 = r^2 \\\\\\\\
+\\Rightarrow & - 2px - 2qy + (p^2 + q^2 - r^2) + x^2 + y^2 = 0  \\\\\\\\
+\\Rightarrow & Ax_i + By_i + C + x_i^2 + y_i^2 \\approx 0 \\forall i\\\\\\\\
+\\Rightarrow & \\min_{A,B,C} \\sum_i \\left( Ax_i + By_i + C + x_i^2 + y_i^2 \\right)^2 \\\\\\\\
+\\Rightarrow & \\frac{\\partial f}{\\partial A} = \\sum_i 2x_i \\left( Ax_i + By_i + C + x_i^2 + y_i^2 \\right) = 0,\\\\\\\\
+& \\frac{\\partial f}{\\partial B} = \\sum_i 2y_i \\left( Ax_i + By_i + C + x_i^2 + y_i^2 \\right) = 0,\\\\\\\\
+& \\frac{\\partial f}{\\partial C} = \\sum_i \\left( Ax_i + By_i + C + x_i^2 + y_i^2 \\right) = 0, \\\\\\\\
+\\Rightarrow & \\begin{bmatrix}
+\\sum x_i^2 & \\sum x_i y_i & \\sum x_i \\\\\\\\
+\\sum x_i y_i & \\sum y_i^2 & \\sum y_i \\\\\\\\
+\\sum x_i & \\sum y_i & n 
+\\end{bmatrix} \\begin{bmatrix}
+A \\\\\\\\ B \\\\\\\\ C
+\\end{bmatrix} = - \\begin{bmatrix}
+\\sum x_i (x_i^2 + y_i^2) \\\\\\\\ \\sum y_i (x_i^2 + y_i^2)  \\\\\\\\ \\sum (x_i^2 + y_i^2)
+\\end{bmatrix}
+\\end{aligned}
+$$
+
+Once we solve for $A, B,$ and $C$, we can do the following to get back our original equation:
+$$
+\\begin{aligned} 
+p = -\\frac{A}{2}, \\quad q = -\\frac{B}{2}, \\quad r = \\sqrt{p^2 + q^2 - C}
+\\end{aligned}
+$$
+
+This gives explicit answers, though optimises the equation as opposed to circle fititng - the squares make it subject to outliers. Another approach is to instead optimize:
+
+$$
+\\min_{p,q,r} \\sum_{i} \\left( \\sqrt{(x_i - p)^2 + (y_i - q)^2} - r \\right)^2
+$$
+
+Where we can solve this by performing gradient descent, or finding the Jacobian of the residual $J$ w.r.t all the points, and doing:
+
+$$
+\[p, q, r\]^{(i+1)} = \[p,q,r\]^{(i)} - (J^T J)^{-1} J^T \[d_1, \\ldots, d_n \]^T
+$$
+
+These methods would be successful and work across our 2D plane! However, when we are considering our original goal, it aims to try and find a central location for people to meet on our planet, and famously our planet is not flat. Thus, we shift gears and take what we have learnt from working in Cartesian space, and apply it to a sphere with polar coordinates.
 
 ## Polar Space
 - definition of distance
