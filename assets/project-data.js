@@ -83,19 +83,169 @@ $$
 These methods would be successful and work across our 2D plane! However, when we are considering our original goal, it aims to try and find a central location for people to meet on our planet, and famously our planet is not flat. Thus, we shift gears and take what we have learnt from working in Cartesian space, and apply it to a sphere with polar coordinates.
 
 ## Polar Space
-- definition of distance
-- spherical coordinates
-- midpoint of a great circle
-- centre of 3 points on a sphere with plane equations
-- calculus approach for n points with partial derivatives
-- latitude/longitude to location mapping
+Working on a sphere now introduces polar coordinates, which aligns with latitude and longitude. We consider a point to lie somewhere on a sphere, which has the radius of the planet, which we call $R$. This point can be represented in $(x,y,z) \\in \\mathbb{R}^3$ or we can use the polar coordinate $(R, \\theta, \\phi)$. $\\varphi$ is latitude, and $\\lambda$ is longitude; and relates to the polar coordinates with $\\theta = \\frac{\\pi}{2} - \\varphi$ and $\\phi = \\lambda$. This represents the angle of the vector from the origin in each axis. 
+<p align="center">
+  <img src="assets/images/project_pages/Spherical_polar_coordinates.png" width="400">
+</p>
+In this space, we can convert between polar and cartesian coordinates with:
+
+$$
+\\begin{aligned} 
+\\text{Polar to Cartesian:} \\\\\\\\
+x = R \\cos \\varphi \\cos \\lambda 
+& \\quad y = R \\cos \\varphi \\sin \\lambda 
+& z = R \\sin \\varphi \\\\\\\\
+\\end{aligned}
+$$
+
+and
+
+$$
+\\begin{aligned} 
+\\text{Cartesian to Polar:} \\\\\\\\ 
+R = \\sqrt{x^2 + y^2 + z^2} 
+& \\quad \\theta = \\arccos \\frac{z}{R} 
+& \\phi = \\text{atan2}(y,x) 
+\\end{aligned}
+$$
+
+While we work in this spherical space, we do not want to use Euclidean distance, and instead great-circle distance. This is the arcdistance between two points on the surface of a sphere, measured along the arc of a circle.
+<p align="center">
+  <img src="assets/images/project_pages/greatcircle.png" width="400">
+</p>
+We can find this distance with both polar and cartesian coordinates. Let two points $\\mahtbf{v}_1, \\mathbf{v}_2$ on the surface of the planet have latitude and longitude $(\\varphi_1, \\lambda_1)$ and $(\\varphi_2, \\lambda_2)$ respectively. We can find the angle between thme with:
+
+$$
+  \\Delta \\sigma = \\arccos \\left( \\sin \\varphi_1 \\sin \\varphi_2 + \\cos \\varphi_1 \\cos \\varphi_2 \\cos|\\lambda_1 - \\lambda_2| \\right)
+$$ 
+
+Or we can find the angle with their vectors $\\mathbf{p_1}, \\mathbf{p_2}$:
+
+$$
+\\begin{aligned}
+\\Delta \\sigma &= \\arccos(\\mathbf{v}_1 \\cdot \\mathbf{v}_2) \\\\\\\\
+&=  \\arcsin|\\mathbf{v}_1 \\times \\mathbf{v}_2| \\\\\\\\
+&= \\arctan\\left( \\frac{|\\mathbf{v}_1 \\times \\mathbf{v}_2|}{\\mathbf{v}_1 \\cdot \\mathbf{v}_2} \\right)
+\\end{aligned}
+$$
+
+We then multiply the angle by $R$ to get the arcdistance. With our distance defined we can use it to solve the problem that we have. For $n=2$, we can solve directly. The approach we used was taken from [this website](https://www.movable-type.co.uk/scripts/latlong.html), which throughout was a useful point of reference to learn about arcdistances. We can find the latitude and longitude of the midpoint $(\\varphi_m, \\lambda_m)$ like so:
+
+$$
+\\begin{aligned}
+B_x &= \\cos \\varphi_2 \\cos |\\lambda_1 - \\lambda_2| \\\\\\\\
+B_y &= \\cos \\varphi_2 \\sin |\\lambda_1 - \\lambda_2| \\\\\\\\
+\\varphi_m &= \\text{atan2}\\left( 
+  \\sin \\varphi_1 + \\sin \\varphi_2, 
+  \\sqrt{\\left( \\cos \\varphi_1 + B_x \\right)^2 + B_y^2} \\right) \\\\\\\\
+\\lambda_m &= \\lambda_1 + \\text{atan2}\\left( B_y, \\cos \\varphi_1 + B_x\\right)
+\\end{aligned}
+$$
+
+For $n=3$, this introduced a new challenge. Considering the complexity of the above formula, I was concerned that it would sprial into a confusing mess of algebra, however thats where I shifted my approach to think similar to how we solved this in 2D Euclidean. There, we took the perpendicular bisectors of the triangle, and looked at where they met. We can apply a similar logic. We construct a triangular prism by defining planes between our vertices $\\mathbf{v}_1, \\mathbf{v}_2, \\mathbf{v}_3 $. By choosing two sides of the prism, we can find the perpendicular planar bisectors between them. Where those planes meet will be a line that passes through the sphere, and where that line crosses the sphere is the point of equidistance. 
+
+We make a plane $P_{1,2}$ between $\\mathbf{v}_1$ and $\\mathbf{v}_2$ with $(\\mathbf{v}_1 \\times \\mathbf{v}_2) \\cdot \\mathbf{x} = 0$. We can then find a perpendicular plane at its centre by taking the cross product of the plane with a vector on the centre line, which is just $\\frac{1}{2}(\\mathbf{v}_1 + \\mathbf{v}_2)$, hence we can make the two perpendicular planes $P\\_{1,2}^{\\perp}$ and $P\\_{1,3}^{\\perp}$ with:
+
+$$
+\\begin{aligned}
+P_{i,j}^{\\perp}&: \\left( (\\mathbf{v}_i \\times \\mathbf{v}_j) \\times \\frac{1}{2}(\\mathbf{v}_i + \\mathbf{v}_j) \\right) \\cdot \\mathbf{x} = 0 \\\\\\\\
+&: \\mathbf{d}\\_{i,j} \\mathbf{x}= 0 \\\\\\\\
+&: a\\_{i,j}x + b\\_{i,j}y + c\\_{i,j}z = 0
+\\end{aligned}
+$$
+
+With two planes, we need to find the line where they intersect. Since it passes through the origin, we can simply parameterize a vector by $t$; so $x=t, y=ty\\_c, z=tz\\_c$, letting our directional vector be $(1, y\\_c, z\\_c)$. Plugging this into our line equations we get:
+
+$$
+a\\_{1,2} + b\\_{1,2}y\\_c + c\\_{1,2}z\\_c = 0 \\\\\\\\
+a\\_{1,3} + b\\_{1,3}y\\_c + c\\_{1,3}z\\_c = 0 
+$$
+
+This is a linear system of equations, where we can solve for $y_c$ and $z_c$ with:
+
+$$
+\\begin{aligned}
+y\\_c &= - \\left( (a\\_{1,2} c\\_{1,3} - a\\_{1,3} c\\_{1,2}) / (b\\_{1,2} c\\_{1,3} - b\\_{1,3} c\\_{1,2}) \\right) \\\\\\\\
+z\\_c &= - \\left( (a\\_{1,2} b\\_{1,3} - a\\_{1,3} b\\_{1,2}) / (b\\_{1,2} c\\_{1,3} - b\\_{1,3} c\\_{1,2}) \\right)
+\\end{aligned}
+$$
+
+This defines our line of intersection, and we can use it to calculate where it intersects our sphere of radius $R$. 
+
+$$
+\\begin{aligned}
+t_c &= 1 + y\\_c^2 + z\\_c^2 \\\\\\\\
+t &= \\frac{R}{\\sqrt{t_c}}
+\\end{aligned}
+$$
+Thus our midpoint on the surface is 
+
+$$
+\\mathbf{c} = \\left[ t, ty\\_c, tz\\_c\\right]^{T}
+$$
+
+Which we can convert back into latitude and longitude if we so desire. This method works for 3 points, and shows how working in the cartesian world is powerful when polar coordinates become too difficult. Now for $n > 3$ we have a similar problem to Euclidean space, where there is no guarantee of a point of equidistance. Hence, we have to find a point that minimises the variance of distances. Using our distance formulas from earlier, we consider some hypothetical centre $\\mathbf{c}$ and list of vertices $\\mathbf{v}_1, \\mathbf{v}_2, \\ldots \\mathbf{v}_n$, and we want to minimise the variance of the distances between them. We could work in polar coordinates, however the distance equation is large, complex and poorly defined for certain values, so we instead look at the arcdistance equations with our vectors. We get the following: 
+
+$$
+\\sigma^2(\\mathbf{c}) = \\frac{1}{n}\\sum_{i=1}^{n} \\arctan\\left(\\frac{|\\mathbf{v}\\_i \\times \\mathbf{c}|}{\\mathbf{v}\\_i \\cdot \\mathbf{c}}\\right)^2 - \\frac{1}{n^2}\\left(\\sum_{i=1}^n \\arctan\\frac{|\\mathbf{v}\\_i \\times \\mathbf{c}|}{\\mathbf{v}\\_i \\cdot \\mathbf{c}} \\right)^2
+$$
+
+We use $\\arctan$ because there are no invalid values. $\\arccos$ and $\\arcsin$ fail outside of $[-1,1]$, so $\\arctan$ gives us additional stability when solving this problem. We need to minimize variance $\\sigma^2$, which we can do with stochastic gradient descent:
+
+$$\\mathbf{c}^{(t+1)} = \\mathbf{c}^{(t)} - \\alpha \\frac{\\partial}{\\partial \\mathbf{c}}\\sigma^2(\\mathbf{c}^{(t)})$$
+
+Thus we need to take the derivative of that monster of an equation. So, let me break it down for you Mark. We break it into pieces we can use for a larger chain rule. 
+
+$$
+\\begin{aligned}
+\\ell &= \\arctan(u) & u &= v/w \\\\\\\\
+v &= |\\mathbf{v}\\_i \\times \\mathbf{c}| & w &= \\mathbf{v}\\_i \\cdot \\mathbf{c}
+\\end{aligned}
+$$
+
+With our pieces, we proceed to take their derivatives with respect to $\\mathbf{c}$:
+
+$$
+\\begin{aligned}
+\\frac{\\partial w}{\\partial \\mathbf{c}} &= \\mathbf{v}\\_i \\\\\\\\
+\\frac{\\partial v}{\\partial \\mathbf{c}} &= \\frac{1}{\\left| \\mathbf{v}\\_i \\times \\mathbf{c} \\right|} \\begin{bmatrix}
+y\\_i^2 + z\\_i^2 & -x\\_i y\\_i & -x\\_i z\\_i \\\\\\\\
+-x\\_i y\\_i & x\\_i^2 + z\\_i^2 & -y\\_i z\\_i \\\\\\\\
+-x\\_i z\\_i & -y\\_i z\\_i & x\\_i^2 + y\\_i^2 
+\\end{bmatrix} \\mathbf{c} = \\frac{1}{\\left| \\mathbf{v}\\_i \\times \\mathbf{c} \\right|} K\\_i \\mathbf{c} \\\\\\\\
+\\Rightarrow \\frac{\\partial u}{\\partial \\mathbf{c}} &= \\frac{1}{(\\mathbf{v}\\_i \\cdot \\mathbf{c})^2} 
+\\left[ \\frac{\\mathbf{v}\\_i \\cdot \\mathbf{c}}{| \\mathbf{v}\\_i \\times \\mathbf{c} |} K\\_i \\mathbf{c} - \\mathbf{v}\\_i | \\mathbf{v}\\_i \\times \\mathbf{c} | \\right] \\\\\\\\
+\\Rightarrow \\frac{\\partial \\ell}{\\partial \\mathbf{c}} &= \\frac{\\partial u}{\\partial \\mathbf{c}} \\cdot \\left( \\frac{1}{1+\\left(\\frac{|\\mathbf{v}\\_i \\times \\mathbf{c}|}{\\mathbf{v}\\_i \\cdot \\mathbf{c}}\\right)^2} \\right)
+= \\frac{\\partial u}{\\partial \\mathbf{c}} \\cdot \\left( \\frac{(\\mathbf{v}\\_i \\cdot \\mathbf{c})^2}{(\\mathbf{v}\\_i \\cdot \\mathbf{c})^2 + |\\mathbf{v}\\_i \\times \\mathbf{c}|^2} \\right) \\\\\\\\
+&= \\frac{1}{(\\mathbf{v}\\_i \\cdot \\mathbf{c})^2 + |\\mathbf{v}\\_i \\times \\mathbf{c}|^2} \\left[ \\frac{\\mathbf{v}\\_i \\cdot \\mathbf{c}}{| \\mathbf{v}\\_i \\times \\mathbf{c} |} K\\_i \\mathbf{c} - \\mathbf{v}\\_i | \\mathbf{v}\\_i \\times \\mathbf{c} | \\right] \\\\\\\\
+&= \\frac{1}{|\\mathbf{v}\\_i|^2|\\mathbf{c}|^2} \\left[ \\frac{\\mathbf{v}\\_i \\cdot \\mathbf{c}}{| \\mathbf{v}\\_i \\times \\mathbf{c} |} K\\_i \\mathbf{c} - \\mathbf{v}\\_i | \\mathbf{v}\\_i \\times \\mathbf{c} | \\right] \\\\\\\\
+\\Rightarrow \\frac{\\partial \\\\sigma^2}{\\partial \\mathbf{c}} &= 
+\\frac{2}{n}\\sum\\_{i=1}^n \\frac{\\partial \\ell}{\\partial \\mathbf{c}} \\arctan\\left(\\frac{|\\mathbf{v}\\_i \\times \\mathbf{c}|}{\\mathbf{v}\\_i \\cdot \\mathbf{c}}\\right) - 
+\\frac{2}{n^2}\\left(\\sum\\_{i=0}^n \\frac{\\partial \\ell}{\\partial \\mathbf{c}} \\right) 
+\\left( \\sum\\_{i=0}^n \\arctan\\left(\\frac{|\\mathbf{v}\\_i \\times \\mathbf{c}|}{\\mathbf{v}\\_i \\cdot \\mathbf{c}}\\right)\\right)
+\\end{aligned}
+$$
+
+This beautiful equation gives us a $3\\times 1$ vector, describing the derivative of the variance in each axis. This is what we use in our SGD, where we found that a nice intial value of $\\mathbf{c}^{(0)}$ is the average of the latitude and longitudes, generally placing it within the goal. In terms of effeciency, each iteration we use calculate our breakdown terms, as we can just reuse them throughout the equation, reducing the number of terms we actually need to calculate. 
+
+$$
+\\begin{aligned}
+\\mathbf{s}\\_i &= \\frac{1}{v^2 + w^2} \\left[ \\frac{w}{v} K_i \\mathbf{c}^{(t)} - v \\mathbf{v}\\_i \\right] \\\\\\\\
+\\mathbf{c}^{(t+1)} &= \\mathbf{c}^{(t)} - \\alpha \\left(
+\\frac{2}{n}\\sum\\_{i=1}^n \\mathbf{s}\\_i \\ell  -
+\\frac{2}{n^2}\\left( \\sum\\_{i=0}^n \\mathbf{s}\\_i \\right) \\left( \\sum\\_{i=0}^n \\ell\\right)
+\\right)
+\\end{aligned}
+$$
+
+We repeat this from $\\mathbf{c}^{(0)}$ until we either converge to a degree of tolerance, or it diverges or enters a cycle. It is worth noting that after each iteration, we normalise $\\mathbf{c}^{(t+1)}$ such that $||\\mathbf{c}^{(t+1)}|| = R$, this way we remain on the surface of the planet. We effectively reproject our point back onto the planet.
 
 # Implementation
-- brief overview of code structure, classes, etc
-- original pyqt5 app
-- javascript implementation for website
+When I originally created this for A-Levels, my solution focused on implementing the applied world approach, over the Graph or Euclidean solutions. I used PyQT5 to create an interface, and the GoogleMaps API to make queries between locations.Turns out that when left alone that is expensive and highly not worth it (accidentally nearly owed them £2000!). When I recreated the project, I switched to use a web interface with JavaScript and Leaflet, that used a Flask backend to rig it directly to my previous code. This was later reworked to just use JavaScript, to remove any reliance on a server. <br> <br>
 
-# Evaluation
+We broke down the problem to use two main classes of a \`Point\` and a \`Calculator\`. The \`Point\` class was used to easily work between Cartesian coordinates; latitude/longitude; and addresses. This was users could enter either an address or a latitude/longitude, and then it would find out all the other information by calculating it out. This way we could easily do different operations between points, and functions can take them in with all the information prepared for solving it, regardless of the mechanism ($n=2, $n=3$ or $n > 3$). The \`Calculator\` was a static class which contained all the functions to go and solve the midpoints. This included many helper functions as well. The most important improvements I made was to minimise the number of repeated operations. We maintained several arrays that contained the dot product, the absolute cross product, etc. so that we could easily reference them multiple times, and only calculate each term once. We also stored the points we found, so that we could display them honing in on the target point as it converges, which makes it look quite a bit more pretty. 
+
+These classes would be used to communicate with the interface, displaying the info with a GoogleMaps inspired map. We implemented several views, including satellite and street, which gave the user a bit more customisability. The method to enter the points was simple, either using latitude/longitude or an address could be searched, and if it was found it would be used. 
 - using
 - convergence
 - limitations
