@@ -1,0 +1,80 @@
+/* Force visible markdown headings */
+
+.prose {
+  font-size: 0.8rem; /* 16px */
+  line-height: 1.25;
+}
+
+.prose h1 {
+  font-size: 2.25rem; /* text-4xl */
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose h2 {
+  font-size: 1.875rem; /* text-3xl */
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose h3 {
+  font-size: 1.5rem; /* text-2xl */
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose h4 {
+  font-size: 1.25rem; /* text-xl */
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Mobile scaling */
+@media (min-width: 640px) {
+  .prose {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6;
+  }
+  .prose h1 { font-size: 2.5rem; }
+  .prose h2 { font-size: 2rem; }
+}
+
+@media (min-width: 1024px) {
+  .prose {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.7;
+  }
+  .prose h1 { font-size: 3rem; }
+  .prose h2 { font-size: 2.25rem; }
+}
+
+@media (min-width: 1440px) {
+  .prose {
+    font-size: 1.5rem; /* 20px */
+    line-height: 1.7;
+  }
+  .prose h1 { font-size: 3rem; }
+  .prose h2 { font-size: 2.25rem; }
+}
+
+#content ul {
+  list-style-type: disc;
+  padding-left: 1.25em;
+  margin: 1em 0;
+}
+
+#content li {
+  margin: 0.4em 0;
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding-bottom: 0.5rem; /* space for scrollbar */
+}
+
+/* Prevent KaTeX from forcing huge widths */
+.katex-display > .katex {
+  white-space: nowrap;
+}

@@ -6,9 +6,8 @@ const projects = {
     skills: ["Python", "Calculus", "Optimisation", "Geometry", "HTML", "CSS", "JavaScript"],
     github: "https://github.com/Illuminarchie66/Geographic-Centre",
     other: { label: "Website", url: ".." },
-    content: `
-# Introduction
-The Centre of N Points was my A-Level Computer Science coursework project, a weave of Mathematics and Computing to explore a problem that fascinated me. Given $n$ points in some space $S$, what is the point in $S$ that is equidistant from from all those points. Right now that seems vague and poorly defined, and thats because it is ! The original problem was spurred on from an issue me and my family were having: we are scattered across the UK, where would be a location to meet such that each party would have to travel an equal distance to travel to arrive at that location. Furthermore, what would be a location that would be an equal distance to travel whilst also minimizing the total distance that all parties have to travel. At the time, I was learning Djikstra's algorithm and A*; as well as learning the basics of 3D geometry and calculus. Thus, I pursued this problem for my A-Level project.
+    content: `# Introduction
+The Centre of N Points was my A-Level Computer Science coursework project, a weave of Mathematics and Computing to explore a problem that fascinated me. Given $n$ points in some space $S$, what is the point in $S$ that is equidistant from from all those points. Right now that seems vague and poorly defined, and thats because it is ! The original problem was spurred on from an issue me and my family were having: we are scattered across the UK, where would be a location to meet such that each party would have to travel an equal distance to travel to arrive at that location. Furthermore, what would be a location that would be an equal distance to travel whilst also minimizing the total distance that all parties have to travel. At the time, I was learning Djikstra's algorithm and A*; as well as learning the basics of 3D geometry and calculus. Thus, I pursued this problem for my A-Level project.<br><br>
 
 This involved a deep exploration into mathematics and optimisation. The original project was created with PyQt5 for the interface; but later I engineered this to work on my website in Python (for a Flask server backend) and then in raw JavaScript. This achieved an A* for my A-Level coursework, and you can download the original word document I wrote [here](/downloads/blah.word). 
 
@@ -113,7 +112,7 @@ While we work in this spherical space, we do not want to use Euclidean distance,
 <p align="center">
   <img src="assets/images/project_pages/greatcircle.png" width="400">
 </p>
-We can find this distance with both polar and cartesian coordinates. Let two points $\\mahtbf{v}_1, \\mathbf{v}_2$ on the surface of the planet have latitude and longitude $(\\varphi_1, \\lambda_1)$ and $(\\varphi_2, \\lambda_2)$ respectively. We can find the angle between thme with:
+We can find this distance with both polar and cartesian coordinates. Let two points $\\mathbf{v}_1, \\mathbf{v}_2$ on the surface of the planet have latitude and longitude $(\\varphi_1, \\lambda_1)$ and $(\\varphi_2, \\lambda_2)$ respectively. We can find the angle between thme with:
 
 $$
   \\Delta \\sigma = \\arccos \\left( \\sin \\varphi_1 \\sin \\varphi_2 + \\cos \\varphi_1 \\cos \\varphi_2 \\cos|\\lambda_1 - \\lambda_2| \\right)
@@ -243,13 +242,35 @@ We repeat this from $\\mathbf{c}^{(0)}$ until we either converge to a degree of 
 # Implementation
 When I originally created this for A-Levels, my solution focused on implementing the applied world approach, over the Graph or Euclidean solutions. I used PyQT5 to create an interface, and the GoogleMaps API to make queries between locations.Turns out that when left alone that is expensive and highly not worth it (accidentally nearly owed them £2000!). When I recreated the project, I switched to use a web interface with JavaScript and Leaflet, that used a Flask backend to rig it directly to my previous code. This was later reworked to just use JavaScript, to remove any reliance on a server. <br> <br>
 
-We broke down the problem to use two main classes of a \`Point\` and a \`Calculator\`. The \`Point\` class was used to easily work between Cartesian coordinates; latitude/longitude; and addresses. This was users could enter either an address or a latitude/longitude, and then it would find out all the other information by calculating it out. This way we could easily do different operations between points, and functions can take them in with all the information prepared for solving it, regardless of the mechanism ($n=2, $n=3$ or $n > 3$). The \`Calculator\` was a static class which contained all the functions to go and solve the midpoints. This included many helper functions as well. The most important improvements I made was to minimise the number of repeated operations. We maintained several arrays that contained the dot product, the absolute cross product, etc. so that we could easily reference them multiple times, and only calculate each term once. We also stored the points we found, so that we could display them honing in on the target point as it converges, which makes it look quite a bit more pretty. 
+We broke down the problem to use two main classes of a \`Point\` and a \`Calculator\`. The \`Point\` class was used to easily work between Cartesian coordinates; latitude/longitude; and addresses. This was users could enter either an address or a latitude/longitude, and then it would find out all the other information by calculating it out. This way we could easily do different operations between points, and functions can take them in with all the information prepared for solving it, regardless of the mechanism ($n=2, n=3$ or $n > 3$). The \`Calculator\` was a static class which contained all the functions to go and solve the midpoints. This included many helper functions as well. The most important improvements I made was to minimise the number of repeated operations. We maintained several arrays that contained the dot product, the absolute cross product, etc. so that we could easily reference them multiple times, and only calculate each term once. We also stored the points we found, so that we could display them honing in on the target point as it converges, which makes it look quite a bit more pretty. <br> <br>
 
-These classes would be used to communicate with the interface, displaying the info with a GoogleMaps inspired map. We implemented several views, including satellite and street, which gave the user a bit more customisability. The method to enter the points was simple, either using latitude/longitude or an address could be searched, and if it was found it would be used. 
-- using
-- convergence
-- limitations
-- what i would like to do next / add
+These classes would be used to communicate with the interface, displaying the info with a GoogleMaps inspired map. We implemented several views, including satellite and street, which gave the user a bit more customisability. The method to enter the points was simple, either using latitude/longitude or an address could be searched, and if it was found it would be used. <br> <br>
+
+We also implemented an option to instead minimize the mean distance, as opposed to the variance. This finds a more central location, but more importantly minimizes the total travel distance. This is useful if the goal is to reduce overall travel, as opposed to making it equal for all parties. We also experimented with a third option, which uses a weighted addition of both variance and mean distance, allowing the user to balance between equidistance and total distance. <br> <br>
+Here is a screenshot of the original implementation:
+<p align="center">
+  <img src="assets/images/project_pages/example.png" width="600">
+</p>
+<br>
+And here is a screenshot of the JavaScript implementation:
+<p align="center">
+  <img src="assets/images/project_pages/example2.png" width="600">
+</p>
+
+# Evaluation
+For my A-Level project this was very successful! I managed to achieve an A* grade, and I learnt alot about mathematics, geometry and calculus. It was both enjoyable and really interesting to explore the problem and solve it from the ground up. This was before I was in University, with access to many resources, or knowing what to search or look into - thus I spent days in my classroom drawing circles and spheres, trying to calculate formulas and understanding what equidistance means. The moment I stumbled across the idea of optimisation with derivatives changed the game entirely, and it was me figuring out what optimisation is by myself - it was meaningful and felt like true learning! It was a challenging but rewarding experience, and I am proud of the work I did. <br> <br>
+
+For this project, when I revisited it, it was nice to work it into the web, showing the skills I had picked up across my university life. It was a fun project to reimplement, and I enjoyed the challenge of optimising the code to run efficiently in JavaScript. It was also interesting to see how much I had learnt about structuring code and engineering software since my A-Levels. Overall, I am pleased with how this project turned out, and it remains a personal favourite of mine. Especially for all of that MATHS!! <br> <br>
+
+There are still many features that I would love to implement ! 
+- Implementing the graph based solution, using real world road data, and Djikstra's algorithm to find shortest paths, to then find the point of minimum variance.
+- Adding more interactivity to the map, such as being able to drag points around and see the centre update in real-time.
+- Allowing for more complex weighting schemes, such as giving certain points more importance in the calculation.
+- More visualisations, such as showing the circles of equal distance around the centre point.
+- 3D rendering of the Earth and points, to better visualise the problem in its true form.
+- Options for minimisation goal: with variance, mean, median, range, etc.
+- Better convergence detection, such as adaptive learning rates, or momentum based approaches. 
+- Proof of convergence for the $n > 3$ cases. This would involve showing that $\\lim_{t\\to\\infty} ||\\mathbf{c}^{(t+1)} - \\mathbf{c}^{(t)}|| = 0$  
 `,
     prev: null,
     next: { key: "project2", label: "Next Project" }

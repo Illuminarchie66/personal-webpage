@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const toggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("mobile-menu");
-    console.log("hey");
 
     if (!toggle || !menu) return;
 
