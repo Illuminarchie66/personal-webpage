@@ -45,8 +45,8 @@
       <li class="relative">
         <button id="projects-button" class="hover:text-blue-600 focus:outline-none">Projects</button>
         <ul id="projects-menu" class="hidden absolute right-0 mt-2 bg-white border border-gray-200 rounded shadow-lg w-48 z-10">
-          <li><a href="/mario-map-project/" class="block px-4 py-2 hover:bg-gray-100">Mario Map</a></li>
-          <li><a href="/geographic-centre" class="block px-4 py-2 hover:bg-gray-100">Geographic Centre</a></li>
+          <li><a href="projects/mario-map-project/" class="block px-4 py-2 hover:bg-gray-100">Mario Map</a></li>
+          <li><a href="projects/geographic-centre" class="block px-4 py-2 hover:bg-gray-100">Geographic Centre</a></li>
           <li><a href="https://illuminarchie.itch.io/box-quest" class="block px-4 py-2 hover:bg-gray-100">Box Quest</a></li>
 		  <li><a href="https://github.com/Illuminarchie66/CS141-Functional-ONAF" class="block px-4 py-2 hover:bg-gray-100">One Night at Freddy's</a></li>
 		  <li><a href="https://github.com/Illuminarchie66/SimpLeg" class="block px-4 py-2 hover:bg-gray-100">SimpLeg</a></li>
@@ -353,7 +353,7 @@
 					max-w-[260px] sm:max-w-[300px] md:max-w-[340px] lg:max-w-[380px] xl:max-w-[420px]
 					transition-transform duration-300 hover:-translate-y-2"
 			>
-			<a href="/mario-map-project/" class="flex flex-col h-full">
+			<a href="projects/mario-map-project/" class="flex flex-col h-full">
 			<!-- IMAGE -->
 			<div class="relative flex-grow">
 				<img
@@ -639,7 +639,7 @@
 
 	<button
 	id="projects-prev"
-	class="absolute top-1/2 left-10 -translate-y-1/2
+	class="absolute top-1/2 left-[-0.7rem] md:left-[-1.3rem] -translate-y-1/2
 			text-[2.5rem] font-bold text-[#26428b]
 			z-30 cursor-pointer
 			transition-transform duration-200
@@ -649,7 +649,7 @@
 
 	<button
 	id="projects-next"
-	class="absolute top-1/2 right-10 -translate-y-1/2
+	class="absolute top-1/2 right-[-0.7rem] md:right-[-1.3rem] -translate-y-1/2
 			text-[2.5rem] font-bold text-[#26428b]
 			z-30 cursor-pointer
 			transition-transform duration-200
@@ -844,12 +844,12 @@
   </div>
 </section>
 
-
-
 <!-- Interests Section -->
+
 <section class="relative w-full bg-gray-100 pt-4 pb-4 fade-up-target">
 	<h2 id="project-head" class="text-4xl lg:text-5xl font-bold text-blue-900 text-center pb-5">INTERESTS</h2>
 
+	<div class="hidden xl:block">
 	<div id="carousel" class="relative w-full overflow-hidden max-w-7xl mx-auto rounded-2xl shadow-lg">
 		<div id="slides" class="flex transition-transform duration-700 ease-in-out" style="transform: translateX(0%)">
 		
@@ -921,6 +921,7 @@
 		</div>
 
 	</div>
+	
 
 	<!-- Navigation Arrows -->
 	<button onclick="nextSlide(-1)"
@@ -932,6 +933,118 @@
 		class="absolute top-1/2 right-10 transform -translate-y-1/2 text-[2.5rem] font-bold text-[#26428b] z-20 cursor-pointer transition-transform hover:text-[#f39c12] hover:scale-125">
 		&#x276F;
 	</button>
+	</div>
+
+	<!-- MOBILE INTERESTS -->
+	<div class="xl:hidden px-4">
+
+		<div id="mobile-carousel"
+       		class="">
+
+		<div class="mobile-slide active">
+		<div class="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer">
+			
+			<!-- Images -->
+			<div class="grid grid-cols-2 gap-1">
+			<img class="col-span-2 aspect-[4/3] max-h-48 w-full md:max-h-72 object-cover" src="assets/images/interests/waterfall.jpg" alt="Kayak Tall"  />
+			<img class="aspect-square object-cover" src="assets/images/interests/kayak1.jpg" alt="Kayak 1" />
+			<img class="aspect-square object-cover" src="assets/images/interests/kayak2.jpg" alt="Kayak 2" />
+			
+			</div>
+
+			<!-- Text -->
+			<div class="p-2">
+			<h3 class="text-2xl font-bold text-blue-900 mb-2">Kayaking</h3>
+			<p class="block sm:hidden text-gray-700 text-base h-[12rem] overflow-auto">
+				I joined Warwick Canoe Club in second year Warwick University, and since I have been kayaking across the UK on various rivers. My first trip was to the River Dee when it was a freezing -1°C, but the thrill of paddling through the rapids was unforgettable. Since then I have gone on many trips, with the incredible 10 day trip in Scotland. 
+			</p>
+			<p class="hidden sm:block md:hidden text-gray-700 text-base h-[12rem] overflow-auto">
+				I joined Warwick Canoe Club in second year Warwick University, and since I have been kayaking across the UK on various rivers. My first trip was to the River Dee when it was a freezing -1°C, but the thrill of paddling through the rapids was unforgettable. Since then I have gone on many trips, with the incredible 10 day trip in Scotland. There I experienced the incredible rapids of the River Gary, and waterfalls of the River Etive. 
+				I also got an incredible opportunity to be the Canoe Society's Media Officer, creating Instagram and Facebook content for the society; spreading awareness of the events. 
+			</p>
+
+			<p class="hidden md:block text-gray-700 text-lg h-[12rem] overflow-auto">
+				I joined Warwick Canoe Club in second year Warwick University, and since I have been kayaking across the UK on various rivers. My first trip was to the River Dee when it was a freezing -1°C, but the thrill of paddling through the rapids was unforgettable. Since then I have gone on many trips, with the incredible 10 day trip in Scotland. There I experienced the incredible rapids of the River Gary, and waterfalls of the River Etive. 
+				I also got an incredible opportunity to be the Canoe Society's Media Officer, creating Instagram and Facebook content for the society; spreading awareness of the events. 
+				It has been a great learning experience for communication, teamwork and leadership; as well as pushing me way beyond my comfort zone. I hope to get up to more in the future!
+			</p>
+			</div>
+
+			<!-- Hint -->
+			<div class="text-center text-sm text-gray-400 pb-2">
+			Tap to continue →
+			</div>
+		</div>
+		</div>
+
+		<div class="mobile-slide">
+		<div class="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer">
+			
+			<!-- Images -->
+			<div class="grid grid-cols-2 gap-1">
+			<img class="col-span-2 aspect-[4/3] max-h-48 w-full md:max-h-72 object-cover" src="assets/images/interests/interrail.png" alt="Interrail map"  />
+			<img class="aspect-square object-cover" src="assets/images/interests/bath.jpg" alt="Bath" />
+			<img class="aspect-square object-cover" src="assets/images/interests/eiffel.jpg" alt="Eiffel tower" />
+			
+			</div>
+
+			<!-- Text -->
+			<div class="p-2">
+			<h3 class="text-2xl font-bold text-blue-900 mb-2">Travelling</h3>
+			<p class="block sm:hidden text-gray-700 text-base h-[12rem] overflow-auto">
+				In 2021, I went on an Interrail trip with my closest friends from primary school. We visited 11 countries along the way, first doing France, Spain and Portugal, before meeting back up in the Netherlands and doing Eastern Europe. It was an unforgettable experience, and it sparked a love for travelling.
+			</p>
+			<p class="hidden sm:block md:hidden text-base h-[12rem] overflow-auto">
+				In 2021, I went on an Interrail trip with my closest friends from primary school. We visited 11 countries along the way, first doing France, Spain and Portugal, before meeting back up in the Netherlands and doing Eastern Europe. I adored Barcelona and Porto, for their food and culture. Amsterdam and Berlin had an incredible night life, with remarkable history. Prague had some of the best beer; and Budapest had some incredible bathhouses with amazing food in the Jewish Quarter. Our trip ended in Munich, catching an Ed Sheeran concert in the Olympic Stadium.
+			</p>
+			<p class="hidden md:block text-lg h-[12rem] overflow-auto">
+				In 2021, I went on an Interrail trip with my closest friends from primary school. We visited 11 countries along the way, first doing France, Spain and Portugal, before meeting back up in the Netherlands and doing Eastern Europe. I adored Barcelona and Porto, for their food and culture. Amsterdam and Berlin had an incredible night life, with remarkable history. Prague had some of the best beer; and Budapest had some incredible bathhouses with amazing food in the Jewish Quarter. Our trip ended in Munich, catching an Ed Sheeran concert in the Olympic Stadium. It was an unforgettable experience, and it sparked a love for travelling.
+			</p>
+			</div>
+
+			<!-- Hint -->
+			<div class="text-center text-sm text-gray-400 pb-2">
+			Tap to continue →
+			</div>
+		</div>
+		</div>
+
+		<div class="mobile-slide">
+		<div class="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer">
+			<!-- Images -->
+			<div class="grid grid-cols-2 gap-1">
+			<img class="col-span-2 aspect-[4/3] max-h-48 w-full md:max-h-72 object-cover" src="assets/images/interests/game.jpg" alt="Friends"  />
+			<img class="aspect-square object-cover" src="assets/images/interests/unity.png" alt="Unity" />
+			<img class="aspect-square object-cover" src="assets/images/interests/galaxy.webp" alt="Galaxy" />
+			
+			</div>
+
+			<!-- Text -->
+			<div class="p-2">
+			<h3 class="text-2xl font-bold text-blue-900 mb-2">Creative</h3>
+			<p class="block sm:hidden text-gray-700 text-base h-[12rem] overflow-auto">
+				Game design was a core inspiration which is what brought me to Computer Science. I love the blend of creativity and mathematics that goes into making a game. I also adore reading and writing - delving into fantasy worlds and writing my own - letting me explore my creativity.
+			</p>
+			<p class="hidden sm:block md:hidden text-base h-[12rem] overflow-auto">
+				Game design was a core inspiration which is what brought me to Computer Science. I love the blend of creativity and mathematics that goes into making a game. I have participated in several game jams, and in my free time you will often find me messing around in different game engines. 
+				Reading and writing has always been crucial to me. Delving into fantasy worlds and writing my own, has always been a passion of mine, letting me explore my creativity. This has gone for my own personal stories and ideas, to writing Dungeons and Dragons stories, worlds and narratives. 
+			</p>
+			</p>
+			<p class="hidden md:block text-lg h-[12rem] overflow-auto">
+				Game design was a core inspiration which is what brought me to Computer Science. I love the blend of creativity and mathematics that goes into making a game. I have participated in several game jams, and in my free time you will often find me messing around in different game engines. 
+				Reading and writing has always been crucial to me. Delving into fantasy worlds and writing my own, has always been a passion of mine, letting me explore my creativity. This has gone for my own personal stories and ideas, to writing Dungeons and Dragons stories, worlds and narratives. 
+			</p>
+			</div>
+
+			<!-- Hint -->
+			<div class="text-center text-sm text-gray-400 pb-2">
+			Tap to continue →
+			</div>
+		</div>
+		</div>
+
+	</div>
+
 </section>
 
 <!-- Skills Section -->
@@ -940,12 +1053,12 @@
     <h2 class="text-4xl lg:text-5xl font-bold text-blue-900">SKILLS</h2>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-2 max-w-full mx-auto justify-items-center">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 max-w-full mx-auto justify-items-center">
     
     <!-- Card 1: Languages -->
-    <div id="card-1" class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col min-w-[250px] w-full h-full aspect-square">
+    <div id="card-1" class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 flex flex-col min-w-[250px] w-full h-full aspect-square">
 		<h3 class="text-2xl font-bold text-left text-blue-800 mb-3">Languages</h3>
-		<hr class="border-t-4 border-blue-700 w-[95%] rounded-full mb-4">
+		<hr class="border-t-4 border-blue-700 w-[95%] rounded-full mb-2 sm:mb-4">
 		<div class="flex flex-grow space-x-6 overflow-hidden">
 			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
 			<li class="flex items-center gap-2"><img src="assets/icons/Python.svg" class="w-7"> Python</li>
@@ -963,9 +1076,9 @@
     </div>
 
     <!-- Card 2: Technologies -->
-    <div id="card-2" class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col min-w-[250px] w-full h-full">
+    <div id="card-2" class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 flex flex-col min-w-[250px] w-full h-full aspect-square">
       	<h3 class="text-2xl font-bold text-left text-blue-800 mb-3">Technologies</h3>
-		<hr class="border-t-4 border-blue-700 w-[95%] rounded-full mb-4">
+		<hr class="border-t-4 border-blue-700 w-[95%] rounded-full mb-2 sm:mb-4">
 		<div class="flex flex-grow space-x-6 overflow-hidden">
 			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
 			<li class="flex items-center gap-2"><img src="assets/icons/Git.svg" class="w-7"> Git</li>
@@ -987,11 +1100,11 @@
     </div>
 
     <!-- Card 3: Technical Skills -->
-    <div id="card-3" class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col min-w-[250px] w-full h-full">
+    <div id="card-3" class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 flex flex-col min-w-[250px] w-full h-full aspect-square">
       	<h3 class="text-2xl font-bold text-left text-blue-800 mb-3">Technical Skills</h3>
-		<hr class="border-t-4 border-blue-700 w-[95%] rounded-full mb-4">
+		<hr class="border-t-4 border-blue-700 w-[95%] rounded-full mb-2 sm:mb-4">
 		<div class="flex flex-grow space-x-6">
-			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
+			<ul class="space-y-1 sm:space-y-2 text-left text-gray-800 text-lg w-1/2">
 			<li>Algorithms</li>
 			<li>Data Structures</li>
 			<li>AI</li>
@@ -999,7 +1112,7 @@
 			<li>Calculus</li>
 			<li>Statistics</li>
 			</ul>
-			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
+			<ul class="space-y-1 sm:space-y-3 text-left text-gray-800 text-lg w-1/2">
 			<li>OOP, FP</li>
 			<li>Graphics</li>
 			<li>Data Analysis</li>
@@ -1011,9 +1124,9 @@
     </div>
 
     <!-- Card 4: Soft Skills -->
-    <div id="card-4" class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col min-w-[250px] w-full h-full">
+    <div id="card-4" class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 flex flex-col min-w-[250px] w-full h-full aspect-square">
 		<h3 class="text-2xl font-bold text-left text-blue-800 mb-3">Soft Skills</h3>
-		<hr class="border-t-4 border-blue-700 w-[95%] rounded-full mb-4">
+		<hr class="border-t-4 border-blue-700 w-[95%] rounded-full mb-2 sm:mb-4">
 		<div class="flex flex-grow space-x-6">
 			<ul class="space-y-3 text-left text-gray-800 text-lg w-1/2">
 			<li>Problem Solving</li>
@@ -1032,7 +1145,7 @@
 
   </div>
 
-  	<button class="absolute bottom-[-100px] right-[-90px] w-32 h-32 z-50 cursor-pointer" onclick="secret_paper()">
+  	<button class="absolute bottom-[-100px] right-[-90px] w-32 h-32 z-50 cursor-pointer hidden lg:block overflow-hidden" onclick="secret_paper()">
 		<img
 			src="assets/images/secret.png"
 			alt="Clickable corner"

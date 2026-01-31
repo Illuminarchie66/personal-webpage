@@ -164,3 +164,17 @@
   50% { background-color: #fef08a; } /* yellow-200 */
   100% { background-color: white; }
 }
+
+.mobile-slide {
+  position: relative;   /* instead of absolute */
+  opacity: 0;
+  pointer-events: none;
+  height: 0; 
+  transition: opacity 300ms ease;
+}
+
+.mobile-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  height: auto;
+}

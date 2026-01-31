@@ -107,6 +107,18 @@ $(document).ready(function() {
 		});
   	};
 
+    const mobileSlides = document.querySelectorAll(".mobile-slide");
+    let current = 0;
+
+    mobileSlides[current].classList.add("active");
+
+    document.getElementById("mobile-carousel").addEventListener("click", () => {
+        mobileSlides[current].classList.remove("active");
+        current = (current + 1) % mobileSlides.length;
+        mobileSlides[current].classList.add("active");
+    });
+
+
     window.nextSlide = function (direction) {
         currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
         slides.style.transform = `translateX(-${currentSlide * 100}%)`;

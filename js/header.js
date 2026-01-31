@@ -14,15 +14,21 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     let randomTitle = titles[Math.floor(Math.random() * titles.length)];
+    console.log(window.location.pathname);
 
     const sidetitle = document.getElementById("side-title");
     sidetitle.textContent = randomTitle;
 
     const home_button = document.getElementById("home-button");
     home_button.addEventListener("click", (e) => {
-        e.stopPropagation(); 
-        randomTitle = titles[Math.floor(Math.random() * titles.length)];
-        sidetitle.textContent = randomTitle;
+        if (window.location.pathname === "/") {
+            e.stopPropagation(); 
+            randomTitle = titles[Math.floor(Math.random() * titles.length)];
+            sidetitle.textContent = randomTitle;
+        } else {
+            window.location.href = "/";
+        }
+        
     });
 
     const project_button = document.getElementById("projects-button");
