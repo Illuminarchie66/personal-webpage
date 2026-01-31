@@ -1,60 +1,47 @@
-$(document).ready(function() {
-    const container = $('#name');
+function setTextInstant(container, text) {
+    container.empty(); 
+    container.text(text); 
+}
 
-    function setTextInstant(text) {
-        container.empty(); 
-        container.text(text); 
-    }
-
-    function animateText(text) {
-        container.empty(); 
-        for (let i = 0; i < text.length; i++) {
-            let span = $('<span class="letter">' + text[i] + '</span>');
-            container.append(span);
-        }
-
-        setTimeout(function () {
-            $('.letter').each(function (index) {
-                $(this).delay(index * 100).animate({ opacity: 1 }, 100, function () {
-                    if (index === $('.letter').length - 1) {
-
-                        observeOnScroll('.fade-up-target', 'fade-in-up');
-                        observeOnScroll('.fade-left-target', 'fade-in-left');
-                        observeOnScroll('.fade-right-target', 'fade-in-right');
-                    }
-                });
-            });
-        }, 350);
-    }
-
-    const isMobile = window.matchMedia("(max-width: 639px)").matches;
-    const initialText = isMobile ? "Archie H." : "Archie Harrodine";
-
-    animateText(initialText);
-
-    $(window).on('resize', function() {
-        const isMobileNow = window.matchMedia("(max-width: 639px)").matches;
-        const newText = isMobileNow ? "Archie H." : "Archie Harrodine";
-        setTextInstant(newText);
+function observeOnScroll(selector, animationClass) {
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                $(entry.target).addClass(`${animationClass} in-view`);
+                obs.unobserve(entry.target); 
+            }
+        });
+    }, {
+        threshold: 0.1
     });
 
-    function observeOnScroll(selector, animationClass) {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    $(entry.target).addClass(`${animationClass} in-view`);
-                    obs.unobserve(entry.target); 
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
+    document.querySelectorAll(selector).forEach(el => {
+        observer.observe(el);
+    });
+}
 
-        document.querySelectorAll(selector).forEach(el => {
-            observer.observe(el);
-        });
+function animateText(container, text) {
+    container.empty(); 
+    for (let i = 0; i < text.length; i++) {
+        let span = $('<span class="letter">' + text[i] + '</span>');
+        container.append(span);
     }
 
+    setTimeout(function () {
+        $('.letter').each(function (index) {
+            $(this).delay(index * 100).animate({ opacity: 1 }, 100, function () {
+                if (index === $('.letter').length - 1) {
+
+                    observeOnScroll('.fade-up-target', 'fade-in-up');
+                    observeOnScroll('.fade-left-target', 'fade-in-left');
+                    observeOnScroll('.fade-right-target', 'fade-in-right');
+                }
+            });
+        });
+    }, 350);
+}
+
+function projectCarouselSetup() {
     $('.p-slick-carousel').slick({
         slidesToShow: 3, 
         slidesToScroll: 1, 
@@ -90,6 +77,9 @@ $(document).ready(function() {
         $projectsCarousel.slick('slickNext');
     });
 
+}
+
+function interestsSliderSetup() {
     let currentSlide = 0;
     const slides = document.getElementById("slides");
     const totalSlides = slides.children.length;
@@ -118,7 +108,6 @@ $(document).ready(function() {
         mobileSlides[current].classList.add("active");
     });
 
-
     window.nextSlide = function (direction) {
         currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
         slides.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -132,5 +121,23 @@ $(document).ready(function() {
 		sound.currentTime = 0;
 		sound.play();
 	}
+}
 
+$(document).ready(function() {
+    const container = $('#name');
+
+    const isMobile = window.matchMedia("(max-width: 639px)").matches;
+    const initialText = isMobile ? "Archie H." : "Archie Harrodine";
+
+    animateText(container, initialText);
+
+    $(window).on('resize', function() {
+        const isMobileNow = window.matchMedia("(max-width: 639px)").matches;
+        const newText = isMobileNow ? "Archie H." : "Archie Harrodine";
+        setTextInstant(container, newText);
+    });
+
+    projectCarouselSetup();
+    
+    interestsSliderSetup();
 });
