@@ -1,3 +1,4 @@
+import { setPrimaryColor, getRandomColor, setTheme } from './colors.js';
 document.addEventListener("DOMContentLoaded", () => {
     const titles = [
         "Personal Website",
@@ -19,32 +20,38 @@ document.addEventListener("DOMContentLoaded", () => {
     const sidetitle = document.getElementById("side-title");
     sidetitle.textContent = randomTitle;
 
-    const home_button = document.getElementById("home-button");
-    home_button.addEventListener("click", (e) => {
-        if (window.location.pathname === "/") {
-            e.stopPropagation(); 
-            randomTitle = titles[Math.floor(Math.random() * titles.length)];
-            sidetitle.textContent = randomTitle;
-        } else {
-            window.location.href = "/";
-        }
-        
+    document.querySelectorAll('.home-button').forEach(home_button => {
+        home_button.addEventListener("click", (e) => {
+            //setPrimaryColor(getRandomColor());
+            if (window.location.pathname === "/") {
+                e.stopPropagation(); 
+                randomTitle = titles[Math.floor(Math.random() * titles.length)];
+                sidetitle.textContent = randomTitle;
+            } else {
+                window.location.href = "/";
+            }
+            
+        });
     });
 
-    const project_button = document.getElementById("projects-button");
-    const project_menu = document.getElementById("projects-menu");
-    project_button.addEventListener("click", (e) => {
-        e.stopPropagation(); 
-        project_menu.classList.toggle("hidden");
+    document.querySelectorAll('.theme-toggle').forEach(themeToggle => {
+        themeToggle.addEventListener("click", () => {
+            const currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
+            console.log("Current theme:", currentTheme);
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            setTheme(newTheme);
+        });
     });
-    document.addEventListener("click", () => {
-        project_menu.classList.add("hidden");
+
+    document.querySelectorAll('.color-toggle').forEach(colorToggle => {
+        colorToggle.addEventListener("click", () => {
+            const randomColor = getRandomColor();
+            setPrimaryColor(randomColor);
+        });
     });
 
     const toggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("mobile-menu");
-
-    if (!toggle || !menu) return;
 
     toggle.addEventListener("click", (e) => {
         e.stopPropagation();

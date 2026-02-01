@@ -1,3 +1,5 @@
+import {Queue} from './queue.js';
+
 function setTextInstant(container, text) {
     container.empty(); 
     container.text(text); 
@@ -84,18 +86,10 @@ function interestsSliderSetup() {
     const slides = document.getElementById("slides");
     const totalSlides = slides.children.length;
 
-    for (let i = 1; i <= 4; i++) {
-		const card = document.getElementById(`card-${i}`);
-		const audio = document.getElementById(`sound-${i}`);
-
-		card.addEventListener('click', () => {
-			card.classList.add(`flash-${i}`);
-			setTimeout(() => card.classList.remove(`flash-${i}`), 400);
-
-			audio.currentTime = 0; 
-			audio.play();
-		});
-  	};
+    window.nextSlide = function (direction) {
+        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+    };
 
     const mobileSlides = document.querySelectorAll(".mobile-slide");
     let current = 0;
@@ -107,12 +101,43 @@ function interestsSliderSetup() {
         current = (current + 1) % mobileSlides.length;
         mobileSlides[current].classList.add("active");
     });
+}
 
-    window.nextSlide = function (direction) {
-        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-    };
+function checkPassword(input) {
+    const correctPassword = [4,4,4,4,4,4,4,4,4,4,3,3,4,4,4];
+    if (input.length !== correctPassword.length) {
+        return false;
+    }
+    for (let i = 0; i < input.length; i++) {
+        if (input[i] !== correctPassword[i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
+function skillsCardSetup() {
+    let q = new Queue(15);
+
+    for (let i = 1; i <= 4; i++) {
+		const card = document.getElementById(`card-${i}`);
+		const audio = document.getElementById(`sound-${i}`);
+
+		card.addEventListener('click', () => {
+			card.classList.add(`flash-${i}`);
+			setTimeout(() => card.classList.remove(`flash-${i}`), 400);
+
+			audio.currentTime = 0; 
+			audio.play();
+
+            q.enqueue(i);
+            console.log("Current Queue:", q.items);
+            console.log(checkPassword(q.items));
+		});
+  	};
+}
+
+function secretsSetup() {
     const sound = document.getElementById("paper");
     const overlay = document.getElementById("fullscreen-image");
     window.secret_paper = function () {
@@ -140,4 +165,8 @@ $(document).ready(function() {
     projectCarouselSetup();
     
     interestsSliderSetup();
+
+    skillsCardSetup();
+
+    secretsSetup();
 });
