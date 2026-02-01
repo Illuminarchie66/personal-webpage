@@ -36,7 +36,7 @@ Where $\\ell_{sp}$ is the shortest path distance between two vertices. This can 
 ## Euclidean Space
 Now looking at Euclidean space, we have  $\\mathbf{v}_i \\in \\mathbb{R}^n$, where the distance between any two vertices is defined as $\\ell(\\mathbf{v}_a, \\mathbf{v}_b) = ||\\mathbf{v}_a - \\mathbf{v}_b||_2$, aka Euclidean distance; or geometrically the shortest path in the space between the two vertices. This leads to a much clearer geometric interpretation, where we can see that $\\mathbf{c}$ has near equal distance lines to each vertex. This can be further visualised in 2D as fitting a circle around the vertices; or a sphere in 3D. For our purposes we will be working with 2D. For $n=2$ we can easily see that the point of equidistance is $\\mathbf{c} = \\frac{1}{2}(\\mathbf{v}_1 + \\mathbf{v}_2)$, or the midpoint of a straight line between the two points. For $n=3$ we know that it is defined in 2 dimensions as any triangle can have a circle fitted to it, with its centre called the circumcentre. One method of finding the circumcentre is to take two sides of the triangle and to find their perpendicular bisectors - where the perpendicular bisectors meet is the circumcentre !    
 <p align="center">
-  <img src="assets/images/project_pages/circumcentre.png" width="400">
+  <img src="../assets/images/project_pages/circumcentre.png" width="400">
 </p>
 We can generalise this a bit further when considering a circle equation. For 2D, we have $(x-p)^2 + (y-q)^2 = r^2$, giving us 3 variables: $p,q,$ and $r$ to solve for. With 3 points, we can do this with ease. Where it becomes interesting is when we consider $n > 3$, as there is no guarantee that a circle fits the points perfectly. Continuining with the geometric interpretation, we can reframe this as an optimisation problem. 
 
@@ -85,7 +85,7 @@ These methods would be successful and work across our 2D plane! However, when we
 ## Polar Space
 Working on a sphere now introduces polar coordinates, which aligns with latitude and longitude. We consider a point to lie somewhere on a sphere, which has the radius of the planet, which we call $R$. This point can be represented in $(x,y,z) \\in \\mathbb{R}^3$ or we can use the polar coordinate $(R, \\theta, \\phi)$. $\\varphi$ is latitude, and $\\lambda$ is longitude; and relates to the polar coordinates with $\\theta = \\frac{\\pi}{2} - \\varphi$ and $\\phi = \\lambda$. This represents the angle of the vector from the origin in each axis. 
 <p align="center">
-  <img src="assets/images/project_pages/Spherical_polar_coordinates.png" width="400">
+  <img src="../assets/images/project_pages/Spherical_polar_coordinates.png" width="400">
 </p>
 In this space, we can convert between polar and cartesian coordinates with:
 
@@ -111,7 +111,7 @@ $$
 
 While we work in this spherical space, we do not want to use Euclidean distance, and instead great-circle distance. This is the arcdistance between two points on the surface of a sphere, measured along the arc of a circle.
 <p align="center">
-  <img src="assets/images/project_pages/greatcircle.png" width="400">
+  <img src="../assets/images/project_pages/greatcircle.png" width="400">
 </p>
 We can find this distance with both polar and cartesian coordinates. Let two points $\\mathbf{v}_1, \\mathbf{v}_2$ on the surface of the planet have latitude and longitude $(\\varphi_1, \\lambda_1)$ and $(\\varphi_2, \\lambda_2)$ respectively. We can find the angle between thme with:
 
@@ -250,12 +250,12 @@ These classes would be used to communicate with the interface, displaying the in
 We also implemented an option to instead minimize the mean distance, as opposed to the variance. This finds a more central location, but more importantly minimizes the total travel distance. This is useful if the goal is to reduce overall travel, as opposed to making it equal for all parties. We also experimented with a third option, which uses a weighted addition of both variance and mean distance, allowing the user to balance between equidistance and total distance. <br> <br>
 Here is a screenshot of the original implementation:
 <p align="center">
-  <img src="assets/images/project_pages/example.png" width="600">
+  <img src="../assets/images/project_pages/example.png" width="600">
 </p>
 <br>
 And here is a screenshot of the JavaScript implementation:
 <p align="center">
-  <img src="assets/images/project_pages/example2.png" width="600">
+  <img src="../assets/images/project_pages/example2.png" width="600">
 </p>
 
 # Evaluation
