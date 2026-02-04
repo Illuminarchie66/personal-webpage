@@ -1,1 +1,2 @@
-projects/mario-globe
+.venv/
+__pycache__/
