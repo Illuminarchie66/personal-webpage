@@ -3,7 +3,7 @@ import vedo
 from PIL import Image
 
 # Step 1: Load the heightmap image
-image_path = "heightmap.png"  # Replace with your image file path
+image_path = "heightmap3.png"  # Replace with your image file path
 image = Image.open(image_path)  # Open the image
 height_array = np.array(image)  # Convert image to a 2D NumPy array
 height_array = np.flipud(height_array)

@@ -1,9 +1,9 @@
-//import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 import * as THREE from 'three';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
 
 const scene = new THREE.Scene();
 
+// Camera
 const camera = new THREE.PerspectiveCamera(
   45,
   window.innerWidth / window.innerHeight,
@@ -12,20 +12,27 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.z = 3;
 
+// Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 document.body.appendChild(renderer.domElement);
 
 // Lights
-scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+scene.add(new THREE.AmbientLight(0xffffff, 0.3));
 
-const sun = new THREE.DirectionalLight(0xffffff, 3);
+const sunPivot = new THREE.Object3D();
+scene.add(sunPivot);
+
+const sun = new THREE.DirectionalLight(0xfff7ba, 2);
 sun.position.set(-5, 3, 5);
-scene.add(sun);
+sunPivot.add(sun);
 
-// Texture loader
+// Planet
 const loader = new THREE.TextureLoader();
+
+const albedo = loader.load('Earth_alb.png');
+albedo.colorSpace = THREE.SRGBColorSpace;
 
 const normal = loader.load('Earth_nrm.png');
 normal.colorSpace = THREE.NoColorSpace;
@@ -40,95 +47,120 @@ const metalness = loader.load('Earth_mtl.png');
 metalness.colorSpace = THREE.NoColorSpace;
 
 const material = new THREE.MeshStandardMaterial({
-  map: loader.load('Earth_alb.png'),
+  map: albedo,
   normalMap: normal,
   roughnessMap: rough,
-  roughness: 0,
   emissiveMap: emmisive,
-  emissive: new THREE.Color(0xffffff),
+  emissive: new THREE.Color(0xffff00),
+  emissiveIntensity: 2,
   metalnessMap: metalness,
-  metalness: 0
+  displacementMap: loader.load('heightmap3.png'),
+  displacementScale: 0,
 });
 
-//material.normalScale.set(1, -1);
-
-// Important for 4096×1024 equirectangular textures
 material.map.wrapS = THREE.RepeatWrapping;
-material.map.repeat.x = 1; // flip horizontally if needed
-material.roughnessMap.flipY = false;
+material.map.repeat.x = 1;
+material.normalScale.set(-1, -1);
+material.onBeforeCompile = (shader) => {
+  shader.uniforms.time = { value: 0 };
+  shader.vertexShader = 'uniform float time;\n' + shader.vertexShader;
+  shader.vertexShader = shader.vertexShader.replace(
+    '#include <begin_vertex>',
+    `
+      #include <begin_vertex>
+      transformed += normal * 0.01 * sin(position.y*10.0 + time);
+    `
+  );
+  material.userData.shader = shader;
+};
 
-// Sphere geometry
-const geometry = new THREE.SphereGeometry(1, 128, 128);
+
+// const geometry = new THREE.SphereGeometry(
+//   1, 256, 256,     
+//   0,              //phiStart    
+//   Math.PI * 2,   // phiLength (full rotation)
+//   Math.PI * 0.25, // thetaStart (25% down from south pole)
+//   Math.PI * 0.5   // thetaLength (covers middle 50%)
+// );
+const geometry = new THREE.SphereGeometry(1, 256, 256);
+const uv = geometry.attributes.uv;
+
+for (let i = 0; i < uv.count; i++) {
+  let u = uv.getX(i);
+  let v = uv.getY(i);
+  const lat = (v - 0.5) * Math.PI;
+  const newV = 0.5 + Math.sin(lat) * 0.5;
+  uv.setXY(i, u, newV);
+}
+
+uv.needsUpdate = true;
+
 const planet = new THREE.Mesh(geometry, material);
 scene.add(planet);
 
+// Poles
+const poleAlbedo = loader.load('EarthCloudSimple01_alb.png');
+poleAlbedo.colorSpace = THREE.SRGBColorSpace;
+poleAlbedo.flipY = false;
+
+const poleNormal = loader.load('EarthCloudSimple01_alb.png');
+poleNormal.colorSpace = THREE.NoColorSpace;
+poleNormal.flipY = false;
+
+const northPoleMaterial = new THREE.MeshStandardMaterial({
+  map: poleAlbedo,
+  alphaMap: poleAlbedo,
+  normalMap: poleNormal,
+  transparent: true,
+  roughness: 1.0
+});
+
+const southPoleMaterial = new THREE.MeshStandardMaterial({
+  map: loader.load('EarthCloudSimple01_alb.png'),
+  alphaMap: loader.load('EarthCloudSimple01_alb.png'),
+  normalMap: loader.load('EarthCloudSimple01_nrm.png'),
+  transparent: true,
+});
+
+const northPoleGeometry = new THREE.SphereGeometry(
+  1.05, 128, 128,     
+  0, Math.PI * 2,  
+  0, Math.PI * 0.5
+);
+const southPoleGeometry = new THREE.SphereGeometry(
+  1.05, 128, 128,     
+  0, Math.PI * 2,  
+  Math.PI*0.5, Math.PI * 0.5
+);
+const northPole = new THREE.Mesh(northPoleGeometry, northPoleMaterial)
+const southPole = new THREE.Mesh(southPoleGeometry, southPoleMaterial)
+scene.add(northPole);
+scene.add(southPole);
+
+// Clouds
 const cloudMaterial = new THREE.MeshStandardMaterial({
   map: loader.load('EarthCloud02_alb.png'),
   alphaMap: loader.load('EarthCloud02_alb.png'), 
   normalMap: loader.load('EarthCloud02_nrm.png'),
   transparent: true,
-  depthWrite: false
+  depthWrite: false,
+  roughness: 1.0,
+  metalness: 0.0,
+  alphaTest: 0.01,
+  opacity: 0.9
 });
 
-cloudMaterial.roughness = 1.0;
-cloudMaterial.metalness = 0.0;
-cloudMaterial.alphaTest = 0.01;
-cloudMaterial.opacity = 0.9;
-//cloudMaterial.normalScale.set(0.3, 0.3);
-
-const cloudGeo = new THREE.SphereGeometry(1.01, 128, 128);
+const cloudGeo = new THREE.SphereGeometry(1.07, 128, 128);
 const clouds = new THREE.Mesh(cloudGeo, cloudMaterial);
 scene.add(clouds);
 
-const atmosphereGeo = new THREE.SphereGeometry(1.02, 128, 128);
-
-const atmosphereMat = new THREE.ShaderMaterial({
-  vertexShader: `
-    varying vec3 vNormal;
-    varying vec3 vWorldPosition;
-
-    void main() {
-      vNormal = normalize(normalMatrix * normal);
-      vec4 worldPosition = modelMatrix * vec4(position, 1.0);
-      vWorldPosition = worldPosition.xyz;
-      gl_Position = projectionMatrix * viewMatrix * worldPosition;
-    }
-  `,
-  fragmentShader: `
-    varying vec3 vNormal;
-    varying vec3 vWorldPosition;
-
-    uniform vec3 glowColor;
-    uniform float intensity;
-    uniform float power;
-
-    void main() {
-      vec3 viewDir = normalize(cameraPosition - vWorldPosition);
-      float fresnel = pow(1.0 - dot(vNormal, viewDir), power);
-      gl_FragColor = vec4(glowColor, fresnel * intensity);
-    }
-  `,
-  uniforms: {
-    glowColor: { value: new THREE.Color(0x86e1fc) },
-    intensity: { value: 0.12 },
-    power: { value: 2 }
-  },
-  blending: THREE.AdditiveBlending,
-  transparent: true,
-  side: THREE.BackSide,
-  depthWrite: false
-});
-
-const atmosphere = new THREE.Mesh(atmosphereGeo, atmosphereMat);
-scene.add(atmosphere);
-
+// Controls
 const controls = new OrbitControls(camera, renderer.domElement);
-
-controls.enableDamping = true;     // smooth motion
+controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 
-controls.enablePan = false;        // no sideways drifting
-controls.minDistance = 1.5;        // prevent clipping into planet
+controls.enablePan = false;      
+controls.minDistance = 1.5;        
 controls.maxDistance = 5.0;
 
 controls.rotateSpeed = 0.6;
@@ -139,16 +171,19 @@ controls.enableDamping = true;
 function animate() {
   requestAnimationFrame(animate);
 
-  controls.update();   // required for damping
+  controls.update(); 
 
-  planet.rotation.y += 0.0002;
-  clouds.rotation.y += 0.0003;
+  sunPivot.rotation.y += 0.01;
+  //planet.rotation.y += 0.0002;
+  clouds.rotation.y += 0.001;
+  northPole.rotation.y += 0.0001
+  northPole.rotation.y -= 0.0001
 
   renderer.render(scene, camera);
 }
 animate();
 
-// Resize handling
+// Resize
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
