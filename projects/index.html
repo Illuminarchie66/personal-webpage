@@ -143,14 +143,24 @@
             cursor-pointer
         `;
 
+        const left = document.createElement("div");
+        left.className = "flex flex-col";
+
         const title = document.createElement("span");
         title.className = "font-bold"
         title.textContent = project.title;
 
+        const skills = document.createElement("span");
+        skills.className = "text-sm italic opacity-70";
+        skills.textContent = project.skills.slice(0,3).join(" · ");
+
+        left.appendChild(title);
+        left.appendChild(skills);
+
         const date = document.createElement("span");
         date.textContent = `${project.start} - ${project.end}`;
 
-        card.appendChild(title);
+        card.appendChild(left);
         card.appendChild(date);
 
         container.appendChild(card);
