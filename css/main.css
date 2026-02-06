@@ -38,6 +38,7 @@
   --text-title-extra1: #1e3a8a; /* blue-900 */
   --text-title-extra2: #713f12; /* yellow-900 */
   --text-title-extra3: #4c1d95; /* purple-900 */
+  --text-title-extra4: #14532d; /* green-900 */
 
   /* background colours */
   --bg-main: #f3f4f6;
@@ -50,6 +51,7 @@
   --bg-extra1: #dbeafe; /* blue-100 */
   --bg-extra2: #fef9c3; /* yellow-100 */
   --bg-extra3: #f3e8ff; /* purple-100 */
+  --bg-extra4: #dcfce7; /* green-100 */
 
   /* borders */
   --border1: var(--primary-800); /* blue-800 */
@@ -79,6 +81,7 @@
   --text-title-extra1: #60a5fa; /* blue-400 */
   --text-title-extra2: #fef9c3; /* yellow-400 */
   --text-title-extra3: #f3e8ff; /* purple-400 */
+  --text-title-extra4: #4ade80; /* green-400 */
 
   /* background colours */
   --bg-main: #3f3f46;
@@ -91,6 +94,7 @@
   --bg-extra1: #1e40af; /* blue-800 */
   --bg-extra2: #854d0e; /* yellow-800 */
   --bg-extra3: #6b21a8; /* purple-800 */
+  --bg-extra4: #166534; /* green-800 */
 
   /* borders */
   --border4: var(--primary-800); /* blue-800 */
@@ -241,30 +245,30 @@
 
 .flash-1 { animation: flash-1 0.4s ease-in-out; }
 @keyframes flash-1 {
-  0% { background-color: #dcfce7; } /* green-100 */
+  0% { background-color: #86efac; } /* green-100 */
   50% { background-color: #bbf7d0; } /* green-200 */
-  100% { background-color: white; }
+  100% { background-color: var(--bg-card); }
 }
 
 .flash-2 { animation: flash-2 0.4s ease-in-out; }
 @keyframes flash-2 {
-  0% { background-color: #dbeafe; } /* blue-100 */
+  0% { background-color: #93c5fd; } /* blue-100 */
   50% { background-color: #bfdbfe; } /* blue-200 */
-  100% { background-color: white; }
+  100% { background-color: var(--bg-card); }
 }
 
 .flash-3 { animation: flash-3 0.4s ease-in-out; }
 @keyframes flash-3 {
-  0% { background-color: #f0abfc; } /* purple-100 */
+  0% { background-color: #d8b4fe; } /* purple-300 */
   50% { background-color: #e9d5ff; } /* purple-200 */
-  100% { background-color: white; }
+  100% { background-color: var(--bg-card); }
 }
 
 .flash-4 { animation: flash-4 0.4s ease-in-out; }
 @keyframes flash-4 {
-  0% { background-color: #fef9c3; } /* yellow-100 */
+  0% { background-color: #fde047; } /* yellow-100 */
   50% { background-color: #fef08a; } /* yellow-200 */
-  100% { background-color: white; }
+  100% { background-color: var(--bg-card); }
 }
 
 .mobile-slide {

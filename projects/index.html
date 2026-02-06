@@ -119,13 +119,42 @@
         </ul>
         </div>
     </header>
-    <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-text-title mt-2 mb-2 sm:mb-8 text-center">PROJECTS</h2>
+    <h1 class="text-6xl lg:text-6xl xl:text-7xl font-bold text-text-title mt-2 mb-2 sm:mb-8 text-center">PROJECTS</h2>
 
-    <div id="year1" class="mt-2 space-y-2 mx-10">
-          <div class="bg-bg-card p-4 flex justify-between text-lg">
-            <span>Project 1</span>
-            <span>Feb 2023 - Mar 2023</span>
-          </div>
+    <div id="project_list" class="my-2 mx-10 grid grid-cols-1 xl:grid-cols-2 gap-x-4 gap-y-2">
     </div>
+
+    <script src="/assets/project-data.js"></script>
+    <script>
+        const container = document.getElementById("project_list");
+
+        Object.entries(projects).forEach(([key, project], index) => {
+        const isXL = window.matchMedia("(min-width: 1280px)").matches;
+        const rowIndex = isXL ? Math.floor(index / 2) : index;
+        const bgClass = rowIndex % 2 === 0 ? "bg-bg-card" : "bg-bg-bottom";
+        
+        const card = document.createElement("a");
+        card.href = `project.html?key=${key}`;
+        card.className = `
+            ${bgClass} p-4 flex justify-between text-lg
+            transition-all duration-200 ease-out
+            shadow-sm
+            hover:scale-[1.02] hover:shadow-lg
+            cursor-pointer
+        `;
+
+        const title = document.createElement("span");
+        title.className = "font-bold"
+        title.textContent = project.title;
+
+        const date = document.createElement("span");
+        date.textContent = `${project.start} - ${project.end}`;
+
+        card.appendChild(title);
+        card.appendChild(date);
+
+        container.appendChild(card);
+        });
+    </script>
 
 </body>
