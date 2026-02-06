@@ -55,7 +55,7 @@ const material = new THREE.MeshStandardMaterial({
   emissiveIntensity: 2,
   metalnessMap: metalness,
   displacementMap: loader.load('heightmap3.png'),
-  displacementScale: 0,
+  displacementScale: 0.15,
 });
 
 material.map.wrapS = THREE.RepeatWrapping;
@@ -75,25 +75,25 @@ material.onBeforeCompile = (shader) => {
 };
 
 
-// const geometry = new THREE.SphereGeometry(
-//   1, 256, 256,     
-//   0,              //phiStart    
-//   Math.PI * 2,   // phiLength (full rotation)
-//   Math.PI * 0.25, // thetaStart (25% down from south pole)
-//   Math.PI * 0.5   // thetaLength (covers middle 50%)
-// );
-const geometry = new THREE.SphereGeometry(1, 256, 256);
-const uv = geometry.attributes.uv;
+const geometry = new THREE.SphereGeometry(
+  1, 256, 256,     
+  0,              //phiStart    
+  Math.PI * 2,   // phiLength (full rotation)
+  Math.PI * 0.25, // thetaStart (25% down from south pole)
+  Math.PI * 0.5   // thetaLength (covers middle 50%)
+);
+// const geometry = new THREE.SphereGeometry(1, 256, 256);
+// const uv = geometry.attributes.uv;
 
-for (let i = 0; i < uv.count; i++) {
-  let u = uv.getX(i);
-  let v = uv.getY(i);
-  const lat = (v - 0.5) * Math.PI;
-  const newV = 0.5 + Math.sin(lat) * 0.5;
-  uv.setXY(i, u, newV);
-}
+// for (let i = 0; i < uv.count; i++) {
+//   let u = uv.getX(i);
+//   let v = uv.getY(i);
+//   const lat = (v - 0.5) * Math.PI;
+//   const newV = 0.5 + Math.sin(lat) * 0.5;
+//   uv.setXY(i, u, newV);
+// }
 
-uv.needsUpdate = true;
+// uv.needsUpdate = true;
 
 const planet = new THREE.Mesh(geometry, material);
 scene.add(planet);
@@ -174,10 +174,10 @@ function animate() {
   controls.update(); 
 
   sunPivot.rotation.y += 0.01;
-  //planet.rotation.y += 0.0002;
+  planet.rotation.y += 0.0002;
   clouds.rotation.y += 0.001;
   northPole.rotation.y += 0.0001
-  northPole.rotation.y -= 0.0001
+  southPole.rotation.y -= 0.0001
 
   renderer.render(scene, camera);
 }
