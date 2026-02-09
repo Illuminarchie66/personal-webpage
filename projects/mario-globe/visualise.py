@@ -3,7 +3,7 @@ import vedo
 from PIL import Image
 
 # Step 1: Load the heightmap image
-image_path = "heightmap3.png"  # Replace with your image file path
+image_path = "heightmap_test.png"  # Replace with your image file path
 image = Image.open(image_path)  # Open the image
 height_array = np.array(image)  # Convert image to a 2D NumPy array
 height_array = np.flipud(height_array)
@@ -11,7 +11,7 @@ print(height_array.shape)
 total_scale = 65535 
 
 # Step 2: Normalize and Scale the Heights
-height_scale = 200  # Adjust this value for more or less exaggerated terrain
+height_scale = 100  # Adjust this value for more or less exaggerated terrain
 height_array = (height_array / total_scale) * height_scale  # Scale height between 0 and `height_scale`
 
 # Step 3: Create a 3D surface mesh from the heightmap
@@ -37,7 +37,7 @@ for i in range(rows - 1):
 terrain_mesh = vedo.Mesh([vertices, faces])
 #terrain_mesh.cmap("terrain", z.ravel())  # Apply a colormap based on the z (height) values
 
-img_albedo = Image.open('Earth_alb.png')
+img_albedo = Image.open('earth/alb.png')
 albedo = np.array(img_albedo)[..., :3]
 
 u = x / (cols - 1)
