@@ -4,8 +4,11 @@ const projects = {
     start: "Feb 2020",
     end: "Mar 2021",
     skills: ["Python", "Calculus", "Optimisation", "Geometry", "HTML", "CSS", "JavaScript"],
-    github: "https://github.com/Illuminarchie66/Geographic-Centre",
-    other: { label: "Website", url: ".." },
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/Geographic-Centre" },
+      { icon: "../assets/icons/document.svg", label: "Doc", url: ".." },
+      { icon: "../assets/icons/website.svg", label: "Website", url: ".." },
+    ],
     content: `
 # Introduction
 The Centre of N Points was my A-Level Computer Science coursework project, a weave of Mathematics and Computing to explore a problem that fascinated me. Given $n$ points in some space $S$, what is the point in $S$ that is equidistant from from all those points. Right now that seems vague and poorly defined, and thats because it is ! The original problem was spurred on from an issue me and my family were having: we are scattered across the UK, where would be a location to meet such that each party would have to travel an equal distance to travel to arrive at that location. Furthermore, what would be a location that would be an equal distance to travel whilst also minimizing the total distance that all parties have to travel. At the time, I was learning Djikstra's algorithm and A*; as well as learning the basics of 3D geometry and calculus. Thus, I pursued this problem for my A-Level project.<br><br>

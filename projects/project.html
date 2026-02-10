@@ -136,9 +136,8 @@
     </div>
 
     <!-- Links -->
-    <div class="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 pb-6 text-center lg:text-2xl">
-      <a id="github-link" class="text-text-link hover:underline hover:text-text-hover" target="_blank"></a>
-      <a id="other-link" class="text-text-link hover:underline hover:text-text-hover" target="_blank"></a>
+    <div id="links" class="items-center flex flex-row sm:flex-row justify-center gap-2 sm:gap-4 pb-6 text-center lg:text-2xl">
+
     </div>
 
     <!-- Markdown Card -->
@@ -169,15 +168,24 @@
       document.getElementById('dates').innerText = `${project.start} - ${project.end}`;
       document.getElementById('skills').innerText = project.skills.join(', ');
 
-      const githubLink = document.getElementById('github-link');
-      githubLink.href = project.github;
-      githubLink.innerText = "GitHub";
+      const links = document.getElementById('links');
+      project.links.forEach(link => {
+        const t = document.createElement("div");
+        t.className = "flex items-center gap-1";
+        const img = document.createElement("img");
+        img.className = "w-7 h-7 text-text-link icon-invert";
+        img.src = link.icon;
+        img.alt = link.label;
+        const linkName = document.createElement("a");
+        linkName.className = "text-text-link hover:underline hover:text-text-hover";
+        linkName.target = "_blank";
+        linkName.href = link.url;
+        linkName.innerText = link.label;
 
-      if(project.other) {
-        const otherLink = document.getElementById('other-link');
-        otherLink.href = project.other.url;
-        otherLink.innerText = project.other.label;
-      }
+        t.appendChild(img);
+        t.appendChild(linkName);
+        links.appendChild(t);
+      });
 
       // Render markdown
       document.getElementById('content').innerHTML = marked.parse(project.content);
