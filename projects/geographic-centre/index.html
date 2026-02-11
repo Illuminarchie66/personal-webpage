@@ -9,27 +9,61 @@
     <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/map.css">
     <link rel="stylesheet" href="css/settings.css">
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+        }
+    }
+    </script>
+
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Add Geocoding plugin -->
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script type="module" src="scripts/point.js" defer></script>
+    <script type="module" src="scripts/forms.js" defer></script>
+    <script type="module" src="scripts/map.js" defer></script>
+    <script type="module" src="scripts/settings.js" defer></script>
+    <script type="module" src="scripts/markers.js" defer></script>
+    <script type="module" src="scripts/calculator.js" defer></script>
 </head>
 <body>
     <div id="map-container">
         <div id="map">
-            <button id="refresh-btn" onclick="refreshMarkers()">&#x21bb;</button>
+            <button id="refresh-btn">&#x21bb;</button>
             <img src="crosshair.png" class="crosshair" />
         </div>
-        
+    
     <div id="form-container">
-        <!-- Upper Section: Tabs and Marker Addition -->
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+        
         <div id="form-upper">
             <div class="tab">
                 <button class="tablinks" onclick="openTab(event, 'InfoTab')" id="left">Info</button>
                 <button class="tablinks" onclick="openTab(event, 'LatLngTab')">By Latitude/Longitude</button>
                 <button class="tablinks" onclick="openTab(event, 'AddressTab')" id="right">By Address</button>
             </div>
-            <!-- Tab content -->
+            
             <div id="InfoTab" class="tabcontent">
                 <div id="Info">
                 <p>This app will let you calculate the geographical centre of N locations, trying to find the point of equidistance between each point.</p>
@@ -70,9 +104,11 @@
             </div>
         </div>
 
-        <button id="calculate-btn" onclick="calculateCenter()">Calculate</button>
 
-        <!-- Lower Section: Results Display -->
+
+        <button id="calculate-btn">Calculate</button>
+
+        
         <div id="form-lower">
             <h3>Results:</h3>
             <p id="result"> Display results here... </p>
@@ -80,17 +116,15 @@
     </div>
         
 
-    <!-- Button for adding marker at the map center -->
-    <button id="add-marker-view-btn" class="add-marker" onclick="addMarkerAtView()">Add Marker</button>
+    
+    <button id="add-marker-view-btn" class="add-marker">Add Marker</button>
 
-        <!-- Add the settings button in the top right corner -->
-    <button id="settings-btn" onclick="toggleSettingsPanel()">
+    <button id="settings-btn">
         <i class="fas fa-cog" style="font-size: 24px;"></i>
     </button>
-
-    <!-- Settings panel -->
+    
     <div id="settings-panel" class="settings-panel">
-        <span class="close-btn" onclick="toggleSettingsPanel()">&times;</span>
+        <span id="close-btn">&times;</span>
         <h3>Settings</h3>
         <label>
             Experimental for all:
@@ -112,16 +146,7 @@
             Track:
             <input type="number" id="track" min="2" value="10">
         </label>
-        <button onclick="saveSettings()">Save Settings</button>
     </div>
     
-    <!-- Leaflet JS -->
-    <script>console.log("hey baby gitrl");</script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <!-- Add Geocoding plugin -->
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    <script src="scripts/forms.js" defer></script>
-    <script src="scripts/map.js" defer></script>
-    <script src="scripts/markers.js" defer></script>
 </body>
 </html>

@@ -1,4 +1,6 @@
-var map = L.map('map').setView([0, 0], 2);
+import {Point} from './point.js';
+
+const map = L.map('map').setView([0, 0], 2);
 
 // Set up the OpenStreetMap tiles
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -6,12 +8,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // Array to store markers
-var markers = [];
-var current_id = 0;
-var centreHold;
-var iterations = [];
+const markers = [];
 
 // Geocoder for converting addresses to coordinates
-var geocoder = L.Control.Geocoder.nominatim();
+const geocoder = L.Control.Geocoder.nominatim();
 
-// Listen for the 'list_updated' event from the serve
+export {map,markers,geocoder};

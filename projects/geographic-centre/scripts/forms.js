@@ -1,9 +1,13 @@
+import {Point} from './point.js';
+import {geocoder} from './map.js';
+import {addMarker} from './markers.js'
+
 document.getElementById('latlng-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
     // Get latitude and longitude from the form
-    var lat = parseFloat(document.getElementById('latitude').value);
-    var lng = parseFloat(document.getElementById('longitude').value);
+    const lat = parseFloat(document.getElementById('latitude').value);
+    const lng = parseFloat(document.getElementById('longitude').value);
 
     // Validate input
     if (isNaN(lat) || isNaN(lng)) {
@@ -11,36 +15,36 @@ document.getElementById('latlng-form').addEventListener('submit', function(event
         return;
     }
 
-    addMarker(lat, lng);
+    addMarker(new Point({latitude: lat, longitude: lng}));
 });
 
 // Handle form submission to add a marker by address
-document.getElementById('address-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
+document.getElementById('address-form')
+    .addEventListener('submit', async function(event) {
 
-    // Get address from the form
-    var address = document.getElementById('address').value;
+    event.preventDefault();
 
-    geocoder.geocode(address, function(results) {
+    const address = document.getElementById('address').value;
+
+    try {
+        const results = await geocoder.geocode(address);
+
         if (results && results.length > 0) {
-            var latLng = results[0].center;
-            addMarker(latLng.lat, latLng.lng);
+            const latLng = results[0].center;
+
+            addMarker(
+                new Point({
+                    latitude: latLng.lat,
+                    longitude: latLng.lng
+                })
+            );
+
         } else {
             alert('Address not found.');
         }
-    });
-});
 
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+    } catch (err) {
+        console.error(err);
+        alert('Geocoding failed.');
     }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
+});
