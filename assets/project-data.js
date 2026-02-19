@@ -626,3 +626,21 @@ Markdown content for project 2.
   },
 
 };
+
+/* Other projects I want to do:
+Mario Map 2
+- World map
+- Globe
+- Merri Map
+- Zoom in
+- geoguesser mode
+Mario Level name generator
+- Data filling in 
+- LoRA
+Mario Party Simulator 
+Azure quiz webpage
+Ore or Oar (or Boar)
+Minecraft Mod
+Small game in C++
+Small game in Godot
+*/
