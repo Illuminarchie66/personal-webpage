@@ -1,6 +1,6 @@
 import {Point} from './point.js';
 import {geocoder} from './map.js';
-import {addMarker} from './markers.js'
+import {addBaseMarker} from './markers.js'
 
 document.getElementById('latlng-form').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -13,7 +13,7 @@ document.getElementById('latlng-form').addEventListener('submit', function(event
         return;
     }
 
-    addMarker(new Point({latitude: lat, longitude: lng}));
+    addBaseMarker(new Point({latitude: lat, longitude: lng}));
 });
 
 document.getElementById('address-form')
@@ -29,7 +29,7 @@ document.getElementById('address-form')
         if (results && results.length > 0) {
             const latLng = results[0].center;
 
-            addMarker(
+            addBaseMarker(
                 new Point({
                     latitude: latLng.lat,
                     longitude: latLng.lng
@@ -44,4 +44,37 @@ document.getElementById('address-form')
         console.error(err);
         alert('Geocoding failed.');
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const tabLinks = document.querySelectorAll(".tablinks");
+    const tabContents = document.querySelectorAll(".tabcontent");
+
+    function openTab(tabName, clickedButton) {
+
+        tabContents.forEach(tab => {
+            tab.style.display = "none";
+        });
+
+        tabLinks.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        document.getElementById(tabName).style.display = "block";
+        clickedButton.classList.add("active");
+    }
+
+    tabLinks.forEach(button => {
+        if (button.dataset.tab == 'InfoTab') {
+            openTab('InfoTab', button);
+        }
+
+        button.addEventListener("click", function () {
+            const tabName = this.dataset.tab;
+            openTab(tabName, this);
+        });
+    });
+
+
 });

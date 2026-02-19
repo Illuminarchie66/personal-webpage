@@ -9,13 +9,6 @@ function getMarkers() {
     return markers;
 }
 
-function getCentreMarker() {
-    return centreMarker;
-}
-function setCentreMarker(marker) {
-    centreMarker = marker;
-}
-
 function addMarker(p, icon=null, draggable=true, initOpen=true) {
     var marker;
     if (icon === null) {
@@ -63,7 +56,7 @@ function addCentreMarker(p) {
     });
     
     var marker = addMarker(p, redIcon, false);
-    setCentreMarker(marker)
+    centreMarker = marker;
 }
 
 function deleteCentreMarker() {
@@ -138,4 +131,4 @@ function refreshOutputMarkers() {
 document.getElementById("add-marker-view-btn").addEventListener("click", addMarkerAtView);
 document.getElementById("refresh-btn").addEventListener("click", refreshMarkers);
 
-export {addMarker, addCentreMarker, addTrackMarker, refreshOutputMarkers, getMarkers}
+export {addBaseMarker, addCentreMarker, addTrackMarker, refreshOutputMarkers, getMarkers}
