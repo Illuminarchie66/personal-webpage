@@ -1,25 +1,36 @@
 import {settings} from './settings.js';
 import {Polar, Point} from './point.js';
-import {markers} from './map.js';
+import {getMarkers, addCentreMarker, addTrackMarker, refreshOutputMarkers} from './markers.js';
 import * as THREE from 'three';
 
+function findCentre() {
+    console.log(settings);
+    refreshOutputMarkers();
+    var centre = calculate();
+    addCentreMarker(centre);
+}
+
 function calculate() {
+    let markers = getMarkers();
     if (markers.length == 0) {
         return null;
+    } else if (settings.experimental) {
+        console.log("Experimental");
+        return centreN(markers.map(function (marker) { return marker.point; })); 
     } else if (markers.length == 1) {
         console.log("1 point");
-        return markers[0];
+        return markers[0].point;
     } else if (settings.experimental) {
         return centreN(markers);
     } else if (markers.length == 2) {
         console.log("2 points");
-        return centre2(markers[0], markers[1]);
+        return centre2(markers[0].point, markers[1].point);
     } else if (markers.length == 3) {
         console.log("3 points");
-        return centre3(markers[0], markers[1], markers[2]);
+        return centre3(markers[0].point, markers[1].point, markers[2].point);
     } else if (markers.length > 3) {
         console.log("n points");
-        return centreN(markers); 
+        return centreN(markers.map(function (marker) { return marker.point; })); 
     }
 }
 
@@ -112,38 +123,32 @@ function centreN(points) {
     avg.multiplyScalar(1/n);
     const c_init = new Point({latitude: avg.x, longitude: avg.y})
 
-    const alpha = 0.1;
     let c = c_init.cartesian;
     let g = grad(c, V, K);
-    let c_next = (c.clone().sub(g.multiplyScalar(alpha))).normalize();
+    let c_next = (c.clone().sub(g.multiplyScalar(settings.alpha))).normalize();
     let conv = (c.clone().sub(c_next)).length();
     
     const max_iterations = 1000;
-    const tolerance = 1e-10;
+    let t=1;
     for (let i = 0; i < max_iterations; i++) {
         c = c_next.clone();
         g = grad(c, V, K);
-        c_next = (c.clone().sub(g.multiplyScalar(alpha))).normalize();
+        c_next = (c.clone().sub(g.multiplyScalar(settings.alpha))).normalize();
         conv = (c.clone().sub(c_next)).length();
-        if (conv < tolerance) {
-            console.log(i);
+        if (conv < settings.precision) {
+            console.log("converged");
             break;
+        }
+        
+        t += 1;
+        if (t >= settings.track) {
+            addTrackMarker(new Point({cartesian: c_next}));
+            t = 1;
         }
     }
 
     return new Point({cartesian: c_next});
 }
 
-const p1 = new Point({latitude: -17, longitude: 0});
-const p2 = new Point({latitude: 15, longitude: 0});
-const p3 = new Point({latitude: 0, longitude: 14});
-
-const points = [p1,p2,p3];
-const c = centreN(points);
-console.log(c.degrees);
-
-const c2 = centre3(p1,p2,p3);
-console.log(c2.degrees);
-
 document.getElementById("calculate-btn")
-    .addEventListener("click", calculate);
+    .addEventListener("click", findCentre);

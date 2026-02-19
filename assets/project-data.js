@@ -6,8 +6,8 @@ const projects = {
     skills: ["Python", "Calculus", "Optimisation", "Geometry", "HTML", "CSS", "JavaScript"],
     links: [
       { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/Geographic-Centre" },
-      { icon: "../assets/icons/document.svg", label: "Doc", url: ".." },
-      { icon: "../assets/icons/website.svg", label: "Website", url: ".." },
+      { icon: "../assets/icons/document.svg", label: "Doc", url: "../projects/geographic-centre/" },
+      { icon: "../assets/icons/website.svg", label: "Website", url: "../projects/geographic-centre/" },
     ],
     content: `
 # Introduction
