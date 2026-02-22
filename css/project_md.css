@@ -102,3 +102,18 @@
 .katex-display > .katex {
   white-space: nowrap;
 }
+
+article img {
+  display: block;
+  margin: 2rem auto;
+  max-width: 500px;
+  border-radius: 1rem;
+}
+
+article img + em {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-subtext);
+  margin-top: -1rem;
+}

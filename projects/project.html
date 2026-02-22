@@ -13,9 +13,8 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-          onload="window.katexLoaded=true;"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
 
 	<link href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism.css" rel="stylesheet" />
 	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js"></script>
@@ -155,68 +154,90 @@
   <!-- Project Data -->
   <script src="./project-data.js"></script>
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const projectKey = params.get('key');
-    const project = projects[projectKey];
+  const params = new URLSearchParams(window.location.search);
+  const projectKey = params.get('key');
+  const project = projects[projectKey];
 
-    if (!project) {
-      document.getElementById('title').innerText = "Project not found";
-      document.getElementById('content').innerHTML = "<p>Check the project key in the URL.</p>";
-    } else {
-      document.getElementById('project-title').innerText = project.title;
-      document.getElementById('title').innerText = project.title;
-      document.getElementById('dates').innerText = `${project.start} - ${project.end}`;
-      document.getElementById('skills').innerText = project.skills.join(', ');
+  const contentElement = document.getElementById('content');
 
-      const links = document.getElementById('links');
-      project.links.forEach(link => {
-        const t = document.createElement("div");
-        t.className = "flex items-center gap-1";
-        const img = document.createElement("img");
-        img.className = "w-7 h-7 text-text-link icon-invert";
-        img.src = link.icon;
-        img.alt = link.label;
-        const linkName = document.createElement("a");
-        linkName.className = "text-text-link hover:underline hover:text-text-hover";
-        linkName.target = "_blank";
-        linkName.href = link.url;
-        linkName.innerText = link.label;
+  async function loadMarkdown(filePath) {
+    const response = await fetch(filePath);
+    if (!response.ok) {
+      throw new Error("Failed to load markdown file.");
+    }
+    return await response.text();
+  }
 
-        t.appendChild(img);
-        t.appendChild(linkName);
-        links.appendChild(t);
+  async function renderProject(project) {
+    try {
+      const markdown = await loadMarkdown(project.markdown);
+
+      // Parse markdown
+      contentElement.innerHTML = marked.parse(markdown);
+
+      // Render KaTeX (no polling needed — scripts are defer)
+      renderMathInElement(contentElement, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false }
+        ]
       });
 
-      // Render markdown
-      document.getElementById('content').innerHTML = marked.parse(project.content);
+      // Highlight code blocks
+      Prism.highlightAllUnder(contentElement);
 
-      // Render math once KaTeX is loaded
-      const renderMath = () => {
-        if (window.katexLoaded) {
-          renderMathInElement(document.getElementById('content'), {
-            delimiters: [
-              {left: "$$", right: "$$", display: true},
-              {left: "$", right: "$", display: false}
-            ]
-          });
-        } else {
-          setTimeout(renderMath, 50);
-        }
-      };
-      renderMath();
-
-      // Navigation
-      if(project.prev) {
-        const prev = document.getElementById('prev-project');
-        prev.href = `project.html?key=${project.prev.key}`;
-        prev.innerText = `<- ${project.prev.label}`;
-      }
-      if(project.next) {
-        const next = document.getElementById('next-project');
-        next.href = `project.html?key=${project.next.key}`;
-        next.innerText = `${project.next.label} ->`;
-      }
+    } catch (err) {
+      contentElement.innerHTML = "<p>Failed to load project content.</p>";
+      console.error(err);
     }
-  </script>
+  }
+
+  if (!project) {
+    document.getElementById('title').innerText = "Project not found";
+    contentElement.innerHTML = "<p>Check the project key in the URL.</p>";
+  } else {
+    document.getElementById('project-title').innerText = project.title;
+    document.getElementById('title').innerText = project.title;
+    document.getElementById('dates').innerText = `${project.start} - ${project.end}`;
+    document.getElementById('skills').innerText = project.skills.join(', ');
+
+    const links = document.getElementById('links');
+    project.links.forEach(link => {
+      const t = document.createElement("div");
+      t.className = "flex items-center gap-1";
+
+      const img = document.createElement("img");
+      img.className = "w-7 h-7 text-text-link icon-invert";
+      img.src = link.icon;
+      img.alt = link.label;
+
+      const linkName = document.createElement("a");
+      linkName.className = "text-text-link hover:underline hover:text-text-hover";
+      linkName.target = "_blank";
+      linkName.href = link.url;
+      linkName.innerText = link.label;
+
+      t.appendChild(img);
+      t.appendChild(linkName);
+      links.appendChild(t);
+    });
+
+    // 🔥 Load markdown from file
+    renderProject(project);
+
+    // Navigation
+    if (project.prev) {
+      const prev = document.getElementById('prev-project');
+      prev.href = `project.html?key=${project.prev.key}`;
+      prev.innerText = `<- ${project.prev.label}`;
+    }
+
+    if (project.next) {
+      const next = document.getElementById('next-project');
+      next.href = `project.html?key=${project.next.key}`;
+      next.innerText = `${project.next.label} ->`;
+    }
+  }
+</script>
 </body>
 </html>
