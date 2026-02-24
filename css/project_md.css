@@ -2,7 +2,7 @@
 
 .prose {
   font-size: 0.8rem; /* 16px */
-  line-height: 1.25;
+  line-height: 1.75;
 }
 
 .caption {
@@ -44,6 +44,26 @@
   text-decoration: underline;
 }
 
+.prose p {
+  margin-bottom: 1.2em;
+}
+
+.prose code:not(pre code) {
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 1em; /* SAME as text */
+  background-color: var(--bg-simple);
+  padding: 0.2em 0.4em;
+  border-radius: 0.4rem;
+}
+
+.prose pre {
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 0.95em;
+  padding: 1rem;
+  border-radius: 1rem;
+  overflow-x: auto;
+}
+
 /* Mobile scaling */
 @media (min-width: 640px) {
   .prose {
@@ -55,6 +75,9 @@
   }
   .prose h1 { font-size: 2.5rem; }
   .prose h2 { font-size: 2rem; }
+  article img + em {
+    font-size: 0.9rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -67,6 +90,9 @@
   }
   .prose h1 { font-size: 3rem; }
   .prose h2 { font-size: 2.25rem; }
+  article img + em {
+    font-size: 0.95rem;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -106,14 +132,59 @@
 article img {
   display: block;
   margin: 2rem auto;
-  max-width: 500px;
   border-radius: 1rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.image-scroll {
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
 }
 
 article img + em {
   display: block;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-subtext);
   margin-top: -1rem;
+}
+
+.project-nav {
+  position: fixed;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.project-nav a {
+  position: absolute;
+  pointer-events: auto;
+  font-size: 1.2rem;
+  padding: 0.75rem 1.2rem;
+  background: var(--bg-card);
+  border-radius: 2rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.project-nav a:hover {
+  transform: scale(1.05);
+}
+
+#prev-project {
+  left: 2rem;
+}
+
+#next-project {
+  right: 2rem;
+}
+
+@media (max-width: 640px) {
+  .project-nav a {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
 }

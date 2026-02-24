@@ -18,7 +18,7 @@
 
 	<link href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism.css" rel="stylesheet" />
 	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-python.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
 	
 	<script type="module" src="../../js/header.js"></script>
 </head>
@@ -124,7 +124,7 @@
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto p-2 sm:p-6">
+  <main class="mx-auto max-w-[2000px] p-2 sm:p-6 md:p-10 lg:p-20">
     <!-- Project Title -->
     <h1 id="title" class="text-5xl sm:text-4xl lg:text-7xl font-bold text-text-title text-center pb-4">a</h1>
 
@@ -145,7 +145,7 @@
     </div>
 
     <!-- Navigation -->
-    <div class="flex flex-col sm:flex-row justify-between mt-8 text-text-link font-semibold">
+    <div class="flex flex-row text-md sm:text-lg md:text-xl lg:text-2xl justify-between mt-8 text-text-link font-semibold">
       <a id="prev-project" class="hover:underline mb-2 sm:mb-0"></a>
       <a id="next-project" class="hover:underline"></a>
     </div>
@@ -172,10 +172,8 @@
     try {
       const markdown = await loadMarkdown(project.markdown);
 
-      // Parse markdown
       contentElement.innerHTML = marked.parse(markdown);
 
-      // Render KaTeX (no polling needed — scripts are defer)
       renderMathInElement(contentElement, {
         delimiters: [
           { left: "$$", right: "$$", display: true },
@@ -183,7 +181,6 @@
         ]
       });
 
-      // Highlight code blocks
       Prism.highlightAllUnder(contentElement);
 
     } catch (err) {
@@ -222,21 +219,26 @@
       links.appendChild(t);
     });
 
-    // 🔥 Load markdown from file
     renderProject(project);
 
-    // Navigation
     if (project.prev) {
       const prev = document.getElementById('prev-project');
       prev.href = `project.html?key=${project.prev.key}`;
-      prev.innerText = `<- ${project.prev.label}`;
+      prev.innerHTML = `&#x276E; ${project.prev.label}`;
     }
 
     if (project.next) {
       const next = document.getElementById('next-project');
       next.href = `project.html?key=${project.next.key}`;
-      next.innerText = `${project.next.label} ->`;
+      next.innerHTML = `${project.next.label} &#x276F;`;
     }
+
+    contentElement.querySelectorAll("img").forEach(img => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "image-scroll";
+      img.parentNode.insertBefore(wrapper, img);
+      wrapper.appendChild(img);
+    });
   }
 </script>
 </body>
