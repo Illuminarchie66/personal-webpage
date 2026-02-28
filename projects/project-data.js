@@ -25,15 +25,17 @@ const projects = {
     next: { key: "hardware", label: "CS132 Architecture" }
   },
 
-  "hardware": {
+  "architecture": {
     title: "CS132 Architecture",
     start: "Oct 2021",
     end: "Feb 2022",
     skills: ["C", "Assembly", "Computer Architecture"],
-    links: [],
-    content: `
-# Introduction
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS132-Computer-Architecture"},
+      { icon: "../assets/icons/document.svg", label: "Doc", url: "./architecture/CS132_Coursework_1.pdf" },
+      { icon: "../assets/icons/document.svg", label: "Doc", url: "./architecture/CS132_Coursework_2.pdf" }
+    ],
+    markdown: "./architecture/md/architecture.md",
     prev: { key: "robotmaze", label: "CS118 Robot Maze" },
     next: { key: "waffles", label: "CS126 Waffles" }
   },
