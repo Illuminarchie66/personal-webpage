@@ -22,7 +22,7 @@ const projects = {
     links: [{ icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS118-Robot-Maze" }],
     markdown: "./robot-maze/md/robot-maze.md",
     prev: { key: "geographic-centre", label: "Centre of N" },
-    next: { key: "hardware", label: "CS132 Architecture" }
+    next: { key: "architecture", label: "CS132 Architecture" }
   },
 
   "architecture": {
@@ -32,8 +32,8 @@ const projects = {
     skills: ["C", "Assembly", "Computer Architecture"],
     links: [
       { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS132-Computer-Architecture"},
-      { icon: "../assets/icons/document.svg", label: "Doc", url: "./architecture/CS132_Coursework_1.pdf" },
-      { icon: "../assets/icons/document.svg", label: "Doc", url: "./architecture/CS132_Coursework_2.pdf" }
+      { icon: "../assets/icons/document.svg", label: "Coursework 1", url: "./architecture/CS132_Coursework_1.pdf" },
+      { icon: "../assets/icons/document.svg", label: "Coursework 2", url: "./architecture/CS132_Coursework_2.pdf" }
     ],
     markdown: "./architecture/md/architecture.md",
     prev: { key: "robotmaze", label: "CS118 Robot Maze" },
@@ -50,7 +50,7 @@ const projects = {
     content: `
 # Introduction
 `,
-    prev: { key: "hardware", label: "CS132 Architecture" },
+    prev: { key: "architecture", label: "CS132 Architecture" },
     next: { key: "hurdle", label: "CS141 Hurdle" }
   },
 
