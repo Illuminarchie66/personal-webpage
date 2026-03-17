@@ -51,17 +51,20 @@
 .prose code:not(pre code) {
   font-family: Consolas, Monaco, "Courier New", monospace;
   font-size: 1em; /* SAME as text */
-  background-color: var(--bg-simple);
+  color: var(--text-text);
+  background-color: var(--bg-code);
   padding: 0.2em 0.4em;
   border-radius: 0.4rem;
 }
 
 .prose pre {
   font-family: Consolas, Monaco, "Courier New", monospace;
-  font-size: 0.95em;
+  font-size: 1em;
   padding: 1rem;
   border-radius: 1rem;
   overflow-x: auto;
+  color: var(--text-text);
+  background-color: var(--bg-code);
 }
 
 /* Mobile scaling */

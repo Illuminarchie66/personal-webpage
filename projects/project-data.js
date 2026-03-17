@@ -45,11 +45,11 @@ const projects = {
     start: "Jan 2022",
     end: "Mar 2022",
     skills: ["Java", "Data Structures", "Algorithms", "Databases"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/Waffles"},
+      { icon: "../assets/icons/document.svg", label: "Coursework 1", url: "./waffles/waffles.pdf" },
+    ],
+    markdown: "./waffles/md/waffles.md",
     prev: { key: "architecture", label: "CS132 Architecture" },
     next: { key: "hurdle", label: "CS141 Hurdle" }
   },

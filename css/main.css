@@ -52,6 +52,7 @@
   --bg-extra2: #fef9c3; /* yellow-100 */
   --bg-extra3: #f3e8ff; /* purple-100 */
   --bg-extra4: #dcfce7; /* green-100 */
+  --bg-code: var(--primary-50); 
 
   /* borders */
   --border1: var(--primary-800); /* blue-800 */
@@ -95,7 +96,7 @@
   --bg-extra2: #854d0e; /* yellow-800 */
   --bg-extra3: #6b21a8; /* purple-800 */
   --bg-extra4: #166534; /* green-800 */
-
+  --bg-code: var(--primary-700); 
   /* borders */
   --border4: var(--primary-800); /* blue-800 */
   --border3: var(--primary-600); /* blue-600 */
@@ -128,17 +129,6 @@
 
 #menu-toggle[aria-expanded="true"] {
   transform: rotate(90deg);
-}
-
-.prose pre {
-  background-color: #2d2d2d; /* dark gray */
-  padding: 1rem;
-  border-radius: 1rem;
-  overflow-x: auto;
-}
-.prose code {
-  font-family: 'Fira Code', monospace;
-  font-size: 0.875rem;
 }
 
 @keyframes stretch-bar {
