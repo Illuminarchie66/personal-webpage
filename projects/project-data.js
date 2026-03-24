@@ -59,13 +59,11 @@ const projects = {
     start: "Jan 2022",
     end: "Feb 2022",
     skills: ["Functional Programming", "Haskell", "Wordle", "AI"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS141-Hurdle"},
+      { icon: "../assets/icons/document.svg", label: "Feedback", url: "./hurdle/feedback.pdf" },
+    ],
+    markdown: "./hurdle/md/hurdle.md",
     prev: { key: "waffles", label: "CS126 Waffles" },
     next: { key: "onaf", label: "ONAF" }
   },
