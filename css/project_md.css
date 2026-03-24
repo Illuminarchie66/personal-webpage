@@ -1,56 +1,108 @@
-/* Force visible markdown headings */
+/* ========================================
+   BASE TYPOGRAPHY
+======================================== */
 
 .prose {
-  font-size: 0.8rem; /* 16px */
+  font-size: 0.8rem;
   line-height: 1.75;
 }
 
-.caption {
-  font-size: 0.7rem;
-  font-style: italic;
-  color: var(--text-subtext);
-  margin-top: 0.2rem;
-}
-
-.prose h1 {
-  font-size: 2.25rem; /* text-4xl */
-  font-weight: 700;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.prose h2 {
-  font-size: 1.875rem; /* text-3xl */
-  font-weight: 600;
-  margin-top: 1rem;
-  margin-bottom: 0.75rem;
-}
-
-.prose h3 {
-  font-size: 1.5rem; /* text-2xl */
-  font-weight: 500;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.prose h4 {
-  font-size: 1.25rem; /* text-xl */
-  margin-top: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.prose a {
-  color: var(--text-link);
-  text-decoration: underline;
-}
-
+/* Paragraphs */
 .prose p {
   margin-bottom: 1.2em;
 }
 
+/* Links */
+.prose a {
+  color: var(--text-link);
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+
+.prose a:hover {
+  color: var(--text-hover);
+}
+
+/* ========================================
+   HEADINGS
+======================================== */
+
+.prose h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+.prose h2 {
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin: 1rem 0 0.75rem;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.prose h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 1.25rem 0 0.4rem;
+  color: var(--text-subtitle);
+  font-style: italic;
+}
+
+.prose h5 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 1rem 0 0.3rem;
+  color: var(--text-subtext);
+}
+
+.prose h6 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.75rem 0 0.25rem;
+  color: var(--text-subtext);
+  opacity: 0.8;
+}
+
+/* ========================================
+   LISTS
+======================================== */
+
+.prose ul,
+.prose ol {
+  margin: 0.5em 0 1em;
+  padding-left: 1.25em;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li {
+  margin: 0.25em 0;
+}
+
+/* Tighter spacing after paragraphs */
+.prose p + ul,
+.prose p + ol {
+  margin-top: 0.3em;
+}
+
+/* ========================================
+   CODE BLOCKS
+======================================== */
+
 .prose code:not(pre code) {
   font-family: Consolas, Monaco, "Courier New", monospace;
-  font-size: 1em; /* SAME as text */
+  font-size: 0.95em;
   color: var(--text-text);
   background-color: var(--bg-code);
   padding: 0.2em 0.4em;
@@ -59,7 +111,7 @@
 
 .prose pre {
   font-family: Consolas, Monaco, "Courier New", monospace;
-  font-size: 1em;
+  font-size: 0.95em;
   padding: 1rem;
   border-radius: 1rem;
   overflow-x: auto;
@@ -67,70 +119,49 @@
   background-color: var(--bg-code);
 }
 
-/* Mobile scaling */
-@media (min-width: 640px) {
-  .prose {
-    font-size: 1.125rem; /* 18px */
-    line-height: 1.6;
-  }
-  .caption {
-    font-size: 0.7rem;
-  }
-  .prose h1 { font-size: 2.5rem; }
-  .prose h2 { font-size: 2rem; }
-  article img + em {
-    font-size: 0.9rem;
-  }
-}
+/* ========================================
+   TABLES
+======================================== */
 
-@media (min-width: 1024px) {
-  .prose {
-    font-size: 1.25rem; /* 20px */
-    line-height: 1.7;
-  }
-  .caption {
-    font-size: 1rem;
-  }
-  .prose h1 { font-size: 3rem; }
-  .prose h2 { font-size: 2.25rem; }
-  article img + em {
-    font-size: 0.95rem;
-  }
-}
-
-@media (min-width: 1440px) {
-  .prose {
-    font-size: 1.5rem; /* 20px */
-    line-height: 1.7;
-  }
-  .caption {
-    font-size: 1.2rem;
-  }
-  .prose h1 { font-size: 3rem; }
-  .prose h2 { font-size: 2.25rem; }
-}
-
-#content ul {
-  list-style-type: disc;
-  padding-left: 1.25em;
-  margin: 1em 0;
-}
-
-#content li {
-  margin: 0.4em 0;
-}
-
-.katex-display {
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95em;
   overflow-x: auto;
-  overflow-y: hidden;
-  max-width: 100%;
-  padding-bottom: 0.5rem; /* space for scrollbar */
 }
 
-/* Prevent KaTeX from forcing huge widths */
-.katex-display > .katex {
+.prose th,
+.prose td {
+  border: 2px solid var(--border4);
+  padding: 0.5rem 0.75rem;
+  text-align: center;
   white-space: nowrap;
 }
+
+.prose th {
+  background-color: var(--bg-extra1);
+  color: var(--text-title);
+  font-weight: 600;
+}
+
+.prose tr:nth-child(even) {
+  background-color: var(--bg-hover);
+}
+
+/* Outer border (cleaner look) */
+.prose table {
+  border: 3px solid var(--border3);
+}
+
+/* Logic table separator */
+.logic-table .sep {
+  border-left: 3px solid var(--border3);
+}
+
+/* ========================================
+   IMAGES
+======================================== */
 
 article img {
   display: block;
@@ -140,12 +171,14 @@ article img {
   height: auto;
 }
 
+/* Scroll wrapper for large images */
 .image-scroll {
   overflow-x: auto;
   display: flex;
   justify-content: center;
 }
 
+/* Image captions */
 article img + em {
   display: block;
   text-align: center;
@@ -153,6 +186,36 @@ article img + em {
   color: var(--text-subtext);
   margin-top: -1rem;
 }
+
+/* ========================================
+   CAPTIONS
+======================================== */
+
+.caption {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--text-subtext);
+  margin-top: 0.2rem;
+}
+
+/* ========================================
+   KATEX (MATH)
+======================================== */
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  padding-bottom: 0.5rem;
+}
+
+.katex-display > .katex {
+  white-space: nowrap;
+}
+
+/* ========================================
+   NAVIGATION (PROJECT LINKS)
+======================================== */
 
 .project-nav {
   position: fixed;
@@ -169,7 +232,7 @@ article img + em {
   padding: 0.75rem 1.2rem;
   background: var(--bg-card);
   border-radius: 2rem;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 5px 20px var(--shadow-color);
   transition: transform 0.2s ease;
 }
 
@@ -184,6 +247,61 @@ article img + em {
 #next-project {
   right: 2rem;
 }
+
+/* ========================================
+   RESPONSIVE TYPOGRAPHY
+======================================== */
+
+@media (min-width: 640px) {
+  .prose {
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  .caption {
+    font-size: 0.7rem;
+  }
+
+  .prose h1 { font-size: 2.5rem; }
+  .prose h2 { font-size: 2rem; }
+
+  article img + em {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .prose {
+    font-size: 1.25rem;
+    line-height: 1.7;
+  }
+
+  .caption {
+    font-size: 1rem;
+  }
+
+  .prose h1 { font-size: 3rem; }
+  .prose h2 { font-size: 2.25rem; }
+
+  article img + em {
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .prose {
+    font-size: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .caption {
+    font-size: 1.2rem;
+  }
+}
+
+/* ========================================
+   MOBILE NAV TWEAK
+======================================== */
 
 @media (max-width: 640px) {
   .project-nav a {

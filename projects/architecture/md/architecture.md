@@ -4,16 +4,33 @@ This was the two courseworks for the Computer Organisation and Architecture modu
 ## Question 1: Active low 8-to-3 encoder
 This question was focused on a 8-to-3 encoder. An encoder takes $2^n$ possible inputs and translates it into $n$ outputs. In particular it was an active low encoder, which means that what would typically be 1s would be 0. So this means that we look at 0s as the active value. most encoders follow the priority rule, where the highest index takes precedence, so if $I_4$ and $I_3$ re active, we get the value mapped for $I_4$; but we didn't use that, as that introduces complex masking. 
 ### Truthtable:
-| I7 | I6 | I5 | I4 | I3 | I2 | I1 | I0 | | Y2 | Y1 | Y0 |
-|----|----|----|----|----|----|----|----|-|----|----|----|
-| 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | | 0 | 0 | 0 |
-| 1 | 1 | 1 | 1 | 1 | 1 | 0 | 1 | | 0 | 0 | 1 |
-| 1 | 1 | 1 | 1 | 1 | 0 | 1 | 1 | | 0 | 1 | 0 |
-| 1 | 1 | 1 | 1 | 0 | 1 | 1 | 1 | | 0 | 1 | 1 |
-| 1 | 1 | 1 | 0 | 1 | 1 | 1 | 1 | | 1 | 0 | 0 |
-| 1 | 1 | 0 | 1 | 1 | 1 | 1 | 1 | | 1 | 0 | 1 |
-| 1 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | | 1 | 1 | 0 |
-| 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | | 1 | 1 | 1 |
+<table class="logic-table">
+  <thead>
+    <tr>
+      <th>I7</th>
+      <th>I6</th>
+      <th>I5</th>
+      <th>I4</th>
+      <th>I3</th>
+      <th>I2</th>
+      <th>I1</th>
+      <th>I0</th>
+      <th class="sep">Y2</th>
+      <th>Y1</th>
+      <th>Y0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td class="sep">0</td><td>0</td><td>0</td></tr>
+    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td class="sep">0</td><td>0</td><td>1</td></tr>
+    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td class="sep">0</td><td>1</td><td>0</td></tr>
+    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td class="sep">0</td><td>1</td><td>1</td></tr>
+    <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td class="sep">1</td><td>0</td><td>0</td></tr>
+    <tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td class="sep">1</td><td>0</td><td>1</td></tr>
+    <tr><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td class="sep">1</td><td>1</td><td>0</td></tr>
+    <tr><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td class="sep">1</td><td>1</td><td>1</td></tr>
+  </tbody>
+</table>
 
 ### Boolean function
 If we were to try to simplify with the truthtable, we get this:
@@ -46,16 +63,26 @@ This question focused on shift registers! An $n$-bit register uses D-type flip f
 ### Design a serial 4-bit bidirectional shift register 
 The idea is that we have $\text{right entry} = R$, $\text{left entry} = L$, $\text{output} = Q$ and $\text{mode} = m$. So when $m=0 \implies Q=L$ and $m=1 \implies Q=R$, which we can expand into a truthtable.
 
-| m | R | L | | Q |
-|---|---|---|-|---|
-| 0 | 0 | 0 | | 0 |
-| 0 | 0 | 1 | | 1 |
-| 0 | 1 | 0 | | 0 |
-| 0 | 1 | 1 | | 1 |
-| 1 | 0 | 0 | | 0 |
-| 1 | 0 | 1 | | 0 |
-| 1 | 1 | 0 | | 1 |
-| 1 | 1 | 1 | | 1 |
+<table class="logic-table">
+  <thead>
+    <tr>
+      <th>m</th>
+      <th>R</th>
+      <th>L</th>
+      <th class="sep">Q</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td><td>0</td><td>0</td><td class="sep">0</td></tr>
+    <tr><td>0</td><td>0</td><td>1</td><td class="sep">1</td></tr>
+    <tr><td>0</td><td>1</td><td>0</td><td class="sep">0</td></tr>
+    <tr><td>0</td><td>1</td><td>1</td><td class="sep">1</td></tr>
+    <tr><td>1</td><td>0</td><td>0</td><td class="sep">0</td></tr>
+    <tr><td>1</td><td>0</td><td>1</td><td class="sep">0</td></tr>
+    <tr><td>1</td><td>1</td><td>0</td><td class="sep">1</td></tr>
+    <tr><td>1</td><td>1</td><td>1</td><td class="sep">1</td></tr>
+  </tbody>
+</table>
 
 With this we can find the equation we use for the design.
 $$
@@ -79,12 +106,21 @@ As it must be a serial-serial register, we need it to have a single input and si
 When considering an N-bit PIPO register, we see that each flip flop takes in a single input, and return out a single output. We use two mode inputs $m_1, m_2$ for right shift, left shift and parallel load. If we refer back to our previous strategy, we need to effectively create a sub-circuit that takes in the inputs of the two modes, the parallel load, the shift right load, and the shift left load. However, we also need one other load, and that is what is in the current register, as if we have a 0,0 mode case, then we want to feed that back in. Drawing this
 out, we have a truth table that is 7 x 64, which is too much to work with. and if we try to do expressions, we get 32 terms which is still quite heavy. So instead we use multiplexers. We map $m_1, m_2$ to the following table:
 
-| $m_1$ | $m_2$ | Q |
-|---|---|---|
-| 0 | 0 | C |
-| 0 | 1 | R |
-| 1 | 0 | L |
-| 1 | 1 | P |
+<table class="logic-table">
+  <thead>
+    <tr>
+      <th><em>m₁</em></th>
+      <th><em>m₂</em></th>
+      <th class="sep">Q</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>0</td><td>0</td><td class="sep">C</td></tr>
+    <tr><td>0</td><td>1</td><td class="sep">R</td></tr>
+    <tr><td>1</td><td>0</td><td class="sep">L</td></tr>
+    <tr><td>1</td><td>1</td><td class="sep">P</td></tr>
+  </tbody>
+</table>
 
 This operates exactly like a multiplexer with those 6 inputs. The multiplexer equation is:
 $$Q = (C \land \overline{m_1} \land \overline{m_2}) \lor (R \land \overline{m_1} \land m_2) \lor (L \land m+1 \land \overline{m_2}) \lor (P \land m_1 \land m_2)$$

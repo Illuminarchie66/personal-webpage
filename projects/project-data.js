@@ -47,7 +47,7 @@ const projects = {
     skills: ["Java", "Data Structures", "Algorithms", "Databases"],
     links: [
       { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/Waffles"},
-      { icon: "../assets/icons/document.svg", label: "Coursework 1", url: "./waffles/waffles.pdf" },
+      { icon: "../assets/icons/document.svg", label: "Report", url: "./waffles/waffles.pdf" },
     ],
     markdown: "./waffles/md/waffles.md",
     prev: { key: "architecture", label: "CS132 Architecture" },

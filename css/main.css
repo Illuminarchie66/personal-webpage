@@ -1,4 +1,9 @@
+/* ========================================
+   DESIGN TOKENS (COLORS & VARIABLES)
+======================================== */
+
 :root {
+  /* Primary palette */
   --primary-50: #eff6ff;
   --primary-100: #dbeafe; 
   --primary-200: #bfdbfe; 
@@ -10,115 +15,126 @@
   --primary-800: #1e40af; 
   --primary-900: #1e3a8a; 
   --primary-950: #172554;
-  --complementary-400: #f97316; 
 
-}
+  --complementary-400: #f97316;
 
-:root {
-
+  /* Layout */
   --base-size: 21vw;
 
-  /* shadow colours */
+  /* Shadows */
   --light-shadow-color: rgba(0, 0, 0, 0.2);
   --shadow-color: rgba(0, 0, 0, 0.3);
   --dark-shadow-color: rgba(0, 0, 0, 0.35);
-  
-  /* text colours */
-  --text-title: var(--primary-900); /* blue-900 */
+
+  /* Text */
+  --text-title: var(--primary-900);
   --text-contrast-title: #ffffff;
-  --text-subtitle: var(--primary-700); /* blue-700 */
+  --text-subtitle: var(--primary-700);
   --text-text: #1f2937;
   --text-boldtext: #000000;
   --text-subtext: #52525b;
   --text-contrast-text: #ffffff;
-  --text-link: var(--primary-600); /* blue-600 */
-  --text-hover: var(--primary-700); /* blue-700 */
-  --text-extra: var(--primary-600); /* blue-600 */
-  --text-extra-hover: var(--complementary-400); /* orange-400 */
-  --text-title-extra1: #1e3a8a; /* blue-900 */
-  --text-title-extra2: #713f12; /* yellow-900 */
-  --text-title-extra3: #4c1d95; /* purple-900 */
-  --text-title-extra4: #14532d; /* green-900 */
+  --text-link: var(--primary-600);
+  --text-hover: var(--primary-700);
+  --text-extra: var(--primary-600);
+  --text-extra-hover: var(--complementary-400);
 
-  /* background colours */
+  --text-title-extra1: #1e3a8a;
+  --text-title-extra2: #713f12;
+  --text-title-extra3: #4c1d95;
+  --text-title-extra4: #14532d;
+
+  /* Backgrounds */
   --bg-main: #f3f4f6;
   --bg-bottom: #d1d5db;
   --bg-header: #ffffff;
   --bg-simple-hover: #f3f4f6;
-  --bg-title: var(--primary-900); /* blue-900 */
-  --bg-card: #ffffff; 
-  --bg-hover: var(--primary-100); /* blue-100 */
-  --bg-extra1: #dbeafe; /* blue-100 */
-  --bg-extra2: #fef9c3; /* yellow-100 */
-  --bg-extra3: #f3e8ff; /* purple-100 */
-  --bg-extra4: #dcfce7; /* green-100 */
-  --bg-code: var(--primary-50); 
+  --bg-title: var(--primary-900);
+  --bg-card: #ffffff;
 
-  /* borders */
-  --border1: var(--primary-800); /* blue-800 */
-  --border2: var(--primary-600); /* blue-600 */
-  --border3: var(--primary-400); /* blue-400 */
-  --border4: var(--primary-200); /* blue-200 */
+  --bg-hover: var(--primary-100);
+  --bg-extra1: #dbeafe;
+  --bg-extra2: #fef9c3;
+  --bg-extra3: #f3e8ff;
+  --bg-extra4: #dcfce7;
+
+  --bg-code: var(--primary-50);
+
+  /* Borders */
+  --border1: var(--primary-800);
+  --border2: var(--primary-600);
+  --border3: var(--primary-400);
+  --border4: var(--primary-200);
 }
 
+/* ========================================
+   DARK MODE
+======================================== */
+
 .dark {
-    /* shadow colours */
+  /* Shadows */
   --light-shadow-color: rgba(0, 0, 0, 0.4);
   --shadow-color: rgba(0, 0, 0, 0.5);
   --dark-shadow-color: rgba(0, 0, 0, 0.75);
-  
-  /* text colours */
-  --text-title: var(--primary-300); /* blue-300 */
-  --text-contrast-title: #ffffff;
-  --text-subtitle: var(--primary-200); /* blue-200 */
+
+  /* Text */
+  --text-title: var(--primary-300);
+  --text-subtitle: var(--primary-200);
   --text-text: #f4f4f5;
   --text-boldtext: #ffffff;
   --text-subtext: #d4d4d8;
-  --text-contrast-text: #ffffff;
-  --text-link: var(--primary-500); /* blue-500 */
-  --text-hover: var(--primary-600); /* blue-600 */
-  --text-extra: var(--primary-500); /* blue-500 */
-  --text-extra-hover: var(--complementary-400); /* orange-400 */
-  --text-title-extra1: #60a5fa; /* blue-400 */
-  --text-title-extra2: #fef9c3; /* yellow-400 */
-  --text-title-extra3: #f3e8ff; /* purple-400 */
-  --text-title-extra4: #4ade80; /* green-400 */
 
-  /* background colours */
+  --text-link: var(--primary-500);
+  --text-hover: var(--primary-600);
+  --text-extra: var(--primary-500);
+
+  --text-title-extra1: #60a5fa;
+  --text-title-extra2: #fef9c3;
+  --text-title-extra3: #f3e8ff;
+  --text-title-extra4: #4ade80;
+
+  /* Backgrounds */
   --bg-main: #3f3f46;
   --bg-bottom: #09090b;
   --bg-header: #27272a;
   --bg-simple-hover: #4b5563;
-  --bg-title: var(--primary-700); /* blue-700 */
-  --bg-card: #27272a; 
-  --bg-hover: var(--primary-800); /* blue-800 */
-  --bg-extra1: #1e40af; /* blue-800 */
-  --bg-extra2: #854d0e; /* yellow-800 */
-  --bg-extra3: #6b21a8; /* purple-800 */
-  --bg-extra4: #166534; /* green-800 */
-  --bg-code: var(--primary-700); 
-  /* borders */
-  --border4: var(--primary-800); /* blue-800 */
-  --border3: var(--primary-600); /* blue-600 */
-  --border2: var(--primary-400); /* blue-400 */
-  --border1: var(--primary-200); /* blue-200 */
-  
+  --bg-title: var(--primary-700);
+  --bg-card: #27272a;
+
+  --bg-hover: var(--primary-800);
+  --bg-extra1: #1e40af;
+  --bg-extra2: #854d0e;
+  --bg-extra3: #6b21a8;
+  --bg-extra4: #166534;
+
+  --bg-code: var(--primary-700);
+
+  /* Borders (reversed scale) */
+  --border1: var(--primary-200);
+  --border2: var(--primary-400);
+  --border3: var(--primary-600);
+  --border4: var(--primary-800);
 }
+
+/* ========================================
+   BASE RESET
+======================================== */
 
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
+/* Dark mode image fix */
 .dark img.icon-invert {
   filter: invert(1) brightness(1.2);
 }
 
-/* * {
-  outline: 1px solid red;
-} */
+/* ========================================
+   NAV MENU
+======================================== */
 
 #mobile-menu.open {
-  max-height: 300px; /* must be > content height */
+  max-height: 300px;
   opacity: 1;
   transform: translateY(0);
 }
@@ -131,89 +147,77 @@
   transform: rotate(90deg);
 }
 
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+/* --- Bar animation --- */
+
 @keyframes stretch-bar {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 84vw;
-  }
+  from { width: 0; }
+  to { width: 84vw; }
 }
-/* @media (max-width: 768px) {
-  @keyframes stretch-bar {
-    100% { width: 78vw; }
-  }
-} */
 
 .animated-bar {
   width: 0;
   animation: stretch-bar 2s forwards;
 }
 
+/* --- Letter animation --- */
 
 .letter {
-    opacity: 0;
-    display: inline-block;
+  opacity: 0;
+  display: inline-block;
 }
 
+/* --- Fade animations --- */
+
 @keyframes fade-in-up {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fade-in-left {
-    0% {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes fade-in-right {
-    0% {
-        opacity: 0;
-        transform: translateX(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 .fade-in-up.in-view {
-    animation: fade-in-up 1s ease-out forwards; 
+  animation: fade-in-up 1s ease-out forwards;
 }
-.fade-up-target {opacity: 0;}
-
 .fade-in-left.in-view {
-    animation: fade-in-left 1s ease-out forwards; 
+  animation: fade-in-left 1s ease-out forwards;
 }
-.fade-left-target {opacity: 0;}
-
 .fade-in-right.in-view {
-    animation: fade-in-right 1s ease-out forwards; 
+  animation: fade-in-right 1s ease-out forwards;
 }
-.fade-right-target {opacity: 0;}
 
+/* Initial hidden states */
+.fade-up-target,
+.fade-left-target,
+.fade-right-target {
+  opacity: 0;
+}
+
+/* ========================================
+   SLIDER CONTROLS
+======================================== */
 
 .custom-slick-prev,
 .custom-slick-next {
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
   background: transparent;
   border: none;
   font-size: 2.5rem;
   font-weight: bold;
-  color: #26428b;
+  color: var(--text-link);
   z-index: 20;
   cursor: pointer;
   transition: transform 0.2s ease, color 0.2s ease;
@@ -221,51 +225,55 @@
 
 .custom-slick-prev:hover,
 .custom-slick-next:hover {
-  color: #f39c12;
+  color: var(--text-extra-hover);
   transform: translateY(-50%) scale(1.2);
 }
 
-.custom-slick-prev {
-  left: 8px;
-}
+.custom-slick-prev { left: 8px; }
+.custom-slick-next { right: 8px; }
 
-.custom-slick-next {
-  right: 8px;
-}
+/* ========================================
+   FLASH STATES
+======================================== */
 
 .flash-1 { animation: flash-1 0.4s ease-in-out; }
-@keyframes flash-1 {
-  0% { background-color: #86efac; } /* green-100 */
-  50% { background-color: #bbf7d0; } /* green-200 */
-  100% { background-color: var(--bg-card); }
-}
-
 .flash-2 { animation: flash-2 0.4s ease-in-out; }
-@keyframes flash-2 {
-  0% { background-color: #93c5fd; } /* blue-100 */
-  50% { background-color: #bfdbfe; } /* blue-200 */
-  100% { background-color: var(--bg-card); }
-}
-
 .flash-3 { animation: flash-3 0.4s ease-in-out; }
-@keyframes flash-3 {
-  0% { background-color: #d8b4fe; } /* purple-300 */
-  50% { background-color: #e9d5ff; } /* purple-200 */
+.flash-4 { animation: flash-4 0.4s ease-in-out; }
+
+@keyframes flash-1 {
+  0% { background-color: #86efac; }
+  50% { background-color: #bbf7d0; }
   100% { background-color: var(--bg-card); }
 }
 
-.flash-4 { animation: flash-4 0.4s ease-in-out; }
-@keyframes flash-4 {
-  0% { background-color: #fde047; } /* yellow-100 */
-  50% { background-color: #fef08a; } /* yellow-200 */
+@keyframes flash-2 {
+  0% { background-color: #93c5fd; }
+  50% { background-color: #bfdbfe; }
   100% { background-color: var(--bg-card); }
 }
+
+@keyframes flash-3 {
+  0% { background-color: #d8b4fe; }
+  50% { background-color: #e9d5ff; }
+  100% { background-color: var(--bg-card); }
+}
+
+@keyframes flash-4 {
+  0% { background-color: #fde047; }
+  50% { background-color: #fef08a; }
+  100% { background-color: var(--bg-card); }
+}
+
+/* ========================================
+   MOBILE SLIDES
+======================================== */
 
 .mobile-slide {
-  position: relative;   /* instead of absolute */
+  position: relative;
   opacity: 0;
   pointer-events: none;
-  height: 0; 
+  height: 0;
   transition: opacity 300ms ease;
 }
 
