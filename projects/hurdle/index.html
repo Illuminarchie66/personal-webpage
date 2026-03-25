@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wordle Test</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #1e1e1e;
+      font-family: sans-serif;
+    }
+
+    .word-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .letter-box {
+      width: 60px;
+      height: 60px;
+      background-color: #2f2f2f;
+      border-radius: 12px;
+      border: 2px solid #2f2f2f;
+      text-align: center;
+      font-size: 2rem;
+      color: #ffffff;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .letter-box:focus {
+      border-color: #60a5fa;
+    }
+
+    .letter-box::selection {
+      background: transparent;
+    }
+
+    .guess-button {
+      width: calc(5 * 60px + 4 * 10px); /* 5 boxes + 4 gaps */
+      height: 50px;
+      border-radius: 12px;
+      background-color: #60a5fa;
+      color: white;
+      font-size: 1.5rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .guess-button:hover {
+      background-color: #3b82f6;
+    }
+  </style>
+  <script type="module" src="script.js" defer></script>
+</head>
+<body>
+  <div class="word-container">
+    <input type="text" maxlength="1" class="letter-box" />
+    <input type="text" maxlength="1" class="letter-box" />
+    <input type="text" maxlength="1" class="letter-box" />
+    <input type="text" maxlength="1" class="letter-box" />
+    <input type="text" maxlength="1" class="letter-box" />
+  </div>
+  <button class="guess-button">Guess</button>
+
+  <script type="module">
+    import { loadWords, guess } from './script.js';
+
+    const boxes = document.querySelectorAll('.letter-box');
+    const button = document.querySelector('.guess-button');
+
+    async function initUI() {
+      const guessWords = new Set(await loadWords('assets/allowed-guesses'));
+      const answers = await loadWords('assets/answers');
+      const answer = answers[Math.floor(Math.random() * answers.length)];
+      console.log("Answer:", answer);
+
+      // Auto-focus & input handling
+      boxes.forEach((box, i) => {
+        box.addEventListener('input', e => {
+          e.target.value = e.target.value.toUpperCase().slice(0,1);
+          if (e.target.value && i < boxes.length - 1) boxes[i + 1].focus();
+        });
+
+        box.addEventListener('keydown', e => {
+          // Backspace
+          if (e.key === 'Backspace' && !e.target.value && i > 0) {
+            boxes[i - 1].focus();
+          }
+          // Arrow navigation
+          if (e.key === 'ArrowLeft' && i > 0) boxes[i - 1].focus();
+          if (e.key === 'ArrowRight' && i < boxes.length - 1) boxes[i + 1].focus();
+          // Enter triggers guess
+          if (e.key === 'Enter') doGuess();
+        });
+      });
+
+      boxes[0].focus();
+
+      function getCurrentGuess() {
+        return [...boxes].map(b => b.value || '').join('');
+      }
+
+      function doGuess() {
+        const currentGuess = getCurrentGuess();
+        console.log("Guess:", currentGuess);
+        console.log(guess(currentGuess, answer, guessWords));
+      }
+
+      // Button click
+      button.addEventListener('click', doGuess);
+    }
+
+    initUI();
+  </script>
+</body>
+</html>
