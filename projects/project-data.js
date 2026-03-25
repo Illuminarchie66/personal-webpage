@@ -14,6 +14,19 @@ const projects = {
     next: { key: "robotmaze", label: "CS118 Robot Maze" }
   },
 
+  "epq": {
+    title: "EPQ: Game Design",
+    start: "Feb 2020",
+    end: "Mar 2021",
+    skills: ["Unity", "Game Design", "C#"],
+    links: [
+      { icon: "../assets/icons/document.svg", label: "Doc", url: "./geographic-centre/CentreOfNPoints.pdf" },
+    ],
+    markdown: "./epq/md/epq.md",
+    prev: { key: "geographic-centre", label: "Centre of N" },
+    next: { key: "robotmaze", label: "CS118 Robot Maze" }
+  },
+
   "robotmaze": {
     title: "CS118 Robot Maze",
     start: "Oct 2021",
@@ -62,6 +75,7 @@ const projects = {
     links: [
       { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS141-Hurdle"},
       { icon: "../assets/icons/document.svg", label: "Feedback", url: "./hurdle/feedback.pdf" },
+      { icon: "../assets/icons/website.svg", label: "Wordle", url: "./hurdle" },
     ],
     markdown: "./hurdle/md/hurdle.md",
     prev: { key: "waffles", label: "CS126 Waffles" },

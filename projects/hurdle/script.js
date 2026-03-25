@@ -3,8 +3,8 @@ function normalise(str) {
     return [...lower]
 }
 
-function validGuess(str, guess_words) {
-    return guess_words.has(str.toUpperCase());
+function validGuess(str, guessWords) {
+    return guessWords.has(str.toUpperCase());
 }
 
 function checkExact(guess, answer) {
@@ -33,7 +33,6 @@ function countLettersLeft(answer, exacts) {
 function checkExists(guess, answer, exacts) {
     const res = [];
     const letter_counts = countLettersLeft(answer, exacts);
-    console.log(letter_counts);
     for (let i = 0; i < guess.length; i++) {
         if (!exacts[i]) {
             const index = guess[i].charCodeAt(0) - 'A'.charCodeAt(0);
@@ -50,8 +49,78 @@ function checkExists(guess, answer, exacts) {
     return res;
 }
 
-function guess(guess, answer, guess_words) {
-    if (validGuess(guess, guess_words)) {
+function addGuessResult(guess, res) {
+    const answers_div = document.getElementById('answers');
+    const normalised_guess = normalise(guess);
+
+    const row = document.createElement('div');
+    row.className = 'answer-container';
+
+    let correct = true;
+
+    for (let i = 0; i < normalised_guess.length; i++) {
+        const letter = document.createElement('div');
+        if (res[i] == "EXACT") {
+            letter.className = "letter-box exact";
+        } else if (res[i] == "EXISTS") {
+            letter.className = "letter-box exists";
+            correct = false;
+        } else {
+            letter.className = "letter-box";
+            correct = false;
+        }
+        
+        letter.innerHTML = normalised_guess[i];
+
+        row.appendChild(letter);
+    }
+
+    answers_div.appendChild(row);
+
+}
+
+function checkCorrect(res) {
+    for (let i = 0; i < res.length; i++) {
+        if (res[i] != "EXACT") {
+            return false;
+        }
+    }
+    return true;
+}
+
+function showInvalidFeedback() {
+    const container = document.querySelector('.word-container');
+    const errorMsg = document.getElementById('error-message');
+
+    container.classList.add('shake');
+
+    setTimeout(() => {
+        container.classList.remove('shake');
+    }, 300);
+
+    errorMsg.textContent = "Invalid word";
+    errorMsg.classList.add('show');
+
+    setTimeout(() => {
+        errorMsg.classList.remove('show');
+    }, 1200);
+}
+
+function resetInputBoxes() {
+    const boxes = document.querySelectorAll('.input-box');
+
+    boxes.forEach(box => {
+        box.value = '';
+        box.blur();
+    });
+
+    if (boxes.length > 0) {
+        boxes[0].focus();
+    }
+}
+
+function guess(guess, answer, answers_set) {
+    if (validGuess(guess, answers_set)) {
         const normalised_guess = normalise(guess);
         const normalised_answer = normalise(answer);
         const exacts = checkExact(normalised_guess, normalised_answer);
@@ -61,21 +130,107 @@ function guess(guess, answer, guess_words) {
     }
 }
 
+function encodePattern(res) {
+    let code = 0;
+    for (let i = 0; i < res.length; i++) {
+        let val = 0;
+        if (res[i] === "EXACT") val = 2;
+        else if (res[i] === "EXISTS") val = 1;
+
+        code = code * 3 + val;
+    }
+    return code;
+}
+
+function computeEntropy(guessWord, possibleAnswers, guessWords) {
+    const counts = new Array(243).fill(0);
+
+    const localCache = new Map();
+
+    for (const answer of possibleAnswers) {
+        let res;
+
+        if (localCache.has(answer)) {
+            res = localCache.get(answer);
+        } else {
+            res = guess(guessWord, answer, guessWords);
+            localCache.set(answer, res);
+        }
+
+        if (res === "INVALID") continue;
+
+        const key = encodePattern(res);
+        counts[key]++;
+    }
+
+    const total = possibleAnswers.length;
+    let entropy = 0;
+
+    for (let i = 0; i < counts.length; i++) {
+        const count = counts[i];
+        if (count === 0) continue;
+
+        const p = count / total;
+        entropy -= p * Math.log2(p);
+    }
+
+    return entropy;
+}
+
+function findBestGuesses(guessList, possibleAnswers, guessWords, k = 5) {
+    if (possibleAnswers.length === 1) {
+        return [{ word: possibleAnswers[0], entropy: 0 }];
+    }
+
+    const results = [];
+
+    for (const word of guessList) {
+        const ent = computeEntropy(word, possibleAnswers, guessWords);
+
+        results.push({ word, entropy: ent });
+    }
+
+    results.sort((a, b) => b.entropy - a.entropy);
+
+    return results.slice(0, k);
+}
+
+function filterAnswers(possibleAnswers, guessWord, result, guessWords) {
+    const target = encodePattern(result);
+
+    return possibleAnswers.filter(answer => {
+        const res = guess(guessWord, answer, guessWords);
+        return encodePattern(res) === target;
+    });
+}
+
+function showEndScreen({ won = false, answer = '' }) {
+    const gameArea = document.getElementById('game-area');
+    const endScreen = document.getElementById('end-screen');
+    const heading = document.getElementById('end-heading');
+    const subtext = document.getElementById('end-subtext');
+
+    gameArea.classList.add('hidden');
+
+    endScreen.classList.remove('win', 'lose');
+
+    if (won) {
+        heading.textContent = "CONGRATULATIONS";
+        subtext.textContent = "";
+        endScreen.classList.add('win');
+    } else {
+        heading.textContent = "YOU LOSE";
+        subtext.textContent = `Answer: ${answer}`;
+        endScreen.classList.add('lose');
+    }
+
+    endScreen.classList.remove('hidden');
+}
+
 async function loadWords(path) {
-  const res = await fetch(path);
-  const text = await res.text();
-  return text.split(/\r?\n/).filter(Boolean);
+    const res = await fetch(path);
+    const text = await res.text();
+    return text.toUpperCase().split(/\r?\n/).filter(Boolean);
 }
 
-async function init() {
-  const guessWords = new Set(await loadWords('assets/allowed-guesses'));
-  const answers = await loadWords('assets/answers');
-  const answer = answers[Math.floor(Math.random() * answers.length)];
-  console.log(answer);
-
-  console.log(guess("hells", answer, guessWords));
-}
-
-init();
-
-export { loadWords, guess, normalise, validGuess, checkExact, checkExists };
+export { loadWords, guess, normalise, validGuess, checkExact, checkExists, addGuessResult, resetInputBoxes, showInvalidFeedback, checkCorrect, findBestGuesses, filterAnswers, showEndScreen };
