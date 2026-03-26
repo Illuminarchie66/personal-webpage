@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wordle</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="script.js" defer></script>
+  <script type="module" src="keyboard.js" defer></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <div id="top-bar">
+    <div id="top-bar-title">WORDLE</div>
+    <button id="keyboard-toggle" title="Toggle keyboard (K)">⌨</button>
+  </div>
+
+  <div id="keyboard-panel" class="keyboard-panel hidden">
+    <div id="keyboard-tab" class="keyboard-tab">
+      <!-- JS populates alphabet here -->
+    </div>
+  </div>
+
+  <!-- Main Game -->
+  <div id="main-content">
+
+    <div id="answers" class="answers"></div>
+
+    <div id="game-area" class="game-wrapper">
+      <div class="word-container">
+        <input type="text" maxlength="1" class="letter-box input-box" autocomplete="off" />
+        <input type="text" maxlength="1" class="letter-box input-box" autocomplete="off" />
+        <input type="text" maxlength="1" class="letter-box input-box" autocomplete="off" />
+        <input type="text" maxlength="1" class="letter-box input-box" autocomplete="off" />
+        <input type="text" maxlength="1" class="letter-box input-box" autocomplete="off" />
+      </div>
+      <div class="error-message" id="error-message"></div>
+
+      <div class="action-row">
+        <button class="guess-button">Guess</button>
+        <button id="hint-button" title="Get a hint">Hint</button>
+      </div>
+
+      <div id="hint-display" class="hint-display hidden"></div>
+    </div>
+
+    <!-- End screen -->
+    <div id="end-screen" class="end-screen hidden">
+      <h1 id="end-heading"></h1>
+      <p id="end-subtext"></p>
+      <button id="play-again">Play Again</button>
+    </div>
+
+  </div>
+
+<script type="module">
+  import {
+    loadWords, guess, addGuessResult, resetInputBoxes,
+    showInvalidFeedback, checkCorrect, findBestGuesses,
+    filterAnswers, showEndScreen
+  } from './script.js';
+
+  import { initKeyboardTab, updateKeyboard, resetKeyboard } from './keyboard.js';
+
+  // --- DOM ---
+  const boxes            = document.querySelectorAll('.input-box');
+  const guessButton      = document.querySelector('.guess-button');
+  const answersDiv       = document.getElementById('answers');
+  const gameArea         = document.getElementById('game-area');
+  const endScreen        = document.getElementById('end-screen');
+  const playAgainBtn     = document.getElementById('play-again');
+  const hintButton       = document.getElementById('hint-button');
+  const hintDisplay      = document.getElementById('hint-display');
+  const keyboardToggle   = document.getElementById('keyboard-toggle');
+  const keyboardPanel    = document.getElementById('keyboard-panel');
+
+  // --- STATE ---
+  let answer, numGuesses, guessWords, answers, possibleAnswers, guessList;
+  let keyboardVisible = false;
+
+  // --- INIT ---
+  async function initUI() {
+    guessWords = new Set([
+      ...(await loadWords('assets/allowed-guesses')),
+      ...(await loadWords('assets/answers'))
+    ]);
+    answers = await loadWords('assets/answers');
+    guessList = [...guessWords];
+    possibleAnswers = [...answers];
+
+    setupInputHandlers();
+    setupButtons();
+    initKeyboardTab();
+    newGame();
+  }
+
+  // --- INPUT ---
+  function setupInputHandlers() {
+    boxes.forEach((box, i) => {
+
+      box.addEventListener('focus', () => {
+        requestAnimationFrame(() => {
+          const len = box.value.length;
+          box.setSelectionRange(len, len);
+        });
+      });
+
+      box.addEventListener('click', () => {
+        requestAnimationFrame(() => {
+          const len = box.value.length;
+          box.setSelectionRange(len, len);
+        });
+      });
+
+      box.addEventListener('input', e => {
+        const val = e.target.value.toUpperCase().replace(/[^A-Z]/g, '');
+        e.target.value = val.slice(-1); 
+        if (e.target.value && i < boxes.length - 1) {
+          boxes[i + 1].focus();
+        }
+      });
+
+      box.addEventListener('keydown', e => {
+        if (e.key === 'Backspace' && !e.target.value && i > 0) {
+          boxes[i - 1].focus();
+        }
+        if (e.key === 'ArrowLeft' && i > 0)  boxes[i - 1].focus();
+        if (e.key === 'ArrowRight' && i < boxes.length - 1) boxes[i + 1].focus();
+        if (e.key === 'Enter') doGuess();
+      });
+    });
+
+    boxes[0].focus();
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'k' || e.key === 'K') {
+        if (document.activeElement.classList.contains('input-box')) return;
+        toggleKeyboard();
+      }
+    });
+  }
+
+  // --- BUTTONS ---
+  function setupButtons() {
+    guessButton.addEventListener('click', doGuess);
+    playAgainBtn.addEventListener('click', newGame);
+    hintButton.addEventListener('click', showHint);
+    keyboardToggle.addEventListener('click', toggleKeyboard);
+  }
+
+  // --- KEYBOARD PANEL TOGGLE ---
+  function toggleKeyboard() {
+    keyboardVisible = !keyboardVisible;
+    keyboardPanel.classList.toggle('hidden', !keyboardVisible);
+    keyboardToggle.classList.toggle('active', keyboardVisible);
+  }
+
+  // --- HINT ---
+  function showHint() {
+    const best = findBestGuesses(guessList, possibleAnswers, guessWords, 1);
+    if (!best || best.length === 0) {
+      hintDisplay.textContent = 'No hints available.';
+    } else {
+      const top = best[0];
+      hintDisplay.textContent = `Try: ${top.word}`;
+    }
+    hintDisplay.classList.remove('hidden');
+    // Auto-hide after 4 seconds
+    clearTimeout(hintDisplay._hideTimer);
+    hintDisplay._hideTimer = setTimeout(() => {
+      hintDisplay.classList.add('hidden');
+    }, 6000);
+  }
+
+  // --- GAME LOGIC ---
+  function getCurrentGuess() {
+    return [...boxes].map(b => b.value || '').join('');
+  }
+
+  function doGuess() {
+    const currentGuess = getCurrentGuess();
+    const res = guess(currentGuess, answer, guessWords);
+
+    if (res === "INVALID") {
+      showInvalidFeedback();
+      return;
+    }
+
+    addGuessResult(currentGuess, res);
+    updateKeyboard(currentGuess, res);
+    numGuesses++;
+
+    possibleAnswers = filterAnswers(possibleAnswers, currentGuess, res, guessWords);
+
+    hintDisplay.classList.add('hidden');
+
+    if (checkCorrect(res)) {
+      showEndScreen({ won: true });
+      return;
+    }
+
+    if (numGuesses >= 6) {
+      showEndScreen({ won: false, answer });
+      return;
+    }
+
+    resetInputBoxes();
+  }
+
+  function newGame() {
+    answer = answers[Math.floor(Math.random() * answers.length)];
+    numGuesses = 0;
+    possibleAnswers = [...answers];
+
+    answersDiv.innerHTML = '';
+    resetInputBoxes();
+    resetKeyboard();
+    hintDisplay.classList.add('hidden');
+
+    gameArea.classList.remove('hidden');
+    endScreen.classList.add('hidden');
+  }
+
+  initUI();
+</script>
+</body>
+</html>
