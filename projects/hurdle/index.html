@@ -78,6 +78,7 @@
   // --- STATE ---
   let answer, numGuesses, guessWords, answers, possibleAnswers, guessList;
   let keyboardVisible = false;
+  let firstHintUsed = false;
 
   // --- INIT ---
   async function initUI() {
@@ -158,7 +159,12 @@
 
   // --- HINT ---
   function showHint() {
-    const best = findBestGuesses(guessList, possibleAnswers, guessWords, 1);
+    let best;
+    if (!firstHintUsed) {
+      best = [{"word": "ROATE", "entropy": 1, "isAnswer": false}];
+    } else {
+      best = findBestGuesses(guessList, possibleAnswers, guessWords, 1);
+    }
     if (!best || best.length === 0) {
       hintDisplay.textContent = 'No hints available.';
     } else {
@@ -179,6 +185,10 @@
   }
 
   function doGuess() {
+    if (!firstHintUsed) {
+      firstHintUsed = true;
+    }
+
     const currentGuess = getCurrentGuess();
     const res = guess(currentGuess, answer, guessWords);
 
@@ -211,6 +221,7 @@
   function newGame() {
     answer = answers[Math.floor(Math.random() * answers.length)];
     numGuesses = 0;
+    firstHintUsed = false;
     possibleAnswers = [...answers];
 
     answersDiv.innerHTML = '';
