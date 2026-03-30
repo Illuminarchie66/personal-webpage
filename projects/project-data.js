@@ -102,11 +102,11 @@ const projects = {
     start: "Oct 2022",
     end: "Dec 2022",
     skills: ["C", "Networking", "Operating Systems"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS241-OS-and-Networks"},
+      { icon: "../assets/icons/document.svg", label: "Report", url: "./os-and-networks/report.pdf" },
+    ],
+    markdown: "./os-and-networks/md/os-and-networks.md",
     prev: { key: "onaf", label: "One Night at Freddy's" },
     next: { key: "databases", label: "CS258 Databases" }
   },
@@ -366,3 +366,9 @@ Markdown content for project 2.
   },
 
 };
+
+// ore or oar
+// proc gen with new method
+// confetti maker
+// betting bot
+// tanks game
