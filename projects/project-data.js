@@ -87,11 +87,12 @@ const projects = {
     start: "Feb 2022",
     end: "Mar 2022",
     skills: ["Functional Programming", "Haskell", "Game Development"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS141-Functional-ONAF"},
+      { icon: "../assets/icons/document.svg", label: "Report", url: "./onaf/report.pdf" },
+      { icon: "../assets/icons/document.svg", label: "Feedback", url: "./onaf/feedback.pdf" },
+    ],
+    markdown: "./onaf/md/onaf.md",
     prev: { key: "hurdle", label: "CS141 Hurdle" },
     next: { key: "os-and-networks", label: "CS241 OS & Networks" }
   },
