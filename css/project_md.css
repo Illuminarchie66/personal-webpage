@@ -125,6 +125,16 @@
    TABLES
 ======================================== */
 
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-wrapper table {
+  width: max-content;
+  min-width: 100%;
+}
+
 .prose table {
   width: 100%;
   border-collapse: collapse;
@@ -184,9 +194,31 @@ article img {
 article img + em {
   display: block;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--text-subtext);
   margin-top: -1rem;
+}
+
+.image-row {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.image-row img {
+  height: 700px;    
+  width: auto;
+  flex-shrink: 0;
+  border-radius: 8px;
+  margin: 5px;
+}
+
+.image-caption {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-subtext);
+  margin-top: 0.5rem;
 }
 
 /* ========================================
