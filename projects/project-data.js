@@ -115,14 +115,11 @@ const projects = {
     title: "CS258 Databases",
     start: "Oct 2022",
     end: "Jan 2023",
-    skills: ["SQL", "Database Design"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    skills: ["SQL", "Database Design", "Java"],
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS258-Databases"},
+    ],
+    markdown: "./databases/md/databases.md",
     prev: { key: "os-and-networks", label: "CS241 OS & Networks" },
     next: { key: "ai", label: "CS255 AI" }
   },
@@ -132,13 +129,10 @@ Markdown content for project 2.
     start: "Jan 2023",
     end: "Feb 2023",
     skills: ["Python", "AI", "Search Algorithms", "Monte Carlo"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "databases", label: "CS258 Databases" },
     next: { key: "formal-languages", label: "CS259 Formal Languages" }
   },
@@ -148,13 +142,10 @@ Markdown content for project 2.
     start: "Jan 2023",
     end: "Mar 2023",
     skills: ["Java", "Automata Theory", "Compilers"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "ai", label: "CS255 Artificial Intelligence" },
     next: { key: "project-tracker", label: "Project Tracker" }
   },
@@ -164,11 +155,10 @@ Markdown content for project 2.
     start: "Jan 2023",
     end: "Apr 2023",
     skills: ["Python", "ML", "Jira", "Agile", "Flask", "NoSQL"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "formal-languages", label: "CS259 Formal Languages" },
     next: { key: "digital-forensics", label: "CS355 Digital Forensics" }
   },
@@ -178,13 +168,10 @@ Markdown content for project 2.
     start: "Nov 2023",
     end: "Jan 2024",
     skills: ["MatLab", "Image Processing"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "project-tracker", label: "Deutche Bank Project Tracker" },
     next: { key: "machine-learning", label: "CS342 Machine Learning" }
   },
@@ -194,13 +181,10 @@ Markdown content for project 2.
     start: "Nov 2023",
     end: "Dec 2023",
     skills: ["Python", "Machine Learning", "Data Analysis"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "digital-forensics", label: "CS355 Digital Forensics" },
     next: { key: "graphics", label: "CS324 Graphics" }
   },
@@ -210,13 +194,10 @@ Markdown content for project 2.
     start: "Nov 2023",
     end: "Jan 2024",
     skills: ["JavaScript", "three.js", "WebGL"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "machine-learning", label: "CS342 Machine Learning" },
     next: { key: "simpleg", label: "SimpLeg" }
   },
@@ -226,13 +207,10 @@ Markdown content for project 2.
     start: "Oct 2023",
     end: "Apr 2024",
     skills: ["Python", "LLMs", "APIs", "Flask", "NLP"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "graphics", label: "CS324 Graphics" },
     next: { key: "box-quest", label: "Box Quest" }
   },
@@ -242,13 +220,10 @@ Markdown content for project 2.
     start: "Jun 2024",
     end: "Sep 2024",
     skills: ["Unity", "C#", "Game Development"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "simpleg", label: "SimpLeg" },
     next: { key: "mario-map-project", label: "Mario Map Project" }
   },
@@ -258,13 +233,10 @@ Markdown content for project 2.
     start: "Feb 2024",
     end: "Ongoing",
     skills: ["HTML","JavaScript","Tailwind CSS","Krita"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "box-quest", label: "Box Quest" },
     next: { key: "image-and-video", label: "CS413 Image and Video Analysis" }
   },
@@ -274,13 +246,10 @@ Markdown content for project 2.
     start: "Nov 2024",
     end: "Jan 2025",
     skills: ["Python", "OpenCV", "Image Processing"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "mario-map-project", label: "Mario Map Project" },
     next: { key: "optimisation", label: "CS416 Optimisation" }
   },
@@ -290,13 +259,10 @@ Markdown content for project 2.
     start: "Jan 2025",
     end: "Mar 2025",
     skills: ["Python", "Derivatives", "Numerical Methods"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "image-and-video", label: "CS413 Image and Video Analysis" },
     next: { key: "data-mining", label: "CS429 Data Mining" }
   },
@@ -306,13 +272,10 @@ Markdown content for project 2.
     start: "Jan 2025",
     end: "Mar 2025",
     skills: ["Python", "Machine Learning", "Deep Learning", "Neural Networks"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "optimisation", label: "CS416 Optimisation" },
     next: { key: "terrainfinity", label: "TerraInfinity" }
   },
@@ -322,13 +285,10 @@ Markdown content for project 2.
     start: "Oct 2024",
     end: "Apr 2025",
     skills: ["Python", "C++", "Procedural Generation", "Simplex Noise"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "data-mining", label: "CS429 Data Mining" },
     next: { key: "value-betting", label: "Value Betting" }
   },
@@ -338,13 +298,10 @@ Markdown content for project 2.
     start: "Jan 2025",
     end: "Ongoing",
     skills: ["Python", "Data Analysis", "Web Scraping", "Pandas", "Neural Networks", "PyTorch"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "terrainfinity", label: "TerraInfinity" },
     next: { key: "az900", label: "AZ900 Practice Exam" }
   },
@@ -354,13 +311,10 @@ Markdown content for project 2.
     start: "Nov 2025",
     end: "Dec 2025",
     skills: ["Python", "Webscraping", "Web Development"],
-    github: "",
-    other: null,
-    content: `
-# Introduction
-
-Markdown content for project 2.
-`,
+    links: [
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+    ],
+    markdown: "",
     prev: { key: "value-betting", label: "Value Betting" },
     next: null
   },
