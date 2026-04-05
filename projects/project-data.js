@@ -322,9 +322,11 @@ const projects = {
 };
 
 // ore or oar
-// proc gen with new method
+// proc gen with new method + unity
 // confetti maker
 // betting bot
 // tanks game
 // mario llm name generator
 // minecraft mod 
+// godot game: fire emblem
+// c++ game dev
