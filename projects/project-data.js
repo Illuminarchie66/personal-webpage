@@ -130,9 +130,9 @@ const projects = {
     end: "Feb 2023",
     skills: ["Python", "AI", "Search Algorithms", "Monte Carlo"],
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS255-Artificial-Intelligence"},
     ],
-    markdown: "",
+    markdown: "./ai/md/ai.md",
     prev: { key: "databases", label: "CS258 Databases" },
     next: { key: "formal-languages", label: "CS259 Formal Languages" }
   },
