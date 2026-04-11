@@ -143,9 +143,9 @@ const projects = {
     end: "Mar 2023",
     skills: ["Java", "Automata Theory", "Compilers"],
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
+      { icon: "../assets/icons/document.svg", label: "Program", url: "./formal-languages/Assignment.jj" },
     ],
-    markdown: "",
+    markdown: "./formal-languages/md/formal-languages.md",
     prev: { key: "ai", label: "CS255 Artificial Intelligence" },
     next: { key: "project-tracker", label: "Project Tracker" }
   },

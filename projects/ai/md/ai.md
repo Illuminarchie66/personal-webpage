@@ -100,6 +100,7 @@ To hire a comedian to perform a single test show costs £250. Each subsequent te
 
 We complete the `createMinCostSchedule()` method, to produce a schedule that minimises the cost, while adhering to the constraints laid out in task 2.
 
+### Initial Solution
 This problem has now changed from a CSP to an optimisation problem. We have to produce a valid schedule, while achieveing the minimum possible cost. Now, since we cannot use the timetable object, we have to implement some additional functions that operate on our `[[(C,D,S)]]` structure. We implemented `cost(schedule)` and `validityChecker(schedule)`, which uses the existing approaches found in `Timetable` but reworked to our structure. This lets us find the current cost, and that the current structure is valid. With these, we can begin our approach:
 1. Backtracking
 2. Get an initial solution
@@ -109,6 +110,7 @@ We first use the same backtracking from Task 2 to generate a valid schedule quic
 
 At first we utilised some new heuristics, which were more aggressive in their implementation, but I found this made the annealing approach the final solution slower, aka start further away. This is likely because the heuristics were causing less comedians to be in the domain, so we have to swap more to reach the optimal solution. 
 
+### Simulated Annealing
 With an initial solution, we can use simulated annealing, which is a probabilistic search that explores the neighbourhood of valid schedules, accepting worse solutions occasionally to escape local minima. The general approach of this is:
 ```python
 for i in range(max_iterations):
@@ -133,6 +135,31 @@ t_i = \frac{t_0}{(1 + \log(i+1))}
 $$
 We tested linear, polynomial, exponential and logarithmic temperature functions, and found that logarithmic temperature worked the best. This is because early on there is a lot of change, which rapidly drops and then slows down, giving more time to explore broadly before narrowing in. On a geometric level, we can see that by varying $\delta$, it becomes easier for the random number to be less than it if delta is higher, the probability getting worse as iterations continue. By varying it with the difference in value, and number of iterations, it forces bad changes to be aborted more often then not, rather than explore, and lets good changes toward minima be pursued. This uses an initial value $t_0$, which we found to be best at about 50, supported by a [comparison of cooling schedules](#http://what-when-how.com/artificial-intelligence/a-comparison-of-cooling-schedules-for-simulated-annealing-artificial-intelligence/). Higher values than 50 sent the search too far from good solutions. 
 
-When we are finding neighbours, 
+### Neighbour Traversal
+When we are finding neighbours, we use two different approaches:
+1. `swapRandomSlots()`, which takes two random slots and swaps their `(comedian, demographic, show_type)` tuples, and then checks the validity. This changes when shows happen, using only comedians in the current domain. This primarily targets the consecutive-day and same-day discounts. 
+2. `findRandomComedian()` picks a random slot and replaces another valid one from the pool, changing who performs, which impacts the domain and which discount brackets will apply.
+
+Neither traversal method alone is sufficient, changing comedians to open new options, and then swapping slots to exploit them. To use this effectively, we use a path switching mechanism. We have a queue `trackQueue`, which detects when a strategy has stalled. If the best cost has not changed for 25 iterations of slot swapping, or 40 iterations of comedian changing, it toggles the strategy. The thresholds were found with experimentation, and reflect the that comedian changing produces fewer meaningful changes, so it gets more attempts before switching. This worked well together, and going forward should be fine-tuned further.
+
+### Failed Approaches
+We tried a few additional approaches of heuristics and traversals, which were not successful, but helpful for exploring different ideas. Firstly we have the heuristic of variance. This treats the assignment as a flat list of 1 to 50, where comedians used throughout would have an associated index. Due to the way that cost is calculated, where consecutive days, and using comedians on the same day, typically improves the price - it led to me thinking that the smaller the spread of the comedian, the better the final cost would be. This was then taken across all comedians, and used to find the average variance of all comedians of a schedule, and then the associated value would be taken to mean a neighbour is a better option to pick. Alternatively it would be used as a heuristic in finding the initial solution. When outputting the values of average variance as the system finds a better and better solution, there is a significant correlation between the variance and the optimal value. However, this correlation was limited, reaching a suboptimal minima, which we were struggling to meaningfully escape. 
+
+Another approach was alternate attempts at finding a good neighbour. Instead of picking at random (swapping slots and changing comedian), these would find the best cost of each and choose that to go to the next neighbour. This was great at first, worth the time loss it gave. However, the issue with it reared its head when looking at possible optimal solutions. The problem with this technique is that it falls into a trap of a local minima, and no matter what combination I tried with other approaches, it can never quite make it out in a reasonable amount of time, to the point where this became a hinderance. Using them is guarenteed to quickly give a fairly optimal solution, but with tweaking of the later cooling schedule, its advantages can be accounted for by the other techniques.
+
+We also tried exploring invalid selections, as a way to escape local minima. This contained two major flaws however; as once it went to an invalid solution it was very difficult to consistently return it to a valid one - and we need a valid assignment for the final output. Additionally, the process was very slow returning back to a valid solution, as the domain of possible neighbours was much greater. Hence we avoided using invalid assignments in the final submission. One possible method could be more complex pathing from invalid to valid, but we did not find time to implement this.
+
+### Final Pipeline
+Finally we had our full pipeline:
+1. Build the full domain of demographic pairs and comedians
+2. Sort by MRV and cost-aware comedian ordering
+3. Perform backtracking to find one valid initial schedule 
+4. Perform simulated annealing for 4000 iterations with initial temparature of 50
+5. Switch between swapping slots (rearranging discounts) and changing comedian (opening domain) when the best cost reaches a local minima and stops improving
+6. Return the best schedule seen across all iterations
+With the example problems we were given, they all had optimal solutions summing to 10500, which gave a target to aim for. We found that 4000 iterations allowed for each problem to consistently get within ~£1000 of the optimal value without running too long. While there is definitely room for improvement in fine-tuning the approach, the solution was one I was very happy with.
 
 # Evaluation
+In total this coursework was an enlightening experience, that introduced me to the world of non continuous optimisation problems, and how they can be explored and approached in ways to combat the large domain space. Using probabilistic methods like Monte Carlo to traverse an space of solutions is captivating, and helps inspire my work I do today. Additionally, the example problems gave a good frame of reference, and the possible methods for heuristics and freedom to explore them made this coursework both interesting and stimulating. Though the limitation that we could not update the objects was quite frustrating, overcomplicating my solution by redesigning it around the assignment structure I used. 
+
+There are many improvements that could be made, definitely with the heuristics. One big improvement would be in traversing the space more meaningfully, using either momentum approaches (weighting swaps with directional changes in cost, giving more weight to productive directions), or using more reinforcement learning approaches, learning policy gradient for a probability distribution over swaps that tend to reduce cost. Additionally, we would want to explore from various initial starting points, as to better cover the search space. Since our backtracking is deterministic, we would need to find a way to define multiple start points, and explore out from there. There are a slew of other improvements such as better initial solutions, targetting discounts more specifically, targetted swap selections, using tabu search and parallel searching are all methods we could use to improve our solution. 
