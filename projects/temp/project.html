@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title id="project-title">Project</title>
+  <link rel="stylesheet" href="../css/main.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="../css/project_md.css">
+  <script type="module" src="../js/colors.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+	<link href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+	
+	<script type="module" src="../../js/header.js"></script>
+</head>
+<body class="bg-bg-main text-text-text font-sans">
+
+  <div id="reading-progress" aria-hidden="true"></div>
+
+  <!-- Header Section -->
+  <header class="bg-bg-header shadow">
+    <nav class="mx-auto flex items-center justify-between max-w-none px-2 sm:px-4 lg:px-6 h-10 sm:h-12 lg:h-16"
+         aria-label="Main navigation">
+      <h1 id="side-title"
+          class="font-bold tracking-tight text-lg sm:text-lg lg:text-xl 2xl:text-2xl">
+        Loading...
+      </h1>
+
+      <!-- Mobile toggle -->
+      <button id="menu-toggle"
+              class="md:hidden aspect-square flex items-center justify-center rounded hover:bg-bg-simple_hover focus:outline-none w-10 p-1"
+              aria-label="Open menu"
+              aria-expanded="false"
+              aria-controls="mobile-menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="w-6 h-6" aria-hidden="true">
+          <line x1="3" y1="6"  x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- Desktop nav -->
+      <ul class="hidden md:flex items-center space-x-6 xl:text-xl" role="list">
+        <li>
+          <button class="w-9 h-9 flex items-center justify-center rounded-md p-1
+                         hover:bg-bg-simple_hover transition theme-toggle"
+                  aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="w-9 h-9" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button class="w-9 h-9 flex items-center justify-center rounded-md p-1
+                         hover:bg-bg-simple_hover transition color-toggle"
+                  aria-label="Cycle colour theme">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="w-9 h-9" aria-hidden="true">
+              <circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/>
+              <circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/>
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688
+                       0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125
+                       a1.648 1.648 0 0 1 1.648-1.648h1.953c3.148 0 5.626-2.336 5.626-5.472
+                       C22 6.719 17.523 2 12 2z"/>
+            </svg>
+          </button>
+        </li>
+        <li><button class="hover:text-text-hover focus:outline-none home-button">Home</button></li>
+        <li><a href="/projects" class="hover:text-text-hover">Projects</a></li>
+        <li><a href="/contact" class="hover:text-text-hover">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu"
+         class="md:hidden bg-bg-header border-t border-gray-200
+                overflow-hidden max-h-0 opacity-0 -translate-y-2
+                transition-all duration-300 ease-in-out"
+         role="region"
+         aria-label="Mobile navigation">
+      <ul class="flex items-center justify-between px-6 py-2" role="list">
+        <li>
+          <button class="w-9 h-9 flex items-center justify-center rounded-md p-1
+                         hover:bg-bg-simple_hover transition theme-toggle"
+                  aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="w-9 h-9" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button class="w-9 h-9 flex items-center justify-center rounded-md p-1
+                         hover:bg-bg-simple_hover transition color-toggle"
+                  aria-label="Cycle colour theme">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="w-9 h-9" aria-hidden="true">
+              <circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/>
+              <circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/>
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688
+                       0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125
+                       a1.648 1.648 0 0 1 1.648-1.648h1.953c3.148 0 5.626-2.336 5.626-5.472
+                       C22 6.719 17.523 2 12 2z"/>
+            </svg>
+          </button>
+        </li>
+        <li><button class="hover:text-text-hover focus:outline-none home-button">Home</button></li>
+        <li><a href="/projects" class="py-2">Projects</a></li>
+        <li><a href="/contact" class="py-2">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-[2000px] p-2 sm:p-6 md:p-10 lg:p-20">
+    <!-- Project Title -->
+    <h1 id="title" class="text-5xl sm:text-4xl lg:text-7xl font-bold text-text-title text-center pb-4">a</h1>
+
+    <!-- Dates & Skills -->
+    <div class="flex flex-col sm:flex-row justify-center gap-2 sm:gap-6 text-text-subtext pb-2 sm:pb-6 text-center lg:text-2xl">
+      <span id="dates" class="font-semibold"></span>
+      <span id="skills"></span>
+    </div>
+
+    <!-- Links -->
+    <div id="links" class="items-center flex flex-row sm:flex-row justify-center gap-2 sm:gap-4 pb-6 text-center lg:text-2xl">
+
+    </div>
+
+    <!-- Markdown Card -->
+    <div class="bg-bg-card rounded-3xl p-2 sm:p-6 shadow-lg">
+      <article id="content" class="prose max-w-full mx-auto break-words"></article>
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex flex-row text-md sm:text-lg md:text-xl lg:text-2xl justify-between mt-8 text-text-link font-semibold">
+      <a id="prev-project" class="hover:underline mb-2 sm:mb-0"></a>
+      <a id="next-project" class="hover:underline"></a>
+    </div>
+  </main>
+
+  <!-- Project Data -->
+  <script src="./project-data.js"></script>
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const projectKey = params.get('key');
+  const project = projects[projectKey];
+
+  const progressBar = document.getElementById('reading-progress');
+  window.addEventListener('scroll', () => {
+    const scrollTop  = window.scrollY;
+    const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
+    const progress   = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = `${Math.min(progress, 100)}%`;
+  }, { passive: true });
+
+  const contentElement = document.getElementById('content');
+
+  async function loadMarkdown(filePath) {
+    const response = await fetch(filePath);
+    if (!response.ok) {
+      throw new Error("Failed to load markdown file.");
+    }
+    return await response.text();
+  }
+
+  async function renderProject(project) {
+    try {
+      const markdown = await loadMarkdown(project.markdown);
+
+      contentElement.innerHTML = marked.parse(markdown);
+
+      renderMathInElement(contentElement, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false }
+        ]
+      });
+
+      Prism.highlightAllUnder(contentElement);
+
+    } catch (err) {
+      contentElement.innerHTML = "<p>Failed to load project content.</p>";
+      console.error(err);
+    }
+  }
+
+  if (!project) {
+    document.getElementById('title').innerText = "Project not found";
+    contentElement.innerHTML = "<p>Check the project key in the URL.</p>";
+  } else {
+    document.getElementById('project-title').innerText = project.title;
+    document.getElementById('title').innerText = project.title;
+    document.getElementById('dates').innerText = `${project.start} - ${project.end}`;
+    document.getElementById('skills').innerText = project.skills.join(', ');
+
+    const links = document.getElementById('links');
+    project.links.forEach(link => {
+      const t = document.createElement("div");
+      t.className = "flex items-center gap-1";
+
+      const img = document.createElement("img");
+      img.className = "w-7 h-7 text-text-link icon-invert";
+      img.src = link.icon;
+      img.alt = link.label;
+
+      const linkName = document.createElement("a");
+      linkName.className = "text-text-link hover:underline hover:text-text-hover";
+      linkName.target = "_blank";
+      linkName.href = link.url;
+      linkName.innerText = link.label;
+
+      t.appendChild(img);
+      t.appendChild(linkName);
+      links.appendChild(t);
+    });
+
+    renderProject(project);
+
+    if (project.prev) {
+      const prev = document.getElementById('prev-project');
+      prev.href = `project.html?key=${project.prev.key}`;
+      prev.innerHTML = `&#x276E; ${project.prev.label}`;
+    }
+
+    if (project.next) {
+      const next = document.getElementById('next-project');
+      next.href = `project.html?key=${project.next.key}`;
+      next.innerHTML = `${project.next.label} &#x276F;`;
+    }
+
+    contentElement.querySelectorAll("img").forEach(img => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "image-scroll";
+      img.parentNode.insertBefore(wrapper, img);
+      wrapper.appendChild(img);
+    });
+  }
+</script>
+</body>
+</html>

@@ -3,8 +3,8 @@
 ======================================== */
 
 .prose {
-  font-size: clamp(0.92rem, 1.5vw, 1.1rem);
-  line-height: 1.78;
+  font-size: clamp(0.95rem, 1.4vw, 1.35rem);
+  line-height: 1.8;
   color: var(--text-text);
 }
 
@@ -25,7 +25,7 @@
 ======================================== */
 
 .prose h1 {
-  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  font-size: clamp(1.6rem, 2.8vw, 2.8rem);
   font-weight: 800;
   margin: 0.5rem 0 0.6rem;
   color: var(--text-title);
@@ -33,7 +33,7 @@
   letter-spacing: -0.01em;
 }
 .prose h2 {
-  font-size: clamp(1.3rem, 2.5vw, 1.875rem);
+  font-size: clamp(1.3rem, 2.2vw, 2.2rem);
   font-weight: 700;
   margin: 1.6rem 0 0.6rem;
   color: var(--text-title);
@@ -42,26 +42,26 @@
   padding-bottom: 0.3rem;
 }
 .prose h3 {
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-size: clamp(1.1rem, 1.8vw, 1.8rem);
   font-weight: 600;
   margin: 1.4rem 0 0.5rem;
   color: var(--text-text);
 }
 .prose h4 {
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
   font-weight: 600;
   margin: 1.2rem 0 0.4rem;
   color: var(--text-subtitle);
   font-style: italic;
 }
 .prose h5 {
-  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  font-size: clamp(0.95rem, 1.3vw, 1.3rem);
   font-weight: 600;
   margin: 1rem 0 0.3rem;
   color: var(--text-subtext);
 }
 .prose h6 {
-  font-size: clamp(0.88rem, 1.4vw, 1rem);
+  font-size: clamp(0.88rem, 1.2vw, 1.15rem);
   font-weight: 500;
   margin: 0.75rem 0 0.25rem;
   color: var(--text-subtext);
@@ -112,55 +112,75 @@
   border-radius: 0.35rem;
 }
 
-/* Block pre/code */
-.prose pre {
+/* Block pre/code — must override Prism's injected styles */
+.prose pre,
+.prose pre[class*="language-"] {
   font-family: 'Cascadia Code', 'Fira Code', Consolas, Monaco, 'Courier New', monospace;
-  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+  font-size: clamp(0.8rem, 1.1vw, 1rem);
   padding: 1.1rem 1.2rem;
   margin-bottom: 1rem;
   border-radius: 0.75rem;
   overflow-x: auto;
-  color: var(--text-text);
+  color: var(--text-text) !important;
   background: var(--bg-code) !important;
-  border: 1px solid var(--bg-code-border);
-  line-height: 1.6;
+  border: 1px solid var(--bg-code-border) !important;
+  line-height: 1.65;
+  /* Kill Prism's text-shadow which creates the "white underline" in dark mode */
+  text-shadow: none !important;
+  box-shadow: none !important;
 }
 
-/* Override Prism's default backgrounds to use our neutral token */
-.prose pre[class*="language-"],
 .prose code[class*="language-"] {
   background: var(--bg-code) !important;
   color: var(--text-text) !important;
+  text-shadow: none !important;
 }
 
-/* Prism token colours: use restrained defaults that work light + dark */
+/* Light mode Prism token overrides — keep Prism's defaults, just ensure background is neutral */
+:not(.dark) .prose pre[class*="language-"] .token,
+:not(.dark) .prose code[class*="language-"] .token {
+  /* inherit light Prism theme colours — they work fine on our neutral bg */
+}
+
+/* Dark mode: full token colour overrides (GitHub Dark inspired) */
+.dark .prose pre,
+.dark .prose pre[class*="language-"],
+.dark .prose code[class*="language-"] {
+  color: #e6edf3 !important;
+}
+
 .dark .token.comment,
 .dark .token.prolog,
 .dark .token.doctype,
-.dark .token.cdata           { color: #8b9db0; }
-.dark .token.punctuation     { color: #c5c8c6; }
+.dark .token.cdata           { color: #8b949e; font-style: italic; }
+.dark .token.punctuation     { color: #e6edf3; }
+.dark .token.namespace       { opacity: 0.7; }
 .dark .token.property,
-.dark .token.tag,
-.dark .token.boolean,
-.dark .token.number,
 .dark .token.constant,
-.dark .token.symbol          { color: #9ecbff; }
+.dark .token.symbol          { color: #79c0ff; }
+.dark .token.tag,
+.dark .token.deleted         { color: #ffa198; }
+.dark .token.boolean,
+.dark .token.number          { color: #79c0ff; }
 .dark .token.selector,
 .dark .token.attr-name,
 .dark .token.string,
 .dark .token.char,
-.dark .token.builtin         { color: #85e89d; }
+.dark .token.builtin,
+.dark .token.inserted        { color: #a5d6ff; }
 .dark .token.operator,
 .dark .token.entity,
-.dark .token.url,
+.dark .token.url             { color: #e6edf3; }
 .dark .language-css .token.string,
-.dark .style .token.string   { color: #79b8ff; }
+.dark .style .token.string   { color: #a5d6ff; }
 .dark .token.atrule,
-.dark .token.attr-value,
-.dark .token.keyword         { color: #f97583; }
-.dark .token.function        { color: #b392f0; }
+.dark .token.attr-value      { color: #a5d6ff; }
+.dark .token.keyword         { color: #ff7b72; }
+.dark .token.function,
+.dark .token.class-name      { color: #d2a8ff; }
 .dark .token.regex,
-.dark .token.important       { color: #fdacc2; }
+.dark .token.important,
+.dark .token.variable        { color: #ffa657; }
 
 /* ========================================
    TABLES
@@ -294,11 +314,8 @@ article img + em {
 }
 
 /* ========================================
-   RESPONSIVE TYPOGRAPHY
+   RESPONSIVE
 ======================================== */
-
-/* Font sizes are handled by clamp() above.
-   Only layout adjustments needed here. */
 
 @media (max-width: 640px) {
   .prose pre { padding: 0.75rem; border-radius: 0.5rem; }

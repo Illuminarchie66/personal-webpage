@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title id="project-title">Project</title>
   <link rel="stylesheet" href="../css/main.css">
 
   <script src="https://cdn.tailwindcss.com"></script>
-	<link rel="stylesheet" href="../css/project_md.css">
+  <link rel="stylesheet" href="../css/project_md.css">
   <script type="module" src="../js/colors.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -16,107 +16,418 @@
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
 
-	<link href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism.css" rel="stylesheet" />
-	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
-	
-	<script type="module" src="../../js/header.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  <script type="module" src="../../js/header.js"></script>
+
+  <style>
+    /* ── Reading progress bar ── */
+    #reading-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary-500), var(--primary-300));
+      z-index: 9999;
+      transition: width 0.08s linear;
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* ── Layout shell ── */
+    .project-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 2400px;
+      margin: 0 auto;
+      padding: 1rem 1rem 3rem;
+    }
+
+    @media (min-width: 1200px) {
+      .project-layout {
+        /* article takes the bulk of space; TOC is fixed-width on right; no left spacer needed */
+        grid-template-columns: 1fr 340px;
+        align-items: start;
+        padding: 2rem 2.5rem 4rem;
+        gap: 2rem;
+      }
+    }
+    @media (min-width: 1600px) {
+      .project-layout {
+        grid-template-columns: 1fr 380px;
+        gap: 2.5rem;
+      }
+    }
+    @media (min-width: 2000px) {
+      .project-layout {
+        grid-template-columns: 1fr 420px;
+        padding: 2rem 4rem 4rem;
+      }
+    }
+
+    /* ── Project hero ── */
+    .project-hero {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 1.5rem 1rem 0.5rem;
+    }
+    .project-hero h1 {
+      font-size: clamp(2rem, 4vw, 5rem);
+      font-weight: 800;
+      color: var(--text-title);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.25rem;
+      color: var(--text-subtext);
+      font-size: clamp(0.9rem, 1.2vw, 1.25rem);
+      margin-bottom: 0.75rem;
+    }
+    .project-meta .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .project-meta .meta-sep { opacity: 0.3; }
+
+    /* Skills pills */
+    .skills-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+    }
+    .skill-pill {
+      font-size: clamp(0.75rem, 0.9vw, 1rem);
+      background: var(--bg-extra1);
+      color: var(--text-link);
+      border-radius: 9999px;
+      padding: 0.25rem 0.75rem;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+    .skill-pill:hover { background: var(--bg-hover); }
+
+    /* State badge */
+    .state-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: clamp(0.72rem, 0.85vw, 0.95rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+    }
+    .state-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+    .state-completed  { background: var(--bg-extra4); color: var(--text-title-extra4); }
+    .state-completed::before  { background: var(--text-title-extra4); }
+    .state-wip        { background: var(--bg-extra2); color: var(--text-title-extra2); }
+    .state-wip::before        { background: var(--text-title-extra2); }
+    .state-abandoned  { background: #fee2e2; color: #991b1b; }
+    .dark .state-abandoned { background: #450a0a; color: #fca5a5; }
+    .state-abandoned::before  { background: #991b1b; }
+
+    /* Summary block */
+    .project-summary {
+      max-width: 80ch;
+      margin: 0 auto 0.75rem;
+      font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+      color: var(--text-subtext);
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    /* Links row */
+    #links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+    }
+    #links .link-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: clamp(0.85rem, 1vw, 1.1rem);
+      color: var(--text-link);
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      border: 1.5px solid var(--border4);
+      border-radius: 9999px;
+      background: var(--bg-card);
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+      font-weight: 500;
+    }
+    #links .link-item:hover {
+      border-color: var(--border2);
+      box-shadow: 0 2px 10px var(--light-shadow-color);
+      transform: translateY(-1px);
+      color: var(--text-hover);
+    }
+    #links .link-item img { width: 1.1em; height: 1.1em; }
+
+    /* ── Divider ── */
+    .hero-divider {
+      grid-column: 1 / -1;
+      border: none;
+      border-top: 1.5px solid var(--border4);
+      margin: 0;
+    }
+
+    /* ── Left spacer (desktop) ── */
+    .left-spacer { display: none; }
+    @media (min-width: 1200px) { .left-spacer { display: block; } }
+
+    /* ── Article area ── */
+    .article-wrap {
+      min-width: 0; /* prevent grid blowout */
+    }
+    .article-card {
+      background: var(--bg-card);
+      border-radius: 1.25rem;
+      padding: clamp(1rem, 3vw, 2.5rem);
+      box-shadow: 0 2px 16px var(--light-shadow-color);
+    }
+
+    /* ── Loading skeleton ── */
+    #loading-state {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1rem 0;
+    }
+    .skeleton-line {
+      height: 1rem;
+      background: linear-gradient(90deg, var(--bg-bottom) 25%, var(--bg-main) 50%, var(--bg-bottom) 75%);
+      background-size: 200% 100%;
+      border-radius: 0.5rem;
+      animation: shimmer 1.4s infinite;
+    }
+    .skeleton-line.wide  { width: 100%; }
+    .skeleton-line.med   { width: 75%; }
+    .skeleton-line.short { width: 50%; }
+    .skeleton-line.tall  { height: 1.4rem; margin-bottom: 0.5rem; }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+    /* Error state */
+    #error-state {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      color: #ef4444;
+    }
+    #error-state svg { margin: 0 auto 0.75rem; }
+
+    /* ── TOC sidebar ── */
+    .toc-sidebar {
+      position: sticky;
+      top: 1rem;
+      max-height: calc(100vh - 5rem);
+      overflow-y: auto;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border4);
+      border-radius: 1rem;
+      padding: 1rem 1.1rem;
+      font-size: clamp(0.8rem, 0.85vw, 1rem);
+      scrollbar-width: thin;
+    }
+    /* Mobile: TOC hidden by default, shown as accordion */
+    .toc-sidebar { display: none; }
+    @media (min-width: 1200px) { .toc-sidebar { display: block; } }
+
+    .toc-mobile {
+      grid-column: 1 / -1;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border4);
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+    @media (min-width: 1200px) { .toc-mobile { display: none; } }
+
+    .toc-mobile-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 1rem;
+      font-weight: 600;
+      font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+      color: var(--text-text);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .toc-mobile-toggle svg { transition: transform 0.2s; }
+    .toc-mobile-toggle.open svg { transform: rotate(180deg); }
+    .toc-mobile-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 1rem;
+    }
+    .toc-mobile-body.open { max-height: 400px; padding: 0 1rem 0.75rem; }
+
+    .toc-title {
+      font-weight: 700;
+      color: var(--text-title);
+      font-size: clamp(0.72rem, 0.8vw, 0.9rem);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.6rem;
+    }
+    .toc-list { list-style: none; padding: 0; margin: 0; }
+    .toc-list li { margin: 0; }
+    .toc-list a {
+      display: block;
+      padding: 0.3rem 0.5rem;
+      color: var(--text-subtext);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      border-radius: 0 0.25rem 0.25rem 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+      line-height: 1.4;
+      font-size: clamp(0.78rem, 0.82vw, 0.95rem);
+    }
+    .toc-list a:hover, .toc-list a.active {
+      color: var(--text-link);
+      border-left-color: var(--primary-400);
+      background: var(--bg-hover);
+    }
+    .toc-list .toc-h3 a { padding-left: 1rem; font-size: clamp(0.72rem, 0.78vw, 0.9rem); }
+    .toc-list .toc-h4 a { padding-left: 1.75rem; font-size: clamp(0.68rem, 0.74vw, 0.85rem); }
+    #toc-empty { color: var(--text-subtext); font-size: 0.85rem; font-style: italic; }
+
+    /* ── Code block wrapper ── */
+    .code-block-wrapper {
+      position: relative;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: var(--bg-main);
+      color: var(--text-subtext);
+      border: 1px solid var(--border4);
+      border-radius: 0.4rem;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.72rem;
+      font-family: inherit;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.15s, background 0.15s, color 0.15s;
+      z-index: 10;
+      line-height: 1.5;
+    }
+    .code-block-wrapper:hover .copy-btn { opacity: 1; }
+    .copy-btn:hover { background: var(--primary-600); color: #fff; border-color: var(--primary-600); }
+    .copy-btn.copied { background: #16a34a; color: #fff; border-color: #16a34a; opacity: 1; }
+
+    /* ── Side nav arrows ── */
+    .side-nav-btn {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border4);
+      border-radius: 50%;
+      box-shadow: 0 2px 12px var(--shadow-color);
+      text-decoration: none;
+      font-size: 1.6rem;
+      color: var(--text-extra);
+      transition: color 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+      cursor: pointer;
+      line-height: 1;
+    }
+    @media (min-width: 900px) { .side-nav-btn { display: flex; } }
+    @media (min-width: 1600px) { .side-nav-btn { width: 3.5rem; height: 3.5rem; font-size: 2rem; } }
+    .side-nav-btn:hover {
+      color: var(--complementary-400);
+      border-color: var(--border2);
+      box-shadow: 0 4px 20px var(--shadow-color);
+      transform: translateY(-50%) scale(1.1);
+    }
+    #side-prev { left: 0.6rem; }
+    #side-next { right: 0.6rem; }
+    @media (min-width: 1600px) {
+      #side-prev { left: 1rem; }
+      #side-next { right: 1rem; }
+    }
+
+    /* ── Bottom nav (mobile fallback) ── */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0 0 1.5rem;
+      grid-column: 1 / -1;
+    }
+    @media (min-width: 900px) { .bottom-nav { display: none; } }
+    .bottom-nav a {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 0.9rem;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border4);
+      border-radius: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-link);
+      text-decoration: none;
+      font-weight: 600;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      overflow: hidden;
+    }
+    .bottom-nav a:hover { border-color: var(--border2); box-shadow: 0 2px 10px var(--light-shadow-color); }
+    .bottom-nav .nav-next { justify-content: flex-end; text-align: right; }
+    .bottom-nav .nav-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  </style>
 </head>
+
 <body class="bg-bg-main text-text-text font-sans">
 
-  <!-- Header Section -->
-  <header class="bg-bg-header shadow">
-    <nav class="mx-auto flex items-center justify-between
-              max-w-none
-              px-2 sm:px-4 lg:px-6
-              h-10 sm:h-12 lg:h-16">
-      <h1 id="side-title"
-        class="font-bold tracking-tight
-              text-lg sm:text-l lg:text-xl 2xl:text-2xl">
-        Loading...
-      </h1>
-      <button id="menu-toggle"
-              class="md:hidden aspect-square flex items-center justify-center rounded hover:bg-bg-simple_hover focus:outline-none w-10 p-1"
-              aria-label="Open menu">
-        ☰
-      </button>
+  <div id="reading-progress" aria-hidden="true"></div>
 
-      <ul class="hidden md:flex items-center space-x-6 xl:text-xl">
-      <li>
-        <button class="w-9 h-9 flex items-center justify-center rounded-md p-1
-              hover:bg-bg-simple_hover transition theme-toggle"
-            aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="w-9 h-9">
-          <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1" x2="12" y2="3"/>
-          <line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1" y1="12" x2="3" y2="12"/>
-          <line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
-      </li>
-      <li> 
-        <button class="w-9 h-9 flex items-center justify-center rounded-md p-1
-              hover:bg-bg-simple_hover transition color-toggle"
-              aria-label="Toggle color"><svg xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="w-9 h-9"
-              >
-              <path d="M12 6a8 8 0 1 0 7.9 9.5h-2.1A6 6 0 1 1 12 8v3l4-4-4-4v3z"/>
-              </svg></button>
-      </li>
-      <li><button class="hover:text-text-hover focus:outline-none home-button">Home</button></li>
-      <li><a href="/projects" class="hover:text-text-hover">Projects</a></li>
-      <li><a href="/contact" class="hover:text-text-hover">Contact</a></li>
+  <!-- Side nav arrows (desktop) -->
+  <a id="side-prev" class="side-nav-btn" aria-label="Previous project" style="display:none">&#x276E;</a>
+  <a id="side-next" class="side-nav-btn" aria-label="Next project" style="display:none">&#x276F;</a>
+
+  <!-- Header -->
+  <header class="bg-bg-header shadow">
+    <nav class="mx-auto flex items-center justify-between max-w-none px-2 sm:px-4 lg:px-6 h-10 sm:h-12 lg:h-16" aria-label="Main navigation">
+      <h1 id="side-title" class="font-bold tracking-tight text-lg sm:text-lg lg:text-xl 2xl:text-2xl">Loading...</h1>
+      <button id="menu-toggle" class="md:hidden aspect-square flex items-center justify-center rounded hover:bg-bg-simple_hover focus:outline-none w-10 p-1" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="hidden md:flex items-center space-x-6 xl:text-xl" role="list">
+        <li><button class="w-9 h-9 flex items-center justify-center rounded-md p-1 hover:bg-bg-simple_hover transition theme-toggle" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-9 h-9" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></li>
+        <li><button class="w-9 h-9 flex items-center justify-center rounded-md p-1 hover:bg-bg-simple_hover transition color-toggle" aria-label="Cycle colour theme"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-9 h-9" aria-hidden="true"><circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.648 1.648 0 0 1 1.648-1.648h1.953c3.148 0 5.626-2.336 5.626-5.472C22 6.719 17.523 2 12 2z"/></svg></button></li>
+        <li><button class="hover:text-text-hover focus:outline-none home-button">Home</button></li>
+        <li><a href="/projects" class="hover:text-text-hover">Projects</a></li>
+        <li><a href="/contact" class="hover:text-text-hover">Contact</a></li>
       </ul>
     </nav>
-    <div id="mobile-menu"
-        class="md:hidden bg-bg-header border-t border-gray-200
-                overflow-hidden
-                max-h-0 opacity-0 -translate-y-2
-                transition-all duration-300 ease-in-out">
-      <ul class="flex items-center justify-between px-6 py-1 sm:py-2 md:py-2">
-        <li>
-          <button class="w-9 h-9 flex items-center justify-center rounded-md p-1
-                hover:bg-bg-simple_hover transition theme-toggle"
-              aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="w-9 h-9">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
-        </li>
-        <li> 
-          <button class="w-9 h-9 flex items-center justify-center rounded-md p-1
-                hover:bg-bg-simple_hover transition color-toggle"
-                aria-label="Toggle color"><svg xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-9 h-9"
-                >
-                <path d="M12 6a8 8 0 1 0 7.9 9.5h-2.1A6 6 0 1 1 12 8v3l4-4-4-4v3z"/>
-                </svg></button>
-        </li>
+    <div id="mobile-menu" class="md:hidden bg-bg-header border-t border-gray-200 overflow-hidden max-h-0 opacity-0 -translate-y-2 transition-all duration-300 ease-in-out" role="region" aria-label="Mobile navigation">
+      <ul class="flex items-center justify-between px-6 py-2" role="list">
+        <li><button class="w-9 h-9 flex items-center justify-center rounded-md p-1 hover:bg-bg-simple_hover transition theme-toggle" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-9 h-9" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></li>
+        <li><button class="w-9 h-9 flex items-center justify-center rounded-md p-1 hover:bg-bg-simple_hover transition color-toggle" aria-label="Cycle colour theme"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-9 h-9" aria-hidden="true"><circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.648 1.648 0 0 1 1.648-1.648h1.953c3.148 0 5.626-2.336 5.626-5.472C22 6.719 17.523 2 12 2z"/></svg></button></li>
         <li><button class="hover:text-text-hover focus:outline-none home-button">Home</button></li>
         <li><a href="/projects" class="py-2">Projects</a></li>
         <li><a href="/contact" class="py-2">Contact</a></li>
@@ -124,122 +435,348 @@
     </div>
   </header>
 
-  <main class="mx-auto max-w-[2000px] p-2 sm:p-6 md:p-10 lg:p-20">
-    <!-- Project Title -->
-    <h1 id="title" class="text-5xl sm:text-4xl lg:text-7xl font-bold text-text-title text-center pb-4">a</h1>
+  <!-- Main layout grid -->
+  <div class="project-layout">
 
-    <!-- Dates & Skills -->
-    <div class="flex flex-col sm:flex-row justify-center gap-2 sm:gap-6 text-text-subtext pb-2 sm:pb-6 text-center lg:text-2xl">
-      <span id="dates" class="font-semibold"></span>
-      <span id="skills"></span>
+    <!-- Hero: full width -->
+    <div class="project-hero">
+      <h1 id="title">Loading…</h1>
+
+      <div class="project-meta">
+        <span class="meta-item" id="dates-meta"></span>
+        <span class="meta-sep" id="type-sep" style="display:none">·</span>
+        <span class="meta-item" id="type-meta"></span>
+        <span class="meta-sep" id="state-sep" style="display:none">·</span>
+        <span id="state-meta"></span>
+      </div>
+
+      <p id="summary-text" class="project-summary" style="display:none"></p>
+
+      <div class="skills-row" id="skills-row"></div>
+
+      <div id="links"></div>
     </div>
 
-    <!-- Links -->
-    <div id="links" class="items-center flex flex-row sm:flex-row justify-center gap-2 sm:gap-4 pb-6 text-center lg:text-2xl">
+    <hr class="hero-divider" />
 
+    <!-- Mobile TOC accordion -->
+    <div class="toc-mobile" id="toc-mobile" style="display:none">
+      <button class="toc-mobile-toggle" id="toc-toggle" aria-expanded="false">
+        <span>Table of Contents</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div class="toc-mobile-body" id="toc-mobile-body">
+        <ul class="toc-list" id="toc-list-mobile"></ul>
+      </div>
     </div>
 
-    <!-- Markdown Card -->
-    <div class="bg-bg-card rounded-3xl p-2 sm:p-6 shadow-lg">
-      <article id="content" class="prose max-w-full mx-auto break-words"></article>
+    <!-- Article -->
+    <div class="article-wrap">
+      <div class="article-card">
+        <!-- Loading skeleton -->
+        <div id="loading-state">
+          <div class="skeleton-line tall wide"></div>
+          <div class="skeleton-line wide"></div>
+          <div class="skeleton-line med"></div>
+          <div class="skeleton-line wide"></div>
+          <div class="skeleton-line short"></div>
+          <div class="skeleton-line wide" style="margin-top:1rem"></div>
+          <div class="skeleton-line wide"></div>
+          <div class="skeleton-line med"></div>
+        </div>
+        <!-- Error state -->
+        <div id="error-state">
+          <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <p id="error-msg" class="text-lg font-semibold">Failed to load content</p>
+          <p class="text-sm mt-1">Check the project key in the URL or try refreshing</p>
+          <button onclick="location.reload()" style="margin-top:1rem;padding:0.4rem 1rem;border-radius:0.5rem;border:1.5px solid var(--border3);cursor:pointer;font-size:0.85rem;">Retry</button>
+        </div>
+        <!-- Content -->
+        <article id="content" class="prose max-w-full mx-auto break-words" style="display:none"></article>
+      </div>
     </div>
 
-    <!-- Navigation -->
-    <div class="flex flex-row text-md sm:text-lg md:text-xl lg:text-2xl justify-between mt-8 text-text-link font-semibold">
-      <a id="prev-project" class="hover:underline mb-2 sm:mb-0"></a>
-      <a id="next-project" class="hover:underline"></a>
-    </div>
-  </main>
+    <!-- Desktop TOC sidebar -->
+    <aside class="toc-sidebar" id="toc-sidebar" aria-label="Table of contents">
+      <div class="toc-title">Contents</div>
+      <ul class="toc-list" id="toc-list-desktop">
+        <li id="toc-empty" style="display:none">No headings found</li>
+      </ul>
+    </aside>
 
-  <!-- Project Data -->
+    <!-- Bottom nav (mobile) -->
+    <div class="bottom-nav" id="bottom-nav"></div>
+
+  </div><!-- /project-layout -->
+
   <script src="./project-data.js"></script>
   <script>
-  const params = new URLSearchParams(window.location.search);
+  // ── Setup ─────────────────────────────────────────────────────────────
+  const params     = new URLSearchParams(window.location.search);
   const projectKey = params.get('key');
-  const project = projects[projectKey];
+  const project    = projects[projectKey];
 
-  const contentElement = document.getElementById('content');
+  // ── Reading progress ──────────────────────────────────────────────────
+  const progressBar = document.getElementById('reading-progress');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = `${docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0}%`;
+  }, { passive: true });
 
-  async function loadMarkdown(filePath) {
-    const response = await fetch(filePath);
-    if (!response.ok) {
-      throw new Error("Failed to load markdown file.");
+  // ── TOC toggle (mobile) ───────────────────────────────────────────────
+  const tocToggle = document.getElementById('toc-toggle');
+  const tocMobileBody = document.getElementById('toc-mobile-body');
+  tocToggle.addEventListener('click', () => {
+    const open = tocMobileBody.classList.toggle('open');
+    tocToggle.classList.toggle('open', open);
+    tocToggle.setAttribute('aria-expanded', open);
+  });
+
+  // ── Build TOC from rendered headings ─────────────────────────────────
+  function buildTOC(articleEl) {
+    const headings = articleEl.querySelectorAll('h2, h3, h4');
+    const listDesktop = document.getElementById('toc-list-desktop');
+    const listMobile  = document.getElementById('toc-list-mobile');
+    const tocMobile   = document.getElementById('toc-mobile');
+    const tocEmpty    = document.getElementById('toc-empty');
+
+    listDesktop.innerHTML = '';
+    listMobile.innerHTML  = '';
+
+    if (!headings.length) {
+      tocEmpty.style.display = 'list-item';
+      return;
     }
-    return await response.text();
-  }
+    tocEmpty.style.display = 'none';
+    tocMobile.style.display = 'block';
 
-  async function renderProject(project) {
-    try {
-      const markdown = await loadMarkdown(project.markdown);
+    const allLinks = [];
 
-      contentElement.innerHTML = marked.parse(markdown);
+    headings.forEach((h, i) => {
+      if (!h.id) h.id = `heading-${i}`;
+      const tag  = h.tagName.toLowerCase();
+      const text = h.textContent;
 
-      renderMathInElement(contentElement, {
-        delimiters: [
-          { left: "$$", right: "$$", display: true },
-          { left: "$", right: "$", display: false }
-        ]
+      [listDesktop, listMobile].forEach(list => {
+        const li  = document.createElement('li');
+        li.className = `toc-${tag}`;
+        const a  = document.createElement('a');
+        a.href  = `#${h.id}`;
+        a.textContent = text;
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, '', `#${h.id}`);
+        });
+        li.appendChild(a);
+        list.appendChild(li);
+        if (list === listDesktop) allLinks.push({ el: h, a });
       });
-
-      Prism.highlightAllUnder(contentElement);
-
-    } catch (err) {
-      contentElement.innerHTML = "<p>Failed to load project content.</p>";
-      console.error(err);
-    }
-  }
-
-  if (!project) {
-    document.getElementById('title').innerText = "Project not found";
-    contentElement.innerHTML = "<p>Check the project key in the URL.</p>";
-  } else {
-    document.getElementById('project-title').innerText = project.title;
-    document.getElementById('title').innerText = project.title;
-    document.getElementById('dates').innerText = `${project.start} - ${project.end}`;
-    document.getElementById('skills').innerText = project.skills.join(', ');
-
-    const links = document.getElementById('links');
-    project.links.forEach(link => {
-      const t = document.createElement("div");
-      t.className = "flex items-center gap-1";
-
-      const img = document.createElement("img");
-      img.className = "w-7 h-7 text-text-link icon-invert";
-      img.src = link.icon;
-      img.alt = link.label;
-
-      const linkName = document.createElement("a");
-      linkName.className = "text-text-link hover:underline hover:text-text-hover";
-      linkName.target = "_blank";
-      linkName.href = link.url;
-      linkName.innerText = link.label;
-
-      t.appendChild(img);
-      t.appendChild(linkName);
-      links.appendChild(t);
     });
 
-    renderProject(project);
+    // Highlight active heading on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const link = allLinks.find(l => l.el === entry.target);
+        if (link) link.a.classList.toggle('active', entry.isIntersecting);
+      });
+    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
 
-    if (project.prev) {
-      const prev = document.getElementById('prev-project');
-      prev.href = `project.html?key=${project.prev.key}`;
-      prev.innerHTML = `&#x276E; ${project.prev.label}`;
-    }
+    allLinks.forEach(({ el }) => observer.observe(el));
+  }
 
-    if (project.next) {
-      const next = document.getElementById('next-project');
-      next.href = `project.html?key=${project.next.key}`;
-      next.innerHTML = `${project.next.label} &#x276F;`;
-    }
+  // ── Add copy buttons to code blocks ──────────────────────────────────
+  function addCopyButtons(articleEl) {
+    articleEl.querySelectorAll('pre').forEach(pre => {
+      const wrap = document.createElement('div');
+      wrap.className = 'code-block-wrapper';
+      pre.parentNode.insertBefore(wrap, pre);
+      wrap.appendChild(pre);
 
-    contentElement.querySelectorAll("img").forEach(img => {
-      const wrapper = document.createElement("div");
-      wrapper.className = "image-scroll";
+      const btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = 'Copy';
+      btn.setAttribute('aria-label', 'Copy code');
+      btn.addEventListener('click', async () => {
+        const code = pre.querySelector('code')?.innerText ?? pre.innerText;
+        try {
+          await navigator.clipboard.writeText(code);
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        } catch {
+          btn.textContent = 'Error';
+          setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+        }
+      });
+      wrap.appendChild(btn);
+    });
+  }
+
+  // ── Wrap images for horizontal scroll ────────────────────────────────
+  function wrapImages(articleEl) {
+    articleEl.querySelectorAll('img').forEach(img => {
+      if (img.closest('.image-scroll')) return;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'image-scroll';
       img.parentNode.insertBefore(wrapper, img);
       wrapper.appendChild(img);
     });
   }
-</script>
+
+  // ── Wrap tables ───────────────────────────────────────────────────────
+  function wrapTables(articleEl) {
+    articleEl.querySelectorAll('table').forEach(tbl => {
+      if (tbl.closest('.table-wrapper')) return;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'table-wrapper';
+      tbl.parentNode.insertBefore(wrapper, tbl);
+      wrapper.appendChild(tbl);
+    });
+  }
+
+  // ── Load markdown ─────────────────────────────────────────────────────
+  async function renderProject(project) {
+    const loadingEl = document.getElementById('loading-state');
+    const errorEl   = document.getElementById('error-state');
+    const contentEl = document.getElementById('content');
+
+    try {
+      const response = await fetch(project.markdown);
+      if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      const markdown = await response.text();
+
+      contentEl.innerHTML = marked.parse(markdown);
+
+      renderMathInElement(contentEl, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$',  right: '$',  display: false }
+        ],
+        throwOnError: false
+      });
+
+      Prism.highlightAllUnder(contentEl);
+
+      addCopyButtons(contentEl);
+      wrapImages(contentEl);
+      wrapTables(contentEl);
+      buildTOC(contentEl);
+
+      loadingEl.style.display = 'none';
+      errorEl.style.display   = 'none';
+      contentEl.style.display = 'block';
+
+    } catch (err) {
+      console.error('Failed to load markdown:', err);
+      loadingEl.style.display = 'none';
+      document.getElementById('error-msg').textContent = `Failed to load content: ${err.message}`;
+      errorEl.style.display   = 'block';
+    }
+  }
+
+  // ── Wire up side nav buttons ──────────────────────────────────────────
+  function setupNav(project) {
+    const sidePrev   = document.getElementById('side-prev');
+    const sideNext   = document.getElementById('side-next');
+    const bottomNav  = document.getElementById('bottom-nav');
+
+    if (project.prev) {
+      const url = `project.html?key=${project.prev.key}`;
+      sidePrev.href = url;
+      sidePrev.style.display = 'flex';
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.className = 'nav-prev';
+      a.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg><span class="nav-label">${project.prev.label}</span>`;
+      bottomNav.appendChild(a);
+    }
+    if (project.next) {
+      const url = `project.html?key=${project.next.key}`;
+      sideNext.href = url;
+      sideNext.style.display = 'flex';
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.className = 'nav-next';
+      a.innerHTML = `<span class="nav-label">${project.next.label}</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>`;
+      bottomNav.appendChild(a);
+    }
+  }
+
+  // ── Populate hero ─────────────────────────────────────────────────────
+  function populateHero(project) {
+    document.getElementById('project-title').textContent = project.title;
+    document.getElementById('title').textContent = project.title;
+
+    // Dates
+    document.getElementById('dates-meta').textContent = `${project.start} – ${project.end}`;
+
+    // Type
+    if (project.tags?.type) {
+      document.getElementById('type-meta').textContent = project.tags.type.charAt(0).toUpperCase() + project.tags.type.slice(1);
+      document.getElementById('type-sep').style.display = 'inline';
+    }
+
+    // State badge
+    const state = project.tags?.state;
+    if (state) {
+      const labels = { completed: 'Completed', wip: 'In Progress', abandoned: 'Abandoned' };
+      const stateMeta = document.getElementById('state-meta');
+      stateMeta.innerHTML = `<span class="state-badge state-${state}">${labels[state] || state}</span>`;
+      document.getElementById('state-sep').style.display = 'inline';
+    }
+
+    // Summary
+    if (project.summary) {
+      const s = document.getElementById('summary-text');
+      s.textContent = project.summary;
+      s.style.display = 'block';
+    }
+
+    // Skills
+    const skillsRow = document.getElementById('skills-row');
+    (project.skills || []).forEach(skill => {
+      const span = document.createElement('span');
+      span.className = 'skill-pill';
+      span.textContent = skill;
+      skillsRow.appendChild(span);
+    });
+
+    // Links
+    const linksEl = document.getElementById('links');
+    (project.links || []).forEach(link => {
+      const a = document.createElement('a');
+      a.className = 'link-item';
+      a.href   = link.url;
+      a.target = '_blank';
+      a.rel    = 'noopener noreferrer';
+
+      const img = document.createElement('img');
+      img.className = 'icon-invert';
+      img.src = link.icon;
+      img.alt = '';
+      img.setAttribute('aria-hidden', 'true');
+
+      a.appendChild(img);
+      a.appendChild(document.createTextNode(link.label));
+      linksEl.appendChild(a);
+    });
+  }
+
+  // ── Main ──────────────────────────────────────────────────────────────
+  if (!project) {
+    document.getElementById('title').textContent = 'Project not found';
+    document.getElementById('loading-state').style.display = 'none';
+    document.getElementById('error-state').style.display = 'block';
+    document.getElementById('error-msg').textContent = 'No project found for this key.';
+  } else {
+    populateHero(project);
+    setupNav(project);
+    renderProject(project);
+  }
+  </script>
 </body>
 </html>

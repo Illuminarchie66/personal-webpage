@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title id="project-title">Projects</title>
+    <link rel="stylesheet" href="../css/main.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../js/colors.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+	<link href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-python.min.js"></script>
+	
+	<script type="module" src="../../js/header.js"></script>
+</head>
+
+<body class="bg-bg-main text-text-text font-sans">
+
+<!-- Header Section -->
+    <header class="bg-bg-header shadow">
+        <nav class="mx-auto flex items-center justify-between
+                max-w-none
+                px-2 sm:px-4 lg:px-6
+                h-10 sm:h-12 lg:h-16">
+        <h1 id="side-title"
+            class="font-bold tracking-tight
+                text-lg sm:text-l lg:text-xl 2xl:text-2xl">
+            Loading...
+        </h1>
+        <button id="menu-toggle"
+                class="md:hidden aspect-square flex items-center justify-center rounded hover:bg-bg-simple_hover focus:outline-none w-10 p-1"
+                aria-label="Open menu">
+            ☰
+        </button>
+
+        <ul class="hidden md:flex items-center space-x-6 xl:text-xl">
+        <li>
+            <button class="w-9 h-9 flex items-center justify-center rounded-md p-1
+                hover:bg-bg-simple_hover transition theme-toggle"
+                aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-9 h-9">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+        </li>
+        <li> 
+            <button class="w-9 h-9 flex items-center justify-center rounded-md p-1
+                hover:bg-bg-simple_hover transition color-toggle"
+                aria-label="Toggle color"><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-9 h-9"
+                >
+                <path d="M12 6a8 8 0 1 0 7.9 9.5h-2.1A6 6 0 1 1 12 8v3l4-4-4-4v3z"/>
+                </svg></button>
+        </li>
+        <li><button class="hover:text-text-hover focus:outline-none home-button">Home</button></li>
+        <li><a href="/projects" class="hover:text-text-hover">Projects</a></li>
+        <li><a href="/contact" class="hover:text-text-hover">Contact</a></li>
+        </ul>
+        </nav>
+        <div id="mobile-menu"
+            class="md:hidden bg-bg-header border-t border-gray-200
+                    overflow-hidden
+                    max-h-0 opacity-0 -translate-y-2
+                    transition-all duration-300 ease-in-out">
+        <ul class="flex items-center justify-between px-6 py-1 sm:py-2 md:py-2">
+            <li>
+            <button class="w-9 h-9 flex items-center justify-center rounded-md p-1
+                    hover:bg-bg-simple_hover transition theme-toggle"
+                aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-9 h-9">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+            </li>
+            <li> 
+            <button class="w-9 h-9 flex items-center justify-center rounded-md p-1
+                    hover:bg-bg-simple_hover transition color-toggle"
+                    aria-label="Toggle color"><svg xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-9 h-9"
+                    >
+                    <path d="M12 6a8 8 0 1 0 7.9 9.5h-2.1A6 6 0 1 1 12 8v3l4-4-4-4v3z"/>
+                    </svg></button>
+            </li>
+            <li><button class="hover:text-text-hover focus:outline-none home-button">Home</button></li>
+            <li><a href="/projects" class="py-2">Projects</a></li>
+            <li><a href="/contact" class="py-2">Contact</a></li>
+        </ul>
+        </div>
+    </header>
+    <h1 class="text-6xl lg:text-6xl xl:text-7xl font-bold text-text-title mt-2 mb-2 sm:mb-8 text-center">PROJECTS</h2>
+
+    <div id="project_list" class="my-2 mx-10 grid grid-cols-1 xl:grid-cols-2 gap-x-4 gap-y-2">
+    </div>
+
+    <script src="./project-data.js"></script>
+    <script>
+        const container = document.getElementById("project_list");
+
+        Object.entries(projects).forEach(([key, project], index) => {
+        const isXL = window.matchMedia("(min-width: 1280px)").matches;
+        const rowIndex = isXL ? Math.floor(index / 2) : index;
+        const bgClass = rowIndex % 2 === 0 ? "bg-bg-card" : "bg-bg-bottom";
+        
+        const card = document.createElement("a");
+        card.href = `project.html?key=${key}`;
+        card.className = `
+            ${bgClass} p-4 flex justify-between text-lg
+            transition-all duration-200 ease-out
+            shadow-sm
+            hover:scale-[1.02] hover:shadow-lg
+            cursor-pointer
+        `;
+
+        const left = document.createElement("div");
+        left.className = "flex flex-col";
+
+        const title = document.createElement("span");
+        title.className = "font-bold"
+        title.textContent = project.title;
+
+        const skills = document.createElement("span");
+        skills.className = "text-sm italic opacity-70";
+        skills.textContent = project.skills.slice(0,3).join(" · ");
+
+        left.appendChild(title);
+        left.appendChild(skills);
+
+        const date = document.createElement("span");
+        date.textContent = `${project.start} - ${project.end}`;
+
+        card.appendChild(left);
+        card.appendChild(date);
+
+        container.appendChild(card);
+        });
+    </script>
+
+</body>

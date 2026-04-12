@@ -69,9 +69,9 @@
   --border4: var(--primary-200);
 
   /* Scrollbar */
-  --scrollbar-thumb: #c4c4cc;
-  --scrollbar-thumb-hover: #a1a1aa;
-  --scrollbar-track: transparent;
+  --scrollbar-thumb:       #b0b0bb;
+  --scrollbar-thumb-hover: #8888a0;
+  --scrollbar-track:       var(--bg-bottom);
 }
 
 /* ========================================
@@ -122,6 +122,7 @@
 
   --scrollbar-thumb:       #52525b;
   --scrollbar-thumb-hover: #71717a;
+  --scrollbar-track:       #09090b;
 }
 
 /* ========================================
@@ -139,11 +140,12 @@
    SCROLLBAR
 ======================================== */
 
-::-webkit-scrollbar       { width: 7px; height: 7px; }
-::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar       { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 4px; }
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
   border-radius: 4px;
+  border: 2px solid var(--scrollbar-track);
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
 
