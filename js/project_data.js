@@ -1,8 +1,8 @@
 // CDN means must be hosted online / not yet found
 // Tags:
-// - state: completed, in-progress, planned
-// - doc state: completed, in-progress, not-started
-// - type: coursework, personal, work
+// - state: completed, wip, planned
+// - doc state: completed, wip, not-started
+// - type: academic, personal, work
 // - meta: has-website, has-github
 
 const projects = {
@@ -59,7 +59,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "completed",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [{ icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS118-Robot-Maze" }],
@@ -77,7 +77,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "completed",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -99,7 +99,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "completed",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -120,7 +120,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "completed",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github", "has-website"]
     },
     links: [
@@ -142,7 +142,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "completed",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github", "has-website"]
     },
     links: [
@@ -164,7 +164,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "completed",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -185,7 +185,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "completed",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -205,7 +205,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "completed",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -225,7 +225,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "completed",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -245,7 +245,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "not-started",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -268,7 +268,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "not-started",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -290,7 +290,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "not-started",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -311,7 +311,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "not-started",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -332,7 +332,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "not-started",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -393,7 +393,7 @@ const projects = {
     start: "Feb 2024",
     end: "Ongoing",
     tags: {
-      state: "in-progress",
+      state: "wip",
       docState: "not-started",
       type: "personal",
       meta: ["has-github", "has-website"]
@@ -417,7 +417,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "not-started",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -437,7 +437,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "not-started",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -457,7 +457,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "not-started",
-      type: "coursework",
+      type: "academic",
       meta: ["has-github"]
     },
     links: [
@@ -499,7 +499,7 @@ const projects = {
     end: "Ongoing",
     skills: ["Python", "Data Analysis", "Web Scraping", "Pandas", "Neural Networks", "PyTorch"],
     tags: {
-      state: "in-progress",
+      state: "wip",
       docState: "not-started",
       type: "personal",
       meta: ["has-github"]
@@ -550,6 +550,149 @@ const projects = {
     next: null
   },
 
+  "erosion-filter": {
+    title: "Erosion Filter",
+    summary: "A project to explore and implement a new erosion filter technique for procedural generation using rotated sin waves to creates gullies and ridges.",
+    start: "-",
+    end: "-",
+    skills: [],
+    tags: {
+      state: "planned",
+      docState: "not-started",
+      type: "personal",
+      meta: []
+    },
+    links: [],
+    markdown: "",
+    prev: null,
+    next: null
+  },
+
+  "confetti-maker": {
+    title: "Confetti Maker",
+    summary: "A project to create a simple confetti maker using JavaScript and HTML canvas, allowing users to create and customize their own confetti animations, able to export the confetti to their own website.",
+    start: "-",
+    end: "-",
+    skills: [],
+    tags: {
+      state: "planned",
+      docState: "not-started",
+      type: "personal",
+      meta: []
+    },
+    links: [],
+    markdown: "",
+    prev: null,
+    next: null
+  },
+
+  "tanks-game": {
+    title: "Tanks Game",
+    summary: "A project to create a simple 3D tanks game using Three.js, based off of Wii Tanks, creating the first 20 levels of the game and implementing various mechanics such as the different enemy tanks, the ricochet mechanics, and the mine placing.",
+    start: "-",
+    end: "-",
+    skills: [],
+    tags: {
+      state: "planned",
+      docState: "not-started",
+      type: "personal",
+      meta: []
+    },
+    links: [],
+    markdown: "",
+    prev: null,
+    next: null
+  },
+
+  "level-name-generator": {
+    title: "Mario Level Name Generator",
+    summary: "A project to create a simple LLM-powered Mario level name generator, using LORA and PEFT to fine-tune a small LLM on a dataset of Mario level names, and using this to generate new level names based on user input.",
+    start: "-",
+    end: "-",
+    skills: [],
+    tags: {
+      state: "planned",
+      docState: "not-started",
+      type: "personal",
+      meta: []
+    },
+    links: [],
+    markdown: "",
+    prev: null,
+    next: null
+  },
+
+  "minecraft-mod": {
+    title: "Minecraft Mod",
+    summary: "A project to create a simple Minecraft mod using Java and the Minecraft Forge API, adding new bosses and weapons to the game.",
+    start: "-",
+    end: "-",
+    skills: [],
+    tags: {
+      state: "planned",
+      docState: "not-started", 
+      type: "personal",
+      meta: []
+    },
+    links: [],
+    markdown: "",
+    prev: null,
+    next: null
+  },
+
+  "godot-game": {
+    title: "Fire Emblem Game in Godot",
+    summary: "A project to create a simple Fire Emblem style game using the Godot engine, implementing various mechanics such as the weapon triangle, turn-based combat and character classes.",
+    start: "-",
+    end: "-",
+    skills: [],
+    tags: {
+      state: "planned",
+      docState: "not-started",
+      type: "personal",
+      meta: []
+    },
+    links: [],
+    markdown: "",
+    prev: null,
+    next: null
+  },
+
+  "cpp-game-dev": {
+    title: "C++ Game Development",
+    summary: "A project to create a simple first person shooter game using C++ and OpenGL, implementing various mechanics such as player movement, shooting and splatter mechanics",
+    start: "-",
+    end: "-",
+    skills: [],
+    tags: {
+      state: "planned",
+      docState: "not-started",
+      type: "personal",
+      meta: []
+    },
+    links: [],
+    markdown: "",
+    prev: null,
+    next: null
+   },
+
+  "mario-party-simulator": {
+    title: "Mario Party Simulator",
+    summary: "A project to create a simple Mario Party style game using Python and Pygame, implementing various mechanics such as the board game mechanics, items, and CPU AI",
+    start: "-",
+    end: "-",
+    skills: [],
+    tags: {
+      state: "planned",
+      docState: "not-started",
+      type: "personal",
+      meta: []
+    },
+    links: [],
+    markdown: "",
+    prev: null,
+    next: null
+   }
 };
 
 // ore or oar

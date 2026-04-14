@@ -69,9 +69,18 @@
   --border4: var(--primary-200);
 
   /* Scrollbar */
-  --scrollbar-thumb: #c4c4cc;
-  --scrollbar-thumb-hover: #a1a1aa;
+  --scrollbar-thumb: var(--primary-700);
+  --scrollbar-thumb-hover: var(--primary-600);
   --scrollbar-track: transparent;
+
+  --scrollbar-thumb-code: var(--primary-300);
+  --scrollbar-thumb-hover-code: var(--primary-200);
+  --scrollbar-track-code: transparent;
+
+  /* Tables */
+  --table-header-bg: var(--primary-200);
+  --table-row-bg: var(--primary-50);
+  --table-border: var(--border2);
 }
 
 /* ========================================
@@ -118,10 +127,17 @@
   --border1: var(--primary-200);
   --border2: var(--primary-400);
   --border3: var(--primary-500);
-  --border4: #3f3f46;
+  --border4: var(--primary-700);
 
-  --scrollbar-thumb:       #52525b;
-  --scrollbar-thumb-hover: #71717a;
+  --scrollbar-thumb:       var(--primary-600);
+  --scrollbar-thumb-hover: var(--primary-700);
+
+  --scrollbar-thumb-code: var(--primary-200);
+  --scrollbar-thumb-hover-code: var(--primary-300);
+
+  --table-header-bg: var(--bg-code);
+  --table-row-bg: var(--bg-code-border);
+  --table-border: var(--border2);
 }
 
 /* ========================================
@@ -248,3 +264,11 @@
   transition: opacity 300ms ease;
 }
 .mobile-slide.active { opacity: 1; pointer-events: auto; height: auto; }
+
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: var(--bg-header);
+}
