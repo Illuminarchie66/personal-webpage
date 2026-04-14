@@ -1,0 +1,398 @@
+PARSER_BEGIN(Assignment)
+
+import java.util.*;
+import java.util.regex.*;
+import java.lang.Object;
+
+/*
+ * This class defines the important details that make up a function.
+ * This is used to interpret the input correctly.
+ */
+class Function{
+  /*
+   * Strings to keep the function and parameter names for reference.
+   * We track the line number here so we can give the correct error message.
+   * Postfix is the function written using postfix notation, generated through parsing.
+   */
+  public String funcName;
+  public String paramName; 
+  public int line;
+  public ArrayList<String> postfix;
+
+  /*
+   * Initialization. Postfix is generated on parse, hence an empty list.
+   */
+  public Function(String fname, String pname, int lineNum) {
+    funcName = fname;
+    paramName = pname;
+    line = lineNum;
+    postfix = new ArrayList<String>();
+  }
+
+  /*
+   * Useful toString function to aid in debugging.
+   */
+  @Override
+  public String toString() {
+    return "{" + funcName + ", " + paramName + "}";
+  }
+}
+
+/*
+ * A static class used form storing relevant and useful information.
+ * Mostly consists of maps of function names to their functions, which allows for fast contain searches.
+ * Functions are purely ways for shorter calls to the tables.
+ */
+class Functions{
+  /*
+   * funcTable is used to map function names to their Function object counterpart.
+   * calledTable is the collection of all functions called inside of functions, mapping to the line they are called on.
+   */
+  public static Map<String, Function> funcTable = new HashMap<String, Function>();
+  public static Map<String, Integer> calledTable = new HashMap<String, Integer>();
+  public static Stack<String> stack = new Stack<String>();
+
+  /*
+   * Adds a (functionName, function) pair to the funcTable.
+   */
+  public static void addFunc(String name, Function value) {
+    funcTable.put(name, value);
+  }
+
+  /*
+   * Adds a (functionName, lineNum) pair to the calledTable.
+   */
+  public static void addCalled(String name, int line){
+    calledTable.put(name, line);
+  }
+
+  /*
+   * Gets the Function object related to a function name.
+   */
+  public static Function getFunc(String name) {
+    return funcTable.get(name);
+  }
+
+  /*
+   * Checks if the funcTable contains a function with that name.
+   */
+  public static boolean contains(String name) {
+    return funcTable.containsKey(name);
+  }
+}
+
+/*
+ * Error handling static class, used for giving more accurate error messages.
+ */
+class Errors{
+  /*
+   * Tracks the line number during parse, so the correct line number is outputted.
+   * We also check if we output a specific custom error, or a more generalised one.
+   */
+  public static int lineNum=1;
+  public static boolean custom=false;
+
+  /*
+   * This is defining the values for if we have a more specialised error.
+   */
+  public static void custom(int line){
+    custom=true;
+    lineNum = line;
+  }
+}
+
+/*
+ * This is a static class containing methods on how to evaluate the final value at main. 
+ */
+class Evaluate{
+  /*
+   * This is a simple boolean check to see if the entered string is numerical.
+   */
+  public static boolean isNumeric(String str) {
+    try {
+        Double.parseDouble(str);
+        return true;
+    } catch(NumberFormatException e) {
+        return false;
+    }
+  }
+
+  /*
+   * The function calculates the evaluation of the main function. 
+   * This is done by taking in an expression exp, alongside the name of the function, and the value passed into it.
+   * When called we pass 'main' as the funcName and 'passed' as an empty string as main has no parameters.
+   * The expression passed is the postfix expression held in the main function.
+   * The evaluation uses a standard postfix operation procedure, where if numerical or a parameter we push on to the stack.
+   * If addition or multiplication we pop off the stack twice and apply the operation.
+   * And if it is a function, we recursively call the evaluate function, passing in the passed value, the name of the function, and the associated expression.
+   * Eventually the stack empties and we result in a value.
+   * As this is performed after parse, we know the inputs are exactly what they are intended to be.
+   * This means if we catch an exception, it is because it has reached a recursive depth limit, from functions repeatedly calling each other and looping.
+   * Hence we catch the looping values and are able to determine the divergence.
+   * This abides by what is states in the specification, though not all loops are divergent, as if a loop repeatedly just multiplies by 1, it converges to a value.
+   * However, as not specified, this simply tracks when loops occur, and reports it as divergence.
+   */
+  public static String evaluate(ArrayList<String> exp, String funcName, String passed) {
+    try {
+      Stack<String> stack = new Stack<String>();
+      Function f = Functions.getFunc(funcName);
+
+      for (String t : exp) {
+        if (isNumeric(t)) {
+          stack.push(t);
+        } else if (Functions.contains(t)) {
+          String p = stack.pop();
+          String temp = evaluate(Functions.getFunc(t).postfix, t, p);
+          stack.push(temp);
+        } else if (t.equals("+")) {
+          int op1 = Integer.parseInt(stack.pop());
+          int op2 = Integer.parseInt(stack.pop());
+          stack.push(Integer.toString(op1+op2));
+        } else if (t.equals("*")) {
+          int op1 = Integer.parseInt(stack.pop());
+          int op2 = Integer.parseInt(stack.pop());
+          stack.push(Integer.toString(op1*op2));
+        } else if (t.equals(f.paramName)) {
+          stack.push(passed);
+        }
+      }
+
+      return stack.pop();
+    } catch (Throwable e) {
+      return "DIVERGENCE";
+    }
+  }
+}
+
+/*
+ * The set class of the assignment. Simply executes the code as set.
+ */
+public class Assignment{
+
+  /*
+   * The main function that runs the parser.
+   * Note: Some tests if the parse is valid is called here. This is due to a strange quirk with Javacc which made it fail if placed in S().
+   */
+  public static void main(String args [])   {
+    try {
+      Assignment a = new Assignment(System.in);
+      a.S();
+
+      /*
+       * This check reports if there is no main function defined, and throws a respective error.
+       */
+      if (!Functions.contains("MAIN")) {
+        Errors.custom(0);
+        throw new ParseException("No main function defined.");
+      }
+      
+      /*
+       * This check reports if DEF is used as a function name, and throws a respective error.
+       */
+      if (Functions.contains("DEF")) {
+        Errors.custom(Functions.getFunc("DEF").line);
+        throw new ParseException("DEF is a reserved word.");
+      }
+      
+      /*
+       * This check reports if a function that has been called does not exist in the function set, and throws a respective error.
+       */
+      for (String t : Functions.calledTable.keySet()) {
+        if (!Functions.contains(t)){
+          Errors.custom(Functions.calledTable.get(t));
+          throw new ParseException("Function " + t + " does not exist.");
+        }
+      }
+
+      /*
+       * This is when the output passes, and we output PASS.
+       * Then we output the evaluation.
+       */
+      System.out.println("PASS");
+      System.out.println(Evaluate.evaluate(Functions.getFunc("MAIN").postfix, "MAIN", ""));
+    } catch (ParseException e) {
+      /*
+       * This is when an exception has been thrown and we output FAIL.
+       * Then to the err stream we output the error the line number occurs on.
+       * Afterwards, we either output our specialised custom error, which is specific to one of the rules.
+       * Or we output an interpreted custom error, by looking through what is given in the ParseException.
+       * The interpreted error outputs the tokens that were expected.
+       */
+      System.out.println("FAIL");
+      System.err.println(Errors.lineNum);
+      if (Errors.custom) {
+        System.err.println(e);
+      } else {
+        System.err.print("Parse Exception Problem: Was expecting the following token sequences: ");
+        int j=0;
+        for (int[] x : e.expectedTokenSequences) {
+          System.err.print("[");
+          for (int i = 0; i < x.length; i++) {
+            System.err.print(e.tokenImage[x[i]]);
+            if (i != x.length-1) {
+              System.err.print(", ");
+            }
+          }
+          System.err.print("]");
+          if (j != e.expectedTokenSequences.length-1){
+            System.err.print(" or ");
+          }
+          j++;
+        }
+        System.err.println("");
+      }
+        
+    } catch (TokenMgrError e) {
+      /*
+       * This is a small case where a character not in the ASCII set or something other than a number or letter is used.
+       */
+      System.err.println("TokenMgrError Problem: Contains an invalid character.");
+    }
+
+  }
+   
+}
+
+PARSER_END(Assignment)
+
+/*
+ * List of the possible tokens that are permitted. 
+ * If something here is not used, a TokenMgrError occurs.
+ */
+TOKEN: 
+{ "(" | ")" | "+" | "*" | "{" | "}" | ";" 
+| <DEF: "DEF"> 
+| <MAIN: "MAIN">
+| <EOL: "\n">
+| <SPACE: " ">
+| <NUM: (["0"-"9"])+> 
+| <FUNCNAME: (["A"-"Z"])+> 
+| <PARAM: (["a"-"z"])+> }
+
+/*
+ * This is the start of the grammar. We set the lineNum to be 1, and we look for the start of the code.
+ * Each time there is another set of DEF and a new line, means that we increment the lineNum.
+ * The EOF is needed to ensure that we cannot have a structured function line, and then something else.
+ */
+void S():
+{
+  Errors.lineNum=1;
+}
+{
+  (<DEF> <SPACE> P() {Errors.lineNum++;})+ <EOF>
+}
+
+/*
+ * Here is where we create our function when we read it on each line. 
+ * This has the option of either being MAIN or just FUNCNAME.
+ * This is then followed by setting up the defined structure for the body of the function.
+ * Into the expression we pass in the name of the function, the parameter name and a boolean to track if the function is main.
+ * These are to ensure the rules are upheld.
+ */
+void P():
+{
+  String param = "";
+  String funcName = "";
+  String body = "";
+  Function fun;
+}
+{
+  <FUNCNAME> {funcName = token.image;} <SPACE> <PARAM> {param = token.image;} 
+  {
+    /*
+     * This check is making sure there are no duplicate named functions.
+     */
+    if (Functions.contains(funcName)){
+      Errors.custom(Errors.lineNum);
+      throw new ParseException("Duplicate function name.");
+    }
+    fun = new Function(funcName, param, Errors.lineNum); 
+    Functions.addFunc(funcName, fun);
+  } 
+  <SPACE> "{" <SPACE> E(funcName, param, false) <SPACE> "}" <SPACE> ";" <EOL>
+  | <MAIN> 
+  {
+    /*
+     * This check is making sure there is only one main function.
+     */
+    if (Functions.contains("MAIN")){
+      Errors.custom(Errors.lineNum);
+      throw new ParseException("Duplicate MAIN function.");
+    }
+    fun = new Function("MAIN", "", Errors.lineNum); 
+    Functions.addFunc("MAIN", fun);
+  } 
+  <SPACE> "{" <SPACE> E("MAIN", param, true) <SPACE> "}" <SPACE> ";" <EOL>
+}
+
+/*
+ * This expression first looks at possible addition. 
+ * We add "+" when encountered to the stack here, to ensure it is in postfix.
+ */
+void E(String f, String p, boolean m): {} { T(f, p, m) ("+" T(f, p, m) {Functions.getFunc(f).postfix.add("+");})*      } 
+
+/*
+ * This expression next looks at possible multiplication. 
+ * We add "*" when encountered to the stack here, to ensure it is in postfix.
+ */
+void T(String f, String p, boolean m): {} { F(f, p, m) ("*" F(f, p, m) {Functions.getFunc(f).postfix.add("*");})*      }
+
+/*
+ * This looks at the possible base case values for addition and multiplication.
+ * We consider a numerical value NUM, a function FUNCNAME with a body, or a parameter PARAM which must match the function's.
+ * Here is where we add to the postfix expression of each function. 
+ * This is the bottom of the grammar, and used as the individual chunks.
+ */
+void F(String f, String p, boolean m): 
+{
+  String param;
+  String funcName;
+} 
+{ 
+  <NUM> {String num = token.image;}
+  {
+    Functions.getFunc(f).postfix.add(num);
+  }
+  | <FUNCNAME> {funcName = token.image;} "(" E(f, p, m) ")" 
+  {
+    /*
+     * This is a called function, added to the calledFunc map.
+     */
+    Functions.addCalled(funcName, Errors.lineNum);
+    Functions.getFunc(f).postfix.add(funcName);
+    
+    /*
+     * This check is to make sure main is not called within a function. 
+     */
+    if (funcName.equals("MAIN")) {
+      Errors.custom(Errors.lineNum);
+      throw new ParseException("MAIN function cannot be called.");
+    } 
+  }
+  | <PARAM> {param = token.image;} {Functions.getFunc(f).postfix.add(param);}
+  {
+    /*
+     * We passed in a boolean to see if the current function is a main function.
+     * Its sole use is for determining the appropriate tests to make.
+     */
+    if (m) {
+      /*
+       * This is the event when we are in the main function.
+       * If there is any parameter detected at all, we must throw an error.
+       */
+      if (param != null){
+        Errors.custom(Errors.lineNum);
+        throw new ParseException("No parameters allowed in main functions.");
+      }
+    } else {
+      /*
+       * This is the event when this is not the main function.
+       * We check with the parameter variable passed through the functions, and if it is the event it is not the same, we throw an error.
+       */
+      if (!param.equals(p)) {
+        Errors.custom(Errors.lineNum);
+        throw new ParseException("Parameter symbol " + param + " not found.");
+      } 
+    }
+  }
+}
