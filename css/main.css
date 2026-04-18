@@ -17,6 +17,7 @@
   --primary-950: #172554;
 
   --complementary-400: #f97316;
+  --complementary-200: #fed7aa;
 
   /* Layout */
   --base-size: 21vw;
@@ -38,6 +39,7 @@
   --text-hover:          var(--primary-700);
   --text-extra:          var(--primary-600);
   --text-extra-hover:    var(--complementary-400);
+  --text-extra-hover2:   var(--complementary-200);
 
   --text-title-extra1: #1e3a8a;
   --text-title-extra2: #713f12;
@@ -114,7 +116,7 @@
   --bg-title:        var(--primary-700);
   --bg-card:         #27272a;
 
-  --bg-hover:  #1e3a5f;
+  --bg-hover:  var(--primary-900);
   --bg-extra1: #1e3a5f;
   --bg-extra2: #451a03;
   --bg-extra3: #2e1065;
@@ -204,9 +206,9 @@
   to   { opacity: 1; transform: translateX(0); }
 }
 
-.fade-in-up.in-view    { animation: fade-in-up    1s ease-out forwards; }
-.fade-in-left.in-view  { animation: fade-in-left  1s ease-out forwards; }
-.fade-in-right.in-view { animation: fade-in-right 1s ease-out forwards; }
+.fade-in-up.in-view    { animation: fade-in-up    0.7s ease-out forwards; }
+.fade-in-left.in-view  { animation: fade-in-left  0.7s ease-out forwards; }
+.fade-in-right.in-view { animation: fade-in-right 0.7s ease-out forwards; }
 
 .fade-up-target,
 .fade-left-target,
