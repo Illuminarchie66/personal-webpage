@@ -1,0 +1,88 @@
+.fade-up-target { opacity: 0; transform: translateY(24px); }
+.fade-up-target.in-view {
+    animation: fade-in-up 0.6s ease-out forwards;
+}
+
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.delay-1 { animation-delay: 0.05s; }
+.delay-2 { animation-delay: 0.15s; }
+.delay-3 { animation-delay: 0.25s; }
+.delay-4 { animation-delay: 0.35s; }
+
+.contact-link {
+    transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+.contact-link:hover {
+    background: var(--bg-simple-hover);
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px var(--light-shadow-color);
+}
+
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    background: var(--primary-600);
+    color: #fff;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+    background: var(--primary-700);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px var(--shadow-color);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.form-input {
+    background: var(--bg-main);
+    border: 3px solid var(--border4);
+    color: var(--text-text);
+    border-radius: 0.75rem;
+    padding: 0.65rem 1rem;
+    width: 100%;
+    font-size: 0.95rem;
+    transition: border-color 0.18s, box-shadow 0.18s;
+    outline: none;
+}
+.form-input:focus {
+    border-color: var(--border2);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+}
+.form-input::placeholder { color: var(--text-subtext); }
+textarea.form-input { resize: vertical; min-height: 130px; }
+
+.section-divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-600), var(--primary-300), transparent);
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+}
+
+.social-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    border: 3px solid var(--border4);
+    background: var(--bg-card);
+    color: var(--text-link);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: border-color 0.18s, background 0.18s, transform 0.18s, box-shadow 0.18s;
+    text-decoration: none;
+}
+.social-pill:hover {
+    border-color: var(--border2);
+    background: var(--bg-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--light-shadow-color);
+}
+
+#form-success {
+    display: none;
+    animation: fade-in-up 0.5s ease-out forwards;
+}

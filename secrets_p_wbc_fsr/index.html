@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>?? </title>
+    <!-- ks_vmb_wbc_ti? -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/secrets.css">
+
+    <audio id="sel" src="../assets/audio/sel.mp3" preload="auto"></audio>
+    <audio id="ent" src="../assets/audio/ent.mp3" preload="auto"></audio>
+    <audio id="und" src="../assets/audio/und.mp3" preload="auto"></audio>
+    <audio id="man" src="../assets/audio/man.mp3" loop preload="auto"></audio>
+</head>
+
+<body>
+
+<div class="grain-overlay"></div>
+<div id="shape-canvas"></div>
+
+<!-- ═══════════════════════════════════
+     VIEW: MENU
+═══════════════════════════════════ -->
+<div id="view-menu" class="view active">
+    <div id="stage">
+        <nav id="menu" aria-label="Secrets navigation">
+
+            <div class="menu-row selected" data-index="0" data-target="assets">
+                <div class="selector active"></div>
+                <div class="pill" data-label="ASSETS">ASSETS</div>
+            </div>
+
+            <div class="menu-row" data-index="1" data-target="world_impulse">
+                <div class="selector"></div>
+                <div class="pill" data-label="WORLD IMPULSE">WORLD IMPULSE</div>
+            </div>
+
+            <div class="menu-row" data-index="2" data-target="impressions">
+                <div class="selector"></div>
+                <div class="pill" data-label="IMPRESSIONS">IMPRESSIONS</div>
+            </div>
+
+            <div class="menu-row" data-index="3" data-target="unused">
+                <div class="selector"></div>
+                <div class="pill" data-label="UNUSED">UNUSED</div>
+            </div>
+
+        </nav>
+    </div>
+    <div class="hint">↑ ↓ NAVIGATE &nbsp;&nbsp; ENTER SELECT</div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     VIEW: ASSETS
+═══════════════════════════════════ -->
+<div id="view-assets" class="view subpage">
+    <div class="subpage-inner">
+        <div class="subpage-title-pill">ASSETS</div>
+        <div class="subpage-body">
+            Here are images of me and my friends and my family. These are good memories. When you remember a memory, its all there. except a little bit off. Is that memory true? Has it always been true? At what point does a memory become false?
+        </div>
+    </div>
+    <button class="back-btn" data-back>&#x276E; ESC</button>
+    <div class="hint">ESC &nbsp;&nbsp; BACK</div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     VIEW: WORLD IMPULSE
+═══════════════════════════════════ -->
+<div id="view-world_impulse" class="view subpage">
+    <div class="subpage-inner">
+        <div class="subpage-title-pill">WORLD IMPULSE</div>
+        <div class="subpage-body">
+            Here is the world. I have only seen so much. I would like to see more. I always get jealous when playing a video game. What do you mean they get to go anywhere on the world map?! Just with a press of a button. Do you think they are dropped? No haha. That would be silly. Wouldn't their legs break?
+        </div>
+    </div>
+    <button class="back-btn" data-back>&#x276E; ESC</button>
+    <div class="hint">ESC &nbsp;&nbsp; BACK</div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     VIEW: IMPRESSIONS
+═══════════════════════════════════ -->
+<div id="view-impressions" class="view subpage">
+    <div class="subpage-inner">
+        <div class="subpage-title-pill">IMPRESSIONS</div>
+        <div class="subpage-body">
+            Here are my impressions. Thoughts are so strange aren't they? Every private thought held, is an etching on your mind, and thus an etching on the world. What does an impression of your mind look like anyhow?
+        </div>
+    </div>
+    <button class="back-btn" data-back>&#x276E; ESC</button>
+    <div class="hint">ESC &nbsp;&nbsp; BACK</div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     VIEW: UNUSED
+═══════════════════════════════════ -->
+<div id="view-unused" class="view subpage">
+    <div class="subpage-inner">
+        <div class="subpage-title-pill">UNUSED</div>
+        <div class="subpage-body">
+            Oh. You're on the UNUSED page too? <br>
+            I guess we were used up
+        </div>
+    </div>
+    <button class="back-btn" data-back>&#x276E; ESC</button>
+    <div class="hint">ESC &nbsp;&nbsp; BACK</div>
+</div>
+
+
+<script>
+// ── Audio ────────────────────────────────────────────────────
+const man = document.getElementById('man');
+const sel = document.getElementById('sel');
+const ent = document.getElementById('ent');
+const und = document.getElementById('und');
+
+sel.volume = 0.1;
+ent.volume = 0.5;
+und.volume = 0.5;
+
+man.play().catch(() => {
+    document.addEventListener('keydown', () => man.play().catch(() => {}), { once: true });
+});
+
+// ── View switching ───────────────────────────────────────────
+let activeView = 'menu';
+
+function showView(id) {
+    const current = document.querySelector('.view.active');
+    const next    = document.getElementById('view-' + id);
+    if (!next || activeView === id) return;
+
+    // Slide current out, slide next in
+    if (current) {
+        current.classList.add('leaving');
+        current.addEventListener('animationend', () => {
+            current.classList.remove('active', 'leaving');
+        }, { once: true });
+    }
+
+    next.classList.add('active');
+    activeView = id;
+}
+
+// ── Menu keyboard nav ────────────────────────────────────────
+const rows = Array.from(document.querySelectorAll('.menu-row'));
+let currentRow = 0;
+
+function setSelected(idx) {
+    rows[currentRow].classList.remove('selected');
+    rows[currentRow].querySelector('.selector').classList.remove('active');
+    currentRow = (idx + rows.length) % rows.length;
+    rows[currentRow].classList.add('selected');
+    rows[currentRow].querySelector('.selector').classList.add('active');
+}
+
+document.addEventListener('keydown', e => {
+    if (activeView === 'menu') {
+        if (e.key === 'ArrowDown')  { e.preventDefault(); setSelected(currentRow + 1); sel.currentTime = 0; sel.play().catch(() => {}); }
+        if (e.key === 'ArrowUp')    { e.preventDefault(); setSelected(currentRow - 1); sel.currentTime = 0; sel.play().catch(() => {}); }
+        if (e.key === 'Enter') {
+            ent.currentTime = 0; ent.play().catch(() => {});
+            showView(rows[currentRow].dataset.target);
+        }
+    } else {
+        if (e.key === 'Escape' || e.key === 'Backspace') {
+            e.preventDefault();
+            und.currentTime = 0; und.play().catch(() => {});
+            showView('menu');
+        }
+    }
+});
+
+// Back buttons
+document.querySelectorAll('[data-back]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        sel.currentTime = 0; sel.play().catch(() => {});
+        showView('menu');
+    });
+});
+
+// ── Floating shapes ──────────────────────────────────────────
+const shapeCanvas = document.getElementById('shape-canvas');
+const W = window.innerWidth;
+const H = window.innerHeight;
+
+function makePolygon(sides, r) {
+    const pts = [];
+    for (let i = 0; i < sides; i++) {
+        const a = (i / sides) * Math.PI * 2 - Math.PI / 2;
+        pts.push(`${r + Math.cos(a) * r},${r + Math.sin(a) * r}`);
+    }
+    return `<polygon points="${pts.join(' ')}" />`;
+}
+
+function makeCircle(r) {
+    return `<circle cx="${r}" cy="${r}" r="${r * 0.92}" />`;
+}
+
+function randomShape() {
+    const type  = Math.floor(Math.random() * 5);
+    const r     = 14 + Math.random() * 28;
+    const sides = [3, 4, 5, 6][type] || 3;
+    const inner = type === 4 ? makeCircle(r) : makePolygon(sides, r);
+    const size  = r * 2;
+    const svg   = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.classList.add('shape');
+    svg.setAttribute('width',   size);
+    svg.setAttribute('height',  size);
+    svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
+    svg.innerHTML = inner;
+    return { el: svg, size };
+}
+
+function spawnShape() {
+    const { el, size } = randomShape();
+    const startY   = Math.random() * (H + size * 2) - size;
+    const drift    = -8 + Math.random() * 16;
+    const duration = 12000 + Math.random() * 18000;
+    const rotStart = Math.random() * 360;
+    const rotEnd   = rotStart + (Math.random() * 180 - 90);
+    const opacity  = 0.18 + Math.random() * 0.35;
+
+    el.style.cssText = `left:-${size+10}px;top:${startY}px;opacity:${opacity};stroke-width:${1.5+Math.random()*2}px;`;
+    shapeCanvas.appendChild(el);
+
+    const start   = performance.now();
+    const travelX = W + size + 40;
+
+    (function tick(now) {
+        const t = (now - start) / duration;
+        if (t >= 1) { el.remove(); return; }
+        el.style.transform = `translate(${t * travelX - (size+10)}px, ${drift * t}px) rotate(${rotStart + (rotEnd-rotStart)*t}deg)`;
+        requestAnimationFrame(tick);
+    })(performance.now());
+}
+
+// Seed shapes already on screen
+for (let i = 0; i < 18; i++) {
+    setTimeout(() => {
+        const { el, size } = randomShape();
+        const x        = Math.random() * W;
+        const y        = Math.random() * H;
+        const opacity  = 0.18 + Math.random() * 0.35;
+        const rotStart = Math.random() * 360;
+        const drift    = -8 + Math.random() * 16;
+        const duration = 12000 + Math.random() * 18000;
+        const rotEnd   = rotStart + (Math.random() * 180 - 90);
+
+        el.style.cssText = `left:0;top:0;opacity:${opacity};stroke-width:${1.5+Math.random()*2}px;`;
+        shapeCanvas.appendChild(el);
+
+        const start   = performance.now();
+        const travelX = W - x + size + 40;
+
+        (function tick(now) {
+            const t = (now - start) / duration;
+            if (t >= 1) { el.remove(); spawnShape(); return; }
+            el.style.transform = `translate(${x + t*travelX}px, ${y + drift*t}px) rotate(${rotStart + (rotEnd-rotStart)*t}deg)`;
+            requestAnimationFrame(tick);
+        })(performance.now());
+    }, i * 120);
+}
+
+setInterval(spawnShape, 1800);
+</script>
+
+</body>
+</html>

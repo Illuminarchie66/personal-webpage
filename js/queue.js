@@ -30,4 +30,8 @@ export class Queue {
     print() {
         console.log(this.items.join(" -> "));
     }
+
+    string() {
+        return this.items.join(',');
+    }
 }
