@@ -254,6 +254,18 @@
 @keyframes flash-3 { 0% { background: #d8b4fe; } 50% { background: #e9d5ff; } 100% { background: var(--bg-card); } }
 @keyframes flash-4 { 0% { background: #fde047; } 50% { background: #fef08a; } 100% { background: var(--bg-card); } }
 
+
+.skill-tag {
+    font-size: 0.72rem;
+    background: var(--bg-extra1);
+    color: var(--text-link);
+    border-radius: 9999px;
+    padding: 0.2rem 0.65rem;
+    font-weight: 500;
+    transition: background 0.15s, transform 0.15s;
+    display: inline-block;
+}
+
 /* ========================================
    MOBILE SLIDES
 ======================================== */

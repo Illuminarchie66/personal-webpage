@@ -28,7 +28,7 @@
 	<link rel="preload" href="assets/icons/JS.svg" as="image">
 	<link rel="preload" href="assets/icons/Haskell.svg" as="image">
 
-	<link rel="preload" href="assets/icons/Git.svg" as="image">
+	<link rel="preload" href="assets/icons/github.svg" as="image">
 	<link rel="preload" href="assets/icons/AWS.svg" as="image">
 	<link rel="preload" href="assets/icons/SQL.svg" as="image">
 	<link rel="preload" href="assets/icons/NoSQL.svg" as="image">
@@ -57,10 +57,12 @@
     <script type="module" src="js/main.js"></script>
 	<script type="module" src="js/header.js"></script>
 
-	<audio id="sound-1" src="assets/audio/1.mp3" preload="none"></audio>
-	<audio id="sound-2" src="assets/audio/2.mp3" preload="none"></audio>
-	<audio id="sound-3" src="assets/audio/3.mp3" preload="none"></audio>
-	<audio id="sound-4" src="assets/audio/4.mp3" preload="none"></audio>
+	<audio id="sound-1" src="assets/audio/1.mp3" preload="auto"></audio>
+	<audio id="sound-2" src="assets/audio/2.mp3" preload="auto"></audio>
+	<audio id="sound-3" src="assets/audio/3.mp3" preload="auto"></audio>
+	<audio id="sound-4" src="assets/audio/4.mp3" preload="auto"></audio>
+	<audio id="wir" src="assets/audio/wir.mp3" preload="none"></audio>
+	<audio id="noise" src="assets/audio/noise.mp3" preload="none"></audio>
 	<audio id="paper" src="assets/audio/paper.mp3" preload="none"></audio>
 </head>
 
@@ -869,16 +871,16 @@
 		<!-- Collage -->
 		<div class="w-full lg:w-2/3 p-4 grid grid-cols-2 grid-rows-2 gap-2">
 			<div class="row-span-2">
-			<img src="assets/images/interests/waterfall.jpg" loading="lazy" alt="Kayak Tall"
+			<img src="assets/images/interests/waterfall.jpg" loading="lazy" decoding="async" width="400" height="600" alt="Kayak Tall"
 				class="w-full aspect-[2/3] object-cover rounded-lg hover:scale-101 transition-transform" />
 			</div>
 
 			<div>
-			<img src="assets/images/interests/kayak1.jpg" loading="lazy" alt="Kayak 1"
+			<img src="assets/images/interests/kayak1.jpg" loading="lazy" decoding="async" width="400" height="300" alt="Kayak 1"
 				class="w-full aspect-[4/3] object-cover rounded-lg hover:scale-101 transition-transform" />
 			</div>
 			<div>
-			<img src="assets/images/interests/kayak2.jpg" loading="lazy" alt="Kayak 2"
+			<img src="assets/images/interests/kayak2.jpg" loading="lazy" decoding="async" width="400" height="300" alt="Kayak 2"
 				class="w-full aspect-[4/3] object-cover rounded-lg hover:scale-101 transition-transform" />
 			</div>
 		</div>
@@ -897,10 +899,10 @@
 		<!-- Travelling -->
 		<div class="min-w-full flex flex-col lg:flex-row bg-interests_image_background">
 			<div class="w-full lg:w-2/3 grid grid-cols-2 grid-rows-2 gap-2 p-4">
-				<img src="assets/images/interests/bath.jpg" loading="lazy" class="object-cover w-full h-72 rounded-lg" />
-				<img src="assets/images/interests/eiffel.jpg" loading="lazy" class="object-cover w-full h-72 rounded-lg" />
-				<img src="assets/images/interests/interrail.png" loading="lazy" class="object-cover w-full h-72 rounded-lg" />
-				<img src="assets/images/interests/town.jpg" loading="lazy" class="object-cover w-full h-72 rounded-lg" />
+				<img src="assets/images/interests/bath.jpg"       loading="lazy" decoding="async" width="400" height="288" class="object-cover w-full h-72 rounded-lg" alt="Bath" />
+				<img src="assets/images/interests/eiffel.jpg"     loading="lazy" decoding="async" width="400" height="288" class="object-cover w-full h-72 rounded-lg" alt="Eiffel Tower" />
+				<img src="assets/images/interests/interrail.png"  loading="lazy" decoding="async" width="400" height="288" class="object-cover w-full h-72 rounded-lg" alt="Interrail map" />
+				<img src="assets/images/interests/town.jpg"       loading="lazy" decoding="async" width="400" height="288" class="object-cover w-full h-72 rounded-lg" alt="Town" />
 			</div>
 			<div class="w-full lg:w-1/3 p-6 flex flex-col justify-center bg-bg-extra2">
 			<h3 class="text-3xl font-bold mb-4 text-text-title_extra2">Travelling</h3>
@@ -913,9 +915,9 @@
 		<!-- Creative -->
 		<div class="min-w-full flex flex-col lg:flex-row bg-interests_image_background">
 			<div class="w-full lg:w-2/3 grid grid-cols-2 grid-rows-2 gap-2 p-4">
-			<img src="assets/images/interests/galaxy.webp" loading="lazy" class="object-cover w-full h-72 rounded-lg" />
-			<img src="assets/images/interests/unity.png" loading="lazy" class="object-cover w-full h-72 rounded-lg" />
-			<img src="assets/images/interests/game.jpg" loading="lazy" class="object-cover w-full h-72 rounded-lg col-span-2" />
+			<img src="assets/images/interests/galaxy.webp" loading="lazy" decoding="async" width="400" height="288" class="object-cover w-full h-72 rounded-lg" alt="Galaxy" />
+            <img src="assets/images/interests/unity.png"   loading="lazy" decoding="async" width="400" height="288" class="object-cover w-full h-72 rounded-lg" alt="Unity" />
+            <img src="assets/images/interests/game.jpg"    loading="lazy" decoding="async" width="800" height="288" class="object-cover w-full h-72 rounded-lg col-span-2" alt="Game" />
 			</div>
 			<div class="w-full lg:w-1/3 p-6 flex flex-col justify-center bg-bg-extra3">
 			<h3 class="text-3xl font-bold mb-4 text-text-title_extra3">Game Design</h3>
@@ -956,11 +958,19 @@
 				
 				<!-- Images -->
 				<div class="grid grid-cols-2 gap-1">
-				<img class="col-span-2 aspect-[4/3] max-h-48 w-full md:max-h-72 object-cover" src="assets/images/interests/waterfall.jpg" loading="lazy" alt="Kayak Tall"  />
-				<img class="aspect-square object-cover" src="assets/images/interests/kayak1.jpg" loading="lazy" alt="Kayak 1" />
-				<img class="aspect-square object-cover" src="assets/images/interests/kayak2.jpg" loading="lazy" alt="Kayak 2" />
-				
-				</div>
+					<img class="col-span-2 aspect-[4/3] max-h-48 w-full md:max-h-72 object-cover"
+							src="assets/images/interests/waterfall.jpg"
+							loading="lazy" decoding="async" width="800" height="600"
+							alt="Waterfall kayak" />
+					<img class="aspect-square object-cover"
+							src="assets/images/interests/kayak1.jpg"
+							loading="lazy" decoding="async" width="400" height="400"
+							alt="Kayak 1" />
+					<img class="aspect-square object-cover"
+							src="assets/images/interests/kayak2.jpg"
+							loading="lazy" decoding="async" width="400" height="400"
+							alt="Kayak 2" />
+                </div>
 
 				<!-- Text -->
 				<div class="p-2 bg-bg-extra1">
@@ -982,7 +992,7 @@
 
 				<!-- Hint -->
 				<div class="text-center bg-bg-extra1 text-sm text-text-title_extra1 pb-2">
-				Tap to continue →
+				Tap to continue &#x276F;
 				</div>
 			</div>
 		</div>
@@ -993,11 +1003,19 @@
 				
 				<!-- Images -->
 				<div class="grid grid-cols-2 gap-1">
-				<img class="col-span-2 aspect-[4/3] max-h-48 w-full md:max-h-72 object-cover" src="assets/images/interests/interrail.png" loading="lazy" alt="Interrail map"  />
-				<img class="aspect-square object-cover" src="assets/images/interests/bath.jpg" loading="lazy" alt="Bath" />
-				<img class="aspect-square object-cover" src="assets/images/interests/eiffel.jpg" loading="lazy" alt="Eiffel tower" />
-				
-				</div>
+					<img class="col-span-2 aspect-[4/3] max-h-48 w-full md:max-h-72 object-cover"
+							src="assets/images/interests/interrail.png"
+							loading="lazy" decoding="async" width="800" height="600"
+							alt="Interrail map" />
+					<img class="aspect-square object-cover"
+							src="assets/images/interests/bath.jpg"
+							loading="lazy" decoding="async" width="400" height="400"
+							alt="Bath" />
+					<img class="aspect-square object-cover"
+							src="assets/images/interests/eiffel.jpg"
+							loading="lazy" decoding="async" width="400" height="400"
+							alt="Eiffel Tower" />
+                </div>
 
 				<!-- Text -->
 				<div class="p-2 bg-bg-extra2">
@@ -1015,7 +1033,7 @@
 
 				<!-- Hint -->
 				<div class="text-center bg-bg-extra2 text-sm text-text-title_extra2 pb-2">
-				Tap to continue →
+				Tap to continue &#x276F;
 				</div>
 			</div>
 		</div>
@@ -1025,10 +1043,18 @@
 			<div class="bg-bg-card rounded-2xl shadow-lg overflow-hidden cursor-pointer">
 				<!-- Images -->
 				<div class="grid grid-cols-2 gap-1">
-				<img class="col-span-2 aspect-[4/3] max-h-48 w-full md:max-h-72 object-cover" src="assets/images/interests/game.jpg" loading="lazy" alt="Friends"  />
-				<img class="aspect-square object-cover" src="assets/images/interests/unity.png" loading="lazy" alt="Unity" />
-				<img class="aspect-square object-cover" src="assets/images/interests/galaxy.webp" loading="lazy" alt="Galaxy" />
-				
+					<img class="col-span-2 aspect-[4/3] max-h-48 w-full md:max-h-72 object-cover"
+							src="assets/images/interests/game.jpg"
+							loading="lazy" decoding="async" width="800" height="600"
+							alt="Game" />
+					<img class="aspect-square object-cover"
+							src="assets/images/interests/unity.png"
+							loading="lazy" decoding="async" width="400" height="400"
+							alt="Unity" />
+					<img class="aspect-square object-cover"
+							src="assets/images/interests/galaxy.webp"
+							loading="lazy" decoding="async" width="400" height="400"
+							alt="Galaxy" />
 				</div>
 
 				<!-- Text -->
@@ -1050,7 +1076,7 @@
 
 				<!-- Hint -->
 				<div class="text-center bg-bg-extra3 text-sm text-text-title_extra3 pb-2">
-				Tap to continue →
+				Tap to continue &#x276F;
 				</div>
 			</div>
 		</div>
@@ -1061,113 +1087,110 @@
 </section>
 
 <!-- Skills Section -->
-<section class="bg-gradient-to-b from-bg-bg-main to-bg-bg-bottom pt-4 pb-8 px-4 relative overflow-hidden fade-up-target">
-	<div class="max-w-7xl mx-auto text-center mb-8">
-		<h2 class="text-4xl lg:text-5xl font-bold text-text-title">SKILLS</h2>
-	</div>
-
-	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 max-w-full mx-auto justify-items-center">
-		
-		<!-- Card 1: Languages -->
-		<div id="card-1" class="bg-bg-card rounded-2xl shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 flex flex-col min-w-[250px] w-full h-full aspect-square">
-			<h3 class="text-2xl font-bold text-left text-text-subtitle mb-3">Languages</h3>
-			<hr class="border-t-4 border-text-subtitle w-[95%] rounded-full mb-2 sm:mb-4">
-			<div class="flex flex-grow space-x-6 overflow-hidden">
-				<ul class="space-y-3 text-left text-skills_card_text text-lg w-1/2">
-				<li class="flex items-center gap-2"><img src="assets/icons/Python.svg" class="w-7"> Python</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/Java.svg" class="w-7"> Java</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/C.svg" class="w-7"> C</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/CSharp.svg" class="w-7"> C#</li>
-				</ul>
-				<ul class="space-y-3 text-left text-skills_card_text text-lg w-1/2">
-				<li class="flex items-center gap-2"><img src="assets/icons/HTML.svg" class="w-7"> HTML</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/CSS.svg" class="w-7"> CSS</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/JS.svg" class="w-7"> JavaScript</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/Haskell.svg" class="w-7"> Haskell</li>
-				</ul>
-			</div>
-		</div>
-
-		<!-- Card 2: Technologies -->
-		<div id="card-2" class="bg-bg-card rounded-2xl shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 flex flex-col min-w-[250px] w-full h-full aspect-square">
-			<h3 class="text-2xl font-bold text-left text-text-subtitle mb-3">Technologies</h3>
-			<hr class="border-t-4 border-text-subtitle w-[95%] rounded-full mb-2 sm:mb-4">
-			<div class="flex flex-grow space-x-6 overflow-hidden">
-				<ul class="space-y-3 text-left text-skills_card_text text-lg w-1/2">
-				<li class="flex items-center gap-2"><img src="assets/icons/github.svg" class="w-7 icon-invert"> Git</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/AWS.svg" class="w-7 icon-invert"> AWS</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/SQL.svg" class="w-7"> SQL</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/NoSQL.svg" class="w-7"> NoSQL</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/Windows.svg" class="w-7"> Windows</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/Linux.svg" class="w-7"> Linux</li>
-				</ul>
-				<ul class="space-y-3 text-left text-skills_card_text text-lg w-1/2">
-				<li class="flex items-center gap-2"><img src="assets/icons/Word.svg" class="w-7"> Word</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/PowerPoint.svg" class="w-7"> PowerPoint</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/Excel.svg" class="w-7"> Excel</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/Unity.svg" class="w-7"> Unity</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/Krita.svg" class="w-7"> Krita</li>
-				<li class="flex items-center gap-2"><img src="assets/icons/Canva.svg" class="w-7"> Canva</li>
-				</ul>
-			</div>
-		</div>
-
-		<!-- Card 3: Technical Skills -->
-		<div id="card-3" class="bg-bg-card rounded-2xl shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 flex flex-col min-w-[250px] w-full h-full aspect-square">
-			<h3 class="text-2xl font-bold text-left text-text-subtitle mb-3">Technical Skills</h3>
-			<hr class="border-t-4 border-text-subtitle w-[95%] rounded-full mb-2 sm:mb-4">
-			<div class="flex flex-grow space-x-6">
-				<ul class="space-y-1 sm:space-y-2 text-left text-skills_card_text text-lg w-1/2">
-				<li>Algorithms</li>
-				<li>Data Structures</li>
-				<li>AI</li>
-				<li>Machine Learning</li>
-				<li>Calculus</li>
-				<li>Statistics</li>
-				</ul>
-				<ul class="space-y-1 sm:space-y-3 text-left text-skills_card_text text-lg w-1/2">
-				<li>OOP, FP</li>
-				<li>Graphics</li>
-				<li>Data Analysis</li>
-				<li>Agile</li>
-				<li>Documentation</li>
-				<li>Testing</li>
-				</ul>
-			</div>
-		</div>
-
-		<!-- Card 4: Soft Skills -->
-		<div id="card-4" class="bg-bg-card rounded-2xl shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 flex flex-col min-w-[250px] w-full h-full aspect-square">
-			<h3 class="text-2xl font-bold text-left text-text-subtitle mb-3">Soft Skills</h3>
-			<hr class="border-t-4 border-text-subtitle w-[95%] rounded-full mb-2 sm:mb-4">
-			<div class="flex flex-grow space-x-6">
-				<ul class="space-y-3 text-left text-skills_card_text text-lg w-1/2">
-				<li>Problem Solving</li>
-				<li>Organisation</li>
-				<li>Innovation</li>
-				<li>Creativity</li>
-				</ul>
-				<ul class="space-y-3 text-left text-skills_card_text text-lg w-1/2">
-				<li>Collaboration</li>
-				<li>Communication</li>
-				<li>Supportive</li>
-				<li>Encouraging</li>
-				</ul>
-			</div>
-		</div>
-
-	</div>
-
-	<!-- Secret Button -->
-  	<button class="absolute bottom-[-100px] right-[-90px] w-32 h-32 z-50 cursor-pointer hidden lg:block overflow-hidden" onclick="secret_paper()">
-		<img
-			src="assets/images/secret.png"
-			alt="Clickable corner"
-			class="w-full h-full"
-		/>
-	</button>
+<section class="bg-gradient-to-b from-bg-bg-main to-bg-bg-bottom pt-6 pb-10 px-4 relative overflow-hidden fade-up-target">
+    <div class="max-w-[96rem] mx-auto text-center mb-6">
+        <h2 class="text-4xl lg:text-5xl font-bold text-text-title">SKILLS</h2>
+    </div>
+ 
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 max-w-[96rem] mx-auto items-stretch">
+ 
+        <!-- Card 1: Languages -->
+        <div id="card-1"
+             class="bg-bg-card rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 p-5 sm:p-6 flex flex-col aspect-square cursor-pointer select-none">
+            <h3 class="text-xl font-bold text-left text-text-subtitle mb-2">Languages</h3>
+            <hr class="border-t-[3px] border-text-subtitle w-full rounded-full mb-3">
+            <div class="flex flex-grow gap-4">
+                <ul class="space-y-2.5 text-left text-text-text text-base w-1/2">
+                    <li class="flex items-center gap-2"><img src="assets/icons/Python.svg"  width="28" height="28" class="w-7 flex-shrink-0" alt="Python"> Python</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/Java.svg"    width="28" height="28" class="w-7 flex-shrink-0" alt="Java"> Java</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/C.svg"       width="28" height="28" class="w-7 flex-shrink-0" alt="C"> C</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/CSharp.svg"  width="28" height="28" class="w-7 flex-shrink-0" alt="C#"> C#</li>
+                </ul>
+                <ul class="space-y-2.5 text-left text-text-text text-base w-1/2">
+                    <li class="flex items-center gap-2"><img src="assets/icons/HTML.svg"    width="28" height="28" class="w-7 flex-shrink-0" alt="HTML"> HTML</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/CSS.svg"     width="28" height="28" class="w-7 flex-shrink-0" alt="CSS"> CSS</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/JS.svg"      width="28" height="28" class="w-7 flex-shrink-0" alt="JS"> JavaScript</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/Haskell.svg" width="28" height="28" class="w-7 flex-shrink-0" alt="Haskell"> Haskell</li>
+                </ul>
+            </div>
+        </div>
+ 
+        <!-- Card 2: Technologies -->
+        <div id="card-2"
+             class="bg-bg-card rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 p-5 sm:p-6 flex flex-col aspect-square cursor-pointer select-none">
+            <h3 class="text-xl font-bold text-left text-text-subtitle mb-2">Technologies</h3>
+            <hr class="border-t-[3px] border-text-subtitle w-full rounded-full mb-3">
+            <div class="flex flex-grow gap-4">
+                <ul class="space-y-2 text-left text-text-text text-base w-1/2">
+                    <li class="flex items-center gap-2"><img src="assets/icons/github.svg"     width="28" height="28" class="w-7 flex-shrink-0 icon-invert" alt="Git"> Git</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/AWS.svg"        width="28" height="28" class="w-7 flex-shrink-0 icon-invert" alt="AWS"> AWS</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/SQL.svg"        width="28" height="28" class="w-7 flex-shrink-0" alt="SQL"> SQL</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/NoSQL.svg"      width="28" height="28" class="w-7 flex-shrink-0" alt="NoSQL"> NoSQL</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/Windows.svg"    width="28" height="28" class="w-7 flex-shrink-0" alt="Windows"> Windows</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/Linux.svg"      width="28" height="28" class="w-7 flex-shrink-0" alt="Linux"> Linux</li>
+                </ul>
+                <ul class="space-y-2 text-left text-text-text text-base w-1/2">
+                    <li class="flex items-center gap-2"><img src="assets/icons/Word.svg"       width="28" height="28" class="w-7 flex-shrink-0" alt="Word"> Word</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/PowerPoint.svg" width="28" height="28" class="w-7 flex-shrink-0" alt="PowerPoint"> PowerPoint</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/Excel.svg"      width="28" height="28" class="w-7 flex-shrink-0" alt="Excel"> Excel</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/Unity.svg"      width="28" height="28" class="w-7 flex-shrink-0" alt="Unity"> Unity</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/Krita.svg"      width="28" height="28" class="w-7 flex-shrink-0" alt="Krita"> Krita</li>
+                    <li class="flex items-center gap-2"><img src="assets/icons/Canva.svg"      width="28" height="28" class="w-7 flex-shrink-0" alt="Canva"> Canva</li>
+                </ul>
+            </div>
+        </div>
+ 
+        <!-- Card 3: Technical Skills (pills) -->
+        <div id="card-3"
+             class="bg-bg-card rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 p-5 sm:p-6 flex flex-col aspect-square cursor-pointer select-none">
+            <h3 class="text-xl font-bold text-left text-text-subtitle mb-2">Technical Skills</h3>
+            <hr class="border-t-[3px] border-text-subtitle w-full rounded-full mb-3">
+            <div class="flex flex-wrap gap-2 content-start">
+                <span class="skill-tag">Algorithms</span>
+                <span class="skill-tag">Data Structures</span>
+                <span class="skill-tag">AI</span>
+                <span class="skill-tag">Machine Learning</span>
+                <span class="skill-tag">Calculus</span>
+                <span class="skill-tag">Statistics</span>
+                <span class="skill-tag">OOP</span>
+                <span class="skill-tag">Functional Programming</span>
+                <span class="skill-tag">Graphics</span>
+                <span class="skill-tag">Data Analysis</span>
+                <span class="skill-tag">Agile</span>
+                <span class="skill-tag">Documentation</span>
+                <span class="skill-tag">Testing</span>
+            </div>
+        </div>
+ 
+        <!-- Card 4: Soft Skills (pills) -->
+        <div id="card-4"
+             class="bg-bg-card rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-200 p-5 sm:p-6 flex flex-col aspect-square cursor-pointer select-none">
+            <h3 class="text-xl font-bold text-left text-text-subtitle mb-2">Soft Skills</h3>
+            <hr class="border-t-[3px] border-text-subtitle w-full rounded-full mb-3">
+            <div class="flex flex-wrap gap-2 content-start">
+                <span class="skill-tag">Problem Solving</span>
+                <span class="skill-tag">Organisation</span>
+                <span class="skill-tag">Innovation</span>
+                <span class="skill-tag">Creativity</span>
+                <span class="skill-tag">Collaboration</span>
+                <span class="skill-tag">Communication</span>
+                <span class="skill-tag">Supportive</span>
+                <span class="skill-tag">Encouraging</span>
+                <span class="skill-tag">Leadership</span>
+                <span class="skill-tag">Adaptability</span>
+            </div>
+        </div>
+ 
+    </div>
+ 
+    <!-- Secret Button -->
+    <button class="absolute bottom-[-100px] right-[-90px] w-32 h-32 z-50 cursor-pointer hidden lg:block overflow-hidden"
+            onclick="secret_paper()">
+        <img src="assets/images/secret.png" alt="Clickable corner" class="w-full h-full" />
+    </button>
+ 
 </section>
-
+ 
 <!-- Secret Text -->
 <div
     id="fullscreen-image"
