@@ -1,10 +1,3 @@
-// CDN means must be hosted online / not yet found
-// Tags:
-// - state: completed, wip, planned
-// - doc state: completed, wip, not-started
-// - type: academic, personal, work
-// - meta: has-website, has-github
-
 const projects = {
   "geographic-centre": {
     title: "Centre of N points",
@@ -19,13 +12,13 @@ const projects = {
       meta: ["has-website", "has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/Geographic-Centre" },
-      { icon: "../assets/icons/document.svg", label: "Report", url: "./geographic-centre/CentreOfNPoints.pdf" },
-      { icon: "../assets/icons/website.svg", label: "Website", url: "./geographic-centre" },
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/Geographic-Centre" },
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "./CentreOfNPoints.pdf" },
+      { icon: "../../assets/icons/website.svg", label: "Website", url: "./app" },
     ],
-    markdown: "./geographic-centre/md/geographic-centre.md",
+    markdown: "./md/geographic-centre.md",
     prev: null,
-    next: { key: "robotmaze", label: "CS118 Robot Maze" }
+    next: { key: "robot-maze", label: "CS118 Robot Maze" }
   },
 
   "epq": {
@@ -41,16 +34,16 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "CDN" },
-      { icon: "../assets/icons/document.svg", label: "Report", url: "CDN" },
-      { icon: "../assets/icons/document.svg", label: "Journal", url: "CDN" },
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "CDN" },
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "CDN" },
+      { icon: "../../assets/icons/document.svg", label: "Journal", url: "CDN" },
     ],
-    markdown: "./epq/md/epq.md",
+    markdown: "./md/epq.md",
     prev: { key: "geographic-centre", label: "Centre of N" },
-    next: { key: "robotmaze", label: "CS118 Robot Maze" }
+    next: { key: "robot-maze", label: "CS118 Robot Maze" }
   },
 
-  "robotmaze": {
+  "robot-maze": {
     title: "CS118 Robot Maze",
     summary: "A project to program a robot to navigate a maze using various techniques, teaching the basics of OOP",
     start: "Oct 2021",
@@ -62,8 +55,8 @@ const projects = {
       type: "academic",
       meta: ["has-github"]
     },
-    links: [{ icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS118-Robot-Maze" }],
-    markdown: "./robot-maze/md/robot-maze.md",
+    links: [{ icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS118-Robot-Maze" }],
+    markdown: "./md/robot-maze.md",
     prev: { key: "geographic-centre", label: "Centre of N" },
     next: { key: "architecture", label: "CS132 Architecture" }
   },
@@ -81,12 +74,12 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS132-Computer-Architecture"},
-      { icon: "../assets/icons/document.svg", label: "Coursework 1", url: "./architecture/CS132_Coursework_1.pdf" },
-      { icon: "../assets/icons/document.svg", label: "Coursework 2", url: "./architecture/CS132_Coursework_2.pdf" }
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS132-Computer-Architecture"},
+      { icon: "../../assets/icons/document.svg", label: "Coursework 1", url: "./CS132_Coursework_1.pdf" },
+      { icon: "../../assets/icons/document.svg", label: "Coursework 2", url: "./CS132_Coursework_2.pdf" }
     ],
-    markdown: "./architecture/md/architecture.md",
-    prev: { key: "robotmaze", label: "CS118 Robot Maze" },
+    markdown: "./md/architecture.md",
+    prev: { key: "robot-maze", label: "CS118 Robot Maze" },
     next: { key: "waffles", label: "CS126 Waffles" }
   },
 
@@ -103,10 +96,10 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/Waffles"},
-      { icon: "../assets/icons/document.svg", label: "Report", url: "./waffles/waffles.pdf" },
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/Waffles"},
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "./waffles.pdf" },
     ],
-    markdown: "./waffles/md/waffles.md",
+    markdown: "./md/waffles.md",
     prev: { key: "architecture", label: "CS132 Architecture" },
     next: { key: "hurdle", label: "CS141 Hurdle" }
   },
@@ -124,11 +117,11 @@ const projects = {
       meta: ["has-github", "has-website"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS141-Hurdle"},
-      { icon: "../assets/icons/document.svg", label: "Feedback", url: "./hurdle/feedback.pdf" },
-      { icon: "../assets/icons/website.svg", label: "Wordle", url: "./hurdle" },
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS141-Hurdle"},
+      { icon: "../../assets/icons/document.svg", label: "Feedback", url: "./feedback.pdf" },
+      { icon: "../../assets/icons/website.svg", label: "Wordle", url: "./app" },
     ],
-    markdown: "./hurdle/md/hurdle.md",
+    markdown: "./md/hurdle.md",
     prev: { key: "waffles", label: "CS126 Waffles" },
     next: { key: "onaf", label: "ONAF" }
   },
@@ -146,11 +139,11 @@ const projects = {
       meta: ["has-github", "has-website"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS141-Functional-ONAF"},
-      { icon: "../assets/icons/document.svg", label: "Report", url: "./onaf/report.pdf" },
-      { icon: "../assets/icons/document.svg", label: "Feedback", url: "./onaf/feedback.pdf" },
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS141-Functional-ONAF"},
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "./report.pdf" },
+      { icon: "../../assets/icons/document.svg", label: "Feedback", url: "./feedback.pdf" },
     ],
-    markdown: "./onaf/md/onaf.md",
+    markdown: "./md/onaf.md",
     prev: { key: "hurdle", label: "CS141 Hurdle" },
     next: { key: "os-and-networks", label: "CS241 OS & Networks" }
   },
@@ -168,10 +161,10 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS241-OS-and-Networks"},
-      { icon: "../assets/icons/document.svg", label: "Report", url: "./os-and-networks/report.pdf" },
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS241-OS-and-Networks"},
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "./report.pdf" },
     ],
-    markdown: "./os-and-networks/md/os-and-networks.md",
+    markdown: "./md/os-and-networks.md",
     prev: { key: "onaf", label: "One Night at Freddy's" },
     next: { key: "databases", label: "CS258 Databases" }
   },
@@ -189,9 +182,9 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS258-Databases"},
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS258-Databases"},
     ],
-    markdown: "./databases/md/databases.md",
+    markdown: "./md/databases.md",
     prev: { key: "os-and-networks", label: "CS241 OS & Networks" },
     next: { key: "ai", label: "CS255 AI" }
   },
@@ -209,9 +202,9 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS255-Artificial-Intelligence"},
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS255-Artificial-Intelligence"},
     ],
-    markdown: "./ai/md/ai.md",
+    markdown: "./md/ai.md",
     prev: { key: "databases", label: "CS258 Databases" },
     next: { key: "formal-languages", label: "CS259 Formal Languages" }
   },
@@ -229,9 +222,9 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/document.svg", label: "Program", url: "./formal-languages/Assignment.jj" },
+      { icon: "../../assets/icons/document.svg", label: "Program", url: "./Assignment.jj" },
     ],
-    markdown: "./formal-languages/md/formal-languages.md",
+    markdown: "./md/formal-languages.md",
     prev: { key: "ai", label: "CS255 Artificial Intelligence" },
     next: { key: "software-project-tracker", label: "CS261 Software Project Tracker" }
   },
@@ -249,12 +242,12 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: ""},
-      { icon: "../assets/icons/document.svg", label: "Requirements", url: "./software-project-tracker/CS261_Requirements_Analysis.pdf" },
-      { icon: "../assets/icons/document.svg", label: "Design", url: "./software-project-tracker/CS261_Planning_And_Design.pdf" },
-      { icon: "../assets/icons/document.svg", label: "Report", url: "./software-project-tracker/CS261_Final_Report.pdf" },
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: ""},
+      { icon: "../../assets/icons/document.svg", label: "Requirements", url: "./CS261_Requirements_Analysis.pdf" },
+      { icon: "../../assets/icons/document.svg", label: "Design", url: "./CS261_Planning_And_Design.pdf" },
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "./CS261_Final_Report.pdf" },
     ],
-    markdown: "./software-project-tracker/md/software-project-tracker.md",
+    markdown: "./md/software-project-tracker.md",
     prev: { key: "formal-languages", label: "CS259 Formal Languages" },
     next: { key: "digital-forensics", label: "CS355 Digital Forensics" }
   },
@@ -272,11 +265,11 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS355-Digital-Forensics"},
-      { icon: "../assets/icons/document.svg", label: "Report 1", url: "./digital-forensics/CS355_Report_1.pdf" },
-      { icon: "../assets/icons/document.svg", label: "Report 2", url: "./digital-forensics/CS355_Report_2.pdf" },
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS355-Digital-Forensics"},
+      { icon: "../../assets/icons/document.svg", label: "Report 1", url: "./CS355_Report_1.pdf" },
+      { icon: "../../assets/icons/document.svg", label: "Report 2", url: "./CS355_Report_2.pdf" },
     ],
-    markdown: "./digital-forensics/md/digital-forensics.md",
+    markdown: "./md/digital-forensics.md",
     prev: { key: "software-project-tracker", label: "CS261 Software Project Tracker" },
     next: { key: "machine-learning", label: "CS342 Machine Learning" }
   },
@@ -294,10 +287,10 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS342-Machine-Learning"},
-      { icon: "../assets/icons/document.svg", label: "Report", url: "./machine-learning/CS342_Machine_Learning.pdf" },
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS342-Machine-Learning"},
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "./CS342_Machine_Learning.pdf" },
     ],
-    markdown: "./machine-learning/md/machine-learning.md",
+    markdown: "./md/machine-learning.md",
     prev: { key: "digital-forensics", label: "CS355 Digital Forensics" },
     next: { key: "graphics", label: "CS324 Graphics" }
   },
@@ -315,10 +308,10 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS324-Graphics"},
-      { icon: "../assets/icons/document.svg", label: "Report", url: "./graphics/Report.pdf" }
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS324-Graphics"},
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "./Report.pdf" }
     ],
-    markdown: "./graphics/md/graphics.md",
+    markdown: "./md/graphics.md",
     prev: { key: "machine-learning", label: "CS342 Machine Learning" },
     next: { key: "robotics", label: "CS313 Mobile Robotics" }
   },
@@ -336,9 +329,9 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/document.svg", label: "Report", url: "./robotics/CS313_Lab_Report.pdf" }
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "./CS313_Lab_Report.pdf" }
     ],
-    markdown: "./robotics/md/robotics.md",
+    markdown: "./md/robotics.md",
     prev: { key: "graphics", label: "CS324 Graphics" },
     next: { key: "simpleg", label: "SimpLeg" }
   },
@@ -356,12 +349,12 @@ const projects = {
       meta: ["has-github"] 
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/SimpLeg"},
-      { icon: "../assets/icons/document.svg", label: "Report", url: "./simpleg/CS310_Project_Specification.pdf" },
-      { icon: "../assets/icons/document.svg", label: "Report", url: "./simpleg/CS310_Project_Progress_Report.pdf" },
-      { icon: "../assets/icons/document.svg", label: "Report", url: "./simpleg/CS310_Project_Final_Report.pdf" },
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/SimpLeg"},
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "./CS310_Project_Specification.pdf" },
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "./CS310_Project_Progress_Report.pdf" },
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "./CS310_Project_Final_Report.pdf" },
     ],
-    markdown: "./simpleg/md/simpleg.md",
+    markdown: "./md/simpleg.md",
     prev: { key: "graphics", label: "CS324 Graphics" },
     next: { key: "box-quest", label: "Box Quest" }
   },
@@ -379,10 +372,10 @@ const projects = {
       meta: ["has-github", "has-website"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/Box-Quest"},
-      { icon: "../assets/icons/website.svg", label: "itch.io", url: "https://illuminarchie.itch.io/box-quest"},
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/Box-Quest"},
+      { icon: "../../assets/icons/website.svg", label: "itch.io", url: "https://illuminarchie.itch.io/box-quest"},
     ],
-    markdown: "./box-quest/md/box-quest.md",
+    markdown: "./md/box-quest.md",
     prev: { key: "simpleg", label: "SimpLeg" },
     next: { key: "mario-map-project", label: "Mario Map Project" }
   },
@@ -400,10 +393,10 @@ const projects = {
     },
     skills: ["HTML","JavaScript","Tailwind CSS","Krita"],
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/Mario-Map"},
-      { icon: "../assets/icons/website.svg", label: "Website", url: "./mario-map-project" },
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/Mario-Map"},
+      { icon: "../../assets/icons/website.svg", label: "Website", url: "./app" },
     ],
-    markdown: "./mario-map-project/md/mario-map-project.md",
+    markdown: "./md/mario-map-project.md",
     prev: { key: "box-quest", label: "Box Quest" },
     next: { key: "image-and-video", label: "CS413 Image and Video Analysis" }
   },
@@ -421,9 +414,9 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS413-Image-and-Video"},
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS413-Image-and-Video"},
     ],
-    markdown: "./image-and-video/md/image-and-video.md",
+    markdown: "./md/image-and-video.md",
     prev: { key: "mario-map-project", label: "Mario Map Project" },
     next: { key: "optimisation", label: "CS416 Optimisation" }
   },
@@ -441,9 +434,9 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS416-Optimisation"},
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS416-Optimisation"},
     ],
-    markdown: "./optimisation/md/optimisation.md",
+    markdown: "./md/optimisation.md",
     prev: { key: "image-and-video", label: "CS413 Image and Video Analysis" },
     next: { key: "data-mining", label: "CS429 Data Mining" }
   },
@@ -461,9 +454,9 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS429-Data-Mining"},
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS429-Data-Mining"},
     ],
-    markdown: "./data-mining/md/data-mining.md",
+    markdown: "./md/data-mining.md",
     prev: { key: "optimisation", label: "CS416 Optimisation" },
     next: { key: "terrainfinity", label: "TerraInfinity" }
   },
@@ -481,13 +474,13 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/4th-year-group-project/Terra-Infinity"},
-      { icon: "../assets/icons/document.svg", label: "Project Specification", url: "CDN"},
-      { icon: "../assets/icons/document.svg", label: "Project Report", url: "CDN"},
-      { icon: "../assets/icons/document.svg", label: "Progress Presentation", url: "CDN"},
-      { icon: "../assets/icons/document.svg", label: "Single Slide", url: "CDN"},
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/4th-year-group-project/Terra-Infinity"},
+      { icon: "../../assets/icons/document.svg", label: "Project Specification", url: "CDN"},
+      { icon: "../../assets/icons/document.svg", label: "Project Report", url: "CDN"},
+      { icon: "../../assets/icons/document.svg", label: "Progress Presentation", url: "CDN"},
+      { icon: "../../assets/icons/document.svg", label: "Single Slide", url: "CDN"},
     ],
-    markdown: "./terrainfinity/md/terrainfinity.md",
+    markdown: "./md/terrainfinity.md",
     prev: { key: "data-mining", label: "CS429 Data Mining" },
     next: { key: "value-betting", label: "Value Betting" }
   },
@@ -505,9 +498,9 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/ValueBettting"},
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/ValueBettting"},
     ],
-    markdown: "./value-betting/md/value-betting.md",
+    markdown: "./md/value-betting.md",
     prev: { key: "terrainfinity", label: "TerraInfinity" },
     next: { key: "az900", label: "AZ900 Practice Exam" }
   },
@@ -525,9 +518,9 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/AZ900-PractiseTest"},
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/AZ900-PractiseTest"},
     ],
-    markdown: "./az900/md/az900.md",
+    markdown: "./md/az900.md",
     prev: { key: "value-betting", label: "Value Betting" },
     next: null
   },
@@ -695,6 +688,7 @@ const projects = {
    }
 };
 
+
 // ore or oar
 // proc gen with new method + unity
 // confetti maker
@@ -725,3 +719,11 @@ const projects = {
   //   prev: { key: "value-betting", label: "Value Betting" },
   //   next: null
   // },
+
+// CDN means must be hosted online / not yet found
+// Tags:
+// - state: completed, wip, planned
+// - doc state: completed, wip, not-started
+// - type: academic, personal, work
+// - meta: has-website, has-github
+

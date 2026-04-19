@@ -1,7 +1,7 @@
 # Introduction
 The Centre of N Points was my A-Level Computer Science coursework project, a weave of Mathematics and Computing to explore a problem that fascinated me. Given $n$ points in some space $S$, what is the point in $S$ that is equidistant from from all those points. Right now that seems vague and poorly defined, and thats because it is ! The original problem was spurred on from an issue me and my family were having: we are scattered across the UK, where would be a location to meet such that each party would have to travel an equal distance to travel to arrive at that location. Furthermore, what would be a location that would be an equal distance to travel whilst also minimizing the total distance that all parties have to travel. At the time, I was learning Djikstra's algorithm and A*; as well as learning the basics of 3D geometry and calculus. Thus, I pursued this problem for my A-Level project.<br><br>
 
-This involved a deep exploration into mathematics and optimisation. The original project was created with PyQt5 for the interface; but later I engineered this to work on my website in Python (for a Flask server backend) and then in raw JavaScript. This achieved an A* for my A-Level coursework, and you can download the original word document I wrote [here](./geographic-centre/CentreOfNPoints.pdf). 
+This involved a deep exploration into mathematics and optimisation. The original project was created with PyQt5 for the interface; but later I engineered this to work on my website in Python (for a Flask server backend) and then in raw JavaScript. This achieved an A* for my A-Level coursework, and you can download the original word document I wrote [here](./CentreOfNPoints.pdf). 
 
 # Design
 ## Problem Breakdown
@@ -27,7 +27,7 @@ Where $\ell_{sp}$ is the shortest path distance between two vertices. This can b
 ## Euclidean Space
 Now looking at Euclidean space, we have  $\mathbf{v}_i \in \mathbb{R}^n$, where the distance between any two vertices is defined as $\ell(\mathbf{v}_a, \mathbf{v}_b) = ||\mathbf{v}_a - \mathbf{v}_b||_2$, aka Euclidean distance; or geometrically the shortest path in the space between the two vertices. This leads to a much clearer geometric interpretation, where we can see that $\mathbf{c}$ has near equal distance lines to each vertex. This can be further visualised in 2D as fitting a circle around the vertices; or a sphere in 3D. For our purposes we will be working with 2D. For $n=2$ we can easily see that the point of equidistance is $\mathbf{c} = \frac{1}{2}(\mathbf{v}_1 + \mathbf{v}_2)$, or the midpoint of a straight line between the two points. For $n=3$ we know that it is defined in 2 dimensions as any triangle can have a circle fitted to it, with its centre called the circumcentre. One method of finding the circumcentre is to take two sides of the triangle and to find their perpendicular bisectors - where the perpendicular bisectors meet is the circumcentre !
 
-![Circumcentre diagram](./geographic-centre/md/images/circumcentre.png)
+![Circumcentre diagram](./md/images/circumcentre.png)
 *Diagram showing the circumcentre of a triangle.*
 
 We can generalise this a bit further when considering a circle equation. For 2D, we have $(x-p)^2 + (y-q)^2 = r^2$, giving us 3 variables: $p,q,$ and $r$ to solve for. With 3 points, we can do this with ease. Where it becomes interesting is when we consider $n > 3$, as there is no guarantee that a circle fits the points perfectly. Continuining with the geometric interpretation, we can reframe this as an optimisation problem. 
@@ -77,7 +77,7 @@ These methods would be successful and work across our 2D plane! However, when we
 ## Polar Space
 Working on a sphere now introduces polar coordinates, which aligns with latitude and longitude. We consider a point to lie somewhere on a sphere, which has the radius of the planet, which we call $R$. This point can be represented in $(x,y,z) \in \mathbb{R}^3$ or we can use the polar coordinate $(R, \theta, \phi)$. $\varphi$ is latitude, and $\lambda$ is longitude; and relates to the polar coordinates with $\theta = \frac{\pi}{2} - \varphi$ and $\phi = \lambda$. This represents the angle of the vector from the origin in each axis. 
 
-![Spherical Polar coordinates](./geographic-centre/md/images/Spherical_polar_coordinates.png)
+![Spherical Polar coordinates](./md/images/Spherical_polar_coordinates.png)
 *Diagram showing spherical polar coordinates*
 
 In this space, we can convert between polar and cartesian coordinates with:
@@ -104,7 +104,7 @@ $$
 
 While we work in this spherical space, we do not want to use Euclidean distance, and instead great-circle distance. This is the arcdistance between two points on the surface of a sphere, measured along the arc of a circle.
 
-![Great circle](./geographic-centre/md/images/greatcircle.png)
+![Great circle](./md/images/greatcircle.png)
 *Diagram showing great-circle distance on a sphere.*
 
 We can find this distance with both polar and cartesian coordinates. Let two points $\mathbf{v}_1, \mathbf{v}_2$ on the surface of the planet have latitude and longitude $(\varphi_1, \lambda_1)$ and $(\varphi_2, \lambda_2)$ respectively. We can find the angle between thme with:
@@ -244,12 +244,12 @@ These classes would be used to communicate with the interface, displaying the in
 We also implemented an option to instead minimize the mean distance, as opposed to the variance. This finds a more central location, but more importantly minimizes the total travel distance. This is useful if the goal is to reduce overall travel, as opposed to making it equal for all parties. We also experimented with a third option, which uses a weighted addition of both variance and mean distance, allowing the user to balance between equidistance and total distance. <br> <br>
 Here is a screenshot of the original implementation:
 
-![Original implementation](./geographic-centre/md/images/example.png)
+![Original implementation](./md/images/example.png)
 *Original Python implementation using PyQT5 and Google Maps API.*
 
 And here is a screenshot of the JavaScript implementation:
 
-![Leaflet implementation](./geographic-centre/md/images/example2.png)
+![Leaflet implementation](./md/images/example2.png)
 *Updated JavaScript implementation using Leaflet.*
 
 # Evaluation

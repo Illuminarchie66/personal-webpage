@@ -51,7 +51,7 @@ function render() {
 
     filtered.forEach(([key, project], i) => {
     const card = document.createElement('a');
-    card.href = `project.html?key=${key}`;
+    card.href = `./${key}`;
     card.className = 'project-card';
     card.style.animationDelay = `${i * 40}ms`;
 

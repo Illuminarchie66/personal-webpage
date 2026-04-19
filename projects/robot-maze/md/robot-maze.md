@@ -1,7 +1,7 @@
 # Robot Maze
 Robot Maze was the first coursework for my computer science degree at Warwick University. It was for an introduction to programming, and was very helpful in reteaching me the basics I learnt at A-Level, while also enlightening me to languages outside of Python. Despite the many times this question was asked, the coursework was completed in Java. The goal of the project was to design a robot agent that would navigate through a 2D maze to find the exit. This was done with an existing Java framework for the maze and environment, and we only designed the robot. There were several exercises in the guide, which I for the life of me cannot find, so for each exercise I will give a rough approximation of what was tasked of us! From there, I will detail my solution and approach used. Sadly this cannot be run independently, as this code is only the robot; the rest being exclusively held by the university. 
 
-![Circumcentre diagram](./robot-maze/md/images/robotmaze.jpg)
+![Circumcentre diagram](./md/images/robotmaze.jpg)
 *The Robot Maze in Action!*
 
 # Design

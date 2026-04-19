@@ -51,10 +51,10 @@ Y_0 \equiv \bar{I_7} + \bar{I_5} + \bar{I_3} + \bar{I_1}
 $$
 
 ### Logic circuit with only NOR gates
-![NOR Gate Logic Circuit](./architecture/md/images/encoder1.png)
+![NOR Gate Logic Circuit](./md/images/encoder1.png)
 *Active Low 3-to-1 Encoder Diagram*
 
-![NOR Gate Logic Circuit Optimised](./architecture/md/images/encoder2.png)
+![NOR Gate Logic Circuit Optimised](./md/images/encoder2.png)
 *Active Low 3-to-1 Encoder Diagram Optimised*
 
 ## Question 2: Bidirectional shift register
@@ -94,12 +94,12 @@ Q &= (\bar{m} \land \bar{R} \land L) \lor (\bar{m} \land R \land L) \lor (m \lan
 \end{aligned}
 $$
 
-![Logic Diagram of the Shift Register](./architecture/md/images/shift1.png)
+![Logic Diagram of the Shift Register](./md/images/shift1.png)
 *Logic Diagram of the Shift Register*
 
 As it must be a serial-serial register, we need it to have a single input and single output; so $L$ and $R$ must be the same. 
 
-![Logic Diagram of the Shift Register serial-serial](./architecture/md/images/shift2.png)
+![Logic Diagram of the Shift Register serial-serial](./md/images/shift2.png)
 *Logic Diagram of the Shift Register serial-serial*
 
 ### Design a parallel n-bit bidirectional shift register
@@ -126,7 +126,7 @@ This operates exactly like a multiplexer with those 6 inputs. The multiplexer eq
 $$Q = (C \land \overline{m_1} \land \overline{m_2}) \lor (R \land \overline{m_1} \land m_2) \lor (L \land m+1 \land \overline{m_2}) \lor (P \land m_1 \land m_2)$$
 Which gives us this final circuit:
 
-![Logic Diagram of the n-bit shift register parallel-parallel](./architecture/md/images/shift3.png)
+![Logic Diagram of the n-bit shift register parallel-parallel](./md/images/shift3.png)
 *Logic Diagram of the n-bit Shift Register parallel-parallel*
 
 ## Question 3: Circuit simplification
@@ -136,7 +136,7 @@ $$F = A.B + \bar{A}.B.\bar{C}.D + \bar{A}.B.C.D + A.\bar{B}.\bar{C}.\bar{D}$$
 ### Karnaugh map
 $$F = \color{red}{(B \land D)} \lor \color{green}{(A \land B)} \lor \color{green}{(A \land \bar{C} \land \bar{D})}$$
 
-![Karnaugh map](./architecture/md/images/karnaugh.png)
+![Karnaugh map](./md/images/karnaugh.png)
 *Karnaugh map*
 
 ### Boolean algebra 
@@ -168,10 +168,10 @@ $$
 ### NAND Logic Circuit 
 We now need to turn the simplified circuit into a circuit using only 2 input NAND gates.
 
-![NAND Gate Logic Circuit](./architecture/md/images/nand1.png)
+![NAND Gate Logic Circuit](./md/images/nand1.png)
 *NAND Gate Simplification*
 
-![NOR Gate Logic Circuit Optimised](./architecture/md/images/nand2.png)
+![NOR Gate Logic Circuit Optimised](./md/images/nand2.png)
 *NAND Gate Simplification Optimised*
 
 ## Question 4: C programming

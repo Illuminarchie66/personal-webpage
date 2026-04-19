@@ -1,34 +1,170 @@
-/* setup: get project from URL */
-const params = new URLSearchParams(window.location.search);
-const projectKey = params.get('key');
+const pathParts = window.location.pathname
+  .split('/')
+  .filter(Boolean);
+
+const projectKey = pathParts[pathParts.length - 1];
 const project = projects[projectKey];
 
-/* reading progress bar */
-const progressBar = document.getElementById('reading-progress');
+async function loadShell() {
+    const res = await fetch('../../components/project_shell.html');
+    const html = await res.text();
 
-if (progressBar) {
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const shell = document.getElementById('project-shell');
+    if (!shell) return;
 
-        const progress = docHeight > 0
-            ? Math.min((scrollTop / docHeight) * 100, 100)
-            : 0;
-
-        progressBar.style.width = `${progress}%`;
-    }, { passive: true });
+    shell.innerHTML = html;
 }
 
-/* toc mobile toggle */
-const tocToggle = document.getElementById('toc-toggle');
-const tocMobileBody = document.getElementById('toc-mobile-body');
+async function initPage() {
+    await loadShell();
 
-if (tocToggle && tocMobileBody) {
-    tocToggle.addEventListener('click', () => {
-        const open = tocMobileBody.classList.toggle('open');
-        tocToggle.classList.toggle('open', open);
-        tocToggle.setAttribute('aria-expanded', String(open));
+    if (!project) {
+        document.getElementById('title').textContent = 'Project not found';
+        document.getElementById('loading-state').style.display = 'none';
+        document.getElementById('error-state').style.display = 'block';
+        document.getElementById('error-msg').textContent =
+            'No project found for this key.';
+        return;
+    }
+
+    populateHero(project);
+    setupNav(project);
+
+    setupUI(); 
+    renderProject(project);
+}
+
+/* populate hero section */
+function populateHero(project) {
+    document.getElementById('project-title').textContent = project.title;
+    document.getElementById('title').textContent = project.title;
+
+    /* dates */
+    document.getElementById('dates-meta').textContent =
+        `${project.start} – ${project.end}`;
+
+    /* type */
+    if (project.tags?.type) {
+        document.getElementById('type-meta').textContent =
+            project.tags.type.charAt(0).toUpperCase() + project.tags.type.slice(1);
+
+        document.getElementById('type-sep').style.display = 'inline';
+    }
+
+    /* state badge */
+    const state = project.tags?.state;
+    if (state) {
+        const labels = {
+            completed: 'Completed',
+            wip: 'In Progress',
+            planned: 'Planned'
+        };
+
+        const stateMeta = document.getElementById('state-meta');
+        stateMeta.innerHTML =
+            `<span class="state-badge state-${state}">${labels[state] || state}</span>`;
+
+        document.getElementById('state-sep').style.display = 'inline';
+    }
+
+    /* summary */
+    if (project.summary) {
+        const s = document.getElementById('summary-text');
+        s.textContent = project.summary;
+        s.style.display = 'block';
+    }
+
+    /* skills */
+    const skillsRow = document.getElementById('skills-row');
+    (project.skills || []).forEach(skill => {
+        const span = document.createElement('span');
+        span.className = 'skill-pill';
+        span.textContent = skill;
+        skillsRow.appendChild(span);
     });
+
+    /* links */
+    const linksEl = document.getElementById('links');
+    (project.links || []).forEach(link => {
+        const a = document.createElement('a');
+        a.className = 'link-item';
+        a.href = link.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+
+        const img = document.createElement('img');
+        img.className = 'icon-invert';
+        img.src = link.icon;
+        img.alt = '';
+        img.setAttribute('aria-hidden', 'true');
+
+        a.appendChild(img);
+        a.appendChild(document.createTextNode(link.label));
+
+        linksEl.appendChild(a);
+    });
+}
+
+/* setup previous/next navigation */
+function setupNav(project) {
+    const sidePrev  = document.getElementById('side-prev');
+    const sideNext  = document.getElementById('side-next');
+    const bottomNav = document.getElementById('bottom-nav');
+
+    if (project.prev && sidePrev && bottomNav) {
+        const url = `../${project.prev.key}/`;
+        sidePrev.href = url;
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.className = 'nav-prev';
+        a.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg><span class="nav-label">${project.prev.label}</span>`;
+
+        bottomNav.appendChild(a);
+    }
+
+    if (project.next && sideNext && bottomNav) {
+        const url = `../${project.next.key}/`;
+        sideNext.href = url;
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.className = 'nav-next';
+        a.innerHTML = `<span class="nav-label">${project.next.label}</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>`;
+
+        bottomNav.appendChild(a);
+    }
+}
+
+function setupUI() {
+
+    /* reading progress bar */
+    const progressBar = document.getElementById('reading-progress');
+
+    if (progressBar) {
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+            const progress = docHeight > 0
+                ? Math.min((scrollTop / docHeight) * 100, 100)
+                : 0;
+
+            progressBar.style.width = `${progress}%`;
+        }, { passive: true });
+    }
+
+    /* toc mobile toggle */
+    const tocToggle = document.getElementById('toc-toggle');
+    const tocMobileBody = document.getElementById('toc-mobile-body');
+
+    if (tocToggle && tocMobileBody) {
+        tocToggle.addEventListener('click', () => {
+            const open = tocMobileBody.classList.toggle('open');
+            tocToggle.classList.toggle('open', open);
+            tocToggle.setAttribute('aria-expanded', String(open));
+        });
+    }
 }
 
 /* build table of contents */
@@ -191,7 +327,7 @@ async function renderProject(project) {
             throw new Error('No markdown file for this project.');
         }
 
-        const response = await fetch(project.markdown);
+        const response = await fetch(`${project.markdown}?v=${Date.now()}`);
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
@@ -234,117 +370,4 @@ async function renderProject(project) {
     }
 }
 
-/* setup previous/next navigation */
-function setupNav(project) {
-    const sidePrev  = document.getElementById('side-prev');
-    const sideNext  = document.getElementById('side-next');
-    const bottomNav = document.getElementById('bottom-nav');
-
-    if (project.prev && sidePrev && bottomNav) {
-        const url = `project.html?key=${project.prev.key}`;
-        sidePrev.href = url;
-
-        const a = document.createElement('a');
-        a.href = url;
-        a.className = 'nav-prev';
-        a.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg><span class="nav-label">${project.prev.label}</span>`;
-
-        bottomNav.appendChild(a);
-    }
-
-    if (project.next && sideNext && bottomNav) {
-        const url = `project.html?key=${project.next.key}`;
-        sideNext.href = url;
-
-        const a = document.createElement('a');
-        a.href = url;
-        a.className = 'nav-next';
-        a.innerHTML = `<span class="nav-label">${project.next.label}</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>`;
-
-        bottomNav.appendChild(a);
-    }
-}
-
-/* populate hero section */
-function populateHero(project) {
-    document.getElementById('project-title').textContent = project.title;
-    document.getElementById('title').textContent = project.title;
-
-    /* dates */
-    document.getElementById('dates-meta').textContent =
-        `${project.start} – ${project.end}`;
-
-    /* type */
-    if (project.tags?.type) {
-        document.getElementById('type-meta').textContent =
-            project.tags.type.charAt(0).toUpperCase() + project.tags.type.slice(1);
-
-        document.getElementById('type-sep').style.display = 'inline';
-    }
-
-    /* state badge */
-    const state = project.tags?.state;
-    if (state) {
-        const labels = {
-            completed: 'Completed',
-            wip: 'In Progress',
-            planned: 'Planned'
-        };
-
-        const stateMeta = document.getElementById('state-meta');
-        stateMeta.innerHTML =
-            `<span class="state-badge state-${state}">${labels[state] || state}</span>`;
-
-        document.getElementById('state-sep').style.display = 'inline';
-    }
-
-    /* summary */
-    if (project.summary) {
-        const s = document.getElementById('summary-text');
-        s.textContent = project.summary;
-        s.style.display = 'block';
-    }
-
-    /* skills */
-    const skillsRow = document.getElementById('skills-row');
-    (project.skills || []).forEach(skill => {
-        const span = document.createElement('span');
-        span.className = 'skill-pill';
-        span.textContent = skill;
-        skillsRow.appendChild(span);
-    });
-
-    /* links */
-    const linksEl = document.getElementById('links');
-    (project.links || []).forEach(link => {
-        const a = document.createElement('a');
-        a.className = 'link-item';
-        a.href = link.url;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-
-        const img = document.createElement('img');
-        img.className = 'icon-invert';
-        img.src = link.icon;
-        img.alt = '';
-        img.setAttribute('aria-hidden', 'true');
-
-        a.appendChild(img);
-        a.appendChild(document.createTextNode(link.label));
-
-        linksEl.appendChild(a);
-    });
-}
-
-/* main init */
-if (!project) {
-    document.getElementById('title').textContent = 'Project not found';
-    document.getElementById('loading-state').style.display = 'none';
-    document.getElementById('error-state').style.display = 'block';
-    document.getElementById('error-msg').textContent =
-        'No project found for this key.';
-} else {
-    populateHero(project);
-    setupNav(project);
-    renderProject(project);
-}
+initPage();

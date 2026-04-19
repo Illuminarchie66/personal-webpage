@@ -1,152 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Earth Map</title>
-    
-    <link rel="stylesheet" href="css/buttons.css">
-    <link rel="stylesheet" href="css/forms.css">
-    <link rel="stylesheet" href="css/map.css">
-    <link rel="stylesheet" href="css/settings.css">
+    <!-- Basic Meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <script type="importmap">
+    <title id="project-title">Archie Harrodine | Centre of N points</title>
+    <meta name="description" content="Centre of N points - A project to find the geographic centre of a set of points on the Earth's surface, using stochastic gradient descent and optimisation techniques.">
+    <meta name="keywords" content="portfolio, projects, calculus, optimisation, geometry">
+    <meta name="author" content="Archie Harrodine">
+
+    <!-- Canonical Url -->
+    <link rel="canonical" href="https://www.archie-harrodine.com/projects/geographic-centre/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Archie Harrodine | Centre of N points">
+    <meta property="og:description" content="Centre of N points - A project to find the geographic centre of a set of points on the Earth's surface, using stochastic gradient descent and optimisation techniques.">
+    <meta property="og:image" content="https://www.archie-harrodine.com/assets/images/preview.png">
+    <meta property="og:url" content="https://www.archie-harrodine.com/projects/geographic-centre/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Archie Harrodine | Centre of N points">
+    <meta name="twitter:description" content="Centre of N points - A project to find the geographic centre of a set of points on the Earth's surface, using stochastic gradient descent and optimisation techniques.">
+    <meta name="twitter:image" content="https://www.archie-harrodine.com/assets/images/preview.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
     {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
-        }
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        "name": "Centre of N points",
+        "description": "A project to find the geographic centre of a set of points on the Earth's surface, using stochastic gradient descent and optimisation techniques.",
+        "author": {
+            "@type": "Person",
+            "name": "Archie Harrodine",
+            "url": "https://www.archie-harrodine.com"
+        },
+        "url": "https://www.archie-harrodine.com/projects/geographic-centre/",
+        "codeRepository": "https://github.com/Illuminarchie66/Geographic-Centre",
+        "programmingLanguage": [
+            "Python",
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "runtimePlatform": "Web Browser",
+        "keywords": [
+            "calculus",
+            "optimisation",
+            "geometry"
+        ]
     }
     </script>
 
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/project_md.css">
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <!-- Add Geocoding plugin -->
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    <script type="module" src="scripts/point.js" defer></script>
-    <script type="module" src="scripts/forms.js" defer></script>
-    <script type="module" src="scripts/map.js" defer></script>
-    <script type="module" src="scripts/settings.js" defer></script>
-    <script type="module" src="scripts/markers.js" defer></script>
-    <script type="module" src="scripts/calculator.js" defer></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Prism -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- JS -->
+    <script type="module" src="../../js/colors.js"></script>
+    <script type="module" src="../../js/header.js"></script>
 </head>
-<body>
-    <div id="map-container">
-        <div id="map">
-            <button id="refresh-btn">&#x21bb;</button>
-            <img src="crosshair.png" class="crosshair" />
-        </div>
-    
-    <div id="form-container">
-    <script>
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-    </script>
-        
-        <div id="form-upper">
-            <div class="tab">
-                <button class="tablinks" data-tab="InfoTab" id="left">Info</button>
-                <button class="tablinks" data-tab="LatLngTab">By Latitude/Longitude</button>
-                <button class="tablinks" data-tab="AddressTab" id="right">By Address</button>
-            </div>
-            
-            <div id="InfoTab" class="tabcontent">
-                <div id="Info">
-                <p>This app will let you calculate the geographical centre of N locations, trying to find the point of equidistance between each point.</p>
 
-                <p>We can calculate the exact centres for 2 and 3 locations, but for anything more it will approximate the point of minimum variance through stochastic gradient descent.</p>
-                </div>
-            </div>
-    
-            <div id="LatLngTab" class="tabcontent">
-                <form id="latlng-form">
-                    <div class="form-group">
-                    <label for="latitude">Latitude:</label>
-                    <input type="number" id="latitude" step="0.000001" required>
-                    </div>
+<body class="bg-bg-main text-text-text font-sans">
 
-                    <div class="form-group">
-                    <label for="longitude">Longitude:</label>
-                    <input type="number" id="longitude" step="0.000001" required>
-                    </div>
+  <!-- Header -->
+  <div id="header"></div>
 
-                    <div class="form-group">
-                    <button type="submit" class="add-marker">Add Marker</button>
-                    </div>
-                </form>
-                
-            </div>
-    
-            <div id="AddressTab" class="tabcontent">
-                <form id="address-form">
-                    <div class="form-group-2">
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" required>
-                    </div>
-                    <div class="form-group">
-                    <button type="submit" class="add-marker">Add Marker</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+  <div id="project-shell"></div>
 
-
-
-        <button id="calculate-btn">Calculate</button>
-
-        
-        <div id="form-lower">
-            <h3>Results:</h3>
-            <p id="result"> Display results here... </p>
-        </div>
-    </div>
-        
-
-    
-    <button id="add-marker-view-btn" class="add-marker">Add Marker</button>
-
-    <button id="settings-btn">
-        <i class="fas fa-cog" style="font-size: 24px;"></i>
-    </button>
-    
-    <div id="settings-panel" class="settings-panel">
-        <span id="close-btn">&times;</span>
-        <h3>Settings</h3>
-        <label>
-            Experimental for all:
-            <input type="checkbox" id="experimental">
-        </label>
-        <label>
-            Balanced:
-            <input type="checkbox" id="balanced">
-        </label>
-        <label>
-            Alpha:
-            <input type="number" id="alpha" step="0.01" value="1">
-        </label>
-        <label>
-            Precision:
-            <input type="number" id="precision" min="2" value="10">
-        </label>
-        <label>
-            Track:
-            <input type="number" id="track" min="2" value="10">
-        </label>
-    </div>
-    
+  <script src="../../js/project_data.js"></script>
+  <script src="../../js/project_page.js"></script>
 </body>
 </html>

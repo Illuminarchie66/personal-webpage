@@ -58,27 +58,33 @@ function observeOnScroll(selector, animationClass) {
 }
 
 /* Animate text letter-by-letter */
-function animateText(container, text) {
+function animateText(container, text, waitForAnimation = true) {
     container.empty();
 
-    /* Create span for each letter */
     for (let i = 0; i < text.length; i++) {
         const span = $('<span class="letter">' + text[i] + '</span>');
         container.append(span);
     }
 
-    /* Delay start slightly for smoother load */
+    const triggerScrollAnimations = () => {
+        observeOnScroll('.fade-up-target', 'fade-in-up');
+        observeOnScroll('.fade-left-target', 'fade-in-left');
+        observeOnScroll('.fade-right-target', 'fade-in-right');
+    };
+
+    if (!waitForAnimation) {
+        triggerScrollAnimations();
+    }
+
     setTimeout(() => {
         const letters = container.find('.letter');
 
         letters.each(function (index) {
             $(this).delay(index * 90).animate({ opacity: 1 }, 90, () => {
 
-                /* Trigger scroll animations once animation completes */
-                if (index === letters.length - 1) {
-                    observeOnScroll('.fade-up-target', 'fade-in-up');
-                    observeOnScroll('.fade-left-target', 'fade-in-left');
-                    observeOnScroll('.fade-right-target', 'fade-in-right');
+                // 👇 Only trigger here if we ARE waiting
+                if (waitForAnimation && index === letters.length - 1) {
+                    triggerScrollAnimations();
                 }
             });
         });
@@ -395,13 +401,18 @@ function secretsSetup() {
 $(document).ready(function () {
     const container = $('#name');
 
-    /* Set initial name based on screen size */
     const isMobile = window.matchMedia("(max-width: 639px)").matches;
     const initialText = isMobile ? "Archie H." : "Archie Harrodine";
 
-    animateText(container, initialText);
+    const animTitle = sessionStorage.getItem('animTitle') === 'true';
 
-    /* Update name instantly on resize (no re-animation) */
+    if (animTitle) {
+        animateText(container, initialText, false);
+    } else {
+        animateText(container, initialText, true);
+        sessionStorage.setItem('seenIntro', 'true');
+    }
+
     $(window).on('resize', function () {
         const isMobileNow = window.matchMedia("(max-width: 639px)").matches;
         const newText = isMobileNow ? "Archie H." : "Archie Harrodine";
