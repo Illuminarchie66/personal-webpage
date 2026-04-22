@@ -157,18 +157,18 @@ body {
 }
 
 .letter-box {
-    width: 58px;
-    height: 58px;
+    width: clamp(42px, 12vw, 58px);
+    height: clamp(42px, 12vw, 58px);
+    font-size: clamp(1.2rem, 4vw, 1.9rem);
+    line-height: clamp(42px, 12vw, 58px);
     background-color: #2a2a2a;
     border-radius: 10px;
     border: 2px solid #383838;
     text-align: center;
-    font-size: 1.9rem;
     font-weight: 700;
     color: #ffffff;
     outline: none;
     transition: border-color 0.15s;
-    line-height: 58px;
 }
 
 .letter-box:focus {
@@ -211,7 +211,8 @@ body {
     display: flex;
     gap: 10px;
     align-items: center;
-    width: calc(5 * 58px + 4 * 8px);
+    width: 100%;
+    max-width: 320px;
 }
 
 .guess-button {

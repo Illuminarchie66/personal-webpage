@@ -2,34 +2,123 @@ const letterStatus = Array(26).fill("DEFAULT"); // "DEFAULT", "IN", "NOTIN"
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
 const keyboardTab = document.getElementById('keyboard-tab');
 const letterBoxes = [];
+// const layouts = {
+//     small: [7, 7, 6, 6],
+//     medium: [9, 9, 8],
+//     large: [14, 12]
+// };
+
+function getLayout() {
+    const width = window.innerWidth;
+
+    if (width < 425) return [7,7,7,5];
+    if (width < 768) return [9,9,8];
+    return [14,12];
+}
 
 function initKeyboardTab() {
     keyboardTab.innerHTML = '';
     letterBoxes.length = 0;
 
-    // 14 on row 1, 12 on row 2
-    const row1 = document.createElement('div');
-    row1.className = 'keyboard-row';
+    const layout = getLayout();
+    let idx = 0;
+    layout.forEach(rowLength => {
+        const row = document.createElement('div');
+        row.className = 'keyboard-row';
 
-    const row2 = document.createElement('div');
-    row2.className = 'keyboard-row';
-
-    alphabet.forEach((letter, idx) => {
-        const div = document.createElement('div');
-        div.className = 'letter-box default';
-        div.textContent = letter;
-        letterBoxes.push(div);
-
-        if (idx < 14) {
-            row1.appendChild(div);
-        } else {
-            row2.appendChild(div);
+        for (let i=0; i<rowLength; i++) {
+            const div = document.createElement('div');
+            div.className = 'letter-box default';
+            div.textContent = alphabet[idx++];
+            letterBoxes.push(div);
+            row.appendChild(div);
         }
-    });
+        keyboardTab.appendChild(row);
 
-    keyboardTab.appendChild(row1);
-    keyboardTab.appendChild(row2);
+    });
+    
 }
+
+// function initKeyboardTab() {
+//     keyboardTab.innerHTML = '';
+//     letterBoxes.length = 0;
+
+//     // 14 on row 1, 12 on row 2 for default
+//     const row1 = document.createElement('div');
+//     row1.className = 'keyboard-row';
+
+//     const row2 = document.createElement('div');
+//     row2.className = 'keyboard-row';
+
+//     if (screen.width < 425) {
+//         const row3 = document.createElement('div');
+//         row3.className = 'keyboard-row';
+
+//         const row4 = document.createElement('div');
+//         row4.className = 'keyboard-row';
+
+//         alphabet.forEach((letter, idx) => {
+//             const div = document.createElement('div');
+//             div.className = 'letter-box default';
+//             div.textContent = letter;
+//             letterBoxes.push(div);
+
+//             if (idx < 7) {
+//                 row1.appendChild(div);
+//             } else if (idx < 14) {
+//                 row2.appendChild(div);
+//             } else if (idx < 21) {
+//                 row3.appendChild(div);
+//             } else {
+//                 row4.appendChild(div);
+//             }
+//         });
+
+//         keyboardTab.appendChild(row1);
+//         keyboardTab.appendChild(row2);
+//         keyboardTab.appendChild(row3);
+//         keyboardTab.appendChild(row4);
+//     } else if (screen.width < 768) {
+//         const row3 = document.createElement('div');
+//         row3.className = 'keyboard-row';
+
+//         alphabet.forEach((letter, idx) => {
+//             const div = document.createElement('div');
+//             div.className = 'letter-box default';
+//             div.textContent = letter;
+//             letterBoxes.push(div);
+
+//             if (idx < 9) {
+//                 row1.appendChild(div);
+//             } else if (idx < 18) {
+//                 row2.appendChild(div);
+//             } else {
+//                 row3.appendChild(div);
+//             }
+//         });
+
+//         keyboardTab.appendChild(row1);
+//         keyboardTab.appendChild(row2);
+//         keyboardTab.appendChild(row3);
+//     } else {
+//         alphabet.forEach((letter, idx) => {
+//             const div = document.createElement('div');
+//             div.className = 'letter-box default';
+//             div.textContent = letter;
+//             letterBoxes.push(div);
+
+//             if (idx < 14) {
+//                 row1.appendChild(div);
+//             } else {
+//                 row2.appendChild(div);
+//             }
+//         });
+
+//         keyboardTab.appendChild(row1);
+//         keyboardTab.appendChild(row2);
+//     }
+
+// }
 
 function updateKeyboard(guess, result) {
     guess = guess.toUpperCase();
