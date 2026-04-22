@@ -213,7 +213,7 @@ y\_i^2 + z\_i^2 & -x\_i y\_i & -x\_i z\_i \\\\
 = \frac{\partial u}{\partial \mathbf{c}} \cdot \left( \frac{(\mathbf{v}\_i \cdot \mathbf{c})^2}{(\mathbf{v}\_i \cdot \mathbf{c})^2 + |\mathbf{v}\_i \times \mathbf{c}|^2} \right) \\\\
 &= \frac{1}{(\mathbf{v}\_i \cdot \mathbf{c})^2 + |\mathbf{v}\_i \times \mathbf{c}|^2} \left[ \frac{\mathbf{v}\_i \cdot \mathbf{c}}{| \mathbf{v}\_i \times \mathbf{c} |} K\_i \mathbf{c} - \mathbf{v}\_i | \mathbf{v}\_i \times \mathbf{c} | \right] \\\\
 &= \frac{1}{|\mathbf{v}\_i|^2|\mathbf{c}|^2} \left[ \frac{\mathbf{v}\_i \cdot \mathbf{c}}{| \mathbf{v}\_i \times \mathbf{c} |} K\_i \mathbf{c} - \mathbf{v}\_i | \mathbf{v}\_i \times \mathbf{c} | \right] \\\\
-\Rightarrow \frac{\partial \\\sigma^2}{\partial \mathbf{c}} &= 
+\Rightarrow \frac{\partial \sigma^2}{\partial \mathbf{c}} &= 
 \frac{2}{n}\sum\_{i=1}^n \frac{\partial \ell}{\partial \mathbf{c}} \arctan\left(\frac{|\mathbf{v}\_i \times \mathbf{c}|}{\mathbf{v}\_i \cdot \mathbf{c}}\right) - 
 \frac{2}{n^2}\left(\sum\_{i=0}^n \frac{\partial \ell}{\partial \mathbf{c}} \right) 
 \left( \sum\_{i=0}^n \arctan\left(\frac{|\mathbf{v}\_i \times \mathbf{c}|}{\mathbf{v}\_i \cdot \mathbf{c}}\right)\right)

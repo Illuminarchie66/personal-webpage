@@ -467,6 +467,10 @@ article img {
   border: none;
   border-top: 3px solid var(--border4);
   margin: 0;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* ── Left spacer (desktop) ── */

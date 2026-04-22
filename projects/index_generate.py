@@ -39,6 +39,11 @@ def build_head(key, project):
     <meta name="keywords" content="portfolio, projects, {', '.join(keywords)}">
     <meta name="author" content="{AUTHOR}">
 
+    <!-- Favicon -->
+	<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/meta/favicon-v2-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/meta/favicon-v2-16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/meta/apple-touch-icon-v2.png">
+
     <!-- Canonical Url -->
     <link rel="canonical" href="{url}">
 

@@ -2,8 +2,8 @@ const projects = {
   "geographic-centre": {
     title: "Centre of N points",
     summary: "A project to find the geographic centre of a set of points on the Earth's surface, using stochastic gradient descent and optimisation techniques.",
-    start: "Feb 2020",
-    end: "Mar 2021",
+    start: "2020-02",
+    end: "2021-03",
     skills: ["Python", "Calculus", "Optimisation", "Geometry", "HTML", "CSS", "JavaScript"],
     tags: {
       state: "completed",
@@ -24,8 +24,8 @@ const projects = {
   "epq": {
     title: "EPQ: Game Design",
     summary: "An Extended Project Qualification (EPQ) on game design, where I designed and developed a game in Unity, and wrote a report and journal on the process.",
-    start: "Feb 2020",
-    end: "Mar 2021",
+    start: "2020-02",
+    end: "2021-03",
     skills: ["Unity", "Game Design", "C#"],
     tags: {
       state: "completed",
@@ -46,8 +46,8 @@ const projects = {
   "robot-maze": {
     title: "CS118 Robot Maze",
     summary: "A project to program a robot to navigate a maze using various techniques, teaching the basics of OOP",
-    start: "Oct 2021",
-    end: "Dec 2021",
+    start: "2021-10",
+    end: "2021-12",
     skills: ["Java", "OOP", "Algorithms", "Djikstra's"],
     tags: {
       state: "completed",
@@ -64,8 +64,8 @@ const projects = {
   "architecture": {
     title: "CS132 Architecture",
     summary: "A project to design different parts of CPU architecture, and developing programs using C.",
-    start: "Oct 2021",
-    end: "Feb 2022",
+    start: "2021-10",
+    end: "2022-02",
     skills: ["C", "Assembly", "Computer Architecture"],
     tags: {
       state: "completed",
@@ -86,8 +86,8 @@ const projects = {
   "waffles": {
     title: "CS126 Waffles",
     summary: "A project to design and implement a restaurant management system, teaching the basics of data structures and sorting algorithms to work with large amounts of data.",
-    start: "Jan 2022",
-    end: "Mar 2022",
+    start: "2022-01",
+    end: "2022-03",
     skills: ["Java", "Data Structures", "Algorithms", "Databases"],
     tags: {
       state: "completed",
@@ -107,8 +107,8 @@ const projects = {
   "hurdle": {
     title: "CS141 Hurdle",
     summary: "A project to implement a functional programming solution for the Wordle game, exploring concepts in Haskell and developing a Wordle AI.",
-    start: "Jan 2022",
-    end: "Feb 2022",
+    start: "2022-01",
+    end: "2022-02",
     skills: ["Functional Programming", "Haskell", "Wordle", "AI"],
     tags: {
       state: "completed",
@@ -129,8 +129,8 @@ const projects = {
   "onaf": {
     title: "One Night at Freddy's",
     summary: "A project to implement Five Nights at Freddy's in Haskell, exploring functional programming and game development concepts.",
-    start: "Feb 2022",
-    end: "Mar 2022",
+    start: "2022-02",
+    end: "2022-03",
     skills: ["Functional Programming", "Haskell", "Game Development"],
     tags: {
       state: "completed",
@@ -151,8 +151,8 @@ const projects = {
   "os-and-networks": {
     title: "CS241 OS & Networks",
     summary: "A project to explore packet sniffing, network protocols and using threading in programs.",
-    start: "Oct 2022",
-    end: "Dec 2022",
+    start: "2022-10",
+    end: "2022-12",
     skills: ["C", "Networking", "Operating Systems"],
     tags: {
       state: "completed",
@@ -172,8 +172,8 @@ const projects = {
   "databases": {
     title: "CS258 Databases",
     summary: "A project to design and implement a database system for gigs, acts, venues and customers. Uses PostgreSQL and JDBC to create a fully functional database system, and explores concepts in database design and SQL.",
-    start: "Oct 2022",
-    end: "Jan 2023",
+    start: "2022-10",
+    end: "2023-01",
     skills: ["SQL", "Database Design", "Java"],
     tags: {
       state: "completed",
@@ -192,8 +192,8 @@ const projects = {
   "ai": {
     title: "CS255 Artificial Intelligence",
     summary: "A project to implement AI algorithms to solve a CSP problem of performing comedians, using backtracking and simulated annealing, while exploring concepts in AI, search algorithms and heuristics.",
-    start: "Jan 2023",
-    end: "Feb 2023",
+    start: "2023-01",
+    end: "2023-02",
     skills: ["Python", "AI", "Search Algorithms", "Monte Carlo"],
     tags: {
       state: "completed",
@@ -212,8 +212,8 @@ const projects = {
   "formal-languages": {
     title: "CS259 Formal Languages",
     summary: "A project to implement a simple compiler for a functional programming language, exploring concepts in automata theory, parsing and compiler design - implemented with JavaCC.",
-    start: "Jan 2023",
-    end: "Mar 2023",
+    start: "2023-01",
+    end: "2023-03",
     skills: ["Java", "Automata Theory", "Compilers"],
     tags: {
       state: "completed",
@@ -232,8 +232,8 @@ const projects = {
   "software-project-tracker": {
     title: "CS261 Deutche Bank Software Project Tracker",
     summary: "A group project to design and implement a software project tracker for Deutsche Bank, using model view controller architecture for frontend, backend and database.",
-    start: "Oct 2022",
-    end: "Apr 2023",
+    start: "2022-10",
+    end: "2023-04",
     skills: ["Python", "ML", "Jira", "Agile", "Flask", "NoSQL"],
     tags: {
       state: "completed",
@@ -255,8 +255,8 @@ const projects = {
   "digital-forensics": {
     title: "CS355 Digital Forensics",
     summary: "A project to complete various labs on different images, using MatLab and image processing techniques.",
-    start: "Nov 2023",
-    end: "Jan 2024",
+    start: "2023-11",
+    end: "2024-01",
     skills: ["MatLab", "Image Processing"],
     tags: {
       state: "completed",
@@ -277,8 +277,8 @@ const projects = {
   "machine-learning": {
     title: "CS342 Machine Learning",
     summary: "A project to implement the kernel trick for SVMs to solve a non-linearly separable dataset, and exploring concepts in machine learning, SVMs and the kernel trick - as well as proving it mathematically.",
-    start: "Nov 2023",
-    end: "Dec 2023",
+    start: "2023-11",
+    end: "2023-12",
     skills: ["Python", "Machine Learning", "Data Analysis"],
     tags: {
       state: "completed",
@@ -298,8 +298,8 @@ const projects = {
   "graphics": {
     title: "CS324 Graphics",
     summary: "A project to implement a simple 3D game using WebGL and three.js, exploring concepts in 3D graphics, rendering and shading.",
-    start: "Nov 2023",
-    end: "Jan 2024",
+    start: "2023-11",
+    end: "2024-01",
     skills: ["JavaScript", "three.js", "WebGL"],
     tags: {
       state: "completed",
@@ -319,8 +319,8 @@ const projects = {
   "robotics": {
     title: "CS313 Mobile Robotics",
     summary: "A project to program a robot to navigate a maze using ROS and Python, exploring concepts in robotics, ROS and pathfinding algorithms.",
-    start: "Jan 2024",
-    end: "Mar 2024",
+    start: "2024-01",
+    end: "2024-03",
     skills: ["Robotics", "Python", "ROS"],
     tags: {
       state: "completed",
@@ -339,8 +339,8 @@ const projects = {
   "simpleg": {
     title: "SimpLeg",
     summary: "A project to implement a simple LLM-powered text summarisation and simplification tool for UK legislation, using Python, Flask and the OpenAI API, exploring concepts in natural language processing, LLMs and web development.",
-    start: "Oct 2023",
-    end: "Apr 2024",
+    start: "2023-10",
+    end: "2024-04",
     skills: ["Python", "LLMs", "APIs", "Flask", "NLP"],
     tags: {
       state: "completed",
@@ -362,8 +362,8 @@ const projects = {
   "box-quest": {
     title: "Box Quest",
     summary: "A project to design and implement a quick 2D game in Unity based on the World's Hardest Game, exploring concepts in game development, C# programming and level design.",
-    start: "Jun 2024",
-    end: "Sep 2024",
+    start: "2024-06",
+    end: "2024-09",
     skills: ["Unity", "C#", "Game Development"],
     tags: {
       state: "completed",
@@ -383,7 +383,7 @@ const projects = {
   "mario-map-project": {
     title: "Mario Map Project",
     summary: "A project to create a comprehensive interactive map of the Mario universe using HTML, JavaScript and Tailwind CSS, exploring concepts in web development, data collection and visualisation.",
-    start: "Feb 2024",
+    start: "2024-02",
     end: "Ongoing",
     tags: {
       state: "wip",
@@ -404,8 +404,8 @@ const projects = {
   "image-and-video": {
     title: "CS413 Image and Video Analysis",
     summary: "A project to complete various image analysis tasks, including road sign detection, blinds filtering, homographies and image segmentation.",
-    start: "Nov 2024",
-    end: "Jan 2025",
+    start: "2024-11",
+    end: "2025-01",
     skills: ["Python", "OpenCV", "Image Processing"],
     tags: {
       state: "completed",
@@ -424,8 +424,8 @@ const projects = {
   "optimisation": {
     title: "CS416 Optimisation",
     summary: "A project to implement various optimisation algorithms to solve various mathematical problems, using gradient descent, Newton's method, taking Hessians, fractal roots and numerical methods",
-    start: "Jan 2025",
-    end: "Mar 2025",
+    start: "2025-01",
+    end: "2025-03",
     skills: ["Python", "Derivatives", "Numerical Methods"],
     tags: {
       state: "completed",
@@ -444,8 +444,8 @@ const projects = {
   "data-mining": {
     title: "CS429 Data Mining",
     summary: "A project to explore data analysis and machine learning techniques to solve problems in classification of images and proteins.",
-    start: "Jan 2025",
-    end: "Mar 2025",
+    start: "2025-01",
+    end: "2025-03",
     skills: ["Python", "Machine Learning", "Deep Learning", "Neural Networks"],
     tags: {
       state: "completed",
@@ -464,8 +464,8 @@ const projects = {
   "terrainfinity": {
     title: "TerraInfinity",
     summary: "A group project to implement a procedural terrain generation algorithm using various techniques with uber noise, DLA, Bezier river generation, etc. as well as using a custom renderer and engine with variable parameters.",
-    start: "Oct 2024",
-    end: "Apr 2025",
+    start: "2024-10",
+    end: "2025-04",
     skills: ["Python", "C++", "Procedural Generation", "Simplex Noise"],
     tags: {
       state: "completed",
@@ -488,7 +488,7 @@ const projects = {
   "value-betting": {
     title: "Value Betting",
     summary: "A project for using rpscrape to scrape data on Horse Racing and use Deep Set Neural Networks to predict the probability of a horse winning, and using this to find value bets and make a profit.",
-    start: "Jan 2025",
+    start: "2025-01",
     end: "Ongoing",
     skills: ["Python", "Data Analysis", "Web Scraping", "Pandas", "Neural Networks", "PyTorch"],
     tags: {
@@ -508,8 +508,8 @@ const projects = {
   "az900": {
     title: "AZ900 Practice Exam",
     summary: "A project to create a practice exam for the AZ900 Microsoft Azure Fundamentals certification, using Python and web development to create a user-friendly interface for users to test their knowledge and prepare for the exam.",
-    start: "Nov 2025",
-    end: "Dec 2025",
+    start: "2025-11",
+    end: "2025-12",
     skills: ["Python", "Webscraping", "Web Development"],
     tags: {
       state: "completed",

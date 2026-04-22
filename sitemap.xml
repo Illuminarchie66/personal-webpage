@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core pages -->
+  <url>
+    <loc>https://www.archie-harrodine.com/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.archie-harrodine.com/projects/</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.archie-harrodine.com/modules/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.archie-harrodine.com/contact/</loc>
+    <priority>0.7</priority>
+  </url>
+
+
+  <!-- Project pages -->
+  <url><loc>https://www.archie-harrodine.com/projects/ai</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/architecture</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/az900</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/box-quest</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/data-mining</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/databases</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/digital-forensics</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/epq</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/formal-languages</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/geographic-centre</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/graphics</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/hurdle</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/image-and-video</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/machine-learning</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/mario-map-project</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/onaf</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/optimisation</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/os-and-networks</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/robot-maze</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/robotics</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/simpleg</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/software-project-tracker</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/terrainfinity</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/value-betting</loc><priority>0.9</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/waffles</loc><priority>0.9</priority></url>
+
+
+  <!-- App pages (slightly lower priority) -->
+  <url><loc>https://www.archie-harrodine.com/projects/geographic-centre/app</loc><priority>0.7</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/mario-map-project/app</loc><priority>0.7</priority></url>
+  <url><loc>https://www.archie-harrodine.com/projects/hurdle/app</loc><priority>0.7</priority></url>
+
+</urlset>

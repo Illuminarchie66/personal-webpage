@@ -9,7 +9,7 @@ This was a personal favourite. I loved the theorising around it, binging theory 
 
 The reason I had FNAF in mind was not just because of the lore, but because of how perfectly I believed it could work with Haskell. Haskell is not built for game development - it lacks the objects and hierarchies that make it easy to connect and manage elements as you would in a conventional game engine. Instead, Haskell works by passing and transforming functions. You can map anything to a function of time, progressing over a series of time steps and frames. This is perfect for FNAF, as it relies heavily on what happens and changes each frame to the game state. We can build the world as a single record, and develop functions that transform it as the night goes on.
 
-![FNAF](./onaf/md/images/freddy.webp)
+![FNAF](./md/images/freddy.webp)
 *Freddy, Bonnie and Chica in the opening cutscene.*
 
 ## Scope and Limitations
@@ -193,10 +193,10 @@ render gs imgs
 
 In `Office` mode, it renders the backdrop, the door windows (showing Bonnie or Chica if present), the left and right buttons, the doors, the battery, and the time - plus the camera pull-up animation if `swapping` is active. In `Cameras` mode, it renders the room view for the current camera, the static overlay, the camera UI effects (red dot, white border), and the interactive map. When the player presses space, `swapping` is set to `True` and the transition animation begins, pulling the camera up one frame at a time until `animState` reaches 10 and the mode flips.
 
-![Screenshot 1](./onaf/md/images/ss1.png)
+![Screenshot 1](./md/images/ss1.png)
 *In-game view of the office.*
 
-![Screenshot 2](./onaf/md/images/ss2.png)
+![Screenshot 2](./md/images/ss2.png)
 *In-game view of the cameras.*
 
 The camera image selection checks the game state and picks the appropriate image based on which animatronics are present, with Freddy always taking priority due to his mechanic of being frozen when observed. For example, in the dining area:
@@ -214,9 +214,9 @@ The first guard that matches wins, with an empty room as the fallback. Images ar
 
 <div class="image-row-wrapper">
     <div class="image-row">
-        <img src="./onaf/md/images/48.png" alt="empty dining area">
-        <img src="./onaf/md/images/120.png" alt="bonnie dining area">
-        <img src="./onaf/md/images/492.png" alt="freddy dining area">
+        <img src="./md/images/48.png" alt="empty dining area">
+        <img src="./md/images/120.png" alt="bonnie dining area">
+        <img src="./md/images/492.png" alt="freddy dining area">
     </div>
     <p class="image-caption"><em>The possible images used for the Dining Area.</em></p>
 </div>
@@ -313,16 +313,16 @@ data Location
     | OfficeAnim
 ```
 
-![Ingame map](./onaf/md/images/0.png)
+![Ingame map](./md/images/0.png)
 *In-game map of available cameras.*
 
 `OfficeAnim` represents the player's location from the animatronics' perspective. Each animatronic has its own directed graph, with Bonnie and Chica using bidirectional edges to allow movement in either direction.
 
 <div class="image-row-wrapper">
   <div class="image-row">
-    <img src="./onaf/md/images/1.png" alt="Bonnie Path">
-    <img src="./onaf/md/images/2.png" alt="Chica Path">
-    <img src="./onaf/md/images/3.png" alt="Freddy Path">
+    <img src="./md/images/1.png" alt="Bonnie Path">
+    <img src="./md/images/2.png" alt="Chica Path">
+    <img src="./md/images/3.png" alt="Freddy Path">
   </div>
   <p class="image-caption"><em>Movement paths for Bonnie, Chica, and Freddy.</em></p>
 </div>
@@ -439,7 +439,7 @@ The animatronic AI was the most interesting element to implement, as it gave me 
 
 Each frame, `frameTracker` increments for every animatronic. When it exceeds `movementTake`, a move is attempted. `movementCheck` draws a random number between 0 and 20 - if it falls below `aggressionLevel`, the move proceeds; otherwise `frameTracker` resets. For example, Bonnie attempts a move every 198 frames (roughly every 4.95 seconds). If `aggressionLevel` is 17 and the roll is 11, the move goes ahead; if the roll is 19, it doesn't. This is the same aggression system used for the custom night difficulty in the original game.
 
-![Custom night](./onaf/md/images/custom.webp)
+![Custom night](./md/images/custom.webp)
 *The original FNAF custom night menu.*
 
 Freddy has one additional caveat: he cannot move if the player is currently watching his camera. This is checked by comparing `room freddy` to `currentCam` while `mode == Cameras`. It's what makes Freddy distinctly threatening - he always advances along his fixed path, and the only way to delay him is to keep your eyes on him.

@@ -25,7 +25,7 @@ In this task, we had to complete the `createSchedule()` method in scheduler.py, 
 
 This is a Constraint Satisfaction Problem, a CSP. Our approach for this problem was to use backtracking. The idea is systematic trial and error, where we make a choice, and follow down that route until we hit a deadend. If we hit a deadend, we undo, and explore other routes. This can be imagined as a tree, where each depth is a decision we can make. If that branch fails us, we go back to the state we were at before we made the decision, and explore a different branch. 
 
-![Backtracking tree.](./ai/md/images/backtracking.jpg)
+![Backtracking tree.](./md/images/backtracking.jpg)
 
 We apply this across our five day week, which has 5 availablable slots. Each slot has a `(comedian, demographic)` pair, meaning tis comedian performs for this demographic. Our core function we use is `backtracking_recursive(ass, D, C, day)`, where `ass` is the assignment, `D` is the remaining demographics to assign, `C` is the list of all comedians, and `day` is the day of the week it is. 
 

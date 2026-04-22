@@ -1,3 +1,5 @@
+const isValidFormat = str => /^\d{4}-(0[1-9]|1[0-2])$/.test(str);
+
 const pathParts = window.location.pathname
   .split('/')
   .filter(Boolean);
@@ -34,14 +36,24 @@ async function initPage() {
     renderProject(project);
 }
 
+function formatYearMonth(str) {
+    if (!str || !isValidFormat(str)) return str;
+    const [year, month] = str.split('-');
+    const date = new Date(year, month - 1);
+    return new Intl.DateTimeFormat('en-GB', {
+        month: 'short',
+        year: 'numeric'
+    }).format(date);
+}
+
 /* populate hero section */
 function populateHero(project) {
-    document.getElementById('project-title').textContent = project.title;
+    document.getElementById('project-title').textContent = "Archie Harrodine | " + project.title;
     document.getElementById('title').textContent = project.title;
 
     /* dates */
     document.getElementById('dates-meta').textContent =
-        `${project.start} – ${project.end}`;
+        `${formatYearMonth(project.start)} – ${formatYearMonth(project.end)}`;
 
     /* type */
     if (project.tags?.type) {
