@@ -685,6 +685,24 @@ const projects = {
     markdown: "",
     prev: null,
     next: null
+   },
+
+  "utils-page": {
+    title: "Utilities",
+    summary: "A project to create a simple page to host various utilities such as: a dice roller, a password generator, duck racing, quiz generator, etc.",
+    start: "-",
+    end: "-",
+    skills: [],
+    tags: {
+      state: "planned",
+      docState: "not-started",
+      type: "personal",
+      meta: []
+    },
+    links: [],
+    markdown: "",
+    prev: null,
+    next: null
    }
 };
 

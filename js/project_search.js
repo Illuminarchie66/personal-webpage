@@ -93,7 +93,7 @@ function render() {
 
     card.innerHTML = `
         <div class="card-header">
-        <span class="card-title">${escHtml(project.title)}</span>
+        <span class="card-title">${escHtml(project.title)}${project.tags.docState === 'not-started' ? '*' : ''}</span>
         <span class="card-date">${formatYearMonth(escHtml(project.start))} – ${formatYearMonth(escHtml(project.end))}</span>
         </div>
         ${project.summary ? `<p class="card-summary">${escHtml(project.summary)}</p>` : ''}
