@@ -129,13 +129,13 @@ def generate_all(projects):
 
 if __name__ == "__main__":
     # Load your JSON file
-    with open("../assets/project-data.json", "r") as f:
+    with open("assets/project-data.json", "r") as f:
         projects = json.load(f)
 
     heads = generate_all(projects)
 
     # Print each block clearly separated
-    for key, head in list(heads.items())[20:30]:  # Print only a subset for brevity
+    for key, head in list(heads.items())[30:]:  # Print only a subset for brevity
         print("\n" + "="*80)
         print(f"PROJECT: {key}")
         print("="*80)

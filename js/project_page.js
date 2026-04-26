@@ -122,8 +122,9 @@ function setupNav(project) {
     const sidePrev  = document.getElementById('side-prev');
     const sideNext  = document.getElementById('side-next');
     const bottomNav = document.getElementById('bottom-nav');
+    const projectShell = document.getElementById('project-shell');
 
-    if (project.prev && sidePrev && bottomNav) {
+    if (project.prev !== null && sidePrev && bottomNav) {
         const url = `../${project.prev.key}/`;
         sidePrev.href = url;
 
@@ -133,9 +134,11 @@ function setupNav(project) {
         a.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg><span class="nav-label">${project.prev.label}</span>`;
 
         bottomNav.appendChild(a);
+    } else {
+        sidePrev?.remove();
     }
 
-    if (project.next && sideNext && bottomNav) {
+    if (project.next !== null && sideNext && bottomNav) {
         const url = `../${project.next.key}/`;
         sideNext.href = url;
 
@@ -145,6 +148,8 @@ function setupNav(project) {
         a.innerHTML = `<span class="nav-label">${project.next.label}</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>`;
 
         bottomNav.appendChild(a);
+    } else {
+        sideNext?.remove();
     }
 }
 
