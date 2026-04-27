@@ -34,9 +34,9 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "CDN" },
-      { icon: "../../assets/icons/document.svg", label: "Report", url: "CDN" },
-      { icon: "../../assets/icons/document.svg", label: "Journal", url: "CDN" },
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "TBD" },
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "https://cdn.archie-harrodine.com/projects/epq/Realising%20the%20perfect%20video%20game.docx" },
+      { icon: "../../assets/icons/document.svg", label: "Journal", url: "https://cdn.archie-harrodine.com/projects/epq/EPQ%20Artefact%20Journal-merged.pdf" },
     ],
     markdown: "./md/epq.md",
     prev: { key: "geographic-centre", label: "Centre of N" },
@@ -352,7 +352,7 @@ const projects = {
       { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/SimpLeg"},
       { icon: "../../assets/icons/document.svg", label: "Report", url: "https://cdn.archie-harrodine.com/projects/simpleg/CS310_Project_Final_Report.pdf" },
       { icon: "../../assets/icons/document.svg", label: "Report", url: "https://cdn.archie-harrodine.com/projects/simpleg/CS310_Project_Progress_Report.pdf" },
-      { icon: "../../assets/icons/document.svg", label: "Report", url: "https://cdn.archie-harrodine.com/projects/simpleg/CS310_Project_Specification.pdf" },
+      { icon: "../../assets/icons/document.svg", label: "Report", url: "https://cdn.archie-harrodine.com/projects/simpleg/CS310_Project_Final_Report.pdf" },
     ],
     markdown: "./md/simpleg.md",
     prev: { key: "graphics", label: "CS324 Graphics" },
@@ -522,7 +522,7 @@ const projects = {
     ],
     markdown: "./md/az900.md",
     prev: { key: "value-betting", label: "Value Betting" },
-    next: null
+    next: { key: "ore-or-oar", label: "Ore or Oar" }
   },
 
   "ore-or-oar": {
@@ -538,9 +538,9 @@ const projects = {
       meta: []
     },
     links: [],
-    markdown: "",
-    prev: null,
-    next: null
+    markdown: "./md/ore-or-oar.md",
+    prev: { key: "terrainfinity", label: "TerraInfinity" },
+    next: { key: "erosion-filter", label: "Erosion Filter" }
   },
 
   "erosion-filter": {
@@ -556,9 +556,9 @@ const projects = {
       meta: []
     },
     links: [],
-    markdown: "",
-    prev: null,
-    next: null
+    markdown: "./md/erosion-filter.md",
+    prev: { key: "ore-or-oar", label: "Ore or Oar" },
+    next: { key: "confetti-maker", label: "Confetti Maker" }
   },
 
   "confetti-maker": {
@@ -574,9 +574,9 @@ const projects = {
       meta: []
     },
     links: [],
-    markdown: "",
-    prev: null,
-    next: null
+    markdown: "./md/confetti-maker.md",
+    prev: { key: "erosion-filter", label: "Erosion Filter" },
+    next: { key: "tanks-game", label: "Tanks Game" }
   },
 
   "tanks-game": {
@@ -592,9 +592,9 @@ const projects = {
       meta: []
     },
     links: [],
-    markdown: "",
-    prev: null,
-    next: null
+    markdown: "./md/tanks-game.md",
+    prev: { key: "confetti-maker", label: "Confetti Maker" },
+    next: { key: "level-name-generator", label: "Level Name Generator" }
   },
 
   "level-name-generator": {
@@ -610,9 +610,9 @@ const projects = {
       meta: []
     },
     links: [],
-    markdown: "",
-    prev: null,
-    next: null
+    markdown: "./md/level-name-generator.md",
+    prev: { key: "tanks-game", label: "Tanks Game" },
+    next: { key: "minecraft-mod", label: "Minecraft Mod" }
   },
 
   "minecraft-mod": {
@@ -628,9 +628,9 @@ const projects = {
       meta: []
     },
     links: [],
-    markdown: "",
-    prev: null,
-    next: null
+    markdown: "./md/minecraft-mod.md",
+    prev: { key: "level-name-generator", label: "Level Name Generator" },
+    next: { key: "godot-game", label: "Fire Emblem Game in Godot" }
   },
 
   "godot-game": {
@@ -646,9 +646,9 @@ const projects = {
       meta: []
     },
     links: [],
-    markdown: "",
-    prev: null,
-    next: null
+    markdown: "./md/godot-game.md",
+    prev: { key: "minecraft-mod", label: "Minecraft Mod" },
+    next: { key: "cpp-game-dev", label: "C++ Game Development" }
   },
 
   "cpp-game-dev": {
@@ -664,9 +664,9 @@ const projects = {
       meta: []
     },
     links: [],
-    markdown: "",
-    prev: null,
-    next: null
+    markdown: "./md/cpp-game-dev.md",
+    prev: { key: "godot-game", label: "Fire Emblem Game in Godot" },
+    next: { key: "mario-party-simulator", label: "Mario Party Simulator" }
    },
 
   "mario-party-simulator": {
@@ -682,9 +682,9 @@ const projects = {
       meta: []
     },
     links: [],
-    markdown: "",
-    prev: null,
-    next: null
+    markdown: "./md/mario-party-simulator.md",
+    prev: { key: "cpp-game-dev", label: "C++ Game Development" },
+    next: { key: "utils-page", label: "Utilities" }
    },
 
   "utils-page": {
@@ -700,8 +700,8 @@ const projects = {
       meta: []
     },
     links: [],
-    markdown: "",
-    prev: null,
+    markdown: "./md/utils-page.md",
+    prev: { key: "mario-party-simulator", label: "Mario Party Simulator" },
     next: null
    }
 };
