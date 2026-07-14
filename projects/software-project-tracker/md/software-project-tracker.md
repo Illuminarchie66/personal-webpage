@@ -257,3 +257,17 @@ Overall, the project achieved its primary objective of producing a working softw
 
 ## Extensions
 There are many potential extensions that can be made toward this product, both visually and algorithmically. 
+- Add more responsiveness, with various screen sizes and more flexbible design.
+- JavaScript for page updates without reloads or redirects.
+- More animations, transitions, hover effects and scaling to make it more clear what is happening.
+- Allow the navigation bar to show more than just five projects and coworkers. 
+- Add navigation buttons for new projects or new team members.
+- Providing more sorting options.
+- Further levels of permissions from three to something more fine-grained.
+
+- More datasets from other sources to improve model variety and accuracy.
+- Letting managers select how much to weigh different parameters.
+- Redundancy table with sum of realised risk multiplied by probability of risk occuring. 
+- Stakeholder satisfaction from stakeholder review, with sum of least squares to measure trajectory.
+- Resourcing by assigning workers to tasks depending on skills.
+- Soft metrics with interpretations of lexical data with sentiment analysis. 
