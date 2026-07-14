@@ -277,7 +277,8 @@ article img {
   padding-bottom: 0.5rem;
   margin: 1rem 0;
 }
-.katex-display > .katex { white-space: nowrap; }
+.katex-display > .katex { white-space: nowrap;}
+
 
 /* ========================================
    HORIZONTAL RULE
@@ -320,6 +321,11 @@ article img {
 }
 
 /* ── Layout shell ── */
+
+.project-layout > * {
+    min-width: 0;
+}
+
 .project-layout {
   display: grid;
   grid-template-columns: 1fr;

@@ -238,6 +238,24 @@ function initHeader() {
     "The man who must brag for himself knows that no one else will.",
     "Diplomacy is the velvet glove that cloaks the fist of power.",
     "For the will of Ibe, cannot be snuffed out by flame.",
+    "Jarona",
+    "Ja-Orange",
+    "Glue!",
+    "Hey there lil guy",
+    "insert chapter 7 side b",
+    "Kris, YOU actually changed!",
+    "These Tropical Birds are Tropissing me off",
+    "Your dad's my best friend!",
+    "Heh, how did you like my Jarona",
+    "here i come sanfrandiscooooo!",
+    "Thank you for watching my dream",
+    "Nyon",
+    "Look guys, I found a glue!",
+    "Susingus",
+    "Can you get me a hot gamer girlfriend.",
+    "Can you get me a hot gamer boyfriend.",
+    "Treasure this world, won't you?",
+    "you've got a cat bite, mew."
   ];
 
   /* Get side title element */

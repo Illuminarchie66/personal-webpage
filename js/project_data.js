@@ -237,7 +237,7 @@ const projects = {
     skills: ["Python", "ML", "Jira", "Agile", "Flask", "NoSQL"],
     tags: {
       state: "completed",
-      docState: "not-started",
+      docState: "completed",
       type: "academic",
       meta: ["has-github"]
     },
@@ -260,7 +260,7 @@ const projects = {
     skills: ["MatLab", "Image Processing"],
     tags: {
       state: "completed",
-      docState: "not-started",
+      docState: "completed",
       type: "academic",
       meta: ["has-github"]
     },
