@@ -282,7 +282,7 @@ const projects = {
     skills: ["Python", "Machine Learning", "Data Analysis"],
     tags: {
       state: "completed",
-      docState: "not-started",
+      docState: "completed",
       type: "academic",
       meta: ["has-github"]
     },
@@ -308,7 +308,7 @@ const projects = {
       meta: ["has-github"]
     },
     links: [
-      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS324-Graphics"},
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/CS324-Gaphics"},
       { icon: "../../assets/icons/document.svg", label: "Report", url: "./Report.pdf" }
     ],
     markdown: "./md/graphics.md",
