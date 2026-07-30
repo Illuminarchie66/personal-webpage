@@ -29,7 +29,7 @@ const projects = {
     skills: ["Unity", "Game Design", "C#"],
     tags: {
       state: "completed",
-      docState: "completed",
+      docState: "not-started",
       type: "personal",
       meta: ["has-github"]
     },
@@ -303,7 +303,7 @@ const projects = {
     skills: ["JavaScript", "three.js", "WebGL"],
     tags: {
       state: "completed",
-      docState: "not-started",
+      docState: "completed",
       type: "academic",
       meta: ["has-github"]
     },
@@ -522,6 +522,28 @@ const projects = {
     ],
     markdown: "./md/az900.md",
     prev: { key: "value-betting", label: "Value Betting" },
+    next: { key: "descend", label: "Descend" }
+  },
+
+  "descend": {
+    title: "GMTK Game Jam 2026: Descend",
+    summary: "A project to create a game for the GMTK Game Jam 2026, where the player controls a character that is falling to the centre of the Earth, and must dodge obstacles and go through boost rings to make it to the bottom. It was made using HTML Canvas and JavaScript in 96 hours.",
+    start: "2026-07",
+    end: "2026-07",
+    skills: ["JavaScript", "OOP", "HTML Canvas", "Game Development"],
+    tags: {
+      state: "completed",
+      docState: "not-started",
+      type: "personal",
+      meta: ["has-github", "has-website"]
+    },
+    links: [
+      { icon: "../../assets/icons/github.svg", label: "GitHub", url: "https://github.com/Illuminarchie66/GMTK-GameJam-2026-Descend"},
+      { icon: "../../assets/icons/website.svg", label: "itch.io", url: "https://illuminarchie.itch.io/descend"},
+      { icon: "../../assets/icons/website.svg", label: "Descend", url: "./app" },
+    ],
+    markdown: "./md/descend.md",
+    prev: { key: "az900", label: "AZ900 Practice Exam" },
     next: { key: "ore-or-oar", label: "Ore or Oar" }
   },
 
@@ -539,7 +561,7 @@ const projects = {
     },
     links: [],
     markdown: "./md/ore-or-oar.md",
-    prev: { key: "terrainfinity", label: "TerraInfinity" },
+    prev: { key: "descend", label: "Descend" },
     next: { key: "erosion-filter", label: "Erosion Filter" }
   },
 
