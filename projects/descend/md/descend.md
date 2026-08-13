@@ -921,10 +921,127 @@ When we draw we have to ensure we use negative half width and height for the x a
 ### Camera reset
 
 ## Entity Refactor
-*44 hours remain.*
+As we were developing the different row block patterns we laid out, we started to encounter a problem with those that weren't confined to the rows. Up until this point, we defined the spikes as cells inside of the rows, where each cell is occupied by a single hitbox. When the row goes off screen, then the row and its attached entity is unloaded. This presented us a problem though, as for a rotating spikeball, it could exist when the row went off of the screen, so it would cause an awkward immersion break where you could see the spikeball despawn in real time. The problem is that we defined entities entirely by their associated rows, neglecting the fact that we want entities detached from the rows they spawn on. There was also the issue of collision, as right now we computed the collisions from the cell, rather than the hitbox - which wasn't sustainable for moving objects. Furthermore, this highlighted another issue that because we utilised the cell system, it meant that there was no way to place elements at positions that weren't perfectly on one of the ten cells. This isn't great as for example the boost panels that we have in mind would be very limited to how they could behave. Therefore for that functionality, we decided we needed to refactor what had been done to utilise entities rather than cells. An entity operated independently to a cell, meaning that it would exist in isolation and not rely on the row. It also could possess its own hitbox, with specialised collision designed.  
 
-### Row control problem
-### Hitbox system 
+### Hitbox system
+I keep referring to them as hitboxes, but in reality they are colliders, as we wanted circular hiboxes too. We needed a generic way to handle hitboxes to be able to check collisions, so first we created an abstract class. The core functionality is to check overlap with another collider. We also want to be able to debug colliders are in the correct position, so we added a draw functionality. 
+```ts
+export default abstract class Collider {
+    active: boolean = true;
+
+    abstract overlaps(other: Collider|null): boolean;
+
+    abstract draw(ctx: CanvasRenderingContext2D): void;
+}
+```
+This was used as the base for our `BoxCollider`, `CircleCollider` and `CompoundCollider`. It was also at this point we introduced a `Transform` interface, which basically gave a method to handle x,y cooridnates that would persist between objects. The box collider was given an owner, which is the position that the box follows (so for example a moving player). Then we also have an offset, if we want the box to always be slightly off to where it would be made by the owner - really just to deal with the drawing jank. Finally we have a width and height, as you would expect from a box. We draw the hitbox itself around the x,y subtracting half its width and height respectively, since it draws from the top left. The hitbox x,y is the centre of the box itself. Note that overlaps has little logic and instead calls Collisions, this is a static class dedicated to how different colliders should check if they collide. 
+```ts
+export default class BoxCollider extends Collider {
+    
+    constructor(
+        public owner: Transform,
+        public offsetX: number,
+        public offsetY: number,
+        public width: number,
+        public height: number
+    ) {
+        super();
+        this.owner = owner;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        this.width = width;
+        this.height = height;
+    }
+
+    get x() {
+        return this.owner.x + this.offsetX;
+    }
+
+    get y() {
+        return this.owner.y + this.offsetY;
+    }
+
+    overlaps(other: Collider|null): boolean {
+        if(other === null)
+            return false;
+
+        if (this.active === false || other.active === false)
+            return false;
+
+        return Collision.test(this, other);
+    }
+
+    draw(ctx: CanvasRenderingContext2D) {
+        ctx.strokeStyle = "lime";
+
+        ctx.strokeRect(
+            this.x - this.width/2,
+            this.y - this.height/2,
+            this.width,
+            this.height
+        );
+    }
+}
+```
+The circle collider is incredibly similar, the only difference using a radius rather than a width and height; and the draw function using an arc rather than a box. However the type difference is important, as it allows us to evaluate collisions in different instances. 
+```ts
+draw(ctx: CanvasRenderingContext2D) {
+    ctx.strokeStyle = "lime";
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.stroke();
+}
+```
+The last collider we made (but did not end up using) was a compound collider, which simply maintains a list of colliders about an owner. This way if we wanted a hitbox to consist of two boxes and a circle, we could create that with this. The collider system was simple, especially since we did not implement any form of rotation, but for this simple game it did the job. 
+
+The collisions were a little more interesting though, with different methods for how circles and boxes should test overlap. the `Collision.test()` takes two colliders, and finds out what they are, before selecting the appropriate method to evaluate if they overlap. If it is two circle colliders, we check if the difference between their centres is less than the total radius.
+$$(x_a - x_b)^2 + (y_a - y_b)^2 \leq (r_a + r_b)^2$$
+If it is two box colliders, we check if the absolute difference in their centres is less than the total width and height respectively. It takes a bit of thinking to see it, but becomes clear. 
+```ts
+export default class Collision {
+    static test(a: Collider, b: Collider): boolean {
+        if (a instanceof CircleCollider && b instanceof CircleCollider)
+            return this.circleCircle(a, b);
+
+        if (a instanceof BoxCollider && b instanceof BoxCollider)
+            return this.boxBox(a, b);
+
+        if (a instanceof CircleCollider && b instanceof BoxCollider)
+            return this.circleBox(a, b);
+
+        if (a instanceof BoxCollider && b instanceof CircleCollider)
+            return this.circleBox(b, a);
+
+        return false;
+    }
+
+    static circleCircle(a: CircleCollider, b: CircleCollider): boolean {
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const radius = a.radius + b.radius;
+        return dx*dx + dy*dy <= radius*radius;
+    }
+
+    static boxBox(a: BoxCollider, b: BoxCollider): boolean {
+        return (Math.abs(a.x - b.x) * 2 < a.width + b.width) && (Math.abs(a.y - b.y) * 2 < a.height + b.height);
+    }
+
+    static circleBox(circle: CircleCollider, box: BoxCollider): boolean {
+        const circleDistanceX = Math.abs(circle.x - box.x);
+        const circleDistanceY = Math.abs(circle.y - box.y);
+
+        if (circleDistanceX > (box.width / 2 + circle.radius)) { return false; }
+        if (circleDistanceY > (box.height / 2 + circle.radius)) { return false; }
+
+        if (circleDistanceX <= (box.width / 2)) { return true; }
+        if (circleDistanceY <= (box.height / 2)) { return true; }
+
+        const cornerDistance_sq = (circleDistanceX - box.width / 2) ** 2 + (circleDistanceY - box.height / 2) ** 2;
+        return (cornerDistance_sq <= (circle.radius ** 2));
+    }
+}
+```
+
 ### Balls
 
 ## Spriting
