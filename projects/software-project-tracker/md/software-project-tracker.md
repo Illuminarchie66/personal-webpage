@@ -218,7 +218,7 @@ As we worked through each sprint, we had several design changes during developme
 - Instead of customized permissions, we set three levels depending on role, to reduce project and testing complexity.
 - We switched to only develop for AGILE driven approaches, ignoring plan-driven to reduce the scope.
 - We replaced the temperature bar with a lexical approach alongside numerical information in the form of a graph. 
-- We ignored most qualative parameters as data was far easier to interpret. 
+- We ignored most qualitative parameters as data was far easier to interpret. 
 - We changed the risk value range from 0 to 1, to 0 to 5, for more consistent easy to understand evaluations.
 
 While the original design proved to be a strong foundation, several aspects evolved substantially during implementation. These changes highlighted the importance of iterative design and demonstrated that adapting the architecture based on practical experience often leads to a stronger final system than rigidly adhering to an initial specification.

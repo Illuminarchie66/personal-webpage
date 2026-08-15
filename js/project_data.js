@@ -8,7 +8,7 @@ const projects = {
     tags: {
       state: "completed",
       docState: "completed",
-      type: "personal",
+      type: "academic",
       meta: ["has-website", "has-github"]
     },
     links: [
