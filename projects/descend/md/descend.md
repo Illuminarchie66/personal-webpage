@@ -878,10 +878,10 @@ What came next was a brainstorm session, writing on paper all quick possible ide
 
 This was a great slew of possible patterns, designs and ideas to add a lot of variety to the game! I knew I likely wouldn't get them all done for the jam, but the ideas still persist for future updates. These ideas were implemented over the course of the jam, rather haphazardly, thus we will talk about all row block implementations in a single section of day 3.
 
-![Photo of some sketch notes made](./md/images/sketch1.png)
+![Photo of some sketch notes made](./md/images/sketch1.jpeg)
 *Photo of some sketch notes made.*
 
-![Photo of some sketch notes made](./md/images/sketch2.png)
+![Photo of some sketch notes made](./md/images/sketch2.jpeg)
 *Photo of some sketch notes made.*
 
 # Day 3
