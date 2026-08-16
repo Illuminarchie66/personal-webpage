@@ -536,14 +536,13 @@ article img {
   display: none;
   position: sticky;
   top: 5rem;
-  max-height: calc(100vh - 5rem);
+  max-height: calc(100vh - 10rem);
   overflow-y: auto;
   background: var(--bg-card);
   border: 3px solid var(--border4);
   border-radius: 1rem;
   padding: 1rem 1.1rem;
   font-size: clamp(0.8rem, 0.85vw, 1rem);
-  scrollbar-width: thin;
 }
 
 @media (min-width: 1200px) {
@@ -577,7 +576,7 @@ article img {
   transition: max-height 0.3s ease;
   padding: 0 1rem;
 }
-.toc-mobile-body.open { max-height: 400px; padding: 0 1rem 0.75rem; }
+.toc-mobile-body.open { max-height: 1000px; padding: 0 1rem 0.75rem; overflow: auto;}
 
 .toc-title {
   font-weight: 700;

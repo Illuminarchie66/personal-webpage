@@ -324,7 +324,7 @@ const projects = {
     skills: ["Robotics", "Python", "ROS"],
     tags: {
       state: "completed",
-      docState: "not-started",
+      docState: "Completed",
       type: "academic",
       meta: ["has-github"]
     },
@@ -355,7 +355,7 @@ const projects = {
       { icon: "../../assets/icons/document.svg", label: "Report", url: "https://cdn.archie-harrodine.com/projects/simpleg/CS310_Project_Final_Report.pdf" },
     ],
     markdown: "./md/simpleg.md",
-    prev: { key: "graphics", label: "CS324 Graphics" },
+    prev: { key: "robotics", label: "CS313 Robotics" },
     next: { key: "box-quest", label: "Box Quest" }
   },
 
@@ -533,7 +533,7 @@ const projects = {
     skills: ["JavaScript", "OOP", "HTML Canvas", "Game Development"],
     tags: {
       state: "completed",
-      docState: "not-started",
+      docState: "completed",
       type: "personal",
       meta: ["has-github", "has-website"]
     },
